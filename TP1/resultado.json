@@ -1,0 +1,1587 @@
+[
+    {
+        "numero": 1,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Anatom\u00eda"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 2,
+        "nome": "",
+        "genero": "a",
+        "areas": [],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 3,
+        "nome": "",
+        "genero": "m",
+        "areas": [
+            "Anatom\u00eda"
+        ],
+        "sinonimos": [
+            " rexi\u00f3n abdominal (f)",
+            " panza [pop.]"
+        ],
+        "variacoes": [
+            ""
+        ]
+    },
+    {
+        "numero": 4,
+        "nome": "",
+        "genero": "m",
+        "areas": [
+            "Semiolox\u00eda"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 5,
+        "nome": "",
+        "genero": "m",
+        "areas": [
+            "Semiolox\u00eda"
+        ],
+        "sinonimos": [
+            " ventre de madeira"
+        ],
+        "variacoes": [
+            ""
+        ]
+    },
+    {
+        "numero": 6,
+        "nome": "",
+        "genero": "m",
+        "areas": [
+            "Semiolox\u00eda"
+        ],
+        "sinonimos": [
+            " abdome prominente",
+            " abdome "
+        ],
+        "variacoes": [
+            ""
+        ]
+    },
+    {
+        "numero": 7,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Fisiolox\u00eda",
+            "Anatom\u00eda"
+        ],
+        "sinonimos": [
+            " separaci\u00f3n"
+        ],
+        "variacoes": [
+            ""
+        ]
+    },
+    {
+        "numero": 8,
+        "nome": "",
+        "genero": "f",
+        "areas": [],
+        "sinonimos": [
+            " estreito inferior da pelve (m)"
+        ],
+        "variacoes": [
+            ""
+        ]
+    },
+    {
+        "numero": 9,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Anatom\u00eda"
+        ],
+        "sinonimos": [
+            " estreito superior da pelve (m)"
+        ],
+        "variacoes": [
+            ""
+        ]
+    },
+    {
+        "numero": 10,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Terap\u00e9utica"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 11,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Terap\u00e9utica"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 12,
+        "nome": "",
+        "genero": "m",
+        "areas": [
+            "Semiolox\u00eda",
+            "Anatom\u00eda",
+            "patol\u00f3xica"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 13,
+        "nome": "",
+        "genero": "f",
+        "areas": [],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 14,
+        "nome": "",
+        "genero": "m",
+        "areas": [
+            "Termos",
+            "xerais"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 15,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Patolox\u00edas"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 16,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Semiolox\u00eda"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 17,
+        "nome": "",
+        "genero": "a",
+        "areas": [],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 18,
+        "nome": "",
+        "genero": "m",
+        "areas": [
+            "Etiopatoxenia"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 19,
+        "nome": "",
+        "genero": "m",
+        "areas": [
+            "Termos",
+            "xerais"
+        ],
+        "sinonimos": [
+            " accidente laboral"
+        ],
+        "variacoes": [
+            ""
+        ]
+    },
+    {
+        "numero": 20,
+        "nome": "",
+        "genero": "i",
+        "areas": [],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 21,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            ""
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 22,
+        "nome": "",
+        "genero": "m",
+        "areas": [
+            "Anatom\u00eda"
+        ],
+        "sinonimos": [
+            " cavidade cotiloide (f)"
+        ],
+        "variacoes": [
+            ""
+        ]
+    },
+    {
+        "numero": 23,
+        "nome": "",
+        "genero": "m",
+        "areas": [
+            "Bioqu\u00edmica"
+        ],
+        "sinonimos": [
+            " acetil-CoA"
+        ],
+        "variacoes": [
+            ""
+        ]
+    },
+    {
+        "numero": 24,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Bioqu\u00edmica",
+            "Fisiolox\u00eda"
+        ],
+        "sinonimos": [
+            " ACh (sb)"
+        ],
+        "variacoes": [
+            ""
+        ]
+    },
+    {
+        "numero": 25,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Semiolox\u00eda"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 26,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Terap\u00e9utica"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 27,
+        "nome": "",
+        "genero": "m",
+        "areas": [
+            "Farmacolox\u00eda"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 28,
+        "nome": "",
+        "genero": "m",
+        "areas": [
+            "Farmacolox\u00eda"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 29,
+        "nome": "",
+        "genero": "m",
+        "areas": [
+            "Farmacolox\u00eda"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 30,
+        "nome": "",
+        "genero": "m",
+        "areas": [
+            "Bioqu\u00edmica"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 31,
+        "nome": "",
+        "genero": "m",
+        "areas": [
+            "Bioqu\u00edmica"
+        ],
+        "sinonimos": [
+            " Asp (sb)"
+        ],
+        "variacoes": [
+            ""
+        ]
+    },
+    {
+        "numero": 32,
+        "nome": "",
+        "genero": "m",
+        "areas": [
+            "Bioqu\u00edmica"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 33,
+        "nome": "",
+        "genero": "m",
+        "areas": [
+            "Bioqu\u00edmica",
+            "Fisiolox\u00eda"
+        ],
+        "sinonimos": [
+            " HCl (sb)"
+        ],
+        "variacoes": [
+            ""
+        ]
+    },
+    {
+        "numero": 35,
+        "nome": "",
+        "genero": "m",
+        "areas": [
+            "Bioqu\u00edmica"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 36,
+        "nome": "",
+        "genero": "g",
+        "areas": [
+            "Bioqu\u00edmica",
+            "Fisiolox\u00eda"
+        ],
+        "sinonimos": [
+            " GABA (sg)"
+        ],
+        "variacoes": [
+            ""
+        ]
+    },
+    {
+        "numero": 37,
+        "nome": "",
+        "genero": "m",
+        "areas": [
+            "Bioqu\u00edmica",
+            "Fisiolox\u00eda"
+        ],
+        "sinonimos": [
+            " glutamato",
+            " Glu (sb)"
+        ],
+        "variacoes": [
+            ""
+        ]
+    },
+    {
+        "numero": 38,
+        "nome": "",
+        "genero": "m",
+        "areas": [
+            "Bioqu\u00edmica"
+        ],
+        "sinonimos": [
+            " AG (sg)"
+        ],
+        "variacoes": [
+            ""
+        ]
+    },
+    {
+        "numero": 39,
+        "nome": "",
+        "genero": "m",
+        "areas": [
+            "Bioqu\u00edmica"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 40,
+        "nome": "",
+        "genero": "m",
+        "areas": [
+            "Bioqu\u00edmica"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 41,
+        "nome": "",
+        "genero": "m",
+        "areas": [
+            "Bioqu\u00edmica"
+        ],
+        "sinonimos": [
+            " ARN (sg)",
+            " RNA (sg)"
+        ],
+        "variacoes": [
+            ""
+        ]
+    },
+    {
+        "numero": 42,
+        "nome": "",
+        "genero": "m",
+        "areas": [
+            "Farmacolox\u00eda"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 43,
+        "nome": "",
+        "genero": "m",
+        "areas": [
+            "Bioqu\u00edmica"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 44,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Etiopatoxenia"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 45,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Semiolox\u00eda"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 46,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Semiolox\u00eda"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 47,
+        "nome": "",
+        "genero": "m",
+        "areas": [
+            "Histolox\u00eda"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 48,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Etiopatoxenia",
+            "Semiolox\u00eda"
+        ],
+        "sinonimos": [
+            ""
+        ],
+        "variacoes": [
+            " anaclorhidria"
+        ]
+    },
+    {
+        "numero": 49,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Patolox\u00edas"
+        ],
+        "sinonimos": [
+            " acne vulgar"
+        ],
+        "variacoes": [
+            ""
+        ]
+    },
+    {
+        "numero": 50,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Patolox\u00edas"
+        ],
+        "sinonimos": [
+            " ros\u00e1cea"
+        ],
+        "variacoes": [
+            ""
+        ]
+    },
+    {
+        "numero": 51,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Etiopatoxenia"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 52,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Fisiolox\u00eda"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 53,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Fisiolox\u00eda"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 54,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Patolox\u00edas"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 55,
+        "nome": "",
+        "genero": "m",
+        "areas": [
+            "Xen\u00e9tica"
+        ],
+        "sinonimos": [
+            " consello xen\u00e9tico"
+        ],
+        "variacoes": [
+            ""
+        ]
+    },
+    {
+        "numero": 56,
+        "nome": "",
+        "genero": "m",
+        "areas": [
+            "Epidemiolox\u00eda"
+        ],
+        "sinonimos": [
+            " evento"
+        ],
+        "variacoes": [
+            ""
+        ]
+    },
+    {
+        "numero": 57,
+        "nome": "",
+        "genero": "m",
+        "areas": [
+            "Epidemiolox\u00eda"
+        ],
+        "sinonimos": [
+            " evento sentinela"
+        ],
+        "variacoes": [
+            ""
+        ]
+    },
+    {
+        "numero": 58,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Patolox\u00edas",
+            "Semiolox\u00eda"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 59,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Semiolox\u00eda"
+        ],
+        "sinonimos": [
+            ""
+        ],
+        "variacoes": [
+            " acrocinese"
+        ]
+    },
+    {
+        "numero": 60,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Patolox\u00edas",
+            "Semiolox\u00eda"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 61,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Semiolox\u00eda"
+        ],
+        "sinonimos": [
+            ""
+        ],
+        "variacoes": [
+            " acromasia"
+        ]
+    },
+    {
+        "numero": 62,
+        "nome": "",
+        "genero": "m",
+        "areas": [
+            "Anatom\u00eda"
+        ],
+        "sinonimos": [
+            " ap\u00f3fise acromial (f)"
+        ],
+        "variacoes": [
+            ""
+        ]
+    },
+    {
+        "numero": 63,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Semiolox\u00eda"
+        ],
+        "sinonimos": [
+            " hipocratismo dixital (m)"
+        ],
+        "variacoes": [
+            ""
+        ]
+    },
+    {
+        "numero": 64,
+        "nome": "",
+        "genero": "m",
+        "areas": [
+            "Histolox\u00eda"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 65,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Semiolox\u00eda"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 66,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Bioqu\u00edmica"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 67,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Farmacolox\u00eda"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 68,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Patolox\u00edas"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 69,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Terap\u00e9utica"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 70,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Anatom\u00eda"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 71,
+        "nome": "",
+        "genero": "m",
+        "areas": [
+            "Termos",
+            "xerais"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 72,
+        "nome": "",
+        "genero": "m",
+        "areas": [
+            "Anatom\u00eda"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 73,
+        "nome": "",
+        "genero": "m",
+        "areas": [
+            "Semiolox\u00eda"
+        ],
+        "sinonimos": [
+            ""
+        ],
+        "variacoes": [
+            ""
+        ]
+    },
+    {
+        "numero": 74,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Fisiolox\u00eda",
+            "Probas",
+            "complementarias"
+        ],
+        "sinonimos": [
+            " agudeza visual"
+        ],
+        "variacoes": [
+            ""
+        ]
+    },
+    {
+        "numero": 75,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Terap\u00e9utica"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 76,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Fisiolox\u00eda"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 77,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Terap\u00e9utica"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 78,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Bioqu\u00edmica"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 79,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Bioqu\u00edmica"
+        ],
+        "sinonimos": [
+            " A (sb)"
+        ],
+        "variacoes": [
+            ""
+        ]
+    },
+    {
+        "numero": 80,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Patolox\u00edas"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 81,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Histolox\u00eda",
+            "Anatom\u00eda"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 82,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Terap\u00e9utica"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 83,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Anatom\u00eda",
+            "patol\u00f3xica",
+            "Semiolox\u00eda"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 84,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Anatom\u00eda",
+            "patol\u00f3xica"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 85,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Bioqu\u00edmica"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 86,
+        "nome": "",
+        "genero": "m",
+        "areas": [
+            "Bioqu\u00edmica"
+        ],
+        "sinonimos": [
+            " AMPc (sg)",
+            " AMP c\u00edclico"
+        ],
+        "variacoes": [
+            ""
+        ]
+    },
+    {
+        "numero": 87,
+        "nome": "",
+        "genero": "m",
+        "areas": [
+            "Bioqu\u00edmica"
+        ],
+        "sinonimos": [
+            " trifosfato de adenosina",
+            " ATP (sg)"
+        ],
+        "variacoes": [
+            ""
+        ]
+    },
+    {
+        "numero": 88,
+        "nome": "",
+        "genero": "m",
+        "areas": [
+            "Etiopatoxenia"
+        ],
+        "sinonimos": [
+            " mastadenovirus"
+        ],
+        "variacoes": [
+            ""
+        ]
+    },
+    {
+        "numero": 89,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Bioqu\u00edmica"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 90,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Fisiolox\u00eda"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 91,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Patolox\u00edas"
+        ],
+        "sinonimos": [
+            " dependencia f\u00edsica"
+        ],
+        "variacoes": [
+            ""
+        ]
+    },
+    {
+        "numero": 92,
+        "nome": "",
+        "genero": "m",
+        "areas": [
+            "Histolox\u00eda"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 93,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Fisiolox\u00eda"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 94,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Bioqu\u00edmica",
+            "Fisiolox\u00eda"
+        ],
+        "sinonimos": [
+            " epinefrina"
+        ],
+        "variacoes": [
+            ""
+        ]
+    },
+    {
+        "numero": 95,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Patolox\u00edas"
+        ],
+        "sinonimos": [
+            ""
+        ],
+        "variacoes": [
+            " adrenite"
+        ]
+    },
+    {
+        "numero": 96,
+        "nome": "",
+        "genero": "m",
+        "areas": [
+            "Farmacolox\u00eda"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 97,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Fisiolox\u00eda",
+            "Anatom\u00eda"
+        ],
+        "sinonimos": [
+            ""
+        ],
+        "variacoes": [
+            " adduci\u00f3n"
+        ]
+    },
+    {
+        "numero": 98,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Patolox\u00edas"
+        ],
+        "sinonimos": [
+            " gastrospiria"
+        ],
+        "variacoes": [
+            ""
+        ]
+    },
+    {
+        "numero": 99,
+        "nome": "",
+        "genero": "m",
+        "areas": [
+            "Farmacolox\u00eda"
+        ],
+        "sinonimos": [
+            " spray"
+        ],
+        "variacoes": [
+            ""
+        ]
+    },
+    {
+        "numero": 100,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Semiolox\u00eda"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 101,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Semiolox\u00eda"
+        ],
+        "sinonimos": [
+            " afasia an\u00f3mica",
+            " disnomia"
+        ],
+        "variacoes": [
+            ""
+        ]
+    },
+    {
+        "numero": 102,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Semiolox\u00eda"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 103,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Semiolox\u00eda"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 104,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Semiolox\u00eda"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 105,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Patolox\u00edas"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 106,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Patolox\u00edas"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 107,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Patolox\u00edas"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 108,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Probas",
+            "complementarias",
+            ""
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 109,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Semiolox\u00eda"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 110,
+        "nome": "",
+        "genero": "s",
+        "areas": [
+            "Bioqu\u00edmica"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 111,
+        "nome": "",
+        "genero": "m",
+        "areas": [
+            "Farmacolox\u00eda"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 112,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Semiolox\u00eda"
+        ],
+        "sinonimos": [
+            " grafanestesia"
+        ],
+        "variacoes": [
+            ""
+        ]
+    },
+    {
+        "numero": 113,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Semiolox\u00eda"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 114,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Patolox\u00edas"
+        ],
+        "sinonimos": [
+            " agranulocitopenia",
+            " neutropenia "
+        ],
+        "variacoes": [
+            ""
+        ]
+    },
+    {
+        "numero": 115,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Semiolox\u00eda"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 116,
+        "nome": "",
+        "genero": "a",
+        "areas": [
+            "Termos",
+            "xerais"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 117,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Instrumental"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 118,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Bioqu\u00edmica"
+        ],
+        "sinonimos": [
+            " Ala (sb)"
+        ],
+        "variacoes": [
+            ""
+        ]
+    },
+    {
+        "numero": 119,
+        "nome": "",
+        "genero": "m",
+        "areas": [
+            "Patolox\u00edas"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 120,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Bioqu\u00edmica"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 121,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Semiolox\u00eda"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 122,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Terap\u00e9utica"
+        ],
+        "sinonimos": [
+            ""
+        ],
+        "variacoes": [
+            " alcalizaci\u00f3n"
+        ]
+    },
+    {
+        "numero": 123,
+        "nome": "",
+        "genero": "m",
+        "areas": [
+            "Farmacolox\u00eda"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 124,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Etiopatoxenia"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 125,
+        "nome": "",
+        "genero": "m",
+        "areas": [
+            "Farmacolox\u00eda"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 126,
+        "nome": "",
+        "genero": "m",
+        "areas": [
+            "Bioqu\u00edmica"
+        ],
+        "sinonimos": [
+            ""
+        ],
+        "variacoes": [
+            " alcol"
+        ]
+    },
+    {
+        "numero": 127,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Semiolox\u00eda"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 128,
+        "nome": "",
+        "genero": "m",
+        "areas": [
+            "Patolox\u00edas"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 129,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Bioqu\u00edmica",
+            "Fisiolox\u00eda"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 130,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Epidemiolox\u00eda"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 131,
+        "nome": "",
+        "genero": "m",
+        "areas": [
+            "Xen\u00e9tica"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 132,
+        "nome": "",
+        "genero": "m",
+        "areas": [
+            "Semiolox\u00eda"
+        ],
+        "sinonimos": [
+            " fetor uremicus"
+        ],
+        "variacoes": [
+            ""
+        ]
+    },
+    {
+        "numero": 133,
+        "nome": "",
+        "genero": "a",
+        "areas": [
+            "Organizaci\u00f3n",
+            "sanitaria"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 134,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Organizaci\u00f3n",
+            "sanitaria"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 135,
+        "nome": "",
+        "genero": "m",
+        "areas": [
+            "Etiopatoxenia"
+        ],
+        "sinonimos": [
+            " anafilact\u00f3xeno",
+            " sensibilin\u00f3xeno"
+        ],
+        "variacoes": [
+            ""
+        ]
+    },
+    {
+        "numero": 136,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Etiopatoxenia",
+            "Patolox\u00edas"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 137,
+        "nome": "",
+        "genero": "f",
+        "areas": [
+            "Semiolox\u00eda"
+        ],
+        "sinonimos": [],
+        "variacoes": []
+    },
+    {
+        "numero": 138,
+        "nome": "",
+        "genero": "a",
+        "areas": [
+            "Bioqu\u00edmica"
+        ],
+        "sinonimos": [
+            " AFP (sg)"
+        ],
+        "variacoes": [
+            ""
+        ]
+    }
+]
