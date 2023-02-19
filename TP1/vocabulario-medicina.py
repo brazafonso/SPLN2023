@@ -55,6 +55,7 @@ def marcaLinguas(texto):
 
 def marcaTraducoes(texto):
     texto = re.sub(r'<text.*font="7">\s*<i>\s*(.*)</i>\.*</text>', r'@T\1', texto)
+    texto = re.sub(r'\n@T\s*\n(@T)?', r' ', texto)
     return texto
 
 def marcaAreas(texto):
@@ -77,6 +78,7 @@ def marcaVid(texto):
 
 def marcaNota(texto):
     texto = re.sub(r'<text.*font="9">(.*)</text>', r'#N\1', texto)
+    texto = re.sub(r'#N\s*Nota\.-', r'#N', texto)
     # texto = re.sub(r'#N\s*\n',r'',texto)
     # texto = re.sub(r'\n#N\s*(?!Nota\.-)(.*)\n',r'\1',texto)
     # texto = re.sub(r'(#N[^<]*)',r'\1\n',texto)
@@ -111,8 +113,9 @@ texto = limpaXML(texto)
 
 entradas = texto.split('###')
 
-completas = []
+completas = {}
 remissivas = {}
+erros = 0
 for entrada in entradas:
     try:
         if entrada[0] == 'C':
@@ -126,6 +129,14 @@ for entrada in entradas:
                 areas = []
                 sinonimos = []
                 variacoes = []
+                traducoes = {
+                    'pt' : [],
+                    'en' : [],
+                    'es' : [],
+                    'la' : [],
+                }
+                nota = ''
+                flag = ''
                 for linha in linhas:
                     if len(linha) > 0:
                         if linha[0] == '!':
@@ -138,33 +149,64 @@ for entrada in entradas:
                         elif '$V' in linha:
                             variacoes = linha[2:]
                             variacoes = variacoes.split(';')
-
-                    
-
-
-                completas.append( {
+                        elif linha[0] == '@':
+                            if '@es' in linha:
+                                flag = 'es'
+                            elif '@en' in linha:
+                                flag = 'en'
+                            elif '@pt' in linha:
+                                flag = 'pt'
+                            elif '@la' in linha:
+                                flag = 'la'
+                            else:
+                                traducoes[flag].append(linha[2:])
+                        elif '#N' in linha:
+                            nota += linha[2:]
+                completas[numero] = {
                     'numero' : numero,
                     'nome' : nome,
                     'genero' : genero,
                     'areas' : areas,
                     'sinonimos' : sinonimos,
                     'variacoes' : variacoes,
+                    'traducoes' : traducoes,
+                    'nota' : nota,
 
-                })
+                }
 
         elif entrada[0] == 'R':
-            pass
+            linhas = entrada.split('\n')
+            assinatura = linhas[0]
+            nome = assinatura[1:]
+            vids = []
+            for linha in linhas:
+                if '$I' in linha:
+                    vids.append(linha[2:])
+            remissivas[nome] = {
+                'nome' : nome,
+                'vids' : vids,
+            }
+
+
     except Exception as e:
         print(e)
-        print(f"Error on entry : {entrada}")
-        break
+        entry = entrada.split('\n')[0]
+        print(f"Error on entry : {entry}")
+        erros+=1
 
 
-file = open('medicina2.xml', 'w')
+file = open('medicina_processado.xml', 'w')
 file.write(texto)
 
-json_dump = json.dumps(completas,indent=4)
-file = open('resultado.json','w',encoding='utf-8')
+dados = {
+    'completas' : completas,
+    'remissivas' : remissivas,
+}
+
+json_dump = json.dumps(dados,indent=4)
+file = open('medicina_resultado.json','w',encoding='utf-8')
 file.write(json_dump)
 
+
+print(f'Resultados:\n Entradas completas = {len(dados["completas"])}\n Entradas remissivas = {len(dados["remissivas"])}\n Entradas com erros = {erros}')
 
