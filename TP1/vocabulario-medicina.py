@@ -121,11 +121,11 @@ for entrada in entradas:
         if entrada[0] == 'C':
             linhas = entrada.split('\n')
             assinatura = linhas[0]
-            assinatura = re.match(r'C(\d+)\s+(\w*\s*)+\s+(\w)',assinatura)
+            assinatura = re.match(r'C(\d+)\s+((\w*\s*)+)\s+(\w)',assinatura)
             if assinatura.groups:
                 numero = int(assinatura.group(1))
                 nome = assinatura.group(2)
-                genero = assinatura.group(3)
+                genero = assinatura.group(4)
                 areas = []
                 sinonimos = []
                 variacoes = []
