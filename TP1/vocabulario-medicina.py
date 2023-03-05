@@ -1,36 +1,3 @@
-"""
-Vocabulário de Medicina
-
-
-Tipos de entradas:
-
-* Entradas completas
-  ** numeros
-  ** area tematica == taboa de materias
-  ** Galego
-    *** areas tematicas
-    *** SIN
-    *** Var
-    *** es
-    *** en
-    *** pt
-    *** la
-    *** Nota
-
-* Entradas remisivas (variantes de uma entrada completa)
-  
-
-
-
-TPC:
-criar git e colocar na folha
-marcar os elementos de segunda ordem (***)
-tirar o xml a mais do resultado
-colocar numa estrutura de dados o resultado(por exemplo com split)
-
-"""
-
-
 import re
 import json
 
@@ -45,6 +12,8 @@ def remove_header_footer(texto):
 
 def marcaE(texto):
     """Marca entradas de vocabulario"""
+    texto = re.sub(r'<text.* font="3"><b>\s*(\d+.*)</b></text>(\n<text.*font="13|0"><b>\s*(\S+.*)</b></text>\n<text.* font="3"><b>(\s*\S+.*)</b></text>)', r'###C\1\3\4', texto)
+    texto = re.sub(r'<text.* font="3"><b>\s*(\d+.*)</b></text>(\n<text.*font="3"><b>\s*</b></text>\n<text.* font="3"><b>(\s*\S+.*)</b></text>)', r'###C\1\3', texto)
     texto = re.sub(r'<text.* font="3"><b>\s*(\d+.*)</b></text>', r'###C\1', texto)
     texto = re.sub(r'<text.* font="3"><b>\s*(\S.*)</b></text>', r'###R\1', texto)
     return texto
@@ -89,6 +58,7 @@ def limpaXML(texto):
     texto = re.sub(r'\n\s*\n', r'\n', texto)
     return texto
 
+# Marcacao do xml (acucar sintatico)
 texto = open('medicina.xml', 'r+', encoding="utf8").read()
 
 texto = remove_header_footer(texto)
@@ -109,7 +79,7 @@ texto = marcaNota(texto)
 
 texto = limpaXML(texto)
 
-# dicionario
+# criacao de dicionario dos resultados
 
 entradas = texto.split('###')
 
@@ -121,7 +91,7 @@ for entrada in entradas:
         if entrada[0] == 'C':
             linhas = entrada.split('\n')
             assinatura = linhas[0]
-            assinatura = re.match(r'C(\d+)\s+((\w*\s*)+)\s+(\w)',assinatura)
+            assinatura = re.match(r'C(\d+)\s+((\w*\s*)+)\s+(\w)?',assinatura)
             if assinatura.groups:
                 numero = int(assinatura.group(1))
                 nome = assinatura.group(2)
@@ -143,6 +113,8 @@ for entrada in entradas:
                             areas = linha[1:]
                             areas = re.sub(r'\s\s+',' ',areas)
                             areas = areas.split(' ')
+                            if numero == 4133:
+                                print(areas)
                         elif '$S' in linha:
                             sinonimos = linha[2:]
                             sinonimos = sinonimos.split(';')
@@ -162,6 +134,8 @@ for entrada in entradas:
                                 traducoes[flag].append(linha[2:])
                         elif '#N' in linha:
                             nota += linha[2:]
+                if numero == 4133:
+                                print(areas)
                 completas[numero] = {
                     'numero' : numero,
                     'nome' : nome,
@@ -195,7 +169,7 @@ for entrada in entradas:
         erros+=1
 
 
-file = open('medicina_processado.xml', 'w')
+file = open('medicina_processado.txt', 'w')
 file.write(texto)
 
 dados = {
@@ -204,7 +178,7 @@ dados = {
 }
 
 json_dump = json.dumps(dados,indent=4)
-file = open('medicina_resultado.json','w',encoding='utf-8')
+file = open('medicina_galego_resultado.json','w',encoding='utf-8')
 file.write(json_dump)
 
 

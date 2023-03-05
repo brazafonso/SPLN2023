@@ -2,52 +2,56 @@ import ply.yacc as yacc
 from dicmed_lex import tokens
 
 def p_1(p):
-    'dic : Es'
+    r'dic : Es'
+    print(p[0])
 
 def p_2(p):
-    'Es : E LB Es'
+    r'Es : E LB Es'
 
 def p_3(p):
-    'Es : E'
+    r'Es : E'
 
 def p_4(p):
-    'E : ITENS'
+    r'E : ITENS'
 
 def p_5(p):
-    'ITENS : ITEM "\n" ITENS'
+    r'E : '
 
 def p_6(p):
-    'ITENS : ITEM'
+    r'ITENS : ITEM "\n" ITENS'
 
 def p_7(p):
-    'ITEM : AT_CONC'
+    r'ITENS : ITEM'
 
 def p_8(p):
-    'ITEM : LING'
+    r'ITEM : AT_CONC'
 
 def p_9(p):
-    'AT_CONC : ID ":" VAL'
+    r'ITEM : LING'
 
 def p_10(p):
-    'LING : ID_LING ":" "\n" Ts'
+    r'AT_CONC : ID ":" VAL'
 
 def p_11(p):
-    'Ts : T "\n" Ts'
+    r'LING : ID_LING ":" "\n" Ts'
 
 def p_12(p):
-    'Ts : T'
+    r'Ts : T "\n" Ts'
 
 def p_13(p):
-    'T : "-" VAL AT_Ts'
+    r'Ts : T'
 
 def p_14(p):
-    'AT_Ts : AT_Ts AT_T'
+    r'T : "-" VAL AT_Ts'
 
 def p_15(p):
-    'AT_Ts : '
+    r'AT_Ts : AT_Ts AT_T'
 
 def p_16(p):
-    'AT_T : "\n" "+" ID ":" VAL'
+    r'AT_Ts : '
+
+def p_17(p):
+    r'AT_T : "\n" "+" ID ":" VAL'
 
 def p_error(p):
     print('Syntax error: ', p)
@@ -55,18 +59,20 @@ def p_error(p):
 
 parser = yacc.yacc()
 
-parser.parse('''
-    Area: ... delim ...
-    Ga: ...
-    ...
-    +var: ...
-    En: ...
-    ...
-    Pt: ...
-    +var: ...
-    ...
-    +var: ...
-''')
+parser.parse('''Area: 1 ; 2
+Ga: 
+-3 
+-4
++var: 5
+En: 
+-6
+-7
+Pt: 
+-8
++var: 9
++var: 11
+'''
+)
 
 
 

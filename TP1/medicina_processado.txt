@@ -222,8 +222,7 @@ $V
 @Twork accident
 @pt
 @Tacidente de trabalho
-	___###C20  accidente isquémico 
-###Rtransitorio      m
+	___###C20  accidente isquémico   transitorio      m
 !Semioloxía        Patoloxías
 $S ataque isquémico transitorio; AIT 
 $V
@@ -1994,8 +1993,7 @@ $I reacción anafiláctica
 @Tanálise
 ###Ranálise de LCR
  análise de   líquido cefalorraquídeo
-###C182  análise de líquido 
-###Rcefalorraquídeo      f
+###C182  análise de líquido   cefalorraquídeo      f
 !Probas complementarias
 $S análise de LCR; exame de 
 $V
@@ -2707,8 +2705,7 @@ $I bloqueador da vía do calcio
 @Tvitamin K antagonist
 @pt
 @Tantagonista da vitamina K
-___###C247  antagonista dos receptores da 
-###Ranxiotensina II          m 
+___###C247  antagonista dos receptores da   anxiotensina II          m 
 $S ARA II (sg); antagonista da 
 $V
 @es
@@ -2723,8 +2720,7 @@ $V
 @Tantagonista da angiotensina II
 @Tantagonista dos receptores da  angiotensina II
 @TARA II (sg)
-###C248  antagonista dos receptores da 
-###Rserotonina      m
+###C248  antagonista dos receptores da   serotonina      m
 !Farmacoloxía
 @es
 @Tantagonista de los receptores de  serotonina
@@ -2732,8 +2728,7 @@ $V
 @Tserotonin receptor antagonist
 @pt
 @Tantagonista dos receptores da  serotonina
-###C249  antagonista dos receptores de 
-###Rleucotrienos      m          
+###C249  antagonista dos receptores de   leucotrienos      m          
 !
 @es
 @Tantagonista de receptores de  leucotrienos
@@ -3259,8 +3254,7 @@ $V
 @Tantiflogístico
 @Tantiinflamatório
 @Tanti- inflamatório
-###C296  antiinflamatorio 
-###Rnon-esteroide      m
+###C296  antiinflamatorio   non-esteroide      m
 !Farmacoloxía
 $S AINE (sg)
 $V
@@ -5467,8 +5461,7 @@ $V
 @Tartródia
 @la
 @Tarticulatio plana
-###C483  articulación por encaixe 
-###Rrecíproco      f
+###C483  articulación por encaixe   recíproco      f
 !Anatomía
 $S articulación en sela; articulación 
 $V
@@ -6800,8 +6793,7 @@ $I histerectomía
 @Tbalneotherapy
 @pt
 @Tbalneoterapia
-###C599  balón de contrapulsación 
-###Raórtico      m
+###C599  balón de contrapulsación   aórtico      m
 !Terapéutica
 $S balón intraaórtico
 $V
@@ -8791,8 +8783,7 @@ $V carbuncho
 @Tanthrax
 @pt
 @Tcarbúnculo
-###C774  carcinoma da ampola de 
-###RVater      m
+###C774  carcinoma da ampola de   Vater      m
 !Patoloxías
 $S ampuloma;  tumor maligno da 
 $V
@@ -10002,8 +9993,7 @@ $V
 @Tcentro de saúde
 ###Rcentro frénico
  centro   tendinoso do diafragma
-###C880  centro tendinoso do 
-###Rdiafragma      m
+###C880  centro tendinoso do   diafragma      m
 !Anatomía
 $S centro frénico
 $V
@@ -11652,8 +11642,7 @@ $I
 @Tcholangiography
 @pt
 @Tcolangiografia
-###C1030  colanxiografía percutánea 
-###Rtranshepática      f
+###C1030  colanxiografía percutánea   transhepática      f
 !Probas complementarias
 $S colanxiografía 
 $V
@@ -11690,8 +11679,7 @@ $V
 @Tcholangiopancreatography
 @pt
 @Tcolangiopancreatografia
-###C1033  colanxiopancreatografía 
-###Rretrógrada endoscópica      f          
+###C1033  colanxiopancreatografía   retrógrada endoscópica      f          
 !
 $S CPRE (sg)
 $V
@@ -12414,8 +12402,7 @@ $I aparello de Golgi
 ###Rcomplexo maior de 
 ###Rhistocompatibilidade       
  complexo principal de   histocompatibilidade
-###C1099  complexo principal de 
-###Rhistocompatibilidade  
+###C1099  complexo principal de   histocompatibilidade  
 ###Rm  
 !
 $S complexo maior de 
@@ -14698,8 +14685,7 @@ $I ferropenia
 @Tbuttonhole  deformity
 @pt
 @Tdeformidade em botoeira
-###C1299  deformidade en pescozo de 
-###Rcisne      f
+###C1299  deformidade en pescozo de   cisne      f
 !Semioloxía
 @es
 @Tdeformidad en cuello de cisne
@@ -16299,8 +16285,7 @@ $I afasia amnésica
 @Tdissociação
 ###Rdisociación atrioventricular      
 $I disociación auriculoventricular
-###C1448  disociación 
-###Rauriculoventricular      f
+###C1448  disociación   auriculoventricular      f
 !Etiopatoxenia
 $S disociación atrioventricular; 
 $V
@@ -16505,8 +16490,7 @@ $I dispositivo intrauterino
 @Tdiuretic
 @pt
 @Tdiurético
-###C1469  diurético aforrador de 
-###Rpotasio      m
+###C1469  diurético aforrador de   potasio      m
 !Farmacoloxía
 $S aforrador de potasio
 $V
@@ -18254,8 +18238,7 @@ $V
 $I esclerose tuberosa
 ###Renfermidade de Buerger      
 $I tromboanxite obliterante
-###C1629  enfermidade de declaración 
-###Robrigatoria      f
+###C1629  enfermidade de declaración   obrigatoria      f
 !Epidemioloxía
 $S EDO (sg)
 $V
@@ -18278,8 +18261,7 @@ $I xerodermia pigmentosa
  hemoglobinuria paroxística   nocturna
 ###Renfermidade de Miller      
 $I osteomalacía
-###C1630  enfermidade de transmisión 
-###Rsexual      f
+###C1630  enfermidade de transmisión   sexual      f
 !Patoloxías
 $S ETS (sg); infección de transmisión 
 $V
@@ -18299,8 +18281,7 @@ $V
 @TITS (sg)
 ###Renfermidade diverticular      
 $I diverticulose
-###C1631  enfermidade do refluxo 
-###Rgastroesofáxico      f
+###C1631  enfermidade do refluxo   gastroesofáxico      f
 !Patoloxías
 $S ERGE (sg); doenza do refluxo 
 $V
@@ -18363,8 +18344,7 @@ $V
 @Texanthematous disease
 @pt
 @Tdoença exantemática
-___###C1636  enfermidade granulomatosa 
-###Rcrónica      f
+___###C1636  enfermidade granulomatosa   crónica      f
 !Patoloxías
 $S doenza granulomatosa crónica
 $V
@@ -18375,8 +18355,7 @@ $V
 @pt
 @Tdoença granulomatosa crônica [Br.]
 @Tdoença granulomatosa crónica [Pt.]
-###C1637  enfermidade hemolítica do 
-###Rneonato      f
+###C1637  enfermidade hemolítica do   neonato      f
 !Patoloxías
 $S eritroblastose fetal
 $V
@@ -18413,8 +18392,7 @@ $V
 @Tinfectious disease
 @pt
 @Tdoença infecciosa
-###C1641  enfermidade inflamatoria 
-###Rintestinal      f
+###C1641  enfermidade inflamatoria   intestinal      f
 !Patoloxías
 $S EII (sg); doenza inflamatoria 
 $V
@@ -18427,8 +18405,7 @@ $V
 @pt
 @TDII (sg)
 @Tdoença inflamatória  intestinal
-###C1642  enfermidade inflamatoria 
-###Rpélvica      f
+###C1642  enfermidade inflamatoria   pélvica      f
 !Patoloxías
 $S EIP (sg); doenza inflamatoria 
 $V
@@ -18474,8 +18451,7 @@ $V
 @Toccupational disease
 @pt
 @Tdoença ocupacional
-###C1646  enfermidade pulmonar 
-###Robstrutiva crónica     
+###C1646  enfermidade pulmonar   obstrutiva crónica     
 !Patoloxías
 $S EPOC (sg); doenza pulmonar 
 $V
@@ -18489,8 +18465,7 @@ $V
 @Tdoença pulmonar obstrutiva crônica  [Br.]
 @Tdoença pulmonar obstrutiva  crónica [Pt.]
 @TDPOC (sg)
-###C1647  enfermidade pulmonar 
-###Rrestritiva      f
+###C1647  enfermidade pulmonar   restritiva      f
 !Patoloxías
 $S doenza pulmonar restritiva
 $V
@@ -18521,8 +18496,7 @@ $V
 @Ttrophoblastic disease
 @pt
 @Tdoença trofoblástica
-###C1650  enfermidade trofoblástica 
-###Rxestacional      f
+###C1650  enfermidade trofoblástica   xestacional      f
 !Patoloxías
 $S corioepitelioma (m); 
 $V
@@ -18610,8 +18584,7 @@ $I rexión inguinal
 @Tmasking
 @pt
 @Tmascaramento
-###C1657  ensaio aleatorizado 
-###Rcontrolado      m
+###C1657  ensaio aleatorizado   controlado      m
 !Epidemioloxía
 @es
 @TEAC (sg)
@@ -18630,8 +18603,7 @@ $I rexión inguinal
 @Tclinical trial
 @pt
 @Tensaio clínico
-###C1659  ensaio comunitario de 
-###Rintervención      m
+###C1659  ensaio comunitario de   intervención      m
 !Epidemioloxía
 @es
 @Tensayo comunitario de intervención
@@ -18888,8 +18860,7 @@ $I aloenxerto
 @Tenzyme
 @pt
 @Tenzima
-###C1688  enzima conversor da 
-###Ranxiotensina      m
+###C1688  enzima conversor da   anxiotensina      m
 !Bioquímica
 $S ECA (sg)
 $V
@@ -19400,8 +19371,7 @@ $V
 @Teritrócito
 @Tglóbulo vermelho
 @Themácia
-###C1737  eritrocitos en rima de 
-###Rmoedas      m pl
+###C1737  eritrocitos en rima de   moedas      m pl
 !Semioloxía
 $S hemacias en rima de moedas (f)
 $V
@@ -19501,8 +19471,7 @@ $V
 @pt
 @Terro sistemático
 @Tviés
-###C1745  erro sistemático de 
-###Rinformación      m
+###C1745  erro sistemático de   información      m
 !Epidemioloxía
 $S nesgo de observación; nesgo de 
 $V
@@ -20404,8 +20373,7 @@ $V espiña da escápula
 @Tespinha  escapular
 @la
 @Tspina scapulae
-###C1820  espiña ilíaca anterior 
-###Rinferior      f
+###C1820  espiña ilíaca anterior   inferior      f
 !Anatomía
 $S
 $V espiña ilíaca anteroinferior
@@ -20419,8 +20387,7 @@ $V espiña ilíaca anteroinferior
 @Tespinha ilíaca antero-inferior [Pt.]
 @la
 @Tspina iliaca anterior inferior
-###C1821  espiña ilíaca anterior 
-###Rsuperior      f
+###C1821  espiña ilíaca anterior   superior      f
 !Anatomía
 $S
 $V espiña ilíaca anterosuperior
@@ -20438,8 +20405,7 @@ $V espiña ilíaca anterosuperior
 $I espiña ilíaca anterior inferior
 ###Respiña ilíaca anterosuperior      
 $I espiña ilíaca anterior superior
-###C1822  espiña ilíaca posterior 
-###Rinferior      f
+###C1822  espiña ilíaca posterior   inferior      f
 !Anatomía
 $S
 $V espiña ilíaca posteroinferior
@@ -20453,8 +20419,7 @@ $V espiña ilíaca posteroinferior
 @Tespinha ilíaca postero-inferior [Pt.]
 @la
 @Tspina iliaca posterior inferior
-###C1823  espiña ilíaca posterior 
-###Rsuperior      f
+###C1823  espiña ilíaca posterior   superior      f
 !Anatomía
 $S
 $V espiña ilíaca posterosuperior
@@ -21558,8 +21523,7 @@ $I exoftalmía
 @pt
 @Texão [Pt.]
 @Texon [Br.]
-###C1927  exostose cartilaxinosa 
-###Rmúltiple      f
+###C1927  exostose cartilaxinosa   múltiple      f
 !Patoloxías
 @es
 @Texostosis cartilaginosa múltiple
@@ -24605,8 +24569,7 @@ ___###C2196  glicocorticoide      m
 @Tglucose
 @pt
 @Tglicose
-###C2201  glicosa-6-fosfato 
-###Rdeshidroxenase      f
+###C2201  glicosa-6-fosfato   deshidroxenase      f
 !Bioquímica
 @es
 @Tglucosa-6-fosfatodeshidrogenasa
@@ -24930,8 +24893,7 @@ $V gonadotrofina
 @pt
 @Tgonadotrofina
 @Tgonadotropina
-###C2233  gonadotropina coriónica 
-###Rhumana      f
+###C2233  gonadotropina coriónica   humana      f
 !Bioquímica        Fisioloxía
 $S hCG (sg) 
 $V
@@ -25555,8 +25517,7 @@ $V
 @Themoglobinuria
 @pt
 @Themoglobinúria
-###C2289  hemoglobinuria paroxística 
-###Rnocturna      f
+###C2289  hemoglobinuria paroxística   nocturna      f
 !Patoloxías
 $S enfermidade de Marchiafava-
 $V
@@ -25880,8 +25841,7 @@ ___###C2315  hepatorrafia      f
 @pt
 @Therança autossômica [Br.]
 @Therança  autossómica [Pt.]
-###C2322  herdanza autosómica 
-###Rcodominante      f
+###C2322  herdanza autosómica   codominante      f
 !Xenética
 @es
 @Therencia autosómica codominante
@@ -25890,8 +25850,7 @@ ___###C2315  hepatorrafia      f
 @pt
 @Therança autossômica codominante  [Br.]
 @Therança autossómica  codominante [Pt.]
-###C2323  herdanza autosómica 
-###Rdominante      f
+###C2323  herdanza autosómica   dominante      f
 !Xenética
 @es
 @Therencia autosómica dominante
@@ -26946,8 +26905,7 @@ $V
 @Thyperplasia
 @pt
 @Thiperplasia
-###C2424  hiperplasia suprarrenal 
-###Rconxénita      f
+###C2424  hiperplasia suprarrenal   conxénita      f
 !Patoloxías
 @es
 @Thiperplasia suprarrenal congénita
@@ -28047,8 +28005,7 @@ $V
 @TGH (sg)
 @Thormona do crescimento  [Pt.]
 @Thormônio do crescimento [Br.]
-###C2530  hormona estimuladora da 
-###Rtiroide      f
+###C2530  hormona estimuladora da   tiroide      f
 !Fisioloxía        Bioquímica
 $S TSH (sg); tirotropina
 $V
@@ -28066,8 +28023,7 @@ $V
 @Ttirotrofina
 @Ttirotropina
 @TTSH (sg)
-___###C2531  hormona estimuladora do 
-###Rmelanocito      f
+___###C2531  hormona estimuladora do   melanocito      f
 !Fisioloxía        Bioquímica
 $S hormona estimulante do 
 $V
@@ -28104,8 +28060,7 @@ $V
 @Thormônio folículo- estimulante [Br.]
 ###Rhormona lactóxena
 $I prolactina
-###C2533  hormona liberadora da 
-###Rhormona do crecemento      f 
+###C2533  hormona liberadora da   hormona do crecemento      f 
 !Fisioloxía        Bioquímica
 $S GHRH (sg)
 $V
@@ -28119,8 +28074,7 @@ $V
 @TGHRH (sg)
 @Thormona liberadora da  hormona do crescimento [Pt.]
 @Thormônio liberador do hormônio do  crescimento [Br.]
-###C2534  hormona liberadora de 
-###Rcorticotropina      f
+###C2534  hormona liberadora de   corticotropina      f
 !Fisioloxía        Bioquímica
 $S CRH (sg)
 $V
@@ -28134,8 +28088,7 @@ $V
 @TCRH (sg)
 @Thormona liberadora de corticotropina [Pt.]
 @Thormônio  liberador de corticotropina [Br.]
-###C2535  hormona liberadora de 
-###Rgonadotropina      f
+###C2535  hormona liberadora de   gonadotropina      f
 !Fisioloxía        Bioquímica
 $S GnRH (sg)
 $V
@@ -28149,8 +28102,7 @@ $V
 @TGnrH (sg)
 @Thormona liberadora de gonadotropina [Pt.]
 @Thormônio  liberador de gonadotropina [Br.]
-___###C2536  hormona liberadora de 
-###Rtirotropina      f
+___###C2536  hormona liberadora de   tirotropina      f
 !Fisioloxía        Bioquímica
 $S TRH (sg)
 $V
@@ -28247,8 +28199,7 @@ $V hospedador; hóspede
 @Tday hospital
 @pt
 @Thospital de dia
-###C2543  hospital de media e longa 
-###Restadía      m
+###C2543  hospital de media e longa   estadía      m
 !Organización sanitaria
 $S sanatorio [arc.]
 $V
@@ -29153,8 +29104,7 @@ $I ingurxitación
 @Tinhibitor
 @pt
 @Tinibidor
-###C2624  inhibidor da agregación 
-###Rplaquetaria      m
+###C2624  inhibidor da agregación   plaquetaria      m
 !Farmacoloxía
 $S antiagregante
 $V
@@ -29164,8 +29114,7 @@ $V
 @Tplatelet aggregation inhibitor
 @pt
 @Tinibidor da agregação plaquetária
-###C2625  inhibidor da anhidrase 
-###Rcarbónica      m
+###C2625  inhibidor da anhidrase   carbónica      m
 !Farmacoloxía
 @es
 @Tinhibidor de la anhidrasa carbónica
@@ -29182,8 +29131,7 @@ ___###C2626  inhibidor da betalactamase     m
 @Tbeta-lactamase inhibitor
 @pt
 @Tinibidor da beta-lactamase
-###C2627  inhibidor da bomba de 
-###Rprotóns      m
+###C2627  inhibidor da bomba de   protóns      m
 !Farmacoloxía
 $S inhibidor da bomba protónica
 $V
@@ -29204,8 +29152,7 @@ $I inhibidor da bomba de protóns
 @Tphosphodiesterase inhibitor
 @pt
 @Tinibidor da fosfodiesterase
-###C2629  inhibidor da 
-###Rmonoaminooxidase      m
+###C2629  inhibidor da   monoaminooxidase      m
 !Farmacoloxía
 $S IMAO (sg)
 $V
@@ -29240,8 +29187,7 @@ $V
 @pt
 @Talfa-1-antitripsina
 @Tinibidor de  proteinase
-###C2632  inhibidor da recaptación de 
-###Rnoradrenalina   m          
+###C2632  inhibidor da recaptación de   noradrenalina   m          
 !
 @es
 @Tinhibidor de la recaptación de la  noradrenalina
@@ -29249,8 +29195,7 @@ $V
 @Tnoradrenaline reuptake inhibitor
 @pt
 @Tinibidor da recaptação de  noradrenalina
-###C2633  inhibidor da testosterona 
-###C5-alfa reductase        m
+###C2633  inhibidor da testosterona   5-alfa reductase        m
 !Farmacoloxía
 @es
 @Tinhibidor de la testosterona 5-alfa  reductasa
@@ -29258,8 +29203,7 @@ $V
 @Ttestosterone 5 alpha-reductase  inhibitor
 @pt
 @Tinibidor da testosterona 5-alfa- redutase
-###C2634  inhibidor da tirosina 
-###Rhidroxilase      m
+###C2634  inhibidor da tirosina   hidroxilase      m
 !Farmacoloxía
 @es
 @Tinhibidor de la tirosina hidroxilasa
@@ -29267,8 +29211,7 @@ $V
 @Ttyrosine hydroxylase inhibitor
 @pt
 @Tinibidor da tirosina-hidroxilase
-###C2635  inhibidor da transcriptase 
-###Rinversa      m
+###C2635  inhibidor da transcriptase   inversa      m
 !Farmacoloxía
 $S inhibidor da transcriptase reversa
 $V
@@ -29281,8 +29224,7 @@ $V
 ___###Rinhibidor da transcriptase 
 ###Rreversa      
 $I inhibidor da transcriptase inversa
-###C2636  inhibidor do enzima conversor 
-###Rda anxiotensina      m 
+###C2636  inhibidor do enzima conversor   da anxiotensina      m 
 $S IECA (sg)
 $V
 @es
@@ -29295,8 +29237,7 @@ $V
 @pt
 @TIECA (sg)
 @Tinibidor da enzima  conversora da angiotensina
-###C2637  inhibidor non-selectivo da 
-###Rrecaptación de monaminas    m    
+###C2637  inhibidor non-selectivo da   recaptación de monaminas    m    
 !
 @es
 @Tinhibidor no selectivo de la  recaptación de monoaminas
@@ -29304,8 +29245,7 @@ $V
 @Tnonselective monoamine reuptake  inhibitor
 @pt
 @Tinibidor não-seletivo da recaptação  de monoaminas
-###C2638  inhibidor selectivo da 
-###Rcicloosixenase      m
+###C2638  inhibidor selectivo da   cicloosixenase      m
 !Farmacoloxía
 $S COXIB (sg)
 $V
@@ -29319,8 +29259,7 @@ $V
 @TCOXIB (sg)
 @Tinibidor selectivo  da ciclooxigenase [Pt.]
 @Tinibidor  seletivo da ciclooxigenase [Br.]
-###C2639  inhibidor selectivo da 
-###Rrecaptación da serotonina      m
+###C2639  inhibidor selectivo da   recaptación da serotonina      m
 !
 $S ISRS (sg)
 $V
@@ -30583,8 +30522,7 @@ $I xiardíase
 @Texternal layer
 @pt
 @Tlâmina externa
-###C2759  lámina perpendicular do 
-###Retmoide      f
+###C2759  lámina perpendicular do   etmoide      f
 !Anatomía
 @es
 @Tlámina perpendicular del etmoides
@@ -31439,8 +31377,7 @@ $V
 @Tligamentum teres
 ###Rligamento rotuliano
 $I ligamento patelar
-###C2835  ligamento sacrociático 
-###Rmaior  m
+###C2835  ligamento sacrociático   maior  m
 !Anatomía
 $S ligamento sacrotuberoso
 $V
@@ -31455,8 +31392,7 @@ $V
 @Tligamento sacrotuberoso
 @la
 @Tligamentum sacrotuberale
-###C2836  ligamento sacrociático 
-###Rmenor      m
+###C2836  ligamento sacrociático   menor      m
 !Anatomía
 $S ligamento sacrospiñal
 $V
@@ -32061,8 +31997,7 @@ $V
 @Tlipoprotein
 @pt
 @Tlipoproteína
-###C2892  lipoproteína de alta 
-###Rdensidade   f
+###C2892  lipoproteína de alta   densidade   f
 !Bioquímica
 $S HDL (sg)
 $V
@@ -32075,8 +32010,7 @@ $V
 @pt
 @THDL (sg)
 @Tlipoproteína de alta  densidade
-___###C2893  lipoproteína de baixa 
-###Rdensidade      f
+___###C2893  lipoproteína de baixa   densidade      f
 !Bioquímica
 $S LDL (sg)
 $V
@@ -32089,8 +32023,7 @@ $V
 @pt
 @TLDL (sg)
 @Tlipoproteína de baixa  densidade
-###C2894  lipoproteína de densidade 
-###Rintermedia      f
+###C2894  lipoproteína de densidade   intermedia      f
 !Bioquímica
 $S IDL (sg)
 $V
@@ -32103,8 +32036,7 @@ $V
 @pt
 @TIDL (sg)
 @Tlipoproteína de densidade  intermediária
-###C2895  lipoproteína de moi baixa 
-###Rdensidade      f
+###C2895  lipoproteína de moi baixa   densidade      f
 !Bioquímica
 $S VLDL (sg)
 $V
@@ -33598,8 +33530,7 @@ $V
 @Tmedicina
 ###Rmedicina   
 $I medicamento
-___###C3033  medicina da educación física e 
-###Ro deporte      f
+___###C3033  medicina da educación física e   o deporte      f
 !Organización sanitaria
 @es
 @Tmedicina de la educación física y del  deporte
@@ -33991,8 +33922,7 @@ $V
 @pt
 @Tbarreira alvéolo-capilar
 @Tmembrana  alvéolo-capilar
-###C3070  membrana de intercambio 
-###Rplacentario      f
+###C3070  membrana de intercambio   placentario      f
 !Histoloxía
 $S membrana hemato-fetal; 
 $V
@@ -35346,8 +35276,7 @@ $V modelación ósea
 @pt
 @Tmodelação óssea
 @Tmodelagem óssea
-###C3202  modulador selectivo do 
-###Rreceptor de estróxeno      m          
+###C3202  modulador selectivo do   receptor de estróxeno      m          
 !
 $S SERM (sg)
 $V
@@ -35452,8 +35381,7 @@ ___###C3208  monitorización      f
 @Tmonocytopenia
 @pt
 @Tmonocitopenia
-###C3212  monofosfato cíclico de 
-###Rguanosina      m
+###C3212  monofosfato cíclico de   guanosina      m
 !Bioquímica
 $S GMPc (sg)
 $V
@@ -35870,8 +35798,7 @@ $I peptidoglicano
 @Tmúsculo
 @la
 @Tmusculus
-###C3251  músculo abdutor curto do 
-###Rpolgar      m
+###C3251  músculo abdutor curto do   polgar      m
 !Anatomía
 @es
 @Tmúsculo abductor corto del pulgar
@@ -35882,8 +35809,7 @@ $I peptidoglicano
 @Tmúsculo abdutor curto do  polegar [Br.]
 @la
 @Tmusculus abductor pollicis brevis
-###C3252  músculo abdutor da primeira 
-###Rdeda      m
+###C3252  músculo abdutor da primeira   deda      m
 !Anatomía
 @es
 @Tmúsculo abductor del dedo gordo
@@ -35894,8 +35820,7 @@ $I peptidoglicano
 @Tmúsculo abdutor do hálux [Br.]
 @la
 @Tmusculus abductor hallucis
-###C3253  músculo abdutor do 
-###Rmaimiño      m
+###C3253  músculo abdutor do   maimiño      m
 !Anatomía
 @es
 @Tmúsculo abductor del meñique
@@ -35907,8 +35832,7 @@ $I peptidoglicano
 @Tmúsculo abdutor do dedo  mínimo [Br.]
 @la
 @Tmusculus abductor digiti minimi
-###C3254  músculo abdutor longo do 
-###Rpolgar      m
+###C3254  músculo abdutor longo do   polgar      m
 !Anatomía
 @es
 @Tmúsculo abductor largo del pulgar
@@ -35930,8 +35854,7 @@ $I peptidoglicano
 @Tmúsculo adutor curto
 @la
 @Tmusculus adductor brevis
-###C3256  músculo adutor da primeira 
-###Rdeda      m
+###C3256  músculo adutor da primeira   deda      m
 !Anatomía
 @es
 @Tmúsculo aductor del dedo gordo
@@ -36218,8 +36141,7 @@ $V
 #N Evítese “músculo deltoides”.
 ###R*músculo deltoides      
 $I músculo deltoide
-###C3278  músculo depresor do ángulo 
-###Rda boca      m
+###C3278  músculo depresor do ángulo   da boca      m
 !Anatomía
 @es
 @Tmúsculo depresor del ángulo da  boca
@@ -36230,8 +36152,7 @@ $I músculo deltoide
 @Tmúsculo depressor do ângulo da  boca
 @la
 @Tmusculus depressor anguli oris
-###C3279  músculo depresor do labio 
-###Rinferior      m
+###C3279  músculo depresor do labio   inferior      m
 !Anatomía
 @es
 @Tmúsculo depresor del labio inferior
@@ -36246,8 +36167,7 @@ $I músculo deltoide
 ###Rmúsculo depresor do septo 
 ###Rnasal     
  músculo depresor   do tabique nasal
-###C3280  músculo depresor do tabique 
-###Rnasal      m
+###C3280  músculo depresor do tabique   nasal      m
 !Anatomía
 $S músculo depresor do septo nasal
 $V
@@ -36298,8 +36218,7 @@ $V
 @Tmúsculo grande dorsal
 @la
 @Tmusculus latissimus dorsi
-___###C3284  músculo elevador da 
-###Rescápula      m
+___###C3284  músculo elevador da   escápula      m
 !Anatomía
 $S músculo angular da omoplata
 $V
@@ -36317,8 +36236,7 @@ $V
 ###Rmúsculo elevador da 
 ###Rpálpebra      
  músculo elevador da pálpebra   superior
-###C3285  músculo elevador da pálpebra 
-###Rsuperior      
+###C3285  músculo elevador da pálpebra   superior      
 !Anatomía
 $S músculo elevador da pálpebra
 $V
@@ -36331,8 +36249,7 @@ $V
 @Tmúsculo elevador da pálpebra  superior
 @la
 @Tmusculus levator palpebrae  superioris
-###C3286  músculo elevador da 
-###Rpróstata      m
+###C3286  músculo elevador da   próstata      m
 !Anatomía
 @es
 @Tmúsculo elevador de la próstata
@@ -36342,8 +36259,7 @@ $V
 @Tmúsculo elevador da próstata
 @la
 @Tmusculus levator prostatae
-###C3287  músculo elevador do ángulo da 
-###Rboca      m
+###C3287  músculo elevador do ángulo da   boca      m
 !Anatomía
 @es
 @Tmúsculo elevador del ángulo de la  boca
@@ -36368,8 +36284,7 @@ $V
 ###Rmúsculo elevador do labio 
 ###Rinferior      
 $I músculo da barbela
-###C3289  músculo elevador do labio 
-###Rsuperior      m
+###C3289  músculo elevador do labio   superior      m
 !Anatomía
 @es
 @Tmúsculo elevador del labio superior
@@ -36380,8 +36295,7 @@ $I músculo da barbela
 @Tmúsculo elevador do lábio superior
 @la
 @Tmusculus levator labii superioris
-###C3290  músculo elevador do labio 
-###Rsuperior e da á do nariz      m         
+###C3290  músculo elevador do labio   superior e da á do nariz      m         
 !
 @es
 @Tmúsculo elevador del labio superior  y del ala de la nariz
@@ -36470,8 +36384,7 @@ $I músculo esternohioide
 ###Rmúsculo 
 ###Resternocleidomastoide      
 $I músculo esternocleidomastoideo
-###C3297  músculo 
-###Resternocleidomastoideo      m
+###C3297  músculo   esternocleidomastoideo      m
 !Anatomía
 $S esternocleidomastoideo; músculo 
 $V
@@ -36561,8 +36474,7 @@ $V
 ###Rmúsculo extensor cubital do 
 ###Rcarpo     
  músculo extensor   ulnar do carpo
-###C3304  músculo extensor curto da 
-###Rprimeira deda     
+###C3304  músculo extensor curto da   primeira deda     
 !Anatomía
 @es
 @Tmúsculo extensor corto del dedo  gordo
@@ -36572,8 +36484,7 @@ $V
 @Tmúsculo extensor curto do hálux
 @la
 @Tmusculus extensor hallucis brevis
-###C3305  músculo extensor curto das 
-###Rdedas      m
+###C3305  músculo extensor curto das   dedas      m
 !Anatomía
 @es
 @Tmúsculo extensor corto de los dedos  del pie
@@ -36584,8 +36495,7 @@ $V
 @Tmúsculo extensor curto dos dedos
 @la
 @Tmusculus extensor digitorum brevis
-###C3306  músculo extensor curto do 
-###Rpolgar      m
+###C3306  músculo extensor curto do   polgar      m
 !Anatomía
 @es
 @Tmúsculo extensor corto del pulgar
@@ -36596,8 +36506,7 @@ $V
 @Tmúsculo extensor curto do polegar
 @la
 @Tmusculus extensor pollicis brevis
-###C3307  músculo extensor do 
-###Rindicador      m
+###C3307  músculo extensor do   indicador      m
 !Anatomía
 @es
 @Tmúsculo extensor del índice
@@ -36608,8 +36517,7 @@ $V
 @Tmúsculo extensor do indicador
 @la
 @Tmusculus extensor indicis
-###C3308  músculo extensor do 
-###Rmaimiño      m
+###C3308  músculo extensor do   maimiño      m
 !Anatomía
 @es
 @Tmúsculo extensor del meñique
@@ -36631,8 +36539,7 @@ $V
 @Tmúsculo extensor dos dedos
 @la
 @Tmusculus extensor digitorum
-___###C3310  músculo extensor longo da 
-###Rprimeira deda   m          
+___###C3310  músculo extensor longo da   primeira deda   m          
 !
 @es
 @Tmúsculo extensor largo del dedo  gordo
@@ -36643,8 +36550,7 @@ ___###C3310  músculo extensor longo da
 @Tmúsculo extensor longo do hálux
 @la
 @Tmusculus extensor hallucis longus
-###C3311  músculo extensor longo das 
-###Rdedas      m
+###C3311  músculo extensor longo das   dedas      m
 !Anatomía
 @es
 @Tmúsculo extensor largo de los dedos  del pie
@@ -36655,8 +36561,7 @@ ___###C3310  músculo extensor longo da
 @Tmúsculo extensor longo dos dedos
 @la
 @Tmusculus extensor digitorum longus
-###C3312  músculo extensor longo do 
-###Rpolgar      m
+###C3312  músculo extensor longo do   polgar      m
 !Anatomía
 @es
 @Tmúsculo extensor largo del pulgar
@@ -36667,8 +36572,7 @@ ___###C3310  músculo extensor longo da
 @Tmúsculo extensor longo do polegar
 @la
 @Tmusculus extensor pollicis longus
-###C3313  músculo extensor radial curto 
-###Rdo carpo      
+###C3313  músculo extensor radial curto   do carpo      
 !Anatomía
 @es
 @Tmúsculo extensor radial corto del  carpo
@@ -36679,8 +36583,7 @@ ___###C3310  músculo extensor longo da
 @Tmúsculo extensor radial curto do  carpo
 @la
 @Tmusculus extensor carpi radialis  brevis
-###C3314  músculo extensor radial longo 
-###Rdo carpo      m
+###C3314  músculo extensor radial longo   do carpo      m
 !Anatomía
 @es
 @Tmúsculo extensor radial largo del  carpo
@@ -36691,8 +36594,7 @@ ___###C3310  músculo extensor longo da
 @Tmúsculo extensor radial longo do  carpo
 @la
 @Tmusculus extensor carpi radialis  longus
-###C3315  músculo extensor ulnar do 
-###Rcarpo      m
+###C3315  músculo extensor ulnar do   carpo      m
 !Anatomía
 $S músculo extensor cubital do 
 $V
@@ -36753,8 +36655,7 @@ $V
 @Tmusculus  peroneus tertius
 ###Rmúsculo flexor cubital do carpo      
 $I músculo flexor ulnar do carpo
-###C3319  músculo flexor curto da 
-###Rprimeira deda      m
+###C3319  músculo flexor curto da   primeira deda      m
 !Anatomía
 @es
 @Tmúsculo flexor corto del dedo gordo
@@ -36765,8 +36666,7 @@ $I músculo flexor ulnar do carpo
 @Tmúsculo flexor curto do hálux
 @la
 @Tmusculus flexor hallucis brevis
-###C3320  músculo flexor curto do 
-###Rmaimiño      m
+###C3320  músculo flexor curto do   maimiño      m
 !Anatomía
 @es
 @Tmúsculo flexor corto del meñique
@@ -36776,8 +36676,7 @@ $I músculo flexor ulnar do carpo
 @Tmúsculo flexor curto do dedo  mínimo
 @la
 @Tmusculus flexor digiti minimi brevis
-###C3321  músculo flexor curto do 
-###Rpolgar      m
+###C3321  músculo flexor curto do   polgar      m
 !Anatomía
 @es
 @Tmúsculo flexor corto del pulgar
@@ -36788,8 +36687,7 @@ $I músculo flexor ulnar do carpo
 @Tmúsculo flexor curto do polegar
 @la
 @Tmusculus flexor pollicis brevis
-###C3322  músculo flexor longo da 
-###Rprimeira deda      m
+###C3322  músculo flexor longo da   primeira deda      m
 !Anatomía
 @es
 @Tmúsculo flexor largo del dedo gordo
@@ -36800,8 +36698,7 @@ $I músculo flexor ulnar do carpo
 @Tmúsculo flexor longo do hálux
 @la
 @Tmusculus flexor hallucis longus
-###C3323  músculo flexor longo do 
-###Rpolgar      m
+###C3323  músculo flexor longo do   polgar      m
 !Anatomía
 @es
 @Tmúsculo flexor largo del pulgar
@@ -36812,8 +36709,7 @@ $I músculo flexor ulnar do carpo
 @Tmúsculo flexor longo do polegar
 @la
 @Tmusculus flexor pollicis longus
-###C3324  músculo flexor profundo dos 
-###Rdedos      m
+###C3324  músculo flexor profundo dos   dedos      m
 !Anatomía
 @es
 @Tmúsculo flexor profundo de los  dedos
@@ -36824,8 +36720,7 @@ $I músculo flexor ulnar do carpo
 @Tmúsculo flexor profundo dos dedos
 @la
 @Tmusculus flexor digitorum profundus
-###C3325  músculo flexor radial do 
-###Rcarpo      m
+###C3325  músculo flexor radial do   carpo      m
 !Anatomía
 @es
 @Tmúsculo flexor radial del carpo
@@ -36836,8 +36731,7 @@ $I músculo flexor ulnar do carpo
 @Tmúsculo flexor radial do carpo
 @la
 @Tmusculus flexor carpi radialis
-___###C3326  músculo flexor superficial dos 
-###Rdedos      m
+___###C3326  músculo flexor superficial dos   dedos      m
 !Anatomía
 @es
 @Tmúsculo flexor superficial de los  dedos
@@ -36848,8 +36742,7 @@ ___###C3326  músculo flexor superficial dos
 @Tmúsculo flexor superficial dos dedos
 @la
 @Tmusculus flexor digitorum  superficialis
-###C3327  músculo flexor ulnar do 
-###Rcarpo      m
+###C3327  músculo flexor ulnar do   carpo      m
 !Anatomía
 $S músculo flexor cubital do carpo
 $V
@@ -37161,8 +37054,7 @@ $I músculo milohioide
 @Tmúsculo nasal
 @la
 @Tmusculus nasalis
-###C3350  músculo oblicuo externo do 
-###Rabdome      m
+###C3350  músculo oblicuo externo do   abdome      m
 !Anatomía
 $S músculo oblicuo maior do 
 $V
@@ -37187,8 +37079,7 @@ ___###C3351  músculo oblicuo inferior      m
 @Tmúsculo oblíquo inferior
 @la
 @Tmusculus obliquus inferior
-###C3352  músculo oblicuo inferior da 
-###Rcabeza      m
+###C3352  músculo oblicuo inferior da   cabeza      m
 !Anatomía
 $S músculo oblicuo maior da cabeza
 $V
@@ -37202,8 +37093,7 @@ $V
 @Tmúsculo oblíquo inferior da cabeça
 @la
 @Tmusculus obliquus capitis inferior
-###C3353  músculo oblicuo interno do 
-###Rabdome      m
+###C3353  músculo oblicuo interno do   abdome      m
 !Anatomía
 $S músculo oblicuo menor do 
 $V
@@ -37240,8 +37130,7 @@ $V
 @Tmúsculo oblíquo superior
 @la
 @Tmusculus obliquus sperior
-###C3355  músculo oblicuo superior da 
-###Rcabeza      m
+###C3355  músculo oblicuo superior da   cabeza      m
 !Anatomía
 $S músculo oblicuo menor da cabeza
 $V
@@ -37288,8 +37177,7 @@ ___###C3358  músculo omohioide      m
 @Tmúsculo omoióideo
 @la
 @Tmusculus omohyoideus
-###C3359  músculo opoñente do 
-###Rmaimiño      m
+###C3359  músculo opoñente do   maimiño      m
 !Anatomía
 @es
 @Tmúsculo oponente del meñique
@@ -37300,8 +37188,7 @@ ___###C3358  músculo omohioide      m
 @Tmúsculo oponente do dedo mínimo
 @la
 @Tmusculus opponens digiti minimi
-###C3360  músculo opoñente do 
-###Rpolgar      m
+###C3360  músculo opoñente do   polgar      m
 !Anatomía
 @es
 @Tmúsculo oponente del pulgar
@@ -37608,8 +37495,7 @@ $V
 $I músculo recto do abdome
 ###Rmúsculo recto anterior      
 $I músculo recto femoral
-___###C3382  músculo recto anterior da 
-###Rcabeza      m
+___###C3382  músculo recto anterior da   cabeza      m
 !Anatomía
 @es
 @Tmúsculo recto anterior de la cabeza
@@ -37684,8 +37570,7 @@ $I músculo grácil
 @Tmúsculo  reto lateral [Br.]
 @la
 @Tmusculus rectus lateralis
-###C3387  músculo recto lateral da 
-###Rcabeza      m
+###C3387  músculo recto lateral da   cabeza      m
 !Anatomía
 @es
 @Tmúsculo recto lateral de la cabeza
@@ -37712,8 +37597,7 @@ $I músculo grácil
 @Tmúsculo  reto medial [Br.]
 @la
 @Tmusculus rectus medialis
-###C3389  músculo recto posterior maior 
-###Rda cabeza      m
+###C3389  músculo recto posterior maior   da cabeza      m
 !Anatomía
 @es
 @Tmúsculo recto posterior mayor de la  cabeza
@@ -37725,8 +37609,7 @@ $I músculo grácil
 @Tmúsculo reto posterior  maior da cabeça [Br.]
 @la
 @Tmusculus rectus capitis posterior  major
-___###C3390  músculo recto posterior menor 
-###Rda cabeza     m 
+___###C3390  músculo recto posterior menor   da cabeza     m 
 @es
 @Tmúsculo recto posterior menor de la  cabeza
 @en
@@ -37851,8 +37734,7 @@ ___###C3400  músculo serrato anterior      m
 @Tmúsculo serrátil anterior
 @la
 @Tmusculus serratus anterior
-###C3401  músculo serrato posterior 
-###Rinferior      m
+###C3401  músculo serrato posterior   inferior      m
 !Anatomía
 $S
 $V músculo serrato posteroinferior
@@ -37866,8 +37748,7 @@ $V músculo serrato posteroinferior
 @Tmúsculo serrátil posterior inferior
 @la
 @Tmusculus serratus posterior inferior
-###C3402  músculo serrato posterior 
-###Rsuperior      m
+###C3402  músculo serrato posterior   superior      m
 !Anatomía
 $S
 $V músculo serrato posterosuperior
@@ -38008,8 +37889,7 @@ ___###C3409  músculo tensor da fascia lata    m
 @Tmúsculo tirohióideo
 @la
 @Tmusculus thyrohyoideus
-###C3413  músculo transverso do 
-###Rabdome      m
+###C3413  músculo transverso do   abdome      m
 !Anatomía
 @es
 @Tmúsculo transverso del abdomen
@@ -38791,8 +38671,7 @@ $I nervio ciático
 $I nervio femoral
 ###Rnervio cubital
 $I nervio ulnar
-___###C3478  nervio cutáneo femoral 
-###Rlateral      m
+___###C3478  nervio cutáneo femoral   lateral      m
 !Anatomía
 $S nervio cutáneo lateral da coxa; 
 $V
@@ -38808,8 +38687,7 @@ $V
 @Tnervo  cutâneo lateral da coxa
 @la
 @Tnervus cutaneus femoris lateralis
-###C3479  nervio cutáneo femoral 
-###Rposterior      m
+###C3479  nervio cutáneo femoral   posterior      m
 !Anatomía
 $S nervio cutáneo posterior da coxa
 $V
@@ -38827,8 +38705,7 @@ $V
 @Tnervus cutaneus femoris posterior
 ###Rnervio cutáneo lateral da coxa      
 $I nervio cutáneo femoral lateral
-###C3480  nervio cutáneo lateral do 
-###Rantebrazo      m
+###C3480  nervio cutáneo lateral do   antebrazo      m
 !Anatomía
 @es
 @Tnervio cutáneo antebraquial lateral
@@ -38840,8 +38717,7 @@ $I nervio cutáneo femoral lateral
 @Tnervo cutâneo lateral do antebraço
 @la
 @Tnervus cutaneus antebrachii lateralis
-###C3481  nervio cutáneo medial do 
-###Rantebrazo      m
+###C3481  nervio cutáneo medial do   antebrazo      m
 !Anatomía
 @es
 @Tnervio cutáneo antebraquial medial
@@ -46232,8 +46108,7 @@ $I test de tolerancia á lactosa
 ###Rproba de tolerancia oral á 
 ###Rglicosa      
  test de tolerancia oral   á glicosa
-###C4133  proba do antíxeno prostático 
-###Respecífico      
+###C4133  proba do antíxeno prostático   específico      
 !Probas complementarias
 $S proba do PSA
 $V
@@ -46907,8 +46782,7 @@ $V protozoario
 @Tprothrombin
 @pt
 @Tprotrombina
-###C4195  protuberancia occipital 
-###Rexterna      f
+###C4195  protuberancia occipital   externa      f
 !Anatomía
 @es
 @Tprotuberancia occipital externa
@@ -46918,8 +46792,7 @@ $V protozoario
 @Tprotuberância occipital externa
 @la
 @Tprotuberantia occipitalis externa
-###C4196  protuberancia occipital 
-###Rinterna      f
+###C4196  protuberancia occipital   interna      f
 !Anatomía
 @es
 @Tprotuberancia occipital interna
@@ -47418,8 +47291,7 @@ $I nebulizador
 @Tpuncture
 @pt
 @Tpunção
-___###C4243  punción aspirativa con agulla 
-###Rfina      f
+___###C4243  punción aspirativa con agulla   fina      f
 !Probas complementarias
 $S punción-aspiración con agulla 
 $V
@@ -47497,8 +47369,7 @@ $V púrpura trombocitopénica
 @pt
 @Tpúrpura trombocitopênica [Br.]
 @Tpúrpura trombocitopénica [Pt.]
-###C4249  púrpura trombopénica 
-###Ridiopática      f
+###C4249  púrpura trombopénica   idiopática      f
 !Patoloxías
 $S PTI (sg)
 $V
@@ -47515,8 +47386,7 @@ $V púrpura trombocitopénica
 @TPTI (sg)
 @Tpúrpura trombocitopênica  idiopática [Br.]
 @Tpúrpura  trombocitopénica idiopática [Pt.]
-___###C4250  púrpura trombopénica 
-###Rtrombótica      f
+___###C4250  púrpura trombopénica   trombótica      f
 !Patoloxías
 $S PTT (sg) 
 $V
@@ -48027,8 +47897,7 @@ $V
 @pt
 @Tradical carboxila [Br.]
 @Tradical  carboxilo [Pt.]
-###C4301  radical libre de O
-###Rm
+###C4301  radical libre de O">###Rm
 !Bioquímica
 @es
 @Tradical libre de O
@@ -48451,8 +48320,7 @@ $V
 @Tdecidual reaction
 @pt
 @Treação decidual
-###C4337  reacción en cadea da 
-###Rpolimerase      f
+###C4337  reacción en cadea da   polimerase      f
 !Probas complementarias        Xenética
 $S PCR (sg) 
 $V
@@ -49299,8 +49167,7 @@ $V retículo endoplásmico liso
 @pt
 @TREL (sg)
 @Tretículo endoplasmático  liso
-###C4414  retículo endoplasmático 
-###Rrugoso      m
+###C4414  retículo endoplasmático   rugoso      m
 !Histoloxía
 $S retículo endoplasmático 
 $V
@@ -50569,8 +50436,7 @@ $V secuenciamento (m)
 @Tseqüenciamento
 ###Rsecuenciamento      
 $I secuenciación
-___###C4536  secuestrador de ácidos 
-###Rbiliares      m
+___###C4536  secuestrador de ácidos   biliares      m
 !Farmacoloxía
 @es
 @Tsecuestrador de ácidos biliares
@@ -51626,8 +51492,7 @@ $I enfermidade man-pé-boca
 @Tconfusional syndrome
 @pt
 @Tsíndrome confusional
-###C4628  síndrome da apnea-hipopnea 
-###Rdurante o sono      f          
+###C4628  síndrome da apnea-hipopnea   durante o sono      f          
 !
 $S SAHS (sg)
 $V
@@ -51640,8 +51505,7 @@ $V
 @pt
 @TSAHS (sg)
 @Tsíndrome da apnéia- hipopnéia do sono
-###C4629  síndrome da arteria 
-###Rvertebrobasilar      f
+###C4629  síndrome da arteria   vertebrobasilar      f
 !Probas complementarias        Patoloxías
 $S síndrome de insuficiencia da 
 $V
@@ -51729,8 +51593,7 @@ $V
 @Tsíndrome de abstinência
 ###Rsíndrome de alcoholismo fetal 
 $I síndrome alcohólica fetal
-###C4637  síndrome de bradicardia-
-###Rtaquicardia      f
+###C4637  síndrome de bradicardia-  taquicardia      f
 !Patoloxías
 @es
 @Tsíndrome de bradicardia-taquicardia
@@ -51741,8 +51604,7 @@ $I síndrome alcohólica fetal
 ###Rsíndrome de desconforto 
 ###Rrespiratorio agudo
  síndrome de desconforto   respiratorio do adulto
-###C4638  síndrome de desconforto 
-###Rrespiratorio do adulto      f 
+###C4638  síndrome de desconforto   respiratorio do adulto      f 
 !Probas complementarias        Patoloxías
 $S síndrome de desconforto 
 $V
@@ -51756,8 +51618,7 @@ $V
 @TARDS (sg)
 @pt
 @Tsíndrome do desconforto respiratório  do adulto
-###C4639  síndrome de desconforto 
-###Rrespiratorio do neonato      f 
+###C4639  síndrome de desconforto   respiratorio do neonato      f 
 !Probas complementarias        Patoloxías
 $S síndrome de distrés respiratorio 
 $V
@@ -51768,8 +51629,7 @@ $V
 @Trespiratory distress syndrome of  newborn
 @pt
 @Tsíndrome da angústia respiratória do  recém-nascido
-___###C4640  síndrome de disfunción 
-###Rmultiorgánica      f
+___###C4640  síndrome de disfunción   multiorgánica      f
 $S insuficiencia multiorgánica; fallo 
 $V
 @es
@@ -51818,8 +51678,7 @@ $V
 @TSFC (sg)
 @Tsíndrome de fadiga crônica  [Br.]
 @Tsíndrome de fadiga crónica [Pt.]
-###C4643  síndrome de inestabilidade 
-###Rcromosómica     f
+###C4643  síndrome de inestabilidade   cromosómica     f
 !Xenética
 @es
 @Tsíndrome de inestabilidad  cromosómica
@@ -51827,8 +51686,7 @@ $V
 @Tchromosomal instability syndrome
 @pt
 @Tsíndrome de instabilidade  cromossômica
-###C4644  síndrome de 
-###Rinmunodeficiencia adquirida  f
+###C4644  síndrome de   inmunodeficiencia adquirida  f
 !Patoloxías
 $S sida
 $V
@@ -51863,8 +51721,7 @@ $I necrólise epidérmica tóxica
 @Tmalabsorption syndrome
 @pt
 @Tsíndrome de mal-absorção
-___###C4647  síndrome de morte súbita do 
-###Rlactante      f
+___###C4647  síndrome de morte súbita do   lactante      f
 !Patoloxías
 $S morte súbita infantil
 $V
@@ -51876,8 +51733,7 @@ $V
 @Tsudden infant death  syndrome
 @pt
 @Tsíndrome da morte súbita na infância
-###C4648  síndrome de resposta 
-###Rinflamatoria sistémica 
+###C4648  síndrome de resposta   inflamatoria sistémica 
 ###Rf      
 !
 $S SRIS (sg)
@@ -51894,8 +51750,7 @@ $V
 ###Rsíndrome de roubo da arteria 
 ###Rsubclavia      
  síndrome de   roubo da subclavia
-###C4649  síndrome de roubo da 
-###Rsubclavia      f
+###C4649  síndrome de roubo da   subclavia      f
 !Patoloxías
 $S síndrome de roubo da arteria 
 $V
@@ -51905,8 +51760,7 @@ $V
 @Tsubclavian steal syndrome
 @pt
 @Tsindrome do roubo da subclávia
-###C4650  síndrome de secreción 
-###Rinadecuada de ADH 
+###C4650  síndrome de secreción   inadecuada de ADH 
 ###Rf 
 !
 $S SIADH (sg)
@@ -51920,8 +51774,7 @@ $V
 @pt
 @TSIHAD
 @Tsíndrome de secreção  inadequada de HAD
-###C4651  síndrome do aprisionamento 
-###Rpoplíteo      f
+###C4651  síndrome do aprisionamento   poplíteo      f
 !Patoloxías
 $S síndrome do atrapamento 
 $V
@@ -51946,8 +51799,7 @@ $V
 @Tsíndrome do choque tóxico
 ###Rsíndrome do colon irritable      
 $I colon irritable
-###C4653  síndrome do cromosoma X 
-###Rfráxil      f
+###C4653  síndrome do cromosoma X   fráxil      f
 !Patoloxías
 $S síndrome do X fráxil
 $V
@@ -51958,8 +51810,7 @@ $V
 @pt
 @Tsíndrome do cromossomo X-frágil
 @Tsíndrome do X-frágil
-###C4654  síndrome do desfiladeiro 
-###Rtorácico      f
+###C4654  síndrome do desfiladeiro   torácico      f
 !Patoloxías
 @es
 @Tsíndrome del desfiladero torácico
@@ -51993,8 +51844,7 @@ ___###C4655  síndrome do encarceramento      f
 @Tsíndrome do intestino curto
 ###Rsíndrome do intestino irritable      
 $I colon irritable
-###C4658  síndrome do membro 
-###Rfantasma      f
+###C4658  síndrome do membro   fantasma      f
 !Patoloxías
 $S
 $V síndrome do membro pantasma
@@ -52028,8 +51878,7 @@ $V
 @pt
 @Tqueratoconjuntivite seca
 @Tsíndromes  do olho seco
-###C4661  síndrome do ovario 
-###Rpoliquístico      f
+###C4661  síndrome do ovario   poliquístico      f
 !Patoloxías
 @es
 @Tsíndrome del ovario poliquístico
@@ -52038,8 +51887,7 @@ $V
 @Tpolycystic ovary  syndrome
 @pt
 @Tsíndrome do ovário policístico
-###C4662  síndrome do restaurante 
-###Rchinés      f
+###C4662  síndrome do restaurante   chinés      f
 !Patoloxías
 @es
 @Tsíndrome del restaurante chino
@@ -52111,8 +51959,7 @@ $V
 @Tnephrotic syndrome
 @pt
 @Tsíndrome nefrótica
-###C4669  síndrome neuroléptica 
-###Rmaligna      f
+###C4669  síndrome neuroléptica   maligna      f
 !Patoloxías
 @es
 @Tsíndrome neuroléptico maligno
@@ -52350,8 +52197,7 @@ $V
 @Tsystema cardiovasculare
 ###Rsistema de Havers 
 $I osteona
-###C4692  sistema de 
-###Rhistocompatibilidade      m
+###C4692  sistema de   histocompatibilidade      m
 !Fisioloxía
 @es
 @Tsistema de histocompatibilidad
@@ -52482,8 +52328,7 @@ $V
 @la
 @Tpars centralis
 @Tsystema nervosum  centrale
-###C4701  sistema nervioso 
-###Rparasimpático      m
+###C4701  sistema nervioso   parasimpático      m
 !Fisioloxía        Anatomía
 $S parte parasimpática (f)
 $V
@@ -53658,8 +53503,7 @@ $V
 @pt
 @Tmortalidade
 @Ttaxa de mortalidade
-###C4801  taxa de mortalidade neonatal 
-###Rprecoz      f
+###C4801  taxa de mortalidade neonatal   precoz      f
 !Epidemioloxía
 $S taxa de mortalidade neonatal 
 $V
@@ -53672,8 +53516,7 @@ $V
 ###Rtaxa de mortalidade neonatal 
 ###Rserodia      
  taxa de mortalidade   neonatal tardía
-___###C4802  taxa de mortalidade neonatal 
-###Rtardía      f
+___###C4802  taxa de mortalidade neonatal   tardía      f
 !Epidemioloxía
 $S taxa de mortalidade neonatal 
 $V
@@ -53694,8 +53537,7 @@ $V
 @Tperinatal mortality rate
 @pt
 @Ttaxa de mortalidade perinatal
-###C4804  taxa de mortalidade 
-###Rposneonatal      f
+###C4804  taxa de mortalidade   posneonatal      f
 !Epidemioloxía
 @es
 @Ttasa de mortalidad postneonatal
@@ -54145,8 +53987,7 @@ $I fisioterapia
 $I tratamento
 ###Rterapia con láser  
 $I laserterapia
-###C4844  terapia de reposición 
-###Rhormonal      f
+###C4844  terapia de reposición   hormonal      f
 !Terapéutica
 $S TRH (sg); terapia hormonal 
 $V
@@ -54369,8 +54210,7 @@ $V
 @Tprick test
 @pt
 @Tteste cutâneo para alergia
-###C4863  test da elevación da perna en 
-###Rextensión      m
+###C4863  test da elevación da perna en   extensión      m
 !Semioloxía
 $S sinal de elevación da perna 
 $V
@@ -54456,8 +54296,7 @@ $V
 @Turease test
 @pt
 @Tteste de urease
-___###C4871  test de absorción de anticorpos 
-###Rtreponémicos fluorescentes    m   
+___###C4871  test de absorción de anticorpos   treponémicos fluorescentes    m   
 !
 $S test FTA-ABS; proba de absorción 
 $V
@@ -54490,8 +54329,7 @@ $V
 @Tbreath test
 @pt
 @Tteste respiratório
-###C4874  test de anticorpo fluorescente 
-###Rdirecto      m
+###C4874  test de anticorpo fluorescente   directo      m
 !Probas complementarias
 $S test de inmunofluorescencia 
 $V
@@ -54566,8 +54404,7 @@ $V
 @Tteste de estimulação
 ###Rtest de estimulación con ACTH      
  test de estimulación con   adrenocorticotropina
-###C4880  test de estimulación con 
-###Radrenocorticotropina      m
+###C4880  test de estimulación con   adrenocorticotropina      m
 !Probas complementarias
 $S test de estimulación con ACTH; 
 $V
@@ -54604,8 +54441,7 @@ $V
 ###Rtest de inmunofluorescencia 
 ###Rdirecta      
  test de anticorpo   fluorescente directo
-###C4883  test de latencias múltiples do 
-###Rsono      m
+###C4883  test de latencias múltiples do   sono      m
 !Probas complementarias
 $S proba de latencias múltiples do 
 $V
@@ -54662,8 +54498,7 @@ $V
 @Tlactose tolerance test
 @pt
 @Tteste de tolerância à lactose
-###C4888  test de tolerancia oral á 
-###Rglicosa      m
+###C4888  test de tolerancia oral á   glicosa      m
 !Probas complementarias
 $S proba de tolerancia oral á glicosa 
 $V
@@ -55203,8 +55038,7 @@ $V
 ###Rtomografía computadorizada 
 ###Rpor emisión de fotón único
  tomografía por emisión de fotón   único
-___###C4937  tomografía por emisión de 
-###Rfotón único      f
+___###C4937  tomografía por emisión de   fotón único      f
 !Probas complementarias
 $S tomografía computadorizada por 
 $V
@@ -55219,8 +55053,7 @@ $V
 @TSPECT (sg)
 @Ttomografia por emissão  de fotão único [Pt.]
 @Ttomografia por  emissão de fóton único [Br.]
-###C4938  tomografía por emisión de 
-###Rpositróns      f
+###C4938  tomografía por emisión de   positróns      f
 !Probas complementarias
 $S PET (sg); TEP (sg)
 $V
@@ -55798,8 +55631,7 @@ $I suor
 ___###Rtransposición das grandes 
 ###Rarterias      
  transposición dos   grandes vasos
-###C4991  transposición dos grandes 
-###Rvasos      f
+###C4991  transposición dos grandes   vasos      f
 !Patoloxías
 $S transposición das grandes arterias
 $V
@@ -55953,8 +55785,7 @@ $V
 @Ttranstorno bipolar
 ###Rtrastorno ciclotímico      
 $I ciclotimia
-###C5006  trastorno de estrés 
-###Rpostraumático      m
+###C5006  trastorno de estrés   postraumático      m
 !Patoloxías
 @es
 @Ttrastorno de estrés postraumático
@@ -55978,8 +55809,7 @@ $I ciclotimia
 @Tsleep disorder
 @pt
 @Ttranstorno do sono
-###C5009  trastorno 
-###Robsesivo-compulsivo      m
+###C5009  trastorno   obsesivo-compulsivo      m
 !Patoloxías
 $S síndrome obsesiva-compulsiva (f); 
 $V
@@ -56980,8 +56810,7 @@ $I óso lacrimal
 @Tointment
 @pt
 @Tungüento
-###C5086  unidade de coidados 
-###Rintensivos      f
+###C5086  unidade de coidados   intensivos      f
 !Termos xerais
 $S UCI (sg)
 $V
@@ -56996,8 +56825,7 @@ $V
 @Tunidade de cuidados  intensivos
 @Tunidade de tratamento  intensivo [Br.]
 @TUTI (sg) [Br.]
-###C5087  unidade de coidados 
-###Rpaliativos      f
+###C5087  unidade de coidados   paliativos      f
 !Termos xerais
 @es
 @Tunidad de cuidados paliativos
@@ -57005,8 +56833,7 @@ $V
 @Tpalliative care unit
 @pt
 @Tunidade de cuidados paliativos
-###C5088  unidade formadora de 
-###Rcolonias      f
+###C5088  unidade formadora de   colonias      f
 !Histoloxía
 $S UFC (sg)
 $V
@@ -58502,8 +58329,7 @@ ___###C5215  vea xugular anterior      f
 @Tvetor [Br]
 ###Rveleno 
 $I tóxico
-###C5219  velocidade de sedimentación 
-###Rdos glóbulos vermellos      f
+###C5219  velocidade de sedimentación   dos glóbulos vermellos      f
 !Probas complementarias
 $S velocidade de sedimentación 
 $V
@@ -59403,8 +59229,7 @@ $V
 @pt
 @Tvírus da influenza
 @Tvírus influenza
-___###C5293  virus da inmunodeficiencia 
-###Rhumana      m
+___###C5293  virus da inmunodeficiencia   humana      m
 !Etiopatoxenia
 $S VIH (sg); virus da SIDA
 $V
@@ -59756,8 +59581,7 @@ $V
 @Tejection volume
 @pt
 @Tvolume de ejeção
-###C5323  volume de reserva 
-###Rexpiratoria      m
+###C5323  volume de reserva   expiratoria      m
 !Fisioloxía
 $S VRE (sg)
 $V
@@ -59770,8 +59594,7 @@ $V
 @pt
 @Tvolume de reserva expiratória
 @TVRE  (sg)
-___###C5324  volume de reserva 
-###Rinspiratoria      m
+___###C5324  volume de reserva   inspiratoria      m
 !Fisioloxía
 $S VRI (sg)
 $V

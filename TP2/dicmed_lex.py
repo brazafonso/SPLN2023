@@ -5,6 +5,7 @@ tokens = ('ID','VAL','ID_LING','LB')
 
 literals = [':','-','+','\n']
 
+t_ANY_ignore =" "
 
 def t_ID_LING(t):
     r'(En|Pt|La|Ga)(?=\s*:)'
@@ -19,10 +20,8 @@ def t_LB(t):
     return t
 
 def t_VAL(t):
-    r'[^\+\-\:\n]+'
+    r'\s*[^\+\-\:\n ]+[^\+\-\:\n]*\n'
     return t
-
-
 
 def t_error(t):
     print('Ilegal character "%s"' % t.value[0])
@@ -31,25 +30,24 @@ def t_error(t):
 
 lexer = lex.lex()
 
-lexer.input(
-'''
-Area: ... delim ...
-Ga: ...
-...
-+var: ...
-En: ...
-...
-Pt: ...
-+var: ...
-...
-+var: ...
-'''
+# lexer.input('''Area: 1 ; 2
+# Ga: 
+# -3 
+# -4
+# +var: 5
+# En: 
+# -6
+# -7
+# Pt: 
+# -8
+# +var: 9
+# +var: 
+# '''
+# )
 
-)
-
-# Tokenize
-while True:
-    tok = lexer.token()
-    if not tok: 
-        break      # No more input
-    print(tok)
+# # Tokenize
+# while True:
+#     tok = lexer.token()
+#     if not tok: 
+#         break      # No more input
+#     print(tok)
