@@ -20,7 +20,7 @@ def t_LB(t):
     return t
 
 def t_VAL(t):
-    r'\s*[^\+\-\:\n ]+[^\+\-\:\n]*\n'
+    r'[^\+\-\:\n ]+[^\+\-\:\n]*'
     return t
 
 def t_error(t):
@@ -30,18 +30,18 @@ def t_error(t):
 
 lexer = lex.lex()
 
-# lexer.input('''Area: 1 ; 2
-# Ga: 
-# -3 
-# -4
-# +var: 5
-# En: 
-# -6
-# -7
-# Pt: 
-# -8
-# +var: 9
-# +var: 
+# lexer.input('''Area: Anatomía
+# Pt:
+# -ACA (sg)
+# En:
+# -ACA (sg)
+# Es:
+# -ACA (sg)
+# La:
+# -arteria cerebri anterior
+# Ga:
+# -arteria cerebral anterior     
+# - ACA (sg)
 # '''
 # )
 

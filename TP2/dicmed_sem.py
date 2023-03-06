@@ -59,18 +59,18 @@ def p_error(p):
 
 parser = yacc.yacc()
 
-parser.parse('''Area: 1 ; 2
-Ga: 
--3 
--4
-+var: 5
-En: 
--6
--7
-Pt: 
--8
-+var: 9
-+var: 11
+parser.parse('''Area: Anatomía
+Pt:
+-ACA (sg)
+En:
+-ACA (sg)
+Es:
+-ACA (sg)
+La:
+-arteria cerebri anterior
+Ga:
+-arteria cerebral anterior     
+- ACA (sg)
 '''
 )
 

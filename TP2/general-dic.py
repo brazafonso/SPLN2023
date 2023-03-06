@@ -46,3 +46,32 @@ text = json.dumps(new_dic,indent=4)
 file = open('global_medicina_resultado.json', 'w')
 file.write(text)
 file.close()
+
+file = open('dicionario_global_medicina.txt','w')
+
+for entry in new_dic:
+    try:
+      file.write(f'Area: ')
+      ult=''
+      if len(entry['areas']) > 0:
+        for area in entry['areas'][:-1]:
+          file.write(f'{area};')
+        ult = entry['areas'][-1]
+      file.write(f'{ult}\n')
+      for ln in entry['traducoes']:
+        file.write(f'{ln[0].upper()}{ln[1]}:\n')
+        traducoes = entry['traducoes'][ln]
+        termo = traducoes['termo']
+        file.write(f'-{termo}\n')
+        if 'sinonimos' in traducoes:
+          for sinonimo in traducoes['sinonimos']:
+            file.write(f'-{sinonimo}\n')
+        if 'variacoes' in traducoes:
+          for variacao in traducoes['variacoes']:
+            file.write(f'+var: {variacao}\n')
+      file.write('\n')
+    except :
+      print(entry)
+      break
+
+file.close()

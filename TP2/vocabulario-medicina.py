@@ -184,3 +184,5 @@ file.write(json_dump)
 
 print(f'Resultados:\n Entradas completas = {len(dados["completas"])}\n Entradas remissivas = {len(dados["remissivas"])}\n Entradas com erros = {erros}')
 
+
+

@@ -19,7 +19,9 @@ Ficamos então com um dicionário do tipo:
   ]
 ---
 Que é guardado no ficheiro *global_medicina_resultado.json*. \
-Algumas correções foram também feitas no TPC1 para corrigir algumas das entradas e apanhar alguams casos especiais. O dicionário galego, resultante do TPC1, foi escrito no ficheiro *medicina_galego_resultado.json*.
+Algumas correções foram também feitas no TPC1 para corrigir algumas das entradas e apanhar alguams casos especiais \
+O dicionário resultante é então passado para o ficheir o txt *dicionario_global_medicina.txt* no formato da gramática decidido na aula.
+O dicionário galego, resultante do TPC1, foi escrito no ficheiro *medicina_galego_resultado.json*.
 
 *medicina_processado.txt* : resultado da marcacao do ficheiro xml do dicionario
 
