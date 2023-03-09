@@ -1,4 +1,10 @@
 import json
+import re
+
+
+def remove_blank_atribute(entry):
+  return [x for x in entry if not re.findall(r'^[ ]*$',x)]
+
 
 file = open('medicina_galego_resultado.json', 'r')
 
@@ -8,31 +14,34 @@ new_dic = []
 
 for key,entry in dic['completas'].items():
     try:
-      aux = {
-          'termo_universal' : entry['traducoes']['en'][0],
-          'areas' : entry['areas'],
-      }
-      traducoes = {}
-      for key,lang in entry['traducoes'].items():
-          if len(lang) > 0:
-            traducoes[key] = {
-                'termo' : lang[0]
-            }
-            if len(lang) > 1:
-              traducoes[key]['sin'] = lang[1:]  
-      traducoes['ga'] = {
-          'termo' : entry['nome']
-      }
-      sin = [x for x in entry['sinonimos'] if x != '']
-      var = [x for x in entry['variacoes'] if x != '']
-      if len(sin)>0:
-        traducoes['ga']['sinonimos'] = sin
-      if len(var)>0:
-        traducoes['ga']['variacoes'] = var
-      if entry['nota']:
-        traducoes['ga']['nota'] = entry['nota']
-      aux['traducoes'] = traducoes
-      new_dic.append(aux)
+      entry['areas'] = remove_blank_atribute(entry['areas'])
+      if len(entry['areas']) > 0:
+        aux = {
+            'termo_universal' : entry['traducoes']['en'][0],
+            'areas' : entry['areas'],
+        }
+        traducoes = {}
+        for key,lang in entry['traducoes'].items():
+            if len(lang) > 0:
+              traducoes[key] = {
+                  'termo' : lang[0]
+              }
+              if len(lang) > 1:
+                traducoes[key]['sin'] = lang[1:]  
+        sin = remove_blank_atribute(entry['sinonimos'])
+        var = remove_blank_atribute(entry['variacoes'])
+        if not re.findall(r'^[ ]*$',entry['nome']): 
+          traducoes['ga'] = {
+            'termo' : entry['nome']
+          }
+          if len(sin)>0:
+            traducoes['ga']['sinonimos'] = sin
+          if len(var)>0:
+            traducoes['ga']['variacoes'] = var
+          if entry['nota']:
+            traducoes['ga']['nota'] = entry['nota']
+          aux['traducoes'] = traducoes
+          new_dic.append(aux)
     except :
        print("*"*10)
        print(f'Error on entry: {entry}')

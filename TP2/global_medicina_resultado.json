@@ -30,8 +30,7 @@
             "ga": {
                 "termo": "sistema ABO     ",
                 "sinonimos": [
-                    " sistema do grupo sangu\u00edneo ABO",
-                    " "
+                    " sistema do grupo sangu\u00edneo ABO"
                 ]
             }
         }
@@ -104,37 +103,6 @@
         }
     },
     {
-        "termo_universal": "ACEI (sg)",
-        "areas": [],
-        "traducoes": {
-            "pt": {
-                "termo": "IECA (sg)",
-                "sin": [
-                    "inibidor da enzima  conversora da angiotensina"
-                ]
-            },
-            "en": {
-                "termo": "ACEI (sg)",
-                "sin": [
-                    "angiotensin converting  enzyme inhibitor",
-                    "angiotensin- converting enzyme inhibitor"
-                ]
-            },
-            "es": {
-                "termo": "IECA (sg)",
-                "sin": [
-                    "inhibidor de la enzima  convertidora de la angiotensina"
-                ]
-            },
-            "ga": {
-                "termo": "inhibidor do enzima conversor   da anxiotensina      m",
-                "sinonimos": [
-                    " IECA (sg)"
-                ]
-            }
-        }
-    },
-    {
         "termo_universal": "ACTH (sg)",
         "areas": [
             "Fisiolox\u00eda",
@@ -201,8 +169,7 @@
             "ga": {
                 "termo": "test de estimulaci\u00f3n con   adrenocorticotropina     ",
                 "sinonimos": [
-                    " test de estimulaci\u00f3n con ACTH",
-                    " "
+                    " test de estimulaci\u00f3n con ACTH"
                 ]
             }
         }
@@ -281,38 +248,6 @@
         }
     },
     {
-        "termo_universal": "AFP (sg)",
-        "areas": [
-            "Bioqu\u00edmica"
-        ],
-        "traducoes": {
-            "pt": {
-                "termo": "AFP (sg)",
-                "sin": [
-                    "alfa-fetoprote\u00edna"
-                ]
-            },
-            "en": {
-                "termo": "AFP (sg)",
-                "sin": [
-                    "alpha fetoprotein"
-                ]
-            },
-            "es": {
-                "termo": "AFP (sg)",
-                "sin": [
-                    "alfa fetoprote\u00edna"
-                ]
-            },
-            "ga": {
-                "termo": "",
-                "sinonimos": [
-                    " AFP (sg)"
-                ]
-            }
-        }
-    },
-    {
         "termo_universal": "ALS (sg)",
         "areas": [
             "Patolox\u00edas"
@@ -376,8 +311,7 @@
             "ga": {
                 "termo": "p\u00e9ptido natriur\u00e9tico atrial     ",
                 "sinonimos": [
-                    " p\u00e9ptido natriur\u00e9tico auricular",
-                    " "
+                    " p\u00e9ptido natriur\u00e9tico auricular"
                 ]
             }
         }
@@ -480,8 +414,7 @@
             "ga": {
                 "termo": "enfermidade do sono     ",
                 "sinonimos": [
-                    " mal africano (m) [ant.]",
-                    " "
+                    " mal africano (m) [ant.]"
                 ]
             }
         }
@@ -1184,8 +1117,7 @@
             "ga": {
                 "termo": "escavaci\u00f3n rectouterina     ",
                 "sinonimos": [
-                    " fondo de saco rectouterino (m)",
-                    " "
+                    " fondo de saco rectouterino (m)"
                 ],
                 "nota": " A denominaci\u00f3n \u201cfondo de saco de    Douglas\u201d designa tanto este concepto como a    \u201cescavaci\u00f3n rectovesical\u201d."
             }
@@ -1223,8 +1155,7 @@
             "ga": {
                 "termo": "escavaci\u00f3n rectovesical     ",
                 "sinonimos": [
-                    " fondo de saco rectovesical(m)",
-                    " "
+                    " fondo de saco rectovesical(m)"
                 ],
                 "nota": " A denominaci\u00f3n \u201cfondo de saco de    Douglas\u201d designa tanto este concepto como a    \u201cescavaci\u00f3n rectouterina\u201d."
             }
@@ -2256,8 +2187,7 @@
             "ga": {
                 "termo": "lexionelose     ",
                 "sinonimos": [
-                    " enfermidade dos lexionarios",
-                    " "
+                    " enfermidade dos lexionarios"
                 ]
             }
         }
@@ -2388,8 +2318,7 @@
             "ga": {
                 "termo": "necr\u00f3lise epid\u00e9rmica t\u00f3xica     ",
                 "sinonimos": [
-                    " s\u00edndrome da pel escaldada",
-                    " "
+                    " s\u00edndrome da pel escaldada"
                 ]
             }
         }
@@ -3018,8 +2947,7 @@
             "ga": {
                 "termo": "sistema Rh     ",
                 "sinonimos": [
-                    " sistema do grupo sangu\u00edneo Rh",
-                    " "
+                    " sistema do grupo sangu\u00edneo Rh"
                 ]
             }
         }
@@ -3052,38 +2980,6 @@
                 "termo": "trastorno afectivo estacional    ",
                 "sinonimos": [
                     " s\u00edndrome afectiva estacional (f)"
-                ]
-            }
-        }
-    },
-    {
-        "termo_universal": "SAHS (sg)",
-        "areas": [
-            ""
-        ],
-        "traducoes": {
-            "pt": {
-                "termo": "SAHS (sg)",
-                "sin": [
-                    "s\u00edndrome da apn\u00e9ia- hipopn\u00e9ia do sono"
-                ]
-            },
-            "en": {
-                "termo": "SAHS (sg)",
-                "sin": [
-                    "sleep apnea-hypopnea  syndrome"
-                ]
-            },
-            "es": {
-                "termo": "SAHS (sg)",
-                "sin": [
-                    "s\u00edndrome de apnea- hipopnea durante el sue\u00f1o"
-                ]
-            },
-            "ga": {
-                "termo": "s\u00edndrome da",
-                "sinonimos": [
-                    " SAHS (sg)"
                 ]
             }
         }
@@ -3859,27 +3755,6 @@
         }
     },
     {
-        "termo_universal": "aboulia",
-        "areas": [],
-        "traducoes": {
-            "pt": {
-                "termo": "abulia"
-            },
-            "en": {
-                "termo": "aboulia",
-                "sin": [
-                    "abulia"
-                ]
-            },
-            "es": {
-                "termo": "abulia"
-            },
-            "ga": {
-                "termo": "abulia     "
-            }
-        }
-    },
-    {
         "termo_universal": "abrasion",
         "areas": [
             "Semiolox\u00eda"
@@ -3970,26 +3845,6 @@
             },
             "ga": {
                 "termo": "\u00e1caro     "
-            }
-        }
-    },
-    {
-        "termo_universal": "acceptance",
-        "areas": [
-            ""
-        ],
-        "traducoes": {
-            "pt": {
-                "termo": "aceita\u00e7\u00e3o"
-            },
-            "en": {
-                "termo": "acceptance"
-            },
-            "es": {
-                "termo": "aceptaci\u00f3n"
-            },
-            "ga": {
-                "termo": "aceptaci\u00f3n     "
             }
         }
     },
@@ -4131,8 +3986,7 @@
                 "termo": "incidencia acumulada     ",
                 "sinonimos": [
                     " taxa de incidencia",
-                    " incidencia",
-                    " "
+                    " incidencia"
                 ]
             }
         }
@@ -6722,8 +6576,7 @@
         "termo_universal": "agglutination",
         "areas": [
             "Probas",
-            "complementarias",
-            ""
+            "complementarias"
         ],
         "traducoes": {
             "pt": {
@@ -7904,10 +7757,7 @@
                 ]
             },
             "ga": {
-                "termo": "pulso alternante     ",
-                "variacoes": [
-                    " "
-                ]
+                "termo": "pulso alternante     "
             }
         }
     },
@@ -10212,40 +10062,6 @@
         }
     },
     {
-        "termo_universal": "angiotensin II antagonist",
-        "areas": [],
-        "traducoes": {
-            "pt": {
-                "termo": "antagonista da angiotensina II",
-                "sin": [
-                    "antagonista dos receptores da  angiotensina II",
-                    "ARA II (sg)"
-                ]
-            },
-            "en": {
-                "termo": "angiotensin II antagonist",
-                "sin": [
-                    "angiotensin  II receptor antagonist",
-                    "ARA II (sg)"
-                ]
-            },
-            "es": {
-                "termo": "antagonista de la angiotensina II",
-                "sin": [
-                    "antagonista de los receptores de la  angiotensina II",
-                    "ARA II"
-                ]
-            },
-            "ga": {
-                "termo": "antagonista dos receptores da   anxiotensina II          m",
-                "sinonimos": [
-                    " ARA II (sg)",
-                    " antagonista da "
-                ]
-            }
-        }
-    },
-    {
         "termo_universal": "angiotensinogen",
         "areas": [
             "Bioqu\u00edmica",
@@ -10327,8 +10143,7 @@
             "ga": {
                 "termo": "hiato ani\u00f3nico     ",
                 "sinonimos": [
-                    " intervalo ani\u00f3nico",
-                    " "
+                    " intervalo ani\u00f3nico"
                 ]
             }
         }
@@ -13691,8 +13506,7 @@
             "ga": {
                 "termo": "insuficiencia a\u00f3rtica     ",
                 "sinonimos": [
-                    " insuficiencia da v\u00e1lvula a\u00f3rtica",
-                    " "
+                    " insuficiencia da v\u00e1lvula a\u00f3rtica"
                 ]
             }
         }
@@ -14778,8 +14592,7 @@
             "ga": {
                 "termo": "hipertensi\u00f3n arterial     ",
                 "sinonimos": [
-                    " presi\u00f3n sangu\u00ednea alta",
-                    " "
+                    " presi\u00f3n sangu\u00ednea alta"
                 ]
             }
         }
@@ -15464,8 +15277,7 @@
                 "termo": "face articular     ",
                 "sinonimos": [
                     " cara articular",
-                    " faceta articular",
-                    " "
+                    " faceta articular"
                 ]
             }
         }
@@ -16141,10 +15953,7 @@
                 "termo": "talus"
             },
             "ga": {
-                "termo": "astr\u00e1galo     ",
-                "sinonimos": [
-                    " "
-                ]
+                "termo": "astr\u00e1galo     "
             }
         }
     },
@@ -16469,8 +16278,7 @@
                 "termo": "nebulizaci\u00f3n     ",
                 "sinonimos": [
                     " atomizaci\u00f3n",
-                    " vaporizaci\u00f3n",
-                    " "
+                    " vaporizaci\u00f3n"
                 ]
             }
         }
@@ -16508,8 +16316,7 @@
                 "termo": "nebulizador     ",
                 "sinonimos": [
                     " atomizador",
-                    " vaporizador",
-                    " "
+                    " vaporizador"
                 ]
             }
         }
@@ -16746,8 +16553,7 @@
             "ga": {
                 "termo": "canal atrioventricular     ",
                 "sinonimos": [
-                    " canal auriculoventricular",
-                    " "
+                    " canal auriculoventricular"
                 ]
             }
         }
@@ -16779,8 +16585,7 @@
             "ga": {
                 "termo": "disociaci\u00f3n   auriculoventricular     ",
                 "sinonimos": [
-                    " disociaci\u00f3n atrioventricular",
-                    " "
+                    " disociaci\u00f3n atrioventricular"
                 ]
             }
         }
@@ -17358,8 +17163,7 @@
             "ga": {
                 "termo": "sistema nervioso aut\u00f3nomo  ",
                 "sinonimos": [
-                    " sistema nervioso vexetativo",
-                    " "
+                    " sistema nervioso vexetativo"
                 ]
             }
         }
@@ -19302,8 +19106,7 @@
             "ga": {
                 "termo": "tuberosidade radial     ",
                 "sinonimos": [
-                    " tuberosidade do radio",
-                    " "
+                    " tuberosidade do radio"
                 ]
             }
         }
@@ -20285,8 +20088,7 @@
                 "sinonimos": [
                     " blenorrea",
                     " gonorrea",
-                    " gonococia",
-                    " "
+                    " gonococia"
                 ]
             }
         }
@@ -21009,8 +20811,7 @@
                 "termo": "fur\u00fanculo     ",
                 "sinonimos": [
                     " furuncho",
-                    " brumeiro [pop.]",
-                    " "
+                    " brumeiro [pop.]"
                 ]
             }
         }
@@ -23783,8 +23584,7 @@
             "ga": {
                 "termo": "bloqueador da v\u00eda do calcio  ",
                 "sinonimos": [
-                    " bloqueador dos canais de calcio",
-                    " "
+                    " bloqueador dos canais de calcio"
                 ]
             }
         }
@@ -27979,8 +27779,7 @@
             "ga": {
                 "termo": "ictus     ",
                 "sinonimos": [
-                    " accidente vascular cerebral",
-                    " "
+                    " accidente vascular cerebral"
                 ]
             }
         }
@@ -28223,8 +28022,7 @@
             "ga": {
                 "termo": "mielopat\u00eda espondil\u00f3tica     ",
                 "variacoes": [
-                    " mielopat\u00eda espondil\u00f3tica cervical",
-                    " "
+                    " mielopat\u00eda espondil\u00f3tica cervical"
                 ]
             }
         }
@@ -30278,8 +30076,7 @@
             "ga": {
                 "termo": "enfermidade trofobl\u00e1stica   xestacional     ",
                 "sinonimos": [
-                    " corioepitelioma (m)",
-                    " "
+                    " corioepitelioma (m)"
                 ]
             }
         }
@@ -32503,8 +32300,7 @@
                 "termo": "vent\u00e1 redonda     ",
                 "sinonimos": [
                     " vent\u00e1 coclear",
-                    " xanela redonda",
-                    " "
+                    " xanela redonda"
                 ]
             }
         }
@@ -34567,8 +34363,7 @@
             "ga": {
                 "termo": "colaxenopat\u00eda     ",
                 "sinonimos": [
-                    " doenza do tecido conectivo",
-                    " "
+                    " doenza do tecido conectivo"
                 ]
             }
         }
@@ -35375,10 +35170,7 @@
                 ]
             },
             "ga": {
-                "termo": "coroa radiada     ",
-                "variacoes": [
-                    " "
-                ]
+                "termo": "coroa radiada     "
             }
         }
     },
@@ -35755,8 +35547,7 @@
             "ga": {
                 "termo": "cortisol     ",
                 "sinonimos": [
-                    " hidroxicortisona (f)",
-                    " "
+                    " hidroxicortisona (f)"
                 ],
                 "nota": " Optamos por non inclu\u00edr    \u201chidrocortisona\u201d como sin\u00f3nimo, xa que o    prefixo \u201chidro-\u201d ten unicamente o valor de    \u2018auga\u2019; pola contra, tanto o sufixo \u201c-ol\u201d coma    o prefixo \u201chidroxi-\u201d apuntan \u00e1 presenza do    grupo -OH (hidroxilo). "
             }
@@ -37293,8 +37084,7 @@
             "ga": {
                 "termo": "fibrose pulmonar idiop\u00e1tica   ",
                 "sinonimos": [
-                    " alveolite fibrosante criptox\u00e9nica",
-                    " "
+                    " alveolite fibrosante criptox\u00e9nica"
                 ]
             }
         }
@@ -37494,10 +37284,7 @@
                 "termo": "os cuneiforme"
             },
             "ga": {
-                "termo": "\u00f3so cuneiforme     ",
-                "sinonimos": [
-                    " "
-                ]
+                "termo": "\u00f3so cuneiforme     "
             }
         }
     },
@@ -38865,8 +38652,7 @@
             "ga": {
                 "termo": "morte     ",
                 "sinonimos": [
-                    " pasamento (m)",
-                    " "
+                    " pasamento (m)"
                 ]
             }
         }
@@ -40724,10 +40510,7 @@
                 "termo": "diabetes ins\u00edpida"
             },
             "ga": {
-                "termo": "diabetes ins\u00edpida     ",
-                "sinonimos": [
-                    " "
-                ]
+                "termo": "diabetes ins\u00edpida     "
             }
         }
     },
@@ -43104,8 +42887,7 @@
                 "termo": "sinal da gabeta     ",
                 "sinonimos": [
                     " sinal do caix\u00f3n",
-                    " signo da gabeta",
-                    " "
+                    " signo da gabeta"
                 ]
             }
         }
@@ -43160,8 +42942,7 @@
             "ga": {
                 "termo": "anemia falciforme     ",
                 "sinonimos": [
-                    " anemia drepanoc\u00edtica",
-                    " "
+                    " anemia drepanoc\u00edtica"
                 ]
             }
         }
@@ -43373,8 +43154,7 @@
             "ga": {
                 "termo": "interacci\u00f3n     ",
                 "sinonimos": [
-                    " interacci\u00f3n medicamentosa",
-                    " "
+                    " interacci\u00f3n medicamentosa"
                 ]
             }
         }
@@ -46715,38 +46495,6 @@
             },
             "ga": {
                 "termo": "endoscopio     "
-            }
-        }
-    },
-    {
-        "termo_universal": "endoscopic retrograde  cholangiopancreatography",
-        "areas": [
-            ""
-        ],
-        "traducoes": {
-            "pt": {
-                "termo": "colangiopancreatografia retr\u00f3grada  endosc\u00f3pica",
-                "sin": [
-                    "CPRE (sg)"
-                ]
-            },
-            "en": {
-                "termo": "endoscopic retrograde  cholangiopancreatography",
-                "sin": [
-                    "ERPC  (sg)"
-                ]
-            },
-            "es": {
-                "termo": "colangiopancreatograf\u00eda retr\u00f3grada  endosc\u00f3pica",
-                "sin": [
-                    "CPRE (sg)"
-                ]
-            },
-            "ga": {
-                "termo": "colanxiopancreatograf\u00eda   retr\u00f3grada endosc\u00f3pica      f         ",
-                "sinonimos": [
-                    " CPRE (sg)"
-                ]
             }
         }
     },
@@ -50374,32 +50122,6 @@
         }
     },
     {
-        "termo_universal": "extensor hallucis longus muscle",
-        "areas": [
-            ""
-        ],
-        "traducoes": {
-            "pt": {
-                "termo": "m\u00fasculo extensor longo do h\u00e1lux"
-            },
-            "en": {
-                "termo": "extensor hallucis longus muscle",
-                "sin": [
-                    "long  extensor muscle of great toe"
-                ]
-            },
-            "es": {
-                "termo": "m\u00fasculo extensor largo del dedo  gordo"
-            },
-            "la": {
-                "termo": "musculus extensor hallucis longus"
-            },
-            "ga": {
-                "termo": "m\u00fasculo extensor longo da   primeira deda   m         "
-            }
-        }
-    },
-    {
         "termo_universal": "extensor indicis muscle",
         "areas": [
             "Anatom\u00eda"
@@ -51398,8 +51120,7 @@
             "ga": {
                 "termo": "pseudohermafroditismo     ",
                 "sinonimos": [
-                    " hermafroditismo falso",
-                    " "
+                    " hermafroditismo falso"
                 ]
             }
         }
@@ -52188,8 +51909,7 @@
                 "termo": "panaricio     ",
                 "sinonimos": [
                     " paroniquia (f)",
-                    " unlleiro [pop.]",
-                    " "
+                    " unlleiro [pop.]"
                 ]
             }
         }
@@ -53543,8 +53263,7 @@
             "ga": {
                 "termo": "impresi\u00f3n dixital     ",
                 "sinonimos": [
-                    " impresi\u00f3n dixital xen\u00e9tica",
-                    " "
+                    " impresi\u00f3n dixital xen\u00e9tica"
                 ],
                 "nota": "   Designa a \u2018identificaci\u00f3n de m\u00faltiples    alelos espec\u00edficos no ADN dunha persoa co fin    de atopar un identificador \u00fanico para ela\u2019."
             }
@@ -54295,39 +54014,6 @@
             },
             "ga": {
                 "termo": "fluidificante     "
-            }
-        }
-    },
-    {
-        "termo_universal": "fluorescent treponemal antibody  absortion test",
-        "areas": [
-            ""
-        ],
-        "traducoes": {
-            "pt": {
-                "termo": "teste de absor\u00e7\u00e3o de anticorpos  trepon\u00eamicos fluorescentes",
-                "sin": [
-                    "teste  FTA-ABS"
-                ]
-            },
-            "en": {
-                "termo": "fluorescent treponemal antibody  absortion test",
-                "sin": [
-                    "FTA-ABS test"
-                ]
-            },
-            "es": {
-                "termo": "prueba de absorci\u00f3n de anticuerpos  trepon\u00e9micos fluorescentes",
-                "sin": [
-                    "prueba  FTA-ABS"
-                ]
-            },
-            "ga": {
-                "termo": "test de absorci\u00f3n de anticorpos   trepon\u00e9micos fluorescentes    m  ",
-                "sinonimos": [
-                    " test FTA-ABS",
-                    " proba de absorci\u00f3n "
-                ]
             }
         }
     },
@@ -55278,24 +54964,6 @@
         }
     },
     {
-        "termo_universal": "full term",
-        "areas": [],
-        "traducoes": {
-            "pt": {
-                "termo": "a termo"
-            },
-            "en": {
-                "termo": "full term"
-            },
-            "es": {
-                "termo": "a t\u00e9rmino"
-            },
-            "ga": {
-                "termo": "a termo     "
-            }
-        }
-    },
-    {
         "termo_universal": "fundoplication",
         "areas": [
             "Terap\u00e9utica"
@@ -55431,10 +55099,7 @@
                 ]
             },
             "ga": {
-                "termo": "t\u00f3rax escavado     ",
-                "sinonimos": [
-                    " "
-                ]
+                "termo": "t\u00f3rax escavado     "
             }
         }
     },
@@ -56381,8 +56046,7 @@
             "ga": {
                 "termo": "aspiraci\u00f3n nasog\u00e1strica     ",
                 "sinonimos": [
-                    " aspiraci\u00f3n endodixestiva",
-                    " "
+                    " aspiraci\u00f3n endodixestiva"
                 ]
             }
         }
@@ -57418,8 +57082,7 @@
                 "termo": "embarazo     ",
                 "sinonimos": [
                     " xestaci\u00f3n (f)",
-                    " gravidez (f) [cult.]",
-                    " "
+                    " gravidez (f) [cult.]"
                 ]
             }
         }
@@ -57903,8 +57566,7 @@
                 "termo": "bolo hist\u00e9rico     ",
                 "sinonimos": [
                     " bolo na gorxa",
-                    " globo hist\u00e9rico",
-                    " "
+                    " globo hist\u00e9rico"
                 ]
             }
         }
@@ -57940,10 +57602,7 @@
                 "termo": "globus pallidus"
             },
             "ga": {
-                "termo": "globo p\u00e1lido     ",
-                "sinonimos": [
-                    " "
-                ]
+                "termo": "globo p\u00e1lido     "
             }
         }
     },
@@ -58368,26 +58027,6 @@
         }
     },
     {
-        "termo_universal": "glucose-6-phosphate dehydrogenase",
-        "areas": [
-            "Bioqu\u00edmica"
-        ],
-        "traducoes": {
-            "pt": {
-                "termo": "glicose-6-fosfato desidrogenase"
-            },
-            "en": {
-                "termo": "glucose-6-phosphate dehydrogenase"
-            },
-            "es": {
-                "termo": "glucosa-6-fosfatodeshidrogenasa"
-            },
-            "ga": {
-                "termo": ""
-            }
-        }
-    },
-    {
         "termo_universal": "glutamate",
         "areas": [
             "Bioqu\u00edmica",
@@ -58575,29 +58214,6 @@
             },
             "ga": {
                 "termo": "glic\u00f3xeno     "
-            }
-        }
-    },
-    {
-        "termo_universal": "glycogen synthetase",
-        "areas": [
-            "Bioqu\u00edmica"
-        ],
-        "traducoes": {
-            "pt": {
-                "termo": "glicog\u00eanio-sintetase [Br.]",
-                "sin": [
-                    "glicog\u00e9nio- sintetase [Pt.]"
-                ]
-            },
-            "en": {
-                "termo": "glycogen synthetase"
-            },
-            "es": {
-                "termo": "gluc\u00f3geno-sintetasa"
-            },
-            "ga": {
-                "termo": ""
             }
         }
     },
@@ -62697,10 +62313,7 @@
                 ]
             },
             "ga": {
-                "termo": "herpes xestacional     ",
-                "variacoes": [
-                    " "
-                ]
+                "termo": "herpes xestacional     "
             }
         }
     },
@@ -63875,8 +63488,7 @@
             "ga": {
                 "termo": "hospitalizaci\u00f3n a domicilio     ",
                 "sinonimos": [
-                    " hospitalizaci\u00f3n domiciliaria",
-                    " "
+                    " hospitalizaci\u00f3n domiciliaria"
                 ],
                 "nota": " Cfr. con \u201casistencia domiciliaria\u201d."
             }
@@ -64542,10 +64154,7 @@
                 ]
             },
             "ga": {
-                "termo": "hidropis\u00eda fetal     ",
-                "variacoes": [
-                    " "
-                ]
+                "termo": "hidropis\u00eda fetal     "
             }
         }
     },
@@ -69580,8 +69189,7 @@
             "ga": {
                 "termo": "col\u00edculo inferior     ",
                 "sinonimos": [
-                    " tub\u00e9rculo cuadrix\u00e9mino inferior",
-                    " "
+                    " tub\u00e9rculo cuadrix\u00e9mino inferior"
                 ]
             }
         }
@@ -70842,8 +70450,7 @@
             "ga": {
                 "termo": "insulinoma     ",
                 "sinonimos": [
-                    " adenoma langerhansiano",
-                    " "
+                    " adenoma langerhansiano"
                 ]
             }
         }
@@ -71201,8 +70808,7 @@
             "ga": {
                 "termo": "nervio intermedio     ",
                 "variacoes": [
-                    " nervio intermedio de Wrisberg",
-                    " "
+                    " nervio intermedio de Wrisberg"
                 ]
             }
         }
@@ -71886,8 +71492,7 @@
             "ga": {
                 "termo": "\u00edleo paral\u00edtico     ",
                 "sinonimos": [
-                    " pseudoobstruci\u00f3n intestinal (f)",
-                    " "
+                    " pseudoobstruci\u00f3n intestinal (f)"
                 ]
             }
         }
@@ -72589,8 +72194,7 @@
             "ga": {
                 "termo": "colon irritable     ",
                 "sinonimos": [
-                    " s\u00edndrome do colon irritable (f)",
-                    " "
+                    " s\u00edndrome do colon irritable (f)"
                 ]
             }
         }
@@ -74393,10 +73997,7 @@
                 ]
             },
             "ga": {
-                "termo": "l\u00e1mina propia     ",
-                "sinonimos": [
-                    " "
-                ]
+                "termo": "l\u00e1mina propia     "
             }
         }
     },
@@ -74902,8 +74503,7 @@
             "ga": {
                 "termo": "nervio cut\u00e1neo femoral   lateral     ",
                 "sinonimos": [
-                    " nervio cut\u00e1neo lateral da coxa",
-                    " "
+                    " nervio cut\u00e1neo lateral da coxa"
                 ]
             }
         }
@@ -76413,26 +76013,6 @@
         }
     },
     {
-        "termo_universal": "leukotriene receptor antagonist",
-        "areas": [
-            ""
-        ],
-        "traducoes": {
-            "pt": {
-                "termo": "antagonista dos receptores de  leucotrienos"
-            },
-            "en": {
-                "termo": "leukotriene receptor antagonist"
-            },
-            "es": {
-                "termo": "antagonista de receptores de  leucotrienos"
-            },
-            "ga": {
-                "termo": "antagonista dos receptores de   leucotrienos      m         "
-            }
-        }
-    },
-    {
         "termo_universal": "levator anguli oris",
         "areas": [
             "Anatom\u00eda"
@@ -76481,32 +76061,6 @@
             },
             "ga": {
                 "termo": "m\u00fasculo elevador do labio   superior     "
-            }
-        }
-    },
-    {
-        "termo_universal": "levator labii superioris alaeque nasi",
-        "areas": [
-            ""
-        ],
-        "traducoes": {
-            "pt": {
-                "termo": "m\u00fasculo elevador do l\u00e1bio superior e  da asa do nariz"
-            },
-            "en": {
-                "termo": "levator labii superioris alaeque nasi",
-                "sin": [
-                    "levator labii superioris alaeque nasi  muscle"
-                ]
-            },
-            "es": {
-                "termo": "m\u00fasculo elevador del labio superior  y del ala de la nariz"
-            },
-            "la": {
-                "termo": "musculus levator labii superioris  alaeque nasi"
-            },
-            "ga": {
-                "termo": "m\u00fasculo elevador do labio   superior e da \u00e1 do nariz      m        "
             }
         }
     },
@@ -83760,8 +83314,7 @@
             "ga": {
                 "termo": "insuficiencia mitral     ",
                 "sinonimos": [
-                    " insuficiencia da v\u00e1lvula mitral",
-                    " "
+                    " insuficiencia da v\u00e1lvula mitral"
                 ]
             }
         }
@@ -84931,39 +84484,7 @@
             "ga": {
                 "termo": "neurofibromatose     ",
                 "sinonimos": [
-                    " neuroma m\u00faltiple (m)",
-                    " "
-                ]
-            }
-        }
-    },
-    {
-        "termo_universal": "multiple organ dysfunction  syndrome",
-        "areas": [],
-        "traducoes": {
-            "pt": {
-                "termo": "fal\u00eancia de m\u00faltiplos \u00f3rg\u00e3os",
-                "sin": [
-                    "s\u00edndrome da disfun\u00e7\u00e3o de m\u00faltiplos  \u00f3rg\u00e3os"
-                ]
-            },
-            "en": {
-                "termo": "multiple organ dysfunction  syndrome",
-                "sin": [
-                    "multiple organ failure"
-                ]
-            },
-            "es": {
-                "termo": "insuficiencia multiorg\u00e1nica",
-                "sin": [
-                    "s\u00edndrome de disfunci\u00f3n  multiorg\u00e1nica"
-                ]
-            },
-            "ga": {
-                "termo": "s\u00edndrome de disfunci\u00f3n   multiorg\u00e1nica     ",
-                "sinonimos": [
-                    " insuficiencia multiorg\u00e1nica",
-                    " fallo "
+                    " neuroma m\u00faltiple (m)"
                 ]
             }
         }
@@ -86475,8 +85996,7 @@
                 "termo": "miringocentese     ",
                 "sinonimos": [
                     " miringotom\u00eda",
-                    " timpanocentese",
-                    " "
+                    " timpanocentese"
                 ]
             }
         }
@@ -89078,26 +88598,6 @@
         }
     },
     {
-        "termo_universal": "nonselective monoamine reuptake  inhibitor",
-        "areas": [
-            ""
-        ],
-        "traducoes": {
-            "pt": {
-                "termo": "inibidor n\u00e3o-seletivo da recapta\u00e7\u00e3o  de monoaminas"
-            },
-            "en": {
-                "termo": "nonselective monoamine reuptake  inhibitor"
-            },
-            "es": {
-                "termo": "inhibidor no selectivo de la  recaptaci\u00f3n de monoaminas"
-            },
-            "ga": {
-                "termo": "inhibidor"
-            }
-        }
-    },
-    {
         "termo_universal": "nonsense mutation",
         "areas": [
             "Xen\u00e9tica"
@@ -89245,26 +88745,6 @@
                 "sinonimos": [
                     " norepinefrina"
                 ]
-            }
-        }
-    },
-    {
-        "termo_universal": "noradrenaline reuptake inhibitor",
-        "areas": [
-            ""
-        ],
-        "traducoes": {
-            "pt": {
-                "termo": "inibidor da recapta\u00e7\u00e3o de  noradrenalina"
-            },
-            "en": {
-                "termo": "noradrenaline reuptake inhibitor"
-            },
-            "es": {
-                "termo": "inhibidor de la recaptaci\u00f3n de la  noradrenalina"
-            },
-            "ga": {
-                "termo": "inhibidor da recaptaci\u00f3n de   noradrenalina   m         "
             }
         }
     },
@@ -89595,8 +89075,7 @@
             "ga": {
                 "termo": "enfermeiro",
                 "sinonimos": [
-                    " auxiliar t\u00e9cnico sanitario [arc.]",
-                    " "
+                    " auxiliar t\u00e9cnico sanitario [arc.]"
                 ],
                 "nota": " En ingl\u00e9s empr\u00e9gase \u201cmale nurse\u201d    cando quen exerce esa profesi\u00f3n \u00e9 un home."
             }
@@ -90055,8 +89534,7 @@
             "ga": {
                 "termo": "trastorno  ",
                 "sinonimos": [
-                    " s\u00edndrome obsesiva-compulsiva (f)",
-                    " "
+                    " s\u00edndrome obsesiva-compulsiva (f)"
                 ]
             }
         }
@@ -92141,8 +91619,7 @@
                 "termo": "disco do nervio \u00f3ptico     ",
                 "sinonimos": [
                     " disco \u00f3ptico",
-                    " papila \u00f3ptica (f)",
-                    " "
+                    " papila \u00f3ptica (f)"
                 ]
             }
         }
@@ -94015,8 +93492,7 @@
                 "termo": "vent\u00e1 oval     ",
                 "sinonimos": [
                     " vent\u00e1 vestibular",
-                    " xanela oval",
-                    " "
+                    " xanela oval"
                 ]
             }
         }
@@ -96576,8 +96052,7 @@
                 "termo": "cintura pectoral     ",
                 "sinonimos": [
                     " cintura tor\u00e1cica",
-                    " cintura escapular",
-                    " "
+                    " cintura escapular"
                 ]
             }
         }
@@ -96661,10 +96136,7 @@
                 ]
             },
             "ga": {
-                "termo": "t\u00f3rax en quilla     ",
-                "sinonimos": [
-                    " "
-                ]
+                "termo": "t\u00f3rax en quilla     "
             }
         }
     },
@@ -96946,33 +96418,6 @@
                 "termo": "abertura superior da pelve     ",
                 "sinonimos": [
                     " estreito superior da pelve (m)"
-                ]
-            }
-        }
-    },
-    {
-        "termo_universal": "pelvic outlet",
-        "areas": [],
-        "traducoes": {
-            "pt": {
-                "termo": "abertura inferior da pelve",
-                "sin": [
-                    "estreito  inferior da pelve"
-                ]
-            },
-            "en": {
-                "termo": "pelvic outlet"
-            },
-            "es": {
-                "termo": "estrecho inferior de la pelvis"
-            },
-            "la": {
-                "termo": "apertura pelvis inferior"
-            },
-            "ga": {
-                "termo": "abertura inferior da pelve     ",
-                "sinonimos": [
-                    " estreito inferior da pelve (m)"
                 ]
             }
         }
@@ -98299,8 +97744,7 @@
             "ga": {
                 "termo": "dentes permanentes      m",
                 "sinonimos": [
-                    " dentici\u00f3n permantente (f)",
-                    " "
+                    " dentici\u00f3n permantente (f)"
                 ]
             }
         }
@@ -98440,8 +97884,7 @@
                 "termo": "suor     ",
                 "sinonimos": [
                     " perspiraci\u00f3n",
-                    " transpiraci\u00f3n",
-                    " "
+                    " transpiraci\u00f3n"
                 ]
             }
         }
@@ -98472,10 +97915,7 @@
                 ]
             },
             "ga": {
-                "termo": "tose ferina     ",
-                "sinonimos": [
-                    " "
-                ]
+                "termo": "tose ferina     "
             }
         }
     },
@@ -100293,8 +99733,7 @@
             "ga": {
                 "termo": "membrana de intercambio   placentario     ",
                 "sinonimos": [
-                    " membrana hemato-fetal",
-                    " "
+                    " membrana hemato-fetal"
                 ]
             }
         }
@@ -104044,8 +103483,7 @@
             "ga": {
                 "termo": "pir\u00e1mide progresiva     ",
                 "sinonimos": [
-                    " pir\u00e1mide poboacional progresiva",
-                    " "
+                    " pir\u00e1mide poboacional progresiva"
                 ]
             }
         }
@@ -108665,33 +108103,6 @@
         }
     },
     {
-        "termo_universal": "rectus capitis posterior minor",
-        "areas": [],
-        "traducoes": {
-            "pt": {
-                "termo": "m\u00fasculo recto posterior menor da  cabe\u00e7a [Pt.]m\u00fasculo reto ",
-                "sin": [
-                    "posterior  menor da cabe\u00e7a [Br.]"
-                ]
-            },
-            "en": {
-                "termo": "rectus capitis posterior minor",
-                "sin": [
-                    "rectus  capitis posterior minor muscle"
-                ]
-            },
-            "es": {
-                "termo": "m\u00fasculo recto posterior menor de la  cabeza"
-            },
-            "la": {
-                "termo": "musculus rectus capitis posterior  minor"
-            },
-            "ga": {
-                "termo": "m\u00fasculo recto posterior menor   da cabeza     m"
-            }
-        }
-    },
-    {
         "termo_universal": "rectus femoris",
         "areas": [
             "Anatom\u00eda"
@@ -109129,8 +108540,7 @@
             "ga": {
                 "termo": "pir\u00e1mide regresiva     ",
                 "sinonimos": [
-                    " pir\u00e1mide poboacional regresiva",
-                    " "
+                    " pir\u00e1mide poboacional regresiva"
                 ]
             }
         }
@@ -110069,10 +109479,7 @@
                 "termo": "rete testis"
             },
             "ga": {
-                "termo": "rede testicular     ",
-                "variacoes": [
-                    " "
-                ]
+                "termo": "rede testicular     "
             }
         }
     },
@@ -111120,8 +110527,7 @@
             "ga": {
                 "termo": "v\u00e1lvula tric\u00faspide     ",
                 "sinonimos": [
-                    " v\u00e1lvula atrioventricular dereita",
-                    " "
+                    " v\u00e1lvula atrioventricular dereita"
                 ]
             }
         }
@@ -112980,8 +112386,7 @@
                 "termo": "ci\u00e1tica     ",
                 "sinonimos": [
                     " ciatalxia",
-                    " neuralxia ci\u00e1tica",
-                    " "
+                    " neuralxia ci\u00e1tica"
                 ]
             }
         }
@@ -113683,71 +113088,6 @@
             },
             "ga": {
                 "termo": "nesgo de selecci\u00f3n     "
-            }
-        }
-    },
-    {
-        "termo_universal": "selective estrogen receptor  modulator",
-        "areas": [
-            ""
-        ],
-        "traducoes": {
-            "pt": {
-                "termo": "modulador selectivo dos receptores  de estrog\u00e9nio",
-                "sin": [
-                    "modulador seletivo  dos receptores de estr\u00f3geno",
-                    "SERM  (sg)"
-                ]
-            },
-            "en": {
-                "termo": "selective estrogen receptor  modulator",
-                "sin": [
-                    "SERM (sg)"
-                ]
-            },
-            "es": {
-                "termo": "modulador selectivo del receptor de  estr\u00f3genos",
-                "sin": [
-                    "SERM (sg)"
-                ]
-            },
-            "ga": {
-                "termo": "modulador selectivo do   receptor de estr\u00f3xeno      m         ",
-                "sinonimos": [
-                    " SERM (sg)"
-                ]
-            }
-        }
-    },
-    {
-        "termo_universal": "selective serotonin reuptake  inhibitor",
-        "areas": [
-            ""
-        ],
-        "traducoes": {
-            "pt": {
-                "termo": "inibidor seletivo da recapta\u00e7\u00e3o da  serotonina",
-                "sin": [
-                    "ISRS (sg)"
-                ]
-            },
-            "en": {
-                "termo": "selective serotonin reuptake  inhibitor",
-                "sin": [
-                    "SSRI (sg)"
-                ]
-            },
-            "es": {
-                "termo": "inhibidor selectivo de la recaptaci\u00f3n  de la serotonina",
-                "sin": [
-                    "ISRS (sg)"
-                ]
-            },
-            "ga": {
-                "termo": "inhibidor selectivo da   recaptaci\u00f3n da serotonina     ",
-                "sinonimos": [
-                    " ISRS (sg)"
-                ]
             }
         }
     },
@@ -115204,10 +114544,7 @@
                 ]
             },
             "ga": {
-                "termo": "curtocircu\u00edto     ",
-                "sinonimos": [
-                    " "
-                ]
+                "termo": "curtocircu\u00edto     "
             }
         }
     },
@@ -115891,10 +115228,7 @@
                 ]
             },
             "ga": {
-                "termo": "sirolimo     ",
-                "variacoes": [
-                    " "
-                ]
+                "termo": "sirolimo     "
             }
         }
     },
@@ -119867,8 +119201,7 @@
             "ga": {
                 "termo": "col\u00edculo superior     ",
                 "sinonimos": [
-                    " tub\u00e9rculo cuadrix\u00e9mino superior",
-                    " "
+                    " tub\u00e9rculo cuadrix\u00e9mino superior"
                 ]
             }
         }
@@ -122695,10 +122028,7 @@
                 "termo": "filum terminale"
             },
             "ga": {
-                "termo": "filamento terminal     ",
-                "sinonimos": [
-                    " "
-                ]
+                "termo": "filamento terminal     "
             }
         }
     },
@@ -123577,8 +122907,7 @@
                 "termo": "dente molar terceiro     ",
                 "sinonimos": [
                     " terceiro molar",
-                    " moa do xu\u00edzo (f)",
-                    " "
+                    " moa do xu\u00edzo (f)"
                 ]
             }
         }
@@ -126674,10 +126003,7 @@
                 ]
             },
             "ga": {
-                "termo": "trismo     ",
-                "variacoes": [
-                    " "
-                ]
+                "termo": "trismo     "
             }
         }
     },
@@ -128961,8 +128287,7 @@
             "ga": {
                 "termo": "\u00favea     ",
                 "sinonimos": [
-                    " capa vascular do globo ocular",
-                    " "
+                    " capa vascular do globo ocular"
                 ]
             }
         }
@@ -129062,10 +128387,7 @@
                 "termo": "vacuna"
             },
             "ga": {
-                "termo": "vacina     ",
-                "variacoes": [
-                    " "
-                ]
+                "termo": "vacina     "
             }
         }
     },

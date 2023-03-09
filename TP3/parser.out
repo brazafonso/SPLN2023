@@ -1,0 +1,425 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> dic
+Rule 1     dic -> Es
+Rule 2     Es -> Es LB E
+Rule 3     Es -> E
+Rule 4     E -> ITENS
+Rule 5     E -> <empty>
+Rule 6     ITENS -> ITEM ITENS
+Rule 7     ITENS -> ITEM
+Rule 8     ITEM -> AT_CONC
+Rule 9     ITEM -> LING
+Rule 10    AT_CONC -> ID : VAL 
+
+Rule 11    LING -> ID_LING : 
+ Ts
+Rule 12    Ts -> T Ts
+Rule 13    Ts -> T
+Rule 14    T -> - VAL AT_Ts
+Rule 15    AT_Ts -> 
+ AT_T AT_Ts
+Rule 16    AT_Ts -> 
+
+Rule 17    AT_T -> + ID : VAL
+
+Terminals, with rules where they appear
+
+
+                    : 10 11 15 16
++                    : 17
+-                    : 14
+:                    : 10 11 17
+ID                   : 10 17
+ID_LING              : 11
+LB                   : 2
+VAL                  : 10 14 17
+error                : 
+
+Nonterminals, with rules where they appear
+
+AT_CONC              : 8
+AT_T                 : 15
+AT_Ts                : 14 15
+E                    : 2 3
+Es                   : 1 2
+ITEM                 : 6 7
+ITENS                : 4 6
+LING                 : 9
+T                    : 12 13
+Ts                   : 11 12
+dic                  : 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . dic
+    (1) dic -> . Es
+    (2) Es -> . Es LB E
+    (3) Es -> . E
+    (4) E -> . ITENS
+    (5) E -> .
+    (6) ITENS -> . ITEM ITENS
+    (7) ITENS -> . ITEM
+    (8) ITEM -> . AT_CONC
+    (9) ITEM -> . LING
+    (10) AT_CONC -> . ID : VAL 
+
+    (11) LING -> . ID_LING : 
+ Ts
+
+    LB              reduce using rule 5 (E -> .)
+    $end            reduce using rule 5 (E -> .)
+    ID              shift and go to state 8
+    ID_LING         shift and go to state 9
+
+    dic                            shift and go to state 1
+    Es                             shift and go to state 2
+    E                              shift and go to state 3
+    ITENS                          shift and go to state 4
+    ITEM                           shift and go to state 5
+    AT_CONC                        shift and go to state 6
+    LING                           shift and go to state 7
+
+state 1
+
+    (0) S' -> dic .
+
+
+
+state 2
+
+    (1) dic -> Es .
+    (2) Es -> Es . LB E
+
+    $end            reduce using rule 1 (dic -> Es .)
+    LB              shift and go to state 10
+
+
+state 3
+
+    (3) Es -> E .
+
+    LB              reduce using rule 3 (Es -> E .)
+    $end            reduce using rule 3 (Es -> E .)
+
+
+state 4
+
+    (4) E -> ITENS .
+
+    LB              reduce using rule 4 (E -> ITENS .)
+    $end            reduce using rule 4 (E -> ITENS .)
+
+
+state 5
+
+    (6) ITENS -> ITEM . ITENS
+    (7) ITENS -> ITEM .
+    (6) ITENS -> . ITEM ITENS
+    (7) ITENS -> . ITEM
+    (8) ITEM -> . AT_CONC
+    (9) ITEM -> . LING
+    (10) AT_CONC -> . ID : VAL 
+
+    (11) LING -> . ID_LING : 
+ Ts
+
+    LB              reduce using rule 7 (ITENS -> ITEM .)
+    $end            reduce using rule 7 (ITENS -> ITEM .)
+    ID              shift and go to state 8
+    ID_LING         shift and go to state 9
+
+    ITEM                           shift and go to state 5
+    ITENS                          shift and go to state 11
+    AT_CONC                        shift and go to state 6
+    LING                           shift and go to state 7
+
+state 6
+
+    (8) ITEM -> AT_CONC .
+
+    ID              reduce using rule 8 (ITEM -> AT_CONC .)
+    ID_LING         reduce using rule 8 (ITEM -> AT_CONC .)
+    LB              reduce using rule 8 (ITEM -> AT_CONC .)
+    $end            reduce using rule 8 (ITEM -> AT_CONC .)
+
+
+state 7
+
+    (9) ITEM -> LING .
+
+    ID              reduce using rule 9 (ITEM -> LING .)
+    ID_LING         reduce using rule 9 (ITEM -> LING .)
+    LB              reduce using rule 9 (ITEM -> LING .)
+    $end            reduce using rule 9 (ITEM -> LING .)
+
+
+state 8
+
+    (10) AT_CONC -> ID . : VAL 
+
+
+    :               shift and go to state 12
+
+
+state 9
+
+    (11) LING -> ID_LING . : 
+ Ts
+
+    :               shift and go to state 13
+
+
+state 10
+
+    (2) Es -> Es LB . E
+    (4) E -> . ITENS
+    (5) E -> .
+    (6) ITENS -> . ITEM ITENS
+    (7) ITENS -> . ITEM
+    (8) ITEM -> . AT_CONC
+    (9) ITEM -> . LING
+    (10) AT_CONC -> . ID : VAL 
+
+    (11) LING -> . ID_LING : 
+ Ts
+
+    LB              reduce using rule 5 (E -> .)
+    $end            reduce using rule 5 (E -> .)
+    ID              shift and go to state 8
+    ID_LING         shift and go to state 9
+
+    E                              shift and go to state 14
+    ITENS                          shift and go to state 4
+    ITEM                           shift and go to state 5
+    AT_CONC                        shift and go to state 6
+    LING                           shift and go to state 7
+
+state 11
+
+    (6) ITENS -> ITEM ITENS .
+
+    LB              reduce using rule 6 (ITENS -> ITEM ITENS .)
+    $end            reduce using rule 6 (ITENS -> ITEM ITENS .)
+
+
+state 12
+
+    (10) AT_CONC -> ID : . VAL 
+
+
+    VAL             shift and go to state 15
+
+
+state 13
+
+    (11) LING -> ID_LING : . 
+ Ts
+
+    
+               shift and go to state 16
+
+
+state 14
+
+    (2) Es -> Es LB E .
+
+    LB              reduce using rule 2 (Es -> Es LB E .)
+    $end            reduce using rule 2 (Es -> Es LB E .)
+
+
+state 15
+
+    (10) AT_CONC -> ID : VAL . 
+
+
+    
+               shift and go to state 17
+
+
+state 16
+
+    (11) LING -> ID_LING : 
+ . Ts
+    (12) Ts -> . T Ts
+    (13) Ts -> . T
+    (14) T -> . - VAL AT_Ts
+
+    -               shift and go to state 20
+
+    Ts                             shift and go to state 18
+    T                              shift and go to state 19
+
+state 17
+
+    (10) AT_CONC -> ID : VAL 
+ .
+
+    ID              reduce using rule 10 (AT_CONC -> ID : VAL 
+ .)
+    ID_LING         reduce using rule 10 (AT_CONC -> ID : VAL 
+ .)
+    LB              reduce using rule 10 (AT_CONC -> ID : VAL 
+ .)
+    $end            reduce using rule 10 (AT_CONC -> ID : VAL 
+ .)
+
+
+state 18
+
+    (11) LING -> ID_LING : 
+ Ts .
+
+    ID              reduce using rule 11 (LING -> ID_LING : 
+ Ts .)
+    ID_LING         reduce using rule 11 (LING -> ID_LING : 
+ Ts .)
+    LB              reduce using rule 11 (LING -> ID_LING : 
+ Ts .)
+    $end            reduce using rule 11 (LING -> ID_LING : 
+ Ts .)
+
+
+state 19
+
+    (12) Ts -> T . Ts
+    (13) Ts -> T .
+    (12) Ts -> . T Ts
+    (13) Ts -> . T
+    (14) T -> . - VAL AT_Ts
+
+    ID              reduce using rule 13 (Ts -> T .)
+    ID_LING         reduce using rule 13 (Ts -> T .)
+    LB              reduce using rule 13 (Ts -> T .)
+    $end            reduce using rule 13 (Ts -> T .)
+    -               shift and go to state 20
+
+    T                              shift and go to state 19
+    Ts                             shift and go to state 21
+
+state 20
+
+    (14) T -> - . VAL AT_Ts
+
+    VAL             shift and go to state 22
+
+
+state 21
+
+    (12) Ts -> T Ts .
+
+    ID              reduce using rule 12 (Ts -> T Ts .)
+    ID_LING         reduce using rule 12 (Ts -> T Ts .)
+    LB              reduce using rule 12 (Ts -> T Ts .)
+    $end            reduce using rule 12 (Ts -> T Ts .)
+
+
+state 22
+
+    (14) T -> - VAL . AT_Ts
+    (15) AT_Ts -> . 
+ AT_T AT_Ts
+    (16) AT_Ts -> . 
+
+
+    
+               shift and go to state 24
+
+    AT_Ts                          shift and go to state 23
+
+state 23
+
+    (14) T -> - VAL AT_Ts .
+
+    -               reduce using rule 14 (T -> - VAL AT_Ts .)
+    ID              reduce using rule 14 (T -> - VAL AT_Ts .)
+    ID_LING         reduce using rule 14 (T -> - VAL AT_Ts .)
+    LB              reduce using rule 14 (T -> - VAL AT_Ts .)
+    $end            reduce using rule 14 (T -> - VAL AT_Ts .)
+
+
+state 24
+
+    (15) AT_Ts -> 
+ . AT_T AT_Ts
+    (16) AT_Ts -> 
+ .
+    (17) AT_T -> . + ID : VAL
+
+    -               reduce using rule 16 (AT_Ts -> 
+ .)
+    ID              reduce using rule 16 (AT_Ts -> 
+ .)
+    ID_LING         reduce using rule 16 (AT_Ts -> 
+ .)
+    LB              reduce using rule 16 (AT_Ts -> 
+ .)
+    $end            reduce using rule 16 (AT_Ts -> 
+ .)
+    +               shift and go to state 26
+
+    AT_T                           shift and go to state 25
+
+state 25
+
+    (15) AT_Ts -> 
+ AT_T . AT_Ts
+    (15) AT_Ts -> . 
+ AT_T AT_Ts
+    (16) AT_Ts -> . 
+
+
+    
+               shift and go to state 24
+
+    AT_Ts                          shift and go to state 27
+
+state 26
+
+    (17) AT_T -> + . ID : VAL
+
+    ID              shift and go to state 28
+
+
+state 27
+
+    (15) AT_Ts -> 
+ AT_T AT_Ts .
+
+    -               reduce using rule 15 (AT_Ts -> 
+ AT_T AT_Ts .)
+    ID              reduce using rule 15 (AT_Ts -> 
+ AT_T AT_Ts .)
+    ID_LING         reduce using rule 15 (AT_Ts -> 
+ AT_T AT_Ts .)
+    LB              reduce using rule 15 (AT_Ts -> 
+ AT_T AT_Ts .)
+    $end            reduce using rule 15 (AT_Ts -> 
+ AT_T AT_Ts .)
+
+
+state 28
+
+    (17) AT_T -> + ID . : VAL
+
+    :               shift and go to state 29
+
+
+state 29
+
+    (17) AT_T -> + ID : . VAL
+
+    VAL             shift and go to state 30
+
+
+state 30
+
+    (17) AT_T -> + ID : VAL .
+
+    
+               reduce using rule 17 (AT_T -> + ID : VAL .)
+

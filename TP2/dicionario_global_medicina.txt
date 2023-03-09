@@ -8,7 +8,6 @@ Es:
 Ga:
 -sistema ABO     
 - sistema do grupo sanguíneo ABO
-- 
 
 Area: Anatomía
 Pt:
@@ -34,17 +33,6 @@ Ga:
 -enzima conversor da   anxiotensina     
 - ECA (sg)
 
-Area: 
-Pt:
--IECA (sg)
-En:
--ACEI (sg)
-Es:
--IECA (sg)
-Ga:
--inhibidor do enzima conversor   da anxiotensina      m
-- IECA (sg)
-
 Area: Fisioloxía;Bioquímica
 Pt:
 -ACTH (sg)
@@ -66,7 +54,6 @@ Es:
 Ga:
 -test de estimulación con   adrenocorticotropina     
 - test de estimulación con ACTH
-- 
 
 Area: Fisioloxía;Bioquímica
 Pt:
@@ -91,17 +78,6 @@ Ga:
 -retículo endoplasmático liso    
 +var:  retículo endoplásmico liso
 
-Area: Bioquímica
-Pt:
--AFP (sg)
-En:
--AFP (sg)
-Es:
--AFP (sg)
-Ga:
--
-- AFP (sg)
-
 Area: Patoloxías
 Pt:
 -ELA (sg)
@@ -123,7 +99,6 @@ Es:
 Ga:
 -péptido natriurético atrial     
 - péptido natriurético auricular
-- 
 
 Area: Epidemioloxía
 Pt:
@@ -158,7 +133,6 @@ Es:
 Ga:
 -enfermidade do sono     
 - mal africano (m) [ant.]
-- 
 
 Area: Histoloxía
 Pt:
@@ -406,7 +380,6 @@ La:
 Ga:
 -escavación rectouterina     
 - fondo de saco rectouterino (m)
-- 
 
 Area: Anatomía
 Pt:
@@ -420,7 +393,6 @@ La:
 Ga:
 -escavación rectovesical     
 - fondo de saco rectovesical(m)
-- 
 
 Area: Patoloxías
 Pt:
@@ -778,7 +750,6 @@ Es:
 Ga:
 -lexionelose     
 - enfermidade dos lexionarios
-- 
 
 Area: Bioquímica
 Pt:
@@ -823,7 +794,6 @@ Es:
 Ga:
 -necrólise epidérmica tóxica     
 - síndrome da pel escaldada
-- 
 
 Area: Farmacoloxía
 Pt:
@@ -1048,7 +1018,6 @@ Es:
 Ga:
 -sistema Rh     
 - sistema do grupo sanguíneo Rh
-- 
 
 Area: Patoloxías
 Pt:
@@ -1060,17 +1029,6 @@ Es:
 Ga:
 -trastorno afectivo estacional    
 - síndrome afectiva estacional (f)
-
-Area: 
-Pt:
--SAHS (sg)
-En:
--SAHS (sg)
-Es:
--SAHS (sg)
-Ga:
--síndrome da
-- SAHS (sg)
 
 Area: Patoloxías
 Pt:
@@ -1368,16 +1326,6 @@ Es:
 Ga:
 -ablación     
 
-Area: 
-Pt:
--abulia
-En:
--aboulia
-Es:
--abulia
-Ga:
--abulia     
-
 Area: Semioloxía
 Pt:
 -abrasão
@@ -1418,16 +1366,6 @@ Es:
 -ácaro
 Ga:
 -ácaro     
-
-Area: 
-Pt:
--aceitação
-En:
--acceptance
-Es:
--aceptación
-Ga:
--aceptación     
 
 Area: Anatomía
 Pt:
@@ -1487,7 +1425,6 @@ Ga:
 -incidencia acumulada     
 - taxa de incidencia
 - incidencia
-- 
 
 Area: Anatomía
 Pt:
@@ -2567,7 +2504,7 @@ Es:
 Ga:
 -axeusia     
 
-Area: Probas;complementarias;
+Area: Probas;complementarias
 Pt:
 -aglutinação
 En:
@@ -3083,7 +3020,6 @@ Es:
 -pulso alternante
 Ga:
 -pulso alternante     
-+var:  
 
 Area: Epidemioloxía
 Pt:
@@ -4069,18 +4005,6 @@ Es:
 Ga:
 -anxiotensina     
 
-Area: 
-Pt:
--antagonista da angiotensina II
-En:
--angiotensin II antagonist
-Es:
--antagonista de la angiotensina II
-Ga:
--antagonista dos receptores da   anxiotensina II          m
-- ARA II (sg)
-- antagonista da 
-
 Area: Bioquímica;Fisioloxía
 Pt:
 -angiotensinogênio [Br.]
@@ -4112,7 +4036,6 @@ Es:
 Ga:
 -hiato aniónico     
 - intervalo aniónico
-- 
 
 Area: Semioloxía
 Pt:
@@ -5500,7 +5423,6 @@ Es:
 Ga:
 -insuficiencia aórtica     
 - insuficiencia da válvula aórtica
-- 
 
 Area: Patoloxías
 Pt:
@@ -5982,7 +5904,6 @@ Es:
 Ga:
 -hipertensión arterial     
 - presión sanguínea alta
-- 
 
 Area: Fisioloxía
 Pt:
@@ -6283,7 +6204,6 @@ Ga:
 -face articular     
 - cara articular
 - faceta articular
-- 
 
 Area: Anatomía
 Pt:
@@ -6581,7 +6501,6 @@ La:
 -talus
 Ga:
 -astrágalo     
-- 
 
 Area: Histoloxía
 Pt:
@@ -6720,7 +6639,6 @@ Ga:
 -nebulización     
 - atomización
 - vaporización
-- 
 
 Area: Instrumental
 Pt:
@@ -6733,7 +6651,6 @@ Ga:
 -nebulizador     
 - atomizador
 - vaporizador
-- 
 
 Area: Patoloxías
 Pt:
@@ -6822,7 +6739,6 @@ Es:
 Ga:
 -canal atrioventricular     
 - canal auriculoventricular
-- 
 
 Area: Etiopatoxenia
 Pt:
@@ -6834,7 +6750,6 @@ Es:
 Ga:
 -disociación   auriculoventricular     
 - disociación atrioventricular
-- 
 
 Area: Anatomía
 Pt:
@@ -7074,7 +6989,6 @@ La:
 Ga:
 -sistema nervioso autónomo  
 - sistema nervioso vexetativo
-- 
 
 Area: Semioloxía
 Pt:
@@ -7896,7 +7810,6 @@ La:
 Ga:
 -tuberosidade radial     
 - tuberosidade do radio
-- 
 
 Area: Anatomía
 Pt:
@@ -8287,7 +8200,6 @@ Ga:
 - blenorrea
 - gonorrea
 - gonococia
-- 
 
 Area: Patoloxías
 Pt:
@@ -8594,7 +8506,6 @@ Ga:
 -furúnculo     
 - furuncho
 - brumeiro [pop.]
-- 
 
 Area: Farmacoloxía
 Pt:
@@ -9787,7 +9698,6 @@ Es:
 Ga:
 -bloqueador da vía do calcio  
 - bloqueador dos canais de calcio
-- 
 
 Area: Semioloxía
 Pt:
@@ -11582,7 +11492,6 @@ Es:
 Ga:
 -ictus     
 - accidente vascular cerebral
-- 
 
 Area: Anatomía
 Pt:
@@ -11682,7 +11591,6 @@ Es:
 Ga:
 -mielopatía espondilótica     
 +var:  mielopatía espondilótica cervical
-+var:  
 
 Area: Anatomía
 Pt:
@@ -12585,7 +12493,6 @@ Es:
 Ga:
 -enfermidade trofoblástica   xestacional     
 - corioepitelioma (m)
-- 
 
 Area: Histoloxía
 Pt:
@@ -13553,7 +13460,6 @@ Ga:
 -ventá redonda     
 - ventá coclear
 - xanela redonda
-- 
 
 Area: Xenética
 Pt:
@@ -14447,7 +14353,6 @@ Es:
 Ga:
 -colaxenopatía     
 - doenza do tecido conectivo
-- 
 
 Area: Epidemioloxía
 Pt:
@@ -14785,7 +14690,6 @@ Es:
 -corona radiada
 Ga:
 -coroa radiada     
-+var:  
 
 Area: Anatomía
 Pt:
@@ -14946,7 +14850,6 @@ Es:
 Ga:
 -cortisol     
 - hidroxicortisona (f)
-- 
 
 Area: Anatomía
 Pt:
@@ -15592,7 +15495,6 @@ Es:
 Ga:
 -fibrose pulmonar idiopática   
 - alveolite fibrosante criptoxénica
-- 
 
 Area: Patoloxías
 Pt:
@@ -15673,7 +15575,6 @@ La:
 -os cuneiforme
 Ga:
 -óso cuneiforme     
-- 
 
 Area: Farmacoloxía
 Pt:
@@ -16289,7 +16190,6 @@ Es:
 Ga:
 -morte     
 - pasamento (m)
-- 
 
 Area: Terapéutica
 Pt:
@@ -17093,7 +16993,6 @@ Es:
 -diabetes insípida
 Ga:
 -diabetes insípida     
-- 
 
 Area: Termos;xerais
 Pt:
@@ -18103,7 +18002,6 @@ Ga:
 -sinal da gabeta     
 - sinal do caixón
 - signo da gabeta
-- 
 
 Area: Fisioloxía
 Pt:
@@ -18125,7 +18023,6 @@ Es:
 Ga:
 -anemia falciforme     
 - anemia drepanocítica
-- 
 
 Area: Farmacoloxía
 Pt:
@@ -18212,7 +18109,6 @@ Es:
 Ga:
 -interacción     
 - interacción medicamentosa
-- 
 
 Area: Anatomía
 Pt:
@@ -19683,17 +19579,6 @@ Es:
 -endoscopio
 Ga:
 -endoscopio     
-
-Area: 
-Pt:
--colangiopancreatografia retrógrada  endoscópica
-En:
--endoscopic retrograde  cholangiopancreatography
-Es:
--colangiopancreatografía retrógrada  endoscópica
-Ga:
--colanxiopancreatografía   retrógrada endoscópica      f         
-- CPRE (sg)
 
 Area: Probas;complementarias;Terapéutica
 Pt:
@@ -21324,18 +21209,6 @@ La:
 Ga:
 -músculo extensor curto da   primeira deda    
 
-Area: 
-Pt:
--músculo extensor longo do hálux
-En:
--extensor hallucis longus muscle
-Es:
--músculo extensor largo del dedo  gordo
-La:
--musculus extensor hallucis longus
-Ga:
--músculo extensor longo da   primeira deda   m         
-
 Area: Anatomía
 Pt:
 -músculo extensor do indicador
@@ -21766,7 +21639,6 @@ Es:
 Ga:
 -pseudohermafroditismo     
 - hermafroditismo falso
-- 
 
 Area: Epidemioloxía
 Pt:
@@ -22092,7 +21964,6 @@ Ga:
 -panaricio     
 - paroniquia (f)
 - unlleiro [pop.]
-- 
 
 Area: Epidemioloxía
 Pt:
@@ -22667,7 +22538,6 @@ Es:
 Ga:
 -impresión dixital     
 - impresión dixital xenética
-- 
 
 Area: Termos;xerais
 Pt:
@@ -22999,18 +22869,6 @@ Es:
 -fluidificante
 Ga:
 -fluidificante     
-
-Area: 
-Pt:
--teste de absorção de anticorpos  treponêmicos fluorescentes
-En:
--fluorescent treponemal antibody  absortion test
-Es:
--prueba de absorción de anticuerpos  treponémicos fluorescentes
-Ga:
--test de absorción de anticorpos   treponémicos fluorescentes    m  
-- test FTA-ABS
-- proba de absorción 
 
 Area: Farmacoloxía
 Pt:
@@ -23438,16 +23296,6 @@ Ga:
 - Fru (sb)
 - levulosa
 
-Area: 
-Pt:
--a termo
-En:
--full term
-Es:
--a término
-Ga:
--a termo     
-
 Area: Terapéutica
 Pt:
 -fundoplicatura
@@ -23499,7 +23347,6 @@ Es:
 -pectus excavatum
 Ga:
 -tórax escavado     
-- 
 
 Area: Patoloxías
 Pt:
@@ -23927,7 +23774,6 @@ Es:
 Ga:
 -aspiración nasogástrica     
 - aspiración endodixestiva
-- 
 
 Area: Terapéutica
 Pt:
@@ -24374,7 +24220,6 @@ Ga:
 -embarazo     
 - xestación (f)
 - gravidez (f) [cult.]
-- 
 
 Area: Termos;xerais
 Pt:
@@ -24583,7 +24428,6 @@ Ga:
 -bolo histérico     
 - bolo na gorxa
 - globo histérico
-- 
 
 Area: Anatomía
 Pt:
@@ -24596,7 +24440,6 @@ La:
 -globus pallidus
 Ga:
 -globo pálido     
-- 
 
 Area: Histoloxía
 Pt:
@@ -24794,16 +24637,6 @@ Ga:
 -test de tolerancia oral á   glicosa     
 - proba de tolerancia oral á glicosa 
 
-Area: Bioquímica
-Pt:
--glicose-6-fosfato desidrogenase
-En:
--glucose-6-phosphate dehydrogenase
-Es:
--glucosa-6-fosfatodeshidrogenasa
-Ga:
--
-
 Area: Bioquímica;Fisioloxía
 Pt:
 -ácido glutâmico [Br.]
@@ -24885,16 +24718,6 @@ Es:
 -glucógeno
 Ga:
 -glicóxeno     
-
-Area: Bioquímica
-Pt:
--glicogênio-sintetase [Br.]
-En:
--glycogen synthetase
-Es:
--glucógeno-sintetasa
-Ga:
--
 
 Area: Bioquímica
 Pt:
@@ -26680,7 +26503,6 @@ Es:
 -herpes gestacional
 Ga:
 -herpes xestacional     
-+var:  
 
 Area: Patoloxías
 Pt:
@@ -27171,7 +26993,6 @@ Es:
 Ga:
 -hospitalización a domicilio     
 - hospitalización domiciliaria
-- 
 
 Area: Terapéutica
 Pt:
@@ -27460,7 +27281,6 @@ Es:
 -hidropesía fetal
 Ga:
 -hidropisía fetal     
-+var:  
 
 Area: Anatomía;patolóxica
 Pt:
@@ -29681,7 +29501,6 @@ La:
 Ga:
 -colículo inferior     
 - tubérculo cuadrixémino inferior
-- 
 
 Area: Anatomía
 Pt:
@@ -30232,7 +30051,6 @@ Es:
 Ga:
 -insulinoma     
 - adenoma langerhansiano
-- 
 
 Area: Fisioloxía
 Pt:
@@ -30389,7 +30207,6 @@ La:
 Ga:
 -nervio intermedio     
 +var:  nervio intermedio de Wrisberg
-+var:  
 
 Area: Semioloxía
 Pt:
@@ -30697,7 +30514,6 @@ Es:
 Ga:
 -íleo paralítico     
 - pseudoobstrución intestinal (f)
-- 
 
 Area: Patoloxías
 Pt:
@@ -31012,7 +30828,6 @@ Es:
 Ga:
 -colon irritable     
 - síndrome do colon irritable (f)
-- 
 
 Area: Semioloxía
 Pt:
@@ -31806,7 +31621,6 @@ Es:
 -lámina propia
 Ga:
 -lámina propia     
-- 
 
 Area: Terapéutica
 Pt:
@@ -32043,7 +31857,6 @@ La:
 Ga:
 -nervio cutáneo femoral   lateral     
 - nervio cutáneo lateral da coxa
-- 
 
 Area: Anatomía
 Pt:
@@ -32681,16 +32494,6 @@ Es:
 Ga:
 -leucotrieno     
 
-Area: 
-Pt:
--antagonista dos receptores de  leucotrienos
-En:
--leukotriene receptor antagonist
-Es:
--antagonista de receptores de  leucotrienos
-Ga:
--antagonista dos receptores de   leucotrienos      m         
-
 Area: Anatomía
 Pt:
 -músculo elevador do ângulo da boca
@@ -32714,18 +32517,6 @@ La:
 -musculus levator labii superioris
 Ga:
 -músculo elevador do labio   superior     
-
-Area: 
-Pt:
--músculo elevador do lábio superior e  da asa do nariz
-En:
--levator labii superioris alaeque nasi
-Es:
--músculo elevador del labio superior  y del ala de la nariz
-La:
--musculus levator labii superioris  alaeque nasi
-Ga:
--músculo elevador do labio   superior e da á do nariz      m        
 
 Area: Anatomía
 Pt:
@@ -35975,7 +35766,6 @@ Es:
 Ga:
 -insuficiencia mitral     
 - insuficiencia da válvula mitral
-- 
 
 Area: Histoloxía
 Pt:
@@ -36492,19 +36282,6 @@ Es:
 Ga:
 -neurofibromatose     
 - neuroma múltiple (m)
-- 
-
-Area: 
-Pt:
--falência de múltiplos órgãos
-En:
--multiple organ dysfunction  syndrome
-Es:
--insuficiencia multiorgánica
-Ga:
--síndrome de disfunción   multiorgánica     
-- insuficiencia multiorgánica
-- fallo 
 
 Area: Patoloxías
 Pt:
@@ -37166,7 +36943,6 @@ Ga:
 -miringocentese     
 - miringotomía
 - timpanocentese
-- 
 
 Area: Terapéutica
 Pt:
@@ -38317,16 +38093,6 @@ Ga:
 -incumprimento terapéutico  
 - incumprimento do tratamento
 
-Area: 
-Pt:
--inibidor não-seletivo da recaptação  de monoaminas
-En:
--nonselective monoamine reuptake  inhibitor
-Es:
--inhibidor no selectivo de la  recaptación de monoaminas
-Ga:
--inhibidor
-
 Area: Xenética
 Pt:
 -mutação nonsense
@@ -38380,16 +38146,6 @@ Es:
 Ga:
 -noradrenalina     
 - norepinefrina
-
-Area: 
-Pt:
--inibidor da recaptação de  noradrenalina
-En:
--noradrenaline reuptake inhibitor
-Es:
--inhibidor de la recaptación de la  noradrenalina
-Ga:
--inhibidor da recaptación de   noradrenalina   m         
 
 Area: Anatomía
 Pt:
@@ -38545,7 +38301,6 @@ Es:
 Ga:
 -enfermeiro
 - auxiliar técnico sanitario [arc.]
-- 
 
 Area: Organización;sanitaria
 Pt:
@@ -38746,7 +38501,6 @@ Es:
 Ga:
 -trastorno  
 - síndrome obsesiva-compulsiva (f)
-- 
 
 Area: Organización;sanitaria
 Pt:
@@ -39648,7 +39402,6 @@ Ga:
 -disco do nervio óptico     
 - disco óptico
 - papila óptica (f)
-- 
 
 Area: Patoloxías
 Pt:
@@ -40471,7 +40224,6 @@ Ga:
 -ventá oval     
 - ventá vestibular
 - xanela oval
-- 
 
 Area: Anatomía
 Pt:
@@ -41622,7 +41374,6 @@ Ga:
 -cintura pectoral     
 - cintura torácica
 - cintura escapular
-- 
 
 Area: Anatomía
 Pt:
@@ -41657,7 +41408,6 @@ Es:
 -pecho de paloma [pop.]
 Ga:
 -tórax en quilla     
-- 
 
 Area: Organización;sanitaria
 Pt:
@@ -41776,19 +41526,6 @@ La:
 Ga:
 -abertura superior da pelve     
 - estreito superior da pelve (m)
-
-Area: 
-Pt:
--abertura inferior da pelve
-En:
--pelvic outlet
-Es:
--estrecho inferior de la pelvis
-La:
--apertura pelvis inferior
-Ga:
--abertura inferior da pelve     
-- estreito inferior da pelve (m)
 
 Area: Terapéutica
 Pt:
@@ -42389,7 +42126,6 @@ La:
 Ga:
 -dentes permanentes      m
 - dentición permantente (f)
-- 
 
 Area: Patoloxías
 Pt:
@@ -42454,7 +42190,6 @@ Ga:
 -suor     
 - perspiración
 - transpiración
-- 
 
 Area: Patoloxías
 Pt:
@@ -42465,7 +42200,6 @@ Es:
 -pertussis
 Ga:
 -tose ferina     
-- 
 
 Area: Anatomía
 Pt:
@@ -43288,7 +43022,6 @@ Es:
 Ga:
 -membrana de intercambio   placentario     
 - membrana hemato-fetal
-- 
 
 Area: Anatomía
 Pt:
@@ -44921,7 +44654,6 @@ Es:
 Ga:
 -pirámide progresiva     
 - pirámide poboacional progresiva
-- 
 
 Area: Etiopatoxenia
 Pt:
@@ -46985,18 +46717,6 @@ La:
 Ga:
 -músculo recto posterior maior   da cabeza     
 
-Area: 
-Pt:
--músculo recto posterior menor da  cabeça [Pt.]músculo reto 
-En:
--rectus capitis posterior minor
-Es:
--músculo recto posterior menor de la  cabeza
-La:
--musculus rectus capitis posterior  minor
-Ga:
--músculo recto posterior menor   da cabeza     m
-
 Area: Anatomía
 Pt:
 -músculo recto anterior [Pt.]
@@ -47192,7 +46912,6 @@ Es:
 Ga:
 -pirámide regresiva     
 - pirámide poboacional regresiva
-- 
 
 Area: Patoloxías
 Pt:
@@ -47599,7 +47318,6 @@ La:
 -rete testis
 Ga:
 -rede testicular     
-+var:  
 
 Area: Histoloxía
 Pt:
@@ -48080,7 +47798,6 @@ La:
 Ga:
 -válvula tricúspide     
 - válvula atrioventricular dereita
-- 
 
 Area: Anatomía
 Pt:
@@ -48920,7 +48637,6 @@ Ga:
 -ciática     
 - ciatalxia
 - neuralxia ciática
-- 
 
 Area: Probas;complementarias
 Pt:
@@ -49238,28 +48954,6 @@ Es:
 -sesgo de selección
 Ga:
 -nesgo de selección     
-
-Area: 
-Pt:
--modulador selectivo dos receptores  de estrogénio
-En:
--selective estrogen receptor  modulator
-Es:
--modulador selectivo del receptor de  estrógenos
-Ga:
--modulador selectivo do   receptor de estróxeno      m         
-- SERM (sg)
-
-Area: 
-Pt:
--inibidor seletivo da recaptação da  serotonina
-En:
--selective serotonin reuptake  inhibitor
-Es:
--inhibidor selectivo de la recaptación  de la serotonina
-Ga:
--inhibidor selectivo da   recaptación da serotonina     
-- ISRS (sg)
 
 Area: Termos;xerais
 Pt:
@@ -49907,7 +49601,6 @@ Es:
 -cortocircuito
 Ga:
 -curtocircuíto     
-- 
 
 Area: Terapéutica
 Pt:
@@ -50212,7 +49905,6 @@ Es:
 -sirolimo
 Ga:
 -sirolimo     
-+var:  
 
 Area: Anatomía
 Pt:
@@ -52051,7 +51743,6 @@ La:
 Ga:
 -colículo superior     
 - tubérculo cuadrixémino superior
-- 
 
 Area: Anatomía
 Pt:
@@ -53320,7 +53011,6 @@ La:
 -filum terminale
 Ga:
 -filamento terminal     
-- 
 
 Area: Termos;xerais
 Pt:
@@ -53715,7 +53405,6 @@ Ga:
 -dente molar terceiro     
 - terceiro molar
 - moa do xuízo (f)
-- 
 
 Area: Anatomía
 Pt:
@@ -55106,7 +54795,6 @@ Es:
 -trismo
 Ga:
 -trismo     
-+var:  
 
 Area: Xenética
 Pt:
@@ -56146,7 +55834,6 @@ La:
 Ga:
 -úvea     
 - capa vascular do globo ocular
-- 
 
 Area: Patoloxías
 Pt:
@@ -56192,7 +55879,6 @@ Es:
 -vacuna
 Ga:
 -vacina     
-+var:  
 
 Area: Histoloxía
 Pt:
