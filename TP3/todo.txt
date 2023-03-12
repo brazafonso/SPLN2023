@@ -1,3 +1,0 @@
-Fazer uma gramatica para o formato de dicionario desenhado por mim.
-Parse do ficheiro com todas as entradas nesse estilo, e durante o parse criar uma estrutura de dados para os guardar (ex.: dicionario).
-A partir desta estrutura, criar nova vista (ex.: html ou pdf)

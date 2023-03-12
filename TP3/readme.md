@@ -1,30 +1,23 @@
-# **TPC2**
+# **TPC3**
 
-## Dicionário de medicina geral
-Para isto foi criado o script *general-dic.py* que percorre o dicionário anteriormente criado (galego) e, considerando as entradas remissivas dispensáveis (por apenas serem redirecionamentos de variações de termos), é escolhido um termo geral para cada entrada, neste caso o inglês por ser a língua universal, e o galego é considerado como qualquer outra das traduções. Assim os sinónimos e variações acompanham o termo em galego para dentro da lista de linguagens. \
-Esta lista é ainda modificada para quando existem mais do que um termo para uma linguagem, todos à exceção do primeiro são considerados sinónimos. \
-Ficamos então com um dicionário do tipo:
-- Termo universal
-- Areas
-  [area1,area2...]
-- Traducoes
-  [lingua1 : \
-    {\
-      termo\
-      sinonimos?
-        [sin1,sin2...]\
-      variacoes?
-        [var1,var2...]\
-    }\
-  ]
----
-Que é guardado no ficheiro *global_medicina_resultado.json*. \
-Algumas correções foram também feitas no TPC1 para corrigir algumas das entradas e apanhar alguams casos especiais \
-O dicionário resultante é então passado para o ficheir o txt *dicionario_global_medicina.txt* no formato da gramática decidido na aula.
-O dicionário galego, resultante do TPC1, foi escrito no ficheiro *medicina_galego_resultado.json*.
-
-*medicina_processado.txt* : resultado da marcacao do ficheiro xml do dicionario
 
 ## Gramática e lexer
+Primeiramente foram feitas correções no lexer e parser da gramática do dicionário simplificado criado na aula de modo a conseguir corretamente reconhecer todas as entidades no *dicionario_global_medicina.txt*.
+### Ficheiros :
+  - dicmed_lex.py : lexer
+  - dicmed_sem.py : parser sintático e semântico
+  - dicionario_global_medicina.txt : valores do dicionário guardados no formato da gramática
 
-Para a segunda parte tinhamos de, para a gramática acordada durante a aula (*dicmed_lex.py*), criar um lexer capaz de reconhecer os símbolos definidos (dicmed_sem.py).
+
+## Estrutura de dados intermédia
+Com o parser sintático funcional, passamos a dar-lhe valor semântico e com este, é criada uma estrutura de dados para guardar a informação reconhecida num dicionário python, que é posteriormente guardado em *entries_dic* com o uso da bibilioteca pickle.
+### Ficheiros :
+  - dicmed_sem.py : parser sintático e semântica para criação da estrutura de dados
+  - entries_dic : estrutura de dados serializada
+
+## Criação de uma nova visão
+Com o uso da estrutura de dados criada, é feita uma nova visão para estes dados. A visão escolhida foi em formato html, onde é criada uma página com um índice com todas as entradas que ligam diretamente para a entrada extensa, que revela mais informação sobre a mesma.
+### Ficheiros :
+  - entries_dic : estrutura de dados serializada
+  - create_dicionario_html.py : script para a criação da visão html
+  - dicionario.html : visão resultante
