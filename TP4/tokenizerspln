@@ -1,12 +1,14 @@
-#!/usr/bin/env python3
+#! /usr/bin/env python3
+
+
+__version__ = '0.2'
+
 import re
 import sys
 import fileinput
 from utils import *
 
 list_poemas = []
-
-
 
 def treat_page_break(procedure_dic,text):
     """If flagged or default removes page breaks"""
@@ -58,40 +60,44 @@ def treat_poems(procedure_dic,text):
         print(list_poemas)
     return text
 
+def tokenizer():
+    procedure_dic = process_arguments()
+    if not have_errors():
+        text = get_input()
+        
+        # 0. Quebra de pagina
+        # 1. Separar pontuação das palavras
+        # 2. Marcar capitulos
+        # 3. Separar paragrafos de linhas pequenas
+        # 4. Juntar linhas da mesma frase
+        # 5. Uma frase por linha
+        # 6. Tratar Poemas (tagged)
 
-procedure_dic = process_arguments()
-if not have_errors():
-    text = get_input()
-    
-    # 0. Quebra de pagina
-    # 1. Separar pontuação das palavras
-    # 2. Marcar capitulos
-    # 3. Separar paragrafos de linhas pequenas
-    # 4. Juntar linhas da mesma frase
-    # 5. Uma frase por linha
-    # 6. Tratar Poemas (tagged)
+        # 6. Tratar Poemas (tagged)
+        text = treat_poems(procedure_dic,text)
 
-    # 6. Tratar Poemas (tagged)
-    text = treat_poems(procedure_dic,text)
+        # 2. Marcar capitulos
+        text = treat_chapters(procedure_dic,text)
 
-    # 2. Marcar capitulos
-    text = treat_chapters(procedure_dic,text)
+        # 0. Quebra de pagina
+        text = treat_page_break(procedure_dic,text)
+        
+        # 3. Separar paragrafos de linhas pequenas
+        text = treat_paragraphs(procedure_dic,text)
 
-    # 0. Quebra de pagina
-    text = treat_page_break(procedure_dic,text)
-    
-    # 3. Separar paragrafos de linhas pequenas
-    text = treat_paragraphs(procedure_dic,text)
+        # 4. Juntar linhas da mesma frase
+        text = treat_sentences_single_line(procedure_dic,text)
 
-    # 4. Juntar linhas da mesma frase
-    text = treat_sentences_single_line(procedure_dic,text)
+        # 5. Uma frase por linha
+        text = treat_sentences_per_line(procedure_dic,text)
 
-    # 5. Uma frase por linha
-    text = treat_sentences_per_line(procedure_dic,text)
+        # 1. Separar pontuação das palavras
+        text = treat_punctuation(procedure_dic,text)
 
-    # 1. Separar pontuação das palavras
-    text = treat_punctuation(procedure_dic,text)
+        write_output(text)
 
-    write_output(text)
+    print_errors()
 
-print_errors()
+if __name__ == "__main__":
+    print(f'This is tokenizerSPLN {__version__}')
+    tokenizer()
