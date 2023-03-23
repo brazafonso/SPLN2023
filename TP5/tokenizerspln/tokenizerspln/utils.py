@@ -56,7 +56,7 @@ def process_arguments(__version__):
         (default to english)                    
                         ''',type=str, nargs=1,default='en')
     parser.add_argument('-p','--poem',help='saves poems delimited inside <poem></poem> in the text',action='store_true',default=False)
-    parser.add_argument('-c','--chapter',help='treat chapters using the language delimiters (default english)',dest='options',action=defaultAction,nargs='?')
+    parser.add_argument('-c','--chapter',help='treat chapters using the language delimiters (default english)',dest='options',action=defaultAction,nargs=0)
     parser.add_argument('-pu','--punctuation',help='treat punctuation using the language abreviations (default english)',dest='options',action=defaultAction,nargs=0)
     parser.add_argument('-pb','--pagebreak',help='treat pagebreak',dest='options',action=defaultAction,nargs=0)
     parser.add_argument('-js','--JoinSentence',help='treat sentences broken between lines, bringing them to the same line',dest='options',action=defaultAction,nargs=0)
