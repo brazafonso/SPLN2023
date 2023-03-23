@@ -28,13 +28,29 @@ def write_output(args,output):
 
 
 class defaultAction(argparse.Action):
+    def default_option(self,option):
+        if option in ['-c','--chapter']:
+            return '-c'
+        elif option in ['-pu','--punctuation']:
+            return '-pu'
+        elif option in ['-pb','--pagebreak']:
+            return '-pb'
+        elif option in ['-js','--JoinSentence']:
+            return '-js'
+        elif option in ['-spl','--SentencePerLine']:
+            return '-spl'
+        elif option in ['-par','--paragraphs']:
+            return '-par'
+        return option
+
     def __call__(self, parser, namespace, values, option_string=None):
         global default
         default = False
+        option = self.default_option(option_string)
         if namespace.options:
-            namespace.options.append(option_string)
+            namespace.options.append(option)
         else:
-            namespace.options = [option_string]
+            namespace.options = [option]
        
 
 

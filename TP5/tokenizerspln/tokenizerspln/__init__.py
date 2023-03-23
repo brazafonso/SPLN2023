@@ -82,8 +82,9 @@ def treat_chapters(args,text):
         chapter_delims = load_translations(args,'/conf/chapter_delim.txt')
         regex_caps,groups = make_regex_lan(args,chapter_delims)
         regex_cap = r'.*'
-        regex_cap += regex_caps + r' +(\w+|\d+).*\n(.*)(\n\n)+'
-        text = re.sub(regex_cap,rf'#\1 \{groups+1}\n[\{groups+2}]\n/PAR/',text)
+        regex_cap += regex_caps + r' +(\w+|\d+).*\n((.*)\n)?(\n)+'
+        print(regex_cap)
+        text = re.sub(regex_cap,rf'#\1 \{groups+1}[\{groups+3}]\n/PAR/',text)
     return text
 
 
