@@ -17,7 +17,7 @@ def write_output(args,output):
     if not args.output:
         sys.stdout.write(output)
     else:
-        file = args.output
+        file = args.output[0]
         file.write(output)
 
 
@@ -32,7 +32,7 @@ def process_arguments(__version__):
                         Module to tokenize books'''
     )
     parser.add_argument('input',metavar='filename',type=argparse.FileType('r'),nargs='?',help='input file of the text to tokenize',default=None)
-    parser.add_argument('-o','--output',help='defines an output file',type=argparse.FileType('w'), nargs='?',default=None)
+    parser.add_argument('-o','--output',help='defines an output file',type=argparse.FileType('w'), nargs=1,default=None)
     parser.add_argument('-p','--poem',help='saves poems delimited inside <poem></poem> in the text',action='store_true',default=False)
     parser.add_argument('--version','-V', action='version', version='%(prog)s '+__version__)
     return parser.parse_args()
