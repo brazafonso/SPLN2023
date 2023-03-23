@@ -1,0 +1,13 @@
+#pt
+CAPÍTULO
+Capítulo
+capítulo
+CAP
+Cap
+cap
+#en
+CHAPTER
+Chapter
+CHAP
+Chap
+chap
