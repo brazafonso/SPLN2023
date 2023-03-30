@@ -31,7 +31,8 @@ def write_output(args,output):
 
 
 
-def process_arguments(__version__):
+def process_arguments(__version__)->argparse.Namespace:
+    """Process arguments from stdin"""
     parser = argparse.ArgumentParser(
         prog='tok',
         formatter_class=argparse.RawDescriptionHelpFormatter,
@@ -41,12 +42,8 @@ def process_arguments(__version__):
     --------------------------------------------------------------------
                 Module to scrap book information from goodreads'''
     )
-    parser.add_argument('input',metavar='filename',type=argparse.FileType('r'),nargs='?',help='input file of the text to tokenize',default=None)
-    parser.add_argument('-o','--output',help='defines an output file',type=argparse.FileType('w'), nargs=1,default=None)
-    parser.add_argument('-lan','--language',help='''
-    defines a language to recognize, accordingly will use the languages settings (abreviatures, delimiters)
-        (default to english)                    
-                        ''',type=str, nargs=1,default='en')
+    parser.add_argument('-isbn',type=str,nargs='?',help='isbn of the book to scrape',default=None)
+    parser.add_argument('-id',type=str,nargs='?',help='book id of the book to scrape',default=None)
     parser.add_argument('--version','-V', action='version', version='%(prog)s '+__version__)
 
     return parser.parse_args()
