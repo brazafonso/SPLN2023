@@ -1,8 +1,18 @@
 import sys
 import argparse
-
+import requests
+from bs4 import BeautifulSoup
 
 default = True
+
+def prettify_html(r:requests.Response)->str:
+    soup = BeautifulSoup(r.content.decode(r.encoding),features='lxml')
+    return soup.prettify()
+
+def similitarity_percent(string:str,difference:int)->float:
+    """Returns the relative difference between the string and the actions number of actions to replicate it"""
+    return difference/len(string)
+
 
 def is_default():
     return default
@@ -21,10 +31,12 @@ def get_input(args):
 def write_output(args,output):
     """Writes the ouput on the location registered in args"""
     if not args.output:
-        sys.stdout.write(output)
+        for o in output:
+            sys.stdout.write(o)
     else:
-        file = args.output[0]
-        file.write(output)
+        for o in output:
+            file = args.output[0]
+            file.write(o)
 
 def write_errors(args,errors):
     """Writes the errors on the location registered in args"""
@@ -37,7 +49,7 @@ def write_errors(args,errors):
             file.write(e)
 
 
-       
+
 
 
 
@@ -54,6 +66,7 @@ def process_arguments(__version__)->argparse.Namespace:
     )
     parser.add_argument('-isbn',type=str,nargs='?',help='isbn of the book to scrape',default=None)
     parser.add_argument('-id',type=str,nargs='?',help='book id of the book to scrape',default=None)
+    parser.add_argument('-btitle',type=str,nargs='?',help='name of the book to scrape (not precise)',default=None)
     parser.add_argument('-a','--author',type=str,nargs='?',help='author name or id to scrape',default=None)
     parser.add_argument('-o','--output',help='defines an output file',type=argparse.FileType('w'), nargs=1,default=None)
     parser.add_argument('-e','--errors',help='defines an output file for the errors',type=argparse.FileType('w'), nargs=1,default=None)

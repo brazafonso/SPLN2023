@@ -20,8 +20,6 @@ errors = []
 
 """
 TODO:
-	- Permitir encontrar um livro atraves do nome (pesquisa no goodreads, encontrar primeiro url e assumir que esse e o livro)
-	- Permitir pesquisar por autor
 	- Apanhar reviews
 		* Apanhar todas as reviews de uma pagina (manipulando o javascript inerente)
 	- Criar dataset com as reviews conseguidas
@@ -35,12 +33,55 @@ def add_error(msg):
 
 
 def get_book_page(args)->requests.Response:
-	"""Performs a get request to goodreads for a book with a give isbn or work id"""
+	"""Performs a get request to goodreads for a book with a give isbn, work id or search name"""
 	r= None
+	# Search with book's isbn
 	if args.isbn:
 		r = requests.get(f"https://www.goodreads.com/search?q={args.isbn}")
+	# Search with book's work id'
 	elif args.id:
 		r = requests.get(f"https://www.goodreads.com/book/show/{args.id}")
+	# Search with search name (less precise)
+	elif args.btitle:
+		btitle = args.btitle.lower().replace(' ','')
+		search = requests.get(f"https://www.goodreads.com/search?q={args.btitle}")
+		soup = BeautifulSoup(search.content.decode(search.encoding),features='lxml')
+		books = soup.find_all('a',{'class':'bookTitle'})
+		authors = soup.find_all('a',{'class':'authorName'})
+		similarityDic = []
+		if args.author:
+			a = args.author.lower().replace(' ','')
+		# Search through every listed book for a book match
+		for i,book in enumerate(books):
+			bname = book.find('span',{'itemprop':'name'}).get_text().lower().replace(' ','')
+			bname = re.sub(r'([^(]+)\s*(\(.+\))?',r'\1',bname)
+			url = book['href']
+			difference = jellyfish.levenshtein_distance(btitle,bname)
+			# Use given author to increase book search precision
+			if args.author:
+				author = authors[i]
+				aname = author.find('span',{'itemprop':'name'}).get_text().lower().replace(' ','')
+				differenceA = jellyfish.levenshtein_distance(a,aname)
+				# print(btitle,bname,utils.similitarity_percent(btitle,difference))
+				# print(a,aname,utils.similitarity_percent(aname,differenceA))
+				if utils.similitarity_percent(aname,differenceA) < 0.6:
+					if utils.similitarity_percent(btitle,difference) < 0.6: 
+						similarityDic.append((bname,url,difference))
+					# Stops with perfect match
+					if difference == 0:
+						break
+			# Default search
+			else:
+				if utils.similitarity_percent(btitle,difference) < 0.5: 
+					similarityDic.append((bname,url,difference))
+				# Stops with perfect match
+				if difference == 0:
+					break
+		if len(similarityDic)>0:
+			similarityDic = sorted(similarityDic,key=lambda x: x[2])
+			r = requests.get(f'https://www.goodreads.com/{similarityDic[0][1]}')
+		else:
+			add_error(f'Could not find book name {args.btitle}')
 	return r
 
 
@@ -101,14 +142,14 @@ def get_author_page(args)->requests.Response:
 			search = requests.get(f"https://www.goodreads.com/search?q={args.author}")
 			soup = BeautifulSoup(search.content.decode(search.encoding),features='lxml')
 			authors = soup.find_all('a',{'class':'authorName'})
-			url = None
 			similarityDic = []
 			# Search through every listed book for an author match
 			for author in authors:
 				name = author.find('span',{'itemprop':'name'}).get_text().lower().replace(' ','')
-				auxurl = author['href']
+				url = author['href']
 				difference = jellyfish.levenshtein_distance(a,name)
-				similarityDic.append((name,auxurl,difference))
+				if utils.similitarity_percent(a,difference) < 0.5: 
+					similarityDic.append((name,url,difference))
 				if difference == 0:
 					break
 			if len(similarityDic)>0:
@@ -119,14 +160,14 @@ def get_author_page(args)->requests.Response:
 	return r
 
 
-def bookscraper():
-	"""Main function of the program"""
-	args = utils.process_arguments(__version__)
+
+def work_in_progress(args):
+	"""Testing new implementations"""
+	r = get_author_page(args)
 
 	if not args.isbn:
 		args.isbn = "9781846144769" #teste
 
-	r = get_author_page(args)
 	if r:
 		soup = BeautifulSoup(r.content.decode(r.encoding),features='lxml')
 		prettyHTML3 = soup.prettify()
@@ -165,4 +206,37 @@ def bookscraper():
 	# book = scrape_book_page(r)
 	# utils.write_output(args,book.__str__())
 
+def bookscraper():
+	"""Main function of the program"""
+	args = utils.process_arguments(__version__)
+	results = []
+
+	r = get_book_page(args)
+	if r:
+		results.append(utils.prettify_html(r))
+	
+	r = get_author_page(args)
+	if r:
+		results.append(utils.prettify_html(r))
+	# book_id = re.sub(r'[^0-9]+(\d+).*',r'\1',r.url)
+	# print(book_id)
+
+	# r = get_book_reviews(book_id)
+
+	# if r
+		# soup = BeautifulSoup(r.content.decode(r.encoding),features='lxml')
+		# prettyHTML2 = soup.prettify()
+
+		# file = open(f'{path}/test/teste2.html','w')
+		# file.write(prettyHTML2)
+		# file.close()
+
+	# book = scrape_book_page(prettyHTML1)
+
+	# file = open(f'{path}/test/teste.html','r')
+	# r = file.read()
+	# file.close()
+	# book = scrape_book_page(r)
+	# utils.write_output(args,book.__str__())
+	utils.write_output(args,results)
 	utils.write_errors(args,errors)
