@@ -15,6 +15,7 @@ import lxml.html as lh
 from .utils import *
 from .book import Book
 from .author import Author
+from .review import Review
 path = os.path.dirname(os.path.realpath(__file__))
 errors = []
 
@@ -116,12 +117,13 @@ def get_book_page(args)->requests.Response:
 		return None
 
 
-def get_book_reviews(id:str=None)->requests.Response:
-	"""Performs a get request to goodreads for a book's reviews with a give isbn or wrok id"""
-	r= None
-	if id:
-		r = requests.get(f"https://www.goodreads.com/book/show/{id}/reviews")
-	return r
+
+
+def get_book_id(r:requests.Response)->str:
+	"""Return a book's id using a responses url"""
+	id = re.search(r'www.goodreads.com/book/show/(\d+)',r.url).group(1)
+	return id 
+
 
 
 def scrape_book_page(args,html_page:str)->Book:
@@ -311,31 +313,55 @@ def scrape_author_page(args,html_page:str)->Author:
 		   author_nratings,author_nreviews,author_nUniqueWorks,author_works)
 
 
-def get_book_reviews(args):
+def get_book_reviews_page(args):
 	r = None
+	utils.log(args,f"Searching for book reviews's page")
 	if args.id:
 		r = requests.get(f'https://www.goodreads.com/book/show/{args.id}/reviews')
 	elif args.isbn:
 		r = requests.get(f"https://www.goodreads.com/search?q={args.isbn}")
-		if r.status_code == 200:
-			id = get_book_id(r.content)
-			r = requests.get(f'https://www.goodreads.com/book/show/{args.id}/reviews')
+		if r.status_code == 200 and is_book_page(r):
+			id = get_book_id(r)
+			if id:
+				r = requests.get(f'https://www.goodreads.com/book/show/{id}/reviews')
+	utils.log(args,f"Search finished")
+	return r
 
-		
-def get_book_id(oage):
-	pass
+
+def scrape_reviews_page(args,html_page:str)->List[Review]:
+	reviews_list = []
+	utils.log(args,f"Scraping reviews's page for info")
+	page = BeautifulSoup(html_page,features='lxml')
+	div_reviews_list = page.find('div',{'class':'ReviewsList'})
+	reviews = div_reviews_list.find_all('article',{'class':'ReviewCard'})
+	# Get info from all the reviews
+	for review in reviews:
+		reviewer_info = review.find('div',{'class':'ReviewerProfile__name'})
+		reviewer_main = reviewer_info.find('a')
+		reviewer_name = reviewer_main.get_text().strip()
+		reviewer_id = re.search(r'/user/show/(\d+)',reviewer_main['href']).group(1)
+		review_score = review.find('div',{'class':'ShelfStatus'}).find('span')['aria-label']
+		review_score = re.search(r'Rating (\d+) out of \d+',review_score).group(1)
+		review_description_card = review.find('section',{'class','ReviewText__content'})
+		review_description = review_description_card.find('span').get_text().strip()
+		rev = Review(reviewer_id,reviewer_name,review_score,review_description)
+		#print(reviewer_name,reviewer_id,review_score,review_description)
+		reviews_list.append(rev)
+	utils.log(args,f"Scraping finished")
+	return reviews_list
+
 
 
 def work_in_progress(args):
 	"""Testing new implementations"""
 
-	if not args.isbn:
-		args.isbn = "9781846144769" #teste
+	# if not args.isbn:
+	# 	args.isbn = "9781846144769" #teste
 
-	if not args.id:
-		args.id = "46262177"
+	# if not args.id:
+	# 	args.id = "46262177"
 
-	r = get_book_reviews(args)
+	r = get_book_reviews_page(args)
 	if r:
 		soup = BeautifulSoup(r.content.decode(r.encoding),features='lxml')
 		prettyHTML3 = soup.prettify()
@@ -343,6 +369,9 @@ def work_in_progress(args):
 		file = open(f'{path}/test/teste5.html','w')
 		file.write(prettyHTML3)
 		file.close()
+		reviews = scrape_reviews_page(args,r.content.decode(r.encoding))
+		for review in reviews:
+			print(review.__str__(True))
 	# r = get_author_page(args)
 	# if r:
 	# 	soup = BeautifulSoup(r.content.decode(r.encoding),features='lxml')
@@ -386,22 +415,22 @@ def bookscraper():
 	"""Main function of the program"""
 	# FIXME: Decidir resultados do programa (html ou resultados de scrape, no ultimo caso flags para informacao extra tipo descricao)
 	args = utils.process_arguments(__version__)
-	#work_in_progress(args)
+	work_in_progress(args)
 
-	results = []
+	#results = []
 
 	# Get the page of a book
-	r = get_book_page(args)
-	if r:
-		book = scrape_book_page(args,utils.prettify_html(r))
-		results.append(book.__str__(True))
+	# r = get_book_page(args)
+	# if r:
+	# 	book = scrape_book_page(args,utils.prettify_html(r))
+	# 	results.append(book.__str__(True))
 	
-	# Get the page of an author
-	r = get_author_page(args)
-	if r:
-		author = scrape_author_page(args,utils.prettify_html(r))
-		results.append(author.__str__(True))
+	# # Get the page of an author
+	# r = get_author_page(args)
+	# if r:
+	# 	author = scrape_author_page(args,utils.prettify_html(r))
+	# 	results.append(author.__str__(True))
 
 
-	utils.write_output(args,results)
-	utils.write_errors(args,errors)
+	# utils.write_output(args,results)
+	# utils.write_errors(args,errors)
