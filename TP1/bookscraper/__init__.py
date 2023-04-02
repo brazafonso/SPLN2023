@@ -165,7 +165,8 @@ def get_author_page(args)->requests.Response:
 	"""
 	r= None
 	# Check flag
-	if args.author and not search_book_option(args):
+	#if args.author and not search_book_option(args):
+	if args.author:
 		a = args.author.lower().replace(' ','')
 		match = re.match(r'\d+$',a)
 		# Search by author id
@@ -273,8 +274,10 @@ def scrape_author_page(args,html_page:str)->Author:
 		author_deathdate = element_deathdate.get_text().strip()
 	author_website = page.find('a',{'itemprop':"url"}).get_text().strip()
 	# Description
-	element_description = page.find('div',{'class':'aboutAuthorInfo'}).find('span').find_next_sibling('span')
-	author_description = element_description.get_text().strip()
+	element_description = page.find('div',{'class':'aboutAuthorInfo'}).find('span')
+	if(element_description.find_next_sibling('span')):
+		author_description = element_description.get_text().strip()
+	else: author_description = element_description.get_text().strip()
 
 	author_averageRating = page.find('span',{'class':'average','itemprop':'ratingValue'}).get_text().strip()
 	author_nratings = page.find('span',{'class':'value-title','itemprop':'ratingCount'}).get_text().strip()
@@ -385,23 +388,29 @@ def work_in_progress(args):
 def bookscraper():
 	"""Main function of the program"""
 	# FIXME: Decidir resultados do programa (html ou resultados de scrape, no ultimo caso flags para informacao extra tipo descricao)
-	args = utils.process_arguments(__version__)
+	args = utils.parser_arguments(__version__)
 	#work_in_progress(args)
 
 	results = []
 
-	# Get the page of a book
-	r = get_book_page(args)
-	if r:
-		book = scrape_book_page(args,utils.prettify_html(r))
-		results.append(book.__str__(True))
+	books,authors = utils.process_arguments(args)
+
+	for book in books:
+		# Get the page of a book
+		r = get_book_page(book)
+		if r:
+			b = scrape_book_page(book,utils.prettify_html(r))
+			results.append({'out':book.output,'result':b.__str__(True)})
 	
-	# Get the page of an author
-	r = get_author_page(args)
-	if r:
-		author = scrape_author_page(args,utils.prettify_html(r))
-		results.append(author.__str__(True))
+	for author in authors:
+		# Get the page of an author
+		r = get_author_page(author)
+		if r:
+			a = scrape_author_page(author,utils.prettify_html(r))
+			results.append({'out':author.output,'result':a.__str__(True)})
 
 
-	utils.write_output(args,results)
+	for result in results:
+		utils.write_output(result['out'],result['result'])
+
 	utils.write_errors(args,errors)

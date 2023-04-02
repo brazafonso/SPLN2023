@@ -1,0 +1,22 @@
+
+         ___________________________
+        /
+        | Author: Abel  Ferreira
+        | Birth Place : in Penafiel, Portugal
+        | Birth Date: December 22, 1978
+        | Website: Abel  Ferreira’s books
+        | Genres: ['Sports', 'Business', 'Nonfiction']
+        | Influence: []
+        \__________________________
+        | Average Rating : 4.54
+        | N.Ratings : 171
+        | N.Reviews : 17
+        | N.Unique Works : 1 distinct work
+        \ 
+          --------------------------
+        
+        Works:
+                Cabeça Fria, Coração Quente'
+        Description:
+        Abel Fernando Moreira Ferreira, mais conhecido como Abel Ferreira, é um treinador e ex-futebolista português que atuava como lateral-direito. Atualmente comanda o Palmeiras.
+        

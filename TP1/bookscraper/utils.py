@@ -3,6 +3,8 @@ import argparse
 import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
+from types import SimpleNamespace
+import json
 
 default = True
 
@@ -29,15 +31,14 @@ def get_input(args):
         text = input.read()
     return text
 
-def write_output(args,output):
-    """Writes the ouput on the location registered in args"""
-    if not args.output:
-        for o in output:
-            sys.stdout.write(o)
+def write_output(out,result):
+    """Writes the output on the location registered in args"""
+    if not out:
+        sys.stdout.write(result)
     else:
-        for o in output:
-            file = args.output[0]
-            file.write(o)
+        if(isinstance(out, str)):
+            out = open(out,"w")
+        out.write(result)
 
 def write_errors(args,errors):
     """Writes the errors on the location registered in args"""
@@ -56,9 +57,96 @@ def log(args,msg):
         print(f'LOG : {msg} [{time}]')
 
 
+def process_arguments(args):
+    books = []
+    authors = []
+
+    #Apenas um book
+    if args.isbn or args.id or args.btitle:
+        book = SimpleNamespace(isbn = args.isbn,
+                               id = args.id,
+                               btitle = args.btitle,
+                               author = args.author,
+                               output = args.output,
+                               logging = args.logging,
+                               errors = args.errors)
+
+        books.append(book)
+
+    #Apenas um author
+    elif args.author:
+        author = SimpleNamespace(author = args.author,
+                                 maxworks = args.maxworks,
+                                 output = args.output,
+                                 logging = args.logging,
+                                 errors = args.errors,
+                                 verbose = None)
+
+        #author.verbose = args.verbose
+        authors.append(author)
+
+    #Json com varios books e varios authors
+    elif args.json:
+        invalid = False
+        #Tratar json
+        print("FICHEIRO JSON -> ",args.json)
+        file = open(args.json[0])
+        data = json.load(file)
+
+        if 'books' in data:
+            books_json = data['books']
+            for book_json in books_json:
+                book = SimpleNamespace(isbn = args.isbn,
+                               id = args.id,
+                               btitle = args.btitle,
+                               author = args.author,
+                               output = args.output,
+                               logging = args.logging,
+                               errors = args.errors)
+
+                if 'isbn' in book_json:
+                    book.isbn = book_json['isbn']
+                if 'id' in book_json:
+                    book.id = book_json['id']
+                if 'name' in book_json:
+                    book.btitle = book_json['name']
+                if 'author' in book_json:
+                    book.author = book_json['author']
+                if 'output' in book_json:
+                    book.output = book_json['output']
+
+                if not (book.isbn or book.id or book.btitle):
+                    invalid = True
+                else: books.append(book)
+                
+
+        if 'authors' in data:
+            authors_json = data['authors']
+            for author_json in authors_json:
+                author = SimpleNamespace()
+                try:
+                    author = SimpleNamespace(author = author_json['name'],
+                                 maxworks = args.maxworks,
+                                 output = args.output,
+                                 logging = args.logging,
+                                 errors = args.errors,
+                                 verbose = None)
+
+                    if 'verbose' in author_json:
+                        author.verbose = author_json['verbose']
+                    if 'mw' in author_json:
+                        author.maxworks = author_json['mw']
+                    if 'output' in author_json:
+                        author.output = author_json['output']
+                    authors.append(author)
+
+                except:
+                    invalid = True
+
+    return books,authors
 
 
-def process_arguments(__version__)->argparse.Namespace:
+def parser_arguments(__version__)->argparse.Namespace:
     """Process arguments from stdin"""
     parser = argparse.ArgumentParser(
         prog='tok',
@@ -76,6 +164,7 @@ def process_arguments(__version__)->argparse.Namespace:
     parser.add_argument('-mw','--maxworks',type=int,nargs='?',help='maximum number of works to find',default=None)
     parser.add_argument('-o','--output',help='defines an output file',type=argparse.FileType('w'), nargs=1,default=None)
     parser.add_argument('-l','--logging',help='logs the procedure of the program on the stdout',action='store_true')
+    parser.add_argument('-j','--json',help="",type=str,nargs=1,default=None)
     parser.add_argument('-e','--errors',help='defines an output file for the errors',type=argparse.FileType('w'), nargs=1,default=None)
     parser.add_argument('--version','-V', action='version', version='%(prog)s '+__version__)
 
@@ -88,7 +177,7 @@ def process_arguments(__version__)->argparse.Namespace:
 #         'author1' : {
 #             'mw' : 10 # pega so 10 livros?
 #             'verbose' : True # imprime a string de forma verbosa?
-#             'ouput' : 'x'?
+#             'output' : 'x'?
 #         },
 #         'author2' : { # pega todos os livros e vai para stdout
 #         }

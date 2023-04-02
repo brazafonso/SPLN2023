@@ -117,7 +117,7 @@ class Author:
         if verbose:
             text += f'''
         Works:'''
-            if self.work:
+            if self.works:
                 for work in self.works:
                     text += f'''
                 {work}'''
