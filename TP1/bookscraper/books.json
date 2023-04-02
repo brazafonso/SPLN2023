@@ -1,0 +1,19 @@
+{
+    "books": [
+        {
+            "name" : "SirKazzio e o Poder da Estrela",
+            "output" : "cazzio.txt"
+        },
+        {
+            "name" : "Coraline",
+            "author" : "Neil Gaiman", 
+            "output" : "coraline.txt"
+        }
+    ],
+    "authors" : [
+        {
+            "name" : "abel ferreira",
+            "output" : "abel.txt"
+        }
+    ]
+}

@@ -64,14 +64,14 @@ def search_btitle(args,btitle,page):
 			# print(btitle,bname,utils.similitarity_percent(btitle,difference))
 			# print(a,aname,utils.similitarity_percent(aname,differenceA))
 			if utils.similitarity_percent(aname,differenceA) < 0.6:
-				if utils.similitarity_percent(btitle,difference) < 0.6: 
+				if utils.similitarity_percent(btitle,difference) < 0.6:
 					similarityDic.append((bname,url,difference))
 				# Stops with perfect match
 				if difference == 0:
 					break
 		# Default search
 		else:
-			if utils.similitarity_percent(btitle,difference) < 0.5: 
+			if utils.similitarity_percent(btitle,difference) < 0.5:
 				similarityDic.append((bname,url,difference))
 			# Stops with perfect match
 			if difference == 0:
@@ -122,7 +122,7 @@ def get_book_page(args)->requests.Response:
 def get_book_id(r:requests.Response)->str:
 	"""Return a book's id using a responses url"""
 	id = re.search(r'www.goodreads.com/book/show/(\d+)',r.url).group(1)
-	return id 
+	return id
 
 
 
@@ -143,7 +143,7 @@ def scrape_book_page(args,html_page:str)->Book:
 	book_isbn = book_details['isbn']
 	book_description = page.find('div',{'class':'DetailsLayoutRightParagraph__widthConstrained'}).find('span',{'class':'Formatted'}).get_text()
 	book_genres_divs = page.find_all('span',{'class':'BookPageMetadataSection__genreButton'})
-	
+
 	book_genres = []
 	for genre in book_genres_divs:
 		book_genres.append(genre.find('span',{'class':'Button__labelItem'}).get_text().strip())
@@ -167,7 +167,8 @@ def get_author_page(args)->requests.Response:
 	"""
 	r= None
 	# Check flag
-	if args.author and not search_book_option(args):
+	#if args.author and not search_book_option(args):
+	if args.author:
 		a = args.author.lower().replace(' ','')
 		match = re.match(r'\d+$',a)
 		# Search by author id
@@ -192,11 +193,11 @@ def get_author_page(args)->requests.Response:
 				name = author.find('span',{'itemprop':'name'}).get_text().lower().replace(' ','')
 				url = author['href']
 				difference = jellyfish.levenshtein_distance(a,name)
-				if utils.similitarity_percent(a,difference) < 0.5: 
+				if utils.similitarity_percent(a,difference) < 0.5:
 					similarityDic.append((name,url,difference))
 				if difference == 0:
 					break
-			
+
 			# Choose the best match
 			if len(similarityDic)>0:
 				similarityDic = sorted(similarityDic,key=lambda x: x[2])
@@ -275,8 +276,10 @@ def scrape_author_page(args,html_page:str)->Author:
 		author_deathdate = element_deathdate.get_text().strip()
 	author_website = page.find('a',{'itemprop':"url"}).get_text().strip()
 	# Description
-	element_description = page.find('div',{'class':'aboutAuthorInfo'}).find('span').find_next_sibling('span')
-	author_description = element_description.get_text().strip()
+	element_description = page.find('div',{'class':'aboutAuthorInfo'}).find('span')
+	if(element_description.find_next_sibling('span')):
+		author_description = element_description.get_text().strip()
+	else: author_description = element_description.get_text().strip()
 
 	author_averageRating = page.find('span',{'class':'average','itemprop':'ratingValue'}).get_text().strip()
 	author_nratings = page.find('span',{'class':'value-title','itemprop':'ratingCount'}).get_text().strip()
@@ -304,7 +307,7 @@ def scrape_author_page(args,html_page:str)->Author:
 			author_nUniqueWorks = item.get_text().strip()
 			works_url = item['href']
 
-	max = args.maxworks 
+	max = args.maxworks
 	author_works = get_author_works(args,works_url,max)
 	utils.log(args,f"Scraping finished")
 	return Author(author_name,author_birthdate,author_birthplace,
@@ -389,7 +392,7 @@ def work_in_progress(args):
 		# file = open(f'{path}/test/teste.html','w')
 		# file.write(prettyHTML1)
 		# file.close()
-	
+
 	# book_id = re.sub(r'[^0-9]+(\d+).*',r'\1',r.url)
 	# print(book_id)
 
@@ -414,23 +417,29 @@ def work_in_progress(args):
 def bookscraper():
 	"""Main function of the program"""
 	# FIXME: Decidir resultados do programa (html ou resultados de scrape, no ultimo caso flags para informacao extra tipo descricao)
-	args = utils.process_arguments(__version__)
-	work_in_progress(args)
+	args = utils.parser_arguments(__version__)
+	#work_in_progress(args)
 
-	#results = []
+	results = []
 
-	# Get the page of a book
-	# r = get_book_page(args)
-	# if r:
-	# 	book = scrape_book_page(args,utils.prettify_html(r))
-	# 	results.append(book.__str__(True))
-	
-	# # Get the page of an author
-	# r = get_author_page(args)
-	# if r:
-	# 	author = scrape_author_page(args,utils.prettify_html(r))
-	# 	results.append(author.__str__(True))
+	books,authors = utils.process_arguments(args)
+
+	for book in books:
+		# Get the page of a book
+		r = get_book_page(book)
+		if r:
+			b = scrape_book_page(book,utils.prettify_html(r))
+			results.append({'out':book.output,'result':b.__str__(True)})
+
+	for author in authors:
+		# Get the page of an author
+		r = get_author_page(author)
+		if r:
+			a = scrape_author_page(author,utils.prettify_html(r))
+			results.append({'out':author.output,'result':a.__str__(True)})
 
 
-	# utils.write_output(args,results)
-	# utils.write_errors(args,errors)
+	for result in results:
+		utils.write_output(result['out'],result['result'])
+
+	utils.write_errors(args,errors)

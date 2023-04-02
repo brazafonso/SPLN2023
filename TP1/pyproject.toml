@@ -4,7 +4,7 @@ build-backend = "flit_core.buildapi"
 
 [project]
 name = "bookscraper"
-authors = [{name = "brazafonso", email = "a93178@uminho.pt"}]
+authors = [{name = "brazafonso", email = "a93178@uminho.pt"},{name = "Tiago Silva", email = "a93277@uminho.pt"}]
 license = {file = "LICENSE"}
 classifiers = ["License :: OSI Approved :: MIT License"]
 dynamic = ["version", "description"]
