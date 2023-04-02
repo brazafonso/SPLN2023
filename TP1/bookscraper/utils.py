@@ -80,3 +80,42 @@ def process_arguments(__version__)->argparse.Namespace:
     parser.add_argument('--version','-V', action='version', version='%(prog)s '+__version__)
 
     return parser.parse_args()
+
+# json para busca de autores
+# {
+#     'authors':
+#     [
+#         'author1' : {
+#             'mw' : 10 # pega so 10 livros?
+#             'verbose' : True # imprime a string de forma verbosa?
+#             'ouput' : 'x'?
+#         },
+#         'author2' : { # pega todos os livros e vai para stdout
+#         }
+#     ]
+# }
+
+# json para busca de livros
+# {
+#     'books':
+#     [
+#         {
+#             'name' : 'paradise',? # um destes 3 tem de ter
+#             'isbn' : '123123',?
+#             'id' : '123',? 
+#             'author' : 'john milton',?
+#         },
+#         {
+#             'id' : '2313123'
+#         }
+#     ]
+# }
+
+
+
+# objeto simples: 
+
+# from types import SimpleNamespace
+
+# myobject = SimpleNamespace() # myobject = {}
+# myobject.foo = 'bar'

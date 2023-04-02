@@ -36,7 +36,7 @@ def add_error(msg:str):
 
 
 def search_book_option(args):
-	""""""
+	"""Verify if a book search option was given"""
 	return args.isbn or args.id or args.btitle
 
 def get_book_page(args)->requests.Response:
@@ -95,7 +95,7 @@ def get_book_page(args)->requests.Response:
 			r = requests.get(f'https://www.goodreads.com/{similarityDic[0][1]}')
 		else:
 			add_error(f'Could not find book name {args.btitle}')
-	utils.log(args,f"Search finished")
+		utils.log(args,f"Search finished")
 	return r
 
 
@@ -210,7 +210,11 @@ def get_author_works(args,works_url:str,max:int=None)->List[str]:
 		r = requests.get(f'https://www.goodreads.com/{works_url}?page=1&per_page=30')
 		if r.status_code == 200:
 			page = BeautifulSoup(r.content.decode(r.encoding),features='lxml')
-			max_pages = int(page.find('div',{'style':'float: right'}).find_all('a')[-2].get_text().strip())
+			max_pages_element = page.find('div',{'style':'float: right'}).find_all('a')
+			if max_pages_element:
+				max_pages = int(max_pages_element[-2].get_text().strip())
+			else:
+				max_pages = 1
 			page_works = get_page_works(page)
 			if max and count + len(page_works) > max:
 				works += page_works[:max-count]
@@ -238,15 +242,23 @@ def get_author_works(args,works_url:str,max:int=None)->List[str]:
 
 def scrape_author_page(args,html_page:str)->Author:
 	"""Scrapes an author's page for info such as name, birthday, average score, number of reviews and others"""
+	# FIXME: if elses para tudo pq pode n ter nada - ex. Sir kazzio
 	utils.log(args,f"Scraping author's page for info")
 	page = BeautifulSoup(html_page,features='lxml')
 
 	author_name = page.find('h1',{'class':'authorName'}).get_text().strip()
 	author_birthdate = page.find('div',{'class':'dataItem','itemprop':"birthDate"}).get_text().strip()
 	author_birthplace = page.find('div',{'class':'dataTitle'}).next_sibling.get_text().strip()
-	author_deathdate = page.find('div',{'class':'dataItem','itemprop':"deathDate"}).get_text().strip()
+	author_deathdate = None
+	# Death date
+	element_deathdate = page.find('div',{'class':'dataItem','itemprop':"deathDate"})
+	if element_deathdate:
+		author_deathdate = element_deathdate.get_text().strip()
 	author_website = page.find('a',{'itemprop':"url"}).get_text().strip()
-	author_description = page.find('div',{'class':'aboutAuthorInfo'}).find('span',{'style':'display:none'}).get_text().strip()
+	# Description
+	element_description = page.find('div',{'class':'aboutAuthorInfo'}).find('span').find_next_sibling('span')
+	author_description = element_description.get_text().strip()
+
 	author_averageRating = page.find('span',{'class':'average','itemprop':'ratingValue'}).get_text().strip()
 	author_nratings = page.find('span',{'class':'value-title','itemprop':'ratingCount'}).get_text().strip()
 	author_nreviews = page.find('span',{'class':'value-title','itemprop':'reviewCount'}).get_text().strip()
@@ -335,21 +347,22 @@ def bookscraper():
 	"""Main function of the program"""
 	# FIXME: Decidir resultados do programa (html ou resultados de scrape, no ultimo caso flags para informacao extra tipo descricao)
 	args = utils.process_arguments(__version__)
-	work_in_progress(args)
+	#work_in_progress(args)
 
-	# results = []
+	results = []
 
-	# # Get the page of a book
-	# r = get_book_page(args)
-	# if r:
-	# 	book = scrape_book_page(args,utils.prettify_html(r))
-	# 	results.append(book.__str__())
+	# Get the page of a book
+	r = get_book_page(args)
+	if r:
+		book = scrape_book_page(args,utils.prettify_html(r))
+		results.append(book.__str__(True))
 	
-	# # Get the page of an author
-	# r = get_author_page(args)
-	# if r:
-	# 	author = scrape_author_page(utils.prettify_html(r))
-	# 	results.append(author.__str__())
+	# Get the page of an author
+	r = get_author_page(args)
+	if r:
+		author = scrape_author_page(args,utils.prettify_html(r))
+		results.append(author.__str__(True))
 
-	# utils.write_output(args,results)
-	# utils.write_errors(args,errors)
+
+	utils.write_output(args,results)
+	utils.write_errors(args,errors)
