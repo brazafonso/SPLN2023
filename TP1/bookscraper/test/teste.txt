@@ -3,7 +3,9 @@
         /
         | Author: Dorothy Parker
         | Birth Place : None
-        | Birth Date: None
+        | Birth Date: 
+         August 22, 1893
+        
         | Website: None
         | Genres: None
         | Influence: None
