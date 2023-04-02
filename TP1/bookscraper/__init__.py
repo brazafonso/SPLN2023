@@ -5,7 +5,7 @@
 __version__ = '0.0.2'
 
 import os
-from typing import Set
+from typing import List, Set
 import requests
 import re
 import json
@@ -26,14 +26,17 @@ TODO:
 	- Criar dataset com as reviews conseguidas
 	- Criar/permitir uso de modelo de aprendizagem profunda para analisar reviews
 	- Permitir uma opção em que é indicado um ficheiro estilo json para fazer um conjunto de pesquisas de uma só vez
+	- Acrescentar verificacao de procedimento default ou com flag
 """
 
 
-def add_error(msg):
+def add_error(msg:str):
+	"""Adds an error message to the error stack"""
 	errors.append(f'Error: {msg}\n')
 
 
 def search_book_option(args):
+	""""""
 	return args.isbn or args.id or args.btitle
 
 def get_book_page(args)->requests.Response:
@@ -41,12 +44,17 @@ def get_book_page(args)->requests.Response:
 	r= None
 	# Search with book's isbn
 	if args.isbn:
+		utils.log(args,f"Searching for book with isbn - {args.isbn}...")
 		r = requests.get(f"https://www.goodreads.com/search?q={args.isbn}")
+
 	# Search with book's work id'
 	elif args.id:
+		utils.log(args,f"Searching for book with id - {args.id}...")
 		r = requests.get(f"https://www.goodreads.com/book/show/{args.id}")
+
 	# Search with search name (less precise)
 	elif args.btitle:
+		utils.log(args,f"Searching for book with name - {args.btitle}...")
 		btitle = args.btitle.lower().replace(' ','')
 		search = requests.get(f"https://www.goodreads.com/search?q={args.btitle}")
 		soup = BeautifulSoup(search.content.decode(search.encoding),features='lxml')
@@ -81,11 +89,13 @@ def get_book_page(args)->requests.Response:
 				# Stops with perfect match
 				if difference == 0:
 					break
+		# Choose the best match
 		if len(similarityDic)>0:
 			similarityDic = sorted(similarityDic,key=lambda x: x[2])
 			r = requests.get(f'https://www.goodreads.com/{similarityDic[0][1]}')
 		else:
 			add_error(f'Could not find book name {args.btitle}')
+	utils.log(args,f"Search finished")
 	return r
 
 
@@ -97,8 +107,9 @@ def get_book_reviews(id:str=None)->requests.Response:
 	return r
 
 
-def scrape_book_page(html_page)->Book:
+def scrape_book_page(args,html_page:str)->Book:
 	"""Scrapes a book's page for info such as title, score, number of reviews and others"""
+	utils.log(args,f"Scraping book info...")
 	page = BeautifulSoup(html_page,features='lxml')
 
 	book_details = page.find('script',{'type':'application/ld+json'}).get_text()
@@ -120,6 +131,7 @@ def scrape_book_page(html_page)->Book:
 
 	book_publishing_date = re.sub(r'.*(\b\w+\b\s*\d+\s*,\s*\d+)',r'\1',page.find('p',{'data-testid':'publicationInfo'}).get_text()).strip()
 
+	utils.log(args,f"Scrape finished")
 	return Book(book_name,book_isbn,book_author,
 	     book_description,book_publishing_date,book_score,
 		 book_nratings,book_nreviews,book_npages,
@@ -141,6 +153,7 @@ def get_author_page(args)->requests.Response:
 		match = re.match(r'\d+$',a)
 		# Search by author id
 		if match:
+			utils.log(args,f"Searching for author with id - {args.author}...")
 			search = requests.get(f"https://www.goodreads.com/author/show/{args.author}")
 			soup = BeautifulSoup(search.content.decode(search.encoding),features='lxml')
 			if re.search(r'Page not found',soup.find('title').get_text()):
@@ -150,6 +163,7 @@ def get_author_page(args)->requests.Response:
 
 		# Search by author name
 		else:
+			utils.log(args,f"Searching for author with name - {args.author}...")
 			search = requests.get(f"https://www.goodreads.com/search?q={args.author}")
 			soup = BeautifulSoup(search.content.decode(search.encoding),features='lxml')
 			authors = soup.find_all('a',{'class':'authorName'})
@@ -163,17 +177,68 @@ def get_author_page(args)->requests.Response:
 					similarityDic.append((name,url,difference))
 				if difference == 0:
 					break
-
+			
+			# Choose the best match
 			if len(similarityDic)>0:
 				similarityDic = sorted(similarityDic,key=lambda x: x[2])
 				r = requests.get(similarityDic[0][1])
 			else:
 				add_error(f'Could not find author name {args.author}')
+		utils.log(args,f"Search finished")
 	return r
 
 
-def scrape_author_page(html_page:str)->Author:
+def get_page_works(page:BeautifulSoup)->List[str]:
+	"""Get all the books from a page that lists them"""
+	works = []
+	books = page.find_all('a',{'class':'bookTitle'})
+	for book in books:
+		works.append(book.find('span',{'itemprop':'name'}).get_text().strip())
+	return works
+
+
+
+
+def get_author_works(args,works_url:str,max:int=None)->List[str]:
+	"""Get the list of unique works of an author\n
+	Max represents the maximum number of works to obtain (by default gathers all going from page to page)"""
+	works = []
+	if works_url:
+		utils.log(args,f"Scraping author's books")
+		page_number = 1
+		count = 0
+		r = requests.get(f'https://www.goodreads.com/{works_url}?page=1&per_page=30')
+		if r.status_code == 200:
+			page = BeautifulSoup(r.content.decode(r.encoding),features='lxml')
+			max_pages = int(page.find('div',{'style':'float: right'}).find_all('a')[-2].get_text().strip())
+			page_works = get_page_works(page)
+			if max and count + len(page_works) > max:
+				works += page_works[:max-count]
+			else:
+				works += page_works
+				count += len(page_works)
+				# Search through all the pages of books, until limit reached (max to collect or all collected)
+				for i in range(2,max_pages+1):
+					r = requests.get(f'https://www.goodreads.com/{works_url}?page={i}&per_page=30')
+					if r.status_code == 200:
+						page = BeautifulSoup(r.content.decode(r.encoding),features='lxml')
+						page_works = get_page_works(page)
+						if max and count + len(page_works) > max:
+							works += page_works[:max-count]
+							break
+						else:
+							works += page_works
+							count += len(page_works)
+		utils.log(args,f"Scraping finished")
+	if works:
+		return works
+	else:
+		return None
+
+
+def scrape_author_page(args,html_page:str)->Author:
 	"""Scrapes an author's page for info such as name, birthday, average score, number of reviews and others"""
+	utils.log(args,f"Scraping author's page for info")
 	page = BeautifulSoup(html_page,features='lxml')
 
 	author_name = page.find('h1',{'class':'authorName'}).get_text().strip()
@@ -205,37 +270,19 @@ def scrape_author_page(html_page:str)->Author:
 	items = author_stats.find_all('a')
 	for item in items:
 		if re.search('/author/list/',item['href']):
-			print(item)
 			author_nUniqueWorks = item.get_text().strip()
 			works_url = item['href']
 
-	author_works = get_author_works(works_url)
-
+	max = args.maxworks 
+	author_works = get_author_works(args,works_url,max)
+	utils.log(args,f"Scraping finished")
 	return Author(author_name,author_birthdate,author_birthplace,
 	       author_deathdate,author_website,author_genres,
 		   author_influences,author_description,author_averageRating,
 		   author_nratings,author_nreviews,author_nUniqueWorks,author_works)
 
-def get_author_works(works_url:str)->Set[str]:
-	"""Get the list of unique works of an author"""
-	# FIXME : needs to search through all the pages of works (only searching the first currently)
-	works = set()
-	print('found0',works_url)
-	if works_url:
-		r = requests.get(f'https://www.goodreads.com/{works_url}')
-		print('found1')
-		if r.status_code == 200:
-			print('found2')
-			page = BeautifulSoup(r.content.decode(r.encoding),features='lxml')
-			books = page.find_all('a',{'class':'bookTitle'})
-			for book in books:
-				print('found3')
-				works.add(book.find('span',{'itemprop':'name'}).get_text().strip())
-	
-	if works:
-		return works
-	else:
-		return None
+
+
 
 
 
@@ -276,12 +323,12 @@ def work_in_progress(args):
 		# file.write(prettyHTML2)
 		# file.close()
 
-	# book = scrape_book_page(prettyHTML1)
+	# book = scrape_book_page(args,prettyHTML1)
 
 	file = open(f'{path}/test/teste3.html','r')
 	r = file.read()
 	file.close()
-	author = scrape_author_page(r)
+	author = scrape_author_page(args,r)
 	utils.write_output(args,author.__str__(True))
 
 def bookscraper():
@@ -295,7 +342,7 @@ def bookscraper():
 	# # Get the page of a book
 	# r = get_book_page(args)
 	# if r:
-	# 	book = scrape_book_page(utils.prettify_html(r))
+	# 	book = scrape_book_page(args,utils.prettify_html(r))
 	# 	results.append(book.__str__())
 	
 	# # Get the page of an author

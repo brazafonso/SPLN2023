@@ -2,6 +2,7 @@ import sys
 import argparse
 import requests
 from bs4 import BeautifulSoup
+from datetime import datetime
 
 default = True
 
@@ -48,7 +49,11 @@ def write_errors(args,errors):
         for e in errors:
             file.write(e)
 
-
+def log(args,msg):
+    """If logging is enabled, prints the log message to stdout"""
+    if args.logging:
+        time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        print(f'LOG : {msg} [{time}]')
 
 
 
@@ -68,7 +73,9 @@ def process_arguments(__version__)->argparse.Namespace:
     parser.add_argument('-id',type=str,nargs='?',help='book id of the book to scrape',default=None)
     parser.add_argument('-btitle',type=str,nargs='?',help='name of the book to scrape (not precise)',default=None)
     parser.add_argument('-a','--author',type=str,nargs='?',help='author name or id to scrape',default=None)
+    parser.add_argument('-mw','--maxworks',type=int,nargs='?',help='maximum number of works to find',default=None)
     parser.add_argument('-o','--output',help='defines an output file',type=argparse.FileType('w'), nargs=1,default=None)
+    parser.add_argument('-l','--logging',help='logs the procedure of the program on the stdout',action='store_true')
     parser.add_argument('-e','--errors',help='defines an output file for the errors',type=argparse.FileType('w'), nargs=1,default=None)
     parser.add_argument('--version','-V', action='version', version='%(prog)s '+__version__)
 

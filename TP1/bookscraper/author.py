@@ -1,4 +1,4 @@
-from typing import Set
+from typing import Set,List
 
 class Author:
     """Class to represent and save data of an author"""
@@ -6,7 +6,7 @@ class Author:
     def __init__(self,name:str,birthdate:str=None,birthplace:str=None,deathdate:str=None,
                  website:str=None,genres:Set[str]=None,influence:Set[str]=None,
                  description:str=None,averageRating:float=None,nratings:int=None,
-                 nreviews:int=None,nUniqueWorks:int=None,works:Set[str]=None):
+                 nreviews:int=None,nUniqueWorks:int=None,works:List[str]=None):
         self.name = name
         self.birthdate = birthdate
         self.birthplace = birthplace
@@ -52,7 +52,7 @@ class Author:
     def nUniqueWorks(self)->int:
         return self.nUniqueWorks
     
-    def work(self)->Set[str]:
+    def works(self)->List[str]:
         return self.works
     
     def set_birthdate(self, date:str):
@@ -88,13 +88,13 @@ class Author:
     def set_nUniqueWorks(self,nUniqueWorks:int):
         self.nUniqueWorks = nUniqueWorks
 
-    def set_works(self,works:Set[str]):
+    def set_works(self,works:List[str]):
         self.works = works
 
 
     def __str__(self,verbose=False)->str:
         text = f'''
-            ________________________
+         ___________________________
         /
         | Author: {self.name}
         | Birth Place : {self.birthplace}
@@ -116,10 +116,13 @@ class Author:
         '''
         if verbose:
             text += f'''
-        Works:
-        {self.works}
+        Works:'''
+            for work in self.works:
+                text += f'''
+                {work}'''
+            text += f''''
         Description:
         {self.description}
-            '''
+        '''
         return text
 
