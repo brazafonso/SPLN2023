@@ -59,6 +59,7 @@ def write_output(out,result):
             out = open(out,"w")
         out.write(result)
 
+
 def write_errors(args,errors):
     """Writes the errors on the location registered in args"""
     if not args.errors:
@@ -75,6 +76,12 @@ def log(args,msg):
         time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         print(f'LOG : {msg} [{time}]')
 
+def want_reviews(books) -> bool:
+    for book in books:
+        if(book.reviews or book.reviews_full):
+            return True
+    return False  
+
 
 def process_arguments(args):
     books = []
@@ -88,7 +95,11 @@ def process_arguments(args):
                                author = args.author,
                                output = args.output,
                                logging = args.logging,
-                               errors = args.errors)
+                               errors = args.errors,
+                               reviews = args.reviews,
+                               reviews_full = args.reviews_full,
+                               reviews_range = args.reviews_range,
+                               review_output = args.review_output)
 
         books.append(book)
 
@@ -99,7 +110,7 @@ def process_arguments(args):
                                  output = args.output,
                                  logging = args.logging,
                                  errors = args.errors,
-                                 verbose = None)
+                                 verbose = args.verbose)
 
         #author.verbose = args.verbose
         authors.append(author)
@@ -121,7 +132,11 @@ def process_arguments(args):
                                author = args.author,
                                output = args.output,
                                logging = args.logging,
-                               errors = args.errors)
+                               errors = args.errors,
+                               reviews = args.reviews,
+                               reviews_full = args.reviews_full,
+                               reviews_range = args.reviews_range,
+                               review_output = args.review_output)
 
                 if 'isbn' in book_json:
                     book.isbn = book_json['isbn']
@@ -149,7 +164,7 @@ def process_arguments(args):
                                  output = args.output,
                                  logging = args.logging,
                                  errors = args.errors,
-                                 verbose = None)
+                                 verbose = args.verbose)
 
                     if 'verbose' in author_json:
                         author.verbose = author_json['verbose']
@@ -176,18 +191,20 @@ def parser_arguments(__version__)->argparse.Namespace:
     --------------------------------------------------------------------
                 Module to scrap book information from goodreads'''
     )
-    parser.add_argument('-isbn'                ,type=str                        ,nargs='?'  ,default=None                           ,help='isbn of the book to scrape')
-    parser.add_argument('-id'                  ,type=str                        ,nargs='?'  ,default=None                           ,help='book id of the book to scrape')
-    parser.add_argument('-btitle'              ,type=str                        ,nargs='?'  ,default=None                           ,help='name of the book to scrape (not precise)')
-    parser.add_argument('-a','--author'        ,type=str                        ,nargs='?'  ,default=None                           ,help='author name or id to scrape')
-    parser.add_argument('-mw','--maxworks'     ,type=int                        ,nargs='?'  ,default=None                           ,help='maximum number of works to find')
-    parser.add_argument('-r','--reviews'                                                                    ,action='store_true'    ,help='gathers reviews of a book (simple mode)')
-    parser.add_argument('-rf','--reviews_full'                                                              ,action='store_true'    ,help='gathers reviews of a book (full mode, slower)')
-    parser.add_argument('-rg','--reviews_range',type=int                        ,nargs=2    ,default=None                           ,help='defines the range of reviews to collect')
-    parser.add_argument('-o','--output'        ,type=argparse.FileType('w')     ,nargs=1    ,default=None                           ,help='defines an output file')
+    parser.add_argument('-isbn'                 ,type=str                        ,nargs='?'  ,default=None                           ,help='isbn of the book to scrape')
+    parser.add_argument('-id'                   ,type=str                        ,nargs='?'  ,default=None                           ,help='book id of the book to scrape')
+    parser.add_argument('-btitle'               ,type=str                        ,nargs='?'  ,default=None                           ,help='name of the book to scrape (not precise)')
+    parser.add_argument('-a','--author'         ,type=str                        ,nargs='?'  ,default=None                           ,help='author name or id to scrape')
+    parser.add_argument('-mw','--maxworks'      ,type=int                        ,nargs='?'  ,default=None                           ,help='maximum number of works to find')
+    parser.add_argument('-r','--reviews'                                                                     ,action='store_true'    ,help='gathers reviews of a book (simple mode)')
+    parser.add_argument('-rf','--reviews_full'                                                               ,action='store_true'    ,help='gathers reviews of a book (full mode, slower)')
+    parser.add_argument('-rg','--reviews_range' ,type=int                        ,nargs=2    ,default=None                           ,help='defines the range of reviews to collect')
+    parser.add_argument('-ro', '--review_output',type=argparse.FileType('w')     ,nargs=1    ,default=None                           ,help='')
+    parser.add_argument('-o','--output'         ,type=argparse.FileType('w')     ,nargs=1    ,default=None                           ,help='defines an output file')
     parser.add_argument('-l','--logging'                                                                    ,action='store_true'    ,help='logs the procedure of the program on the stdout')
     parser.add_argument('-j','--json'           ,type=str                       ,nargs=1    ,default=None                           ,help="allows a json file with multiple searches to make to be given")
     parser.add_argument('-e','--errors'         ,type=argparse.FileType('w')    ,nargs=1    ,default=None                           ,help='defines an output file for the errors')
+    parser.add_argument('-ve', '--verbose'                                                                  ,action='store_true'    ,help='')
     parser.add_argument('--version','-V', action='version', version='%(prog)s '+__version__)
 
     return parser.parse_args()

@@ -566,26 +566,44 @@ def bookscraper():
 	args = utils.parser_arguments(__version__)
 	#work_in_progress(args)
 
+	driver = None
+
+	
+
 	results = []
+	results_reviews = []
 
 	books,authors = utils.process_arguments(args)
+	if(want_reviews(books)):
+		driver = create_driver(args)
 
 	for book in books:
 		# Get the page of a book
-		r = get_book_page(book)
-		if r:
-			b = scrape_book_page(book,utils.prettify_html(r))
+		res = get_book_page(book)
+		if res:
+			b = scrape_book_page(book,utils.prettify_html(res))
 			results.append({'out':book.output,'result':b.__str__(True)})
+		
+		if(book.reviews or book.reviews_full):
+			reviews = scrape_reviews(book,driver)
+			if reviews:
+				df = create_dataset(reviews[0].header(),[r.dataset_line() for r in reviews])
+				results_reviews.append({'out' : book.review_output, 'result':df.to_json()})
+
+	if(driver != None): driver.quit()
 
 	for author in authors:
 		# Get the page of an author
-		r = get_author_page(author)
-		if r:
-			a = scrape_author_page(author,utils.prettify_html(r))
+		res = get_author_page(author)
+		if res:
+			a = scrape_author_page(author,utils.prettify_html(res))
 			results.append({'out':author.output,'result':a.__str__(True)})
 
 
 	for result in results:
+		utils.write_output(result['out'],result['result'])
+	
+	for result in results_reviews:
 		utils.write_output(result['out'],result['result'])
 
 	utils.write_errors(args,errors)
