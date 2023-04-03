@@ -2,20 +2,22 @@
 """Module to scrap book information from goodreads
 """
 
-__version__ = '0.0.3'
+__version__ = '0.0.4'
 
 import os
-from typing import List, Set
 import requests
 import re
 import json
-from bs4 import BeautifulSoup
 import jellyfish
 import lxml.html as lh
+import pandas as pd
+from typing import List, Set
+from bs4 import BeautifulSoup
 from .utils import *
 from .book import Book
 from .author import Author
 from .review import Review
+
 path = os.path.dirname(os.path.realpath(__file__))
 errors = []
 
@@ -354,6 +356,10 @@ def scrape_reviews_page(args,html_page:str)->List[Review]:
 	return reviews_list
 
 
+def create_dataset(header,list)->pd.DataFrame:
+	"""Creates a dataset from a list of already processed into strings of dataset lines"""
+	return pd.DataFrame(list,columns=header)
+
 
 def work_in_progress(args):
 	"""Testing new implementations"""
@@ -373,8 +379,9 @@ def work_in_progress(args):
 		file.write(prettyHTML3)
 		file.close()
 		reviews = scrape_reviews_page(args,r.content.decode(r.encoding))
-		for review in reviews:
-			print(review.__str__(True))
+		if reviews:
+			df = create_dataset(reviews[0].header(),[r.dataset_line() for r in reviews])
+			print(df.head(),df.info())
 	# r = get_author_page(args)
 	# if r:
 	# 	soup = BeautifulSoup(r.content.decode(r.encoding),features='lxml')
@@ -418,28 +425,28 @@ def bookscraper():
 	"""Main function of the program"""
 	# FIXME: Decidir resultados do programa (html ou resultados de scrape, no ultimo caso flags para informacao extra tipo descricao)
 	args = utils.parser_arguments(__version__)
-	#work_in_progress(args)
+	work_in_progress(args)
 
-	results = []
+	# results = []
 
-	books,authors = utils.process_arguments(args)
+	# books,authors = utils.process_arguments(args)
 
-	for book in books:
-		# Get the page of a book
-		r = get_book_page(book)
-		if r:
-			b = scrape_book_page(book,utils.prettify_html(r))
-			results.append({'out':book.output,'result':b.__str__(True)})
+	# for book in books:
+	# 	# Get the page of a book
+	# 	r = get_book_page(book)
+	# 	if r:
+	# 		b = scrape_book_page(book,utils.prettify_html(r))
+	# 		results.append({'out':book.output,'result':b.__str__(True)})
 
-	for author in authors:
-		# Get the page of an author
-		r = get_author_page(author)
-		if r:
-			a = scrape_author_page(author,utils.prettify_html(r))
-			results.append({'out':author.output,'result':a.__str__(True)})
+	# for author in authors:
+	# 	# Get the page of an author
+	# 	r = get_author_page(author)
+	# 	if r:
+	# 		a = scrape_author_page(author,utils.prettify_html(r))
+	# 		results.append({'out':author.output,'result':a.__str__(True)})
 
 
-	for result in results:
-		utils.write_output(result['out'],result['result'])
+	# for result in results:
+	# 	utils.write_output(result['out'],result['result'])
 
-	utils.write_errors(args,errors)
+	# utils.write_errors(args,errors)
