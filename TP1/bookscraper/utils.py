@@ -12,6 +12,25 @@ def prettify_html(r:requests.Response)->str:
     soup = BeautifulSoup(r.content.decode(r.encoding),features='lxml')
     return soup.prettify()
 
+
+def list_range(l:list,lower_limit:int=None,higher_limit:int=None)->list:
+    """Splits the list in a range (special case of only higher or lower limit)"""
+    result = l
+    if lower_limit and higher_limit:
+        if lower_limit > higher_limit:
+            return []
+        higher_limit = higher_limit - lower_limit
+
+    if lower_limit:
+        if lower_limit < len(result):
+            result = result[lower_limit:]
+        else:
+            result = []
+    if higher_limit:
+        if higher_limit < len(result):
+            result = result[:higher_limit]
+    return result
+
 def similitarity_percent(string:str,difference:int)->float:
     """Returns the relative difference between the string and the actions number of actions to replicate it"""
     return difference/len(string)
@@ -157,54 +176,18 @@ def parser_arguments(__version__)->argparse.Namespace:
     --------------------------------------------------------------------
                 Module to scrap book information from goodreads'''
     )
-    parser.add_argument('-isbn',type=str,nargs='?',help='isbn of the book to scrape',default=None)
-    parser.add_argument('-id',type=str,nargs='?',help='book id of the book to scrape',default=None)
-    parser.add_argument('-btitle',type=str,nargs='?',help='name of the book to scrape (not precise)',default=None)
-    parser.add_argument('-a','--author',type=str,nargs='?',help='author name or id to scrape',default=None)
-    parser.add_argument('-mw','--maxworks',type=int,nargs='?',help='maximum number of works to find',default=None)
-    parser.add_argument('-o','--output',help='defines an output file',type=argparse.FileType('w'), nargs=1,default=None)
-    parser.add_argument('-l','--logging',help='logs the procedure of the program on the stdout',action='store_true')
-    parser.add_argument('-j','--json',help="",type=str,nargs=1,default=None)
-    parser.add_argument('-e','--errors',help='defines an output file for the errors',type=argparse.FileType('w'), nargs=1,default=None)
+    parser.add_argument('-isbn'                ,type=str                        ,nargs='?'  ,default=None                           ,help='isbn of the book to scrape')
+    parser.add_argument('-id'                  ,type=str                        ,nargs='?'  ,default=None                           ,help='book id of the book to scrape')
+    parser.add_argument('-btitle'              ,type=str                        ,nargs='?'  ,default=None                           ,help='name of the book to scrape (not precise)')
+    parser.add_argument('-a','--author'        ,type=str                        ,nargs='?'  ,default=None                           ,help='author name or id to scrape')
+    parser.add_argument('-mw','--maxworks'     ,type=int                        ,nargs='?'  ,default=None                           ,help='maximum number of works to find')
+    parser.add_argument('-r','--reviews'                                                                    ,action='store_true'    ,help='gathers reviews of a book (simple mode)')
+    parser.add_argument('-rf','--reviews_full'                                                              ,action='store_true'    ,help='gathers reviews of a book (full mode, slower)')
+    parser.add_argument('-rg','--reviews_range',type=int                        ,nargs=2    ,default=None                           ,help='defines the range of reviews to collect')
+    parser.add_argument('-o','--output'        ,type=argparse.FileType('w')     ,nargs=1    ,default=None                           ,help='defines an output file')
+    parser.add_argument('-l','--logging'                                                                    ,action='store_true'    ,help='logs the procedure of the program on the stdout')
+    parser.add_argument('-j','--json'           ,type=str                       ,nargs=1    ,default=None                           ,help="allows a json file with multiple searches to make to be given")
+    parser.add_argument('-e','--errors'         ,type=argparse.FileType('w')    ,nargs=1    ,default=None                           ,help='defines an output file for the errors')
     parser.add_argument('--version','-V', action='version', version='%(prog)s '+__version__)
 
     return parser.parse_args()
-
-# json para busca de autores
-# {
-#     'authors':
-#     [
-#         'author1' : {
-#             'mw' : 10 # pega so 10 livros?
-#             'verbose' : True # imprime a string de forma verbosa?
-#             'output' : 'x'?
-#         },
-#         'author2' : { # pega todos os livros e vai para stdout
-#         }
-#     ]
-# }
-
-# json para busca de livros
-# {
-#     'books':
-#     [
-#         {
-#             'name' : 'paradise',? # um destes 3 tem de ter
-#             'isbn' : '123123',?
-#             'id' : '123',? 
-#             'author' : 'john milton',?
-#         },
-#         {
-#             'id' : '2313123'
-#         }
-#     ]
-# }
-
-
-
-# objeto simples: 
-
-# from types import SimpleNamespace
-
-# myobject = SimpleNamespace() # myobject = {}
-# myobject.foo = 'bar'
