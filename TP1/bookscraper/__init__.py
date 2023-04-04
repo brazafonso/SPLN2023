@@ -6,7 +6,6 @@ __version__ = '0.0.5'
 
 import os
 import time
-import requests
 import re
 import json
 import jellyfish
@@ -26,35 +25,45 @@ from .author import Author
 from .review import Review
 
 path = os.path.dirname(os.path.realpath(__file__))
-errors = []
 
 
 """
 TODO:
-	- Apanhar reviews
-		* Apanhar todas as reviews de uma pagina (manipulando o javascript inerente)
-	- Criar dataset com as reviews conseguidas
 	- Criar/permitir uso de modelo de aprendizagem profunda para analisar reviews
-	- Permitir uma opção em que é indicado um ficheiro estilo json para fazer um conjunto de pesquisas de uma só vez
-	- Acrescentar verificacao de procedimento default ou com flag
 """
 
 
-def add_error(msg:str):
-	"""Adds an error message to the error stack"""
-	errors.append(f'Error: {msg}\n')
 
-def create_driver(args):
+
+def create_driver(args)->webdriver:
 	"""Create driver to make requests from pages\nNeeded because of the great use of js"""
-	op = webdriver.FirefoxOptions()
-	op.add_argument('--window-size=1920,1080')
-	op.add_argument('--headless')
-	utils.log(args,f'Creating driver')
-	driver = webdriver.Firefox(options=op)
-	utils.log(args,f'Driver created')
+	driver = None
+	log(args,f'Creating driver')
+	try:
+		log(args,f'Chrome')
+		opf = webdriver.ChromeOptions()
+		opf.add_argument('--window-size=1920,1080')
+		opf.add_argument('--headless')
+		driver = webdriver.Chrome(options=opf)
+		
+	except:
+		error(args,f'Could not create Chrome driver')
+		try:
+			log(args,f'Firefox')
+			opf = webdriver.FirefoxOptions()
+			opf.add_argument('--window-size=1920,1080')
+			opf.add_argument('--headless')
+			driver = webdriver.Firefox(options=opf)
+		except:
+			error(args,f'Could not create Firefox driver')
+			driver = None
+	if driver:
+		log(args,f'Driver created')
+	else:
+		log(args,f'Could not create driver. Please read documentation to install proper dependencies.')
 	return driver
 
-def driver_wait_element_to_be_clickable(driver,xpath:str,timeout:int=1):
+def driver_wait_element_to_be_clickable(driver:webdriver,xpath:str,timeout:int=1):
 	'''Waits until timeout for element in XPATH to become clickable'''
 	WebDriverWait(driver, timeout).until(EC.element_to_be_clickable((By.XPATH,xpath)))
 
@@ -77,10 +86,10 @@ def search_book_option(args):
 	return args.isbn or args.id or args.btitle
 
 
-def search_btitle(args,btitle,page):
+def search_btitle(args,driver:webdriver,btitle:str,page:str)->str:
 	"""Searches for a book page using its name and author if given"""
 	r = None
-	soup = BeautifulSoup(page.content.decode(page.encoding),features='lxml')
+	soup = BeautifulSoup(page,features='lxml')
 	books = soup.find_all('a',{'class':'bookTitle'})
 	authors = soup.find_all('a',{'class':'authorName'})
 	similarityDic = []
@@ -97,15 +106,15 @@ def search_btitle(args,btitle,page):
 			author = authors[i]
 			aname = author.find('span',{'itemprop':'name'}).get_text().lower().replace(' ','')
 			differenceA = jellyfish.levenshtein_distance(a,aname)
-			if utils.similitarity_percent(aname,differenceA) < 0.6:
-				if utils.similitarity_percent(btitle,difference) < 0.6:
+			if similitarity_percent(aname,differenceA) < 0.6:
+				if similitarity_percent(btitle,difference) < 0.6:
 					similarityDic.append((bname,url,difference))
 				# Stops with perfect match
 				if difference == 0:
 					break
 		# Default search
 		else:
-			if utils.similitarity_percent(btitle,difference) < 0.5:
+			if similitarity_percent(btitle,difference) < 0.5:
 				similarityDic.append((bname,url,difference))
 			# Stops with perfect match
 			if difference == 0:
@@ -113,56 +122,63 @@ def search_btitle(args,btitle,page):
 	# Choose the best match
 	if len(similarityDic)>0:
 		similarityDic = sorted(similarityDic,key=lambda x: x[2])
-		r = requests.get(f'https://www.goodreads.com{similarityDic[0][1]}')
+		driver.get(f'https://www.goodreads.com{similarityDic[0][1]}')
+		r = driver.page_source
 	else:
-		add_error(f'Could not find book name {args.btitle}')
+		error(args,f'Could not find book name {args.btitle}')
 	return r
 
-def is_book_page(r:requests.Response)->bool:
+def is_book_page(url:requests.Response)->bool:
 	"""Checks if response is relative to a book page"""
-	return re.search('www.goodreads.com/book/show/',r.url)
+	return re.search('www.goodreads.com/book/show/',url)
 
-def get_book_page(args)->requests.Response:
+def get_book_page(args,driver:webdriver)->str:
 	"""Performs a get request to goodreads for a book with a give isbn, work id or search name"""
 	r= None
 	# Search with book's isbn
 	if args.isbn:
-		utils.log(args,f"Searching for book with isbn - {args.isbn}...")
-		r = requests.get(f"https://www.goodreads.com/search?q={args.isbn}")
+		log(args,f"Searching for book with isbn - {args.isbn}...")
+		driver.get(f"https://www.goodreads.com/search?q={args.isbn}")
+		driver_wait_element(driver,'//script[@type="application/ld+json"]')
+		r = driver.page_source
 
 	# Search with book's work id'
 	elif args.id:
-		utils.log(args,f"Searching for book with id - {args.id}...")
-		r = requests.get(f"https://www.goodreads.com/book/show/{args.id}")
+		log(args,f"Searching for book with id - {args.id}...")
+		driver.get(f"https://www.goodreads.com/book/show/{args.id}")
+		driver_wait_element(driver,'//script[@type="application/ld+json"]')
+		r = driver.page_source
 
 	# Search with search name (less precise)
 	elif args.btitle:
-		utils.log(args,f"Searching for book with name - {args.btitle}...")
+		log(args,f"Searching for book with name - {args.btitle}...")
 		btitle = args.btitle.lower().replace(' ','')
-		search = requests.get(f"https://www.goodreads.com/search?q={args.btitle}")
-		if search.status_code == 200:
-			r = search_btitle(args,btitle,search)
+		driver.get(f"https://www.goodreads.com/search?q={args.btitle}")
+		driver_wait_element(driver,'//script[@type="application/ld+json"]')
+		page = driver.page_source
+		r = search_btitle(args,driver,btitle,page)
 
-	utils.log(args,f"Search finished")
-	if r and r.status_code==200 and is_book_page(r):
+
+	log(args,f"Search finished")
+	if r  and is_book_page(driver.current_url):
 		return r
 	else:
-		add_error(f'Could not find book')
+		error(args,f'Could not find book')
 		return None
 
 
 
 
-def get_book_id(r:requests.Response)->str:
-	"""Return a book's id using a responses url"""
-	id = re.search(r'www.goodreads.com/book/show/(\d+)',r.url).group(1)
+def get_book_id(url:str)->str:
+	"""Return a book's id using a url"""
+	id = re.search(r'www.goodreads.com/book/show/(\d+)',url).group(1)
 	return id
 
 
 
 def scrape_book_page(args,html_page:str)->Book:
 	"""Scrapes a book's page for info such as title, score, number of reviews and others"""
-	utils.log(args,f"Scraping book info...")
+	log(args,f"Scraping book info...")
 	page = BeautifulSoup(html_page,features='lxml')
 
 	book_details = page.find('script',{'type':'application/ld+json'}).get_text()
@@ -184,7 +200,7 @@ def scrape_book_page(args,html_page:str)->Book:
 
 	book_publishing_date = re.sub(r'.*(\b\w+\b\s*\d+\s*,\s*\d+)',r'\1',page.find('p',{'data-testid':'publicationInfo'}).get_text()).strip()
 
-	utils.log(args,f"Scrape finished")
+	log(args,f"Scrape finished")
 	return Book(book_name,book_isbn,book_author,
 	     book_description,book_publishing_date,book_score,
 		 book_nratings,book_nreviews,book_npages,
@@ -195,7 +211,7 @@ def scrape_book_page(args,html_page:str)->Book:
 
 
 
-def get_author_page(args)->requests.Response:
+def get_author_page(args,driver:webdriver)->str:
 	"""Performs a get request to goodreads for a author with a give name or id\n
 	   If a name is given an indirect search is made by finding a work of the author and proceeding from there
 	"""
@@ -207,19 +223,21 @@ def get_author_page(args)->requests.Response:
 		match = re.match(r'\d+$',a)
 		# Search by author id
 		if match:
-			utils.log(args,f"Searching for author with id - {args.author}...")
-			search = requests.get(f"https://www.goodreads.com/author/show/{args.author}")
-			soup = BeautifulSoup(search.content.decode(search.encoding),features='lxml')
+			log(args,f"Searching for author with id - {args.author}...")
+			driver.get(f"https://www.goodreads.com/author/show/{args.author}")
+			search = driver.page_source
+			soup = BeautifulSoup(search,features='lxml')
 			if re.search(r'Page not found',soup.find('title').get_text()):
-				add_error(f'Could not find author id {args.author}')
+				error(args,f'Could not find author id {args.author}')
 			else:
 				r = search
 
 		# Search by author name
 		else:
-			utils.log(args,f"Searching for author with name - {args.author}...")
-			search = requests.get(f"https://www.goodreads.com/search?q={args.author}")
-			soup = BeautifulSoup(search.content.decode(search.encoding),features='lxml')
+			log(args,f"Searching for author with name - {args.author}...")
+			driver.get(f"https://www.goodreads.com/search?q={args.author}")
+			search = driver.page_source
+			soup = BeautifulSoup(search,features='lxml')
 			authors = soup.find_all('a',{'class':'authorName'})
 			similarityDic = []
 			# Search through every listed book for an author match
@@ -227,7 +245,7 @@ def get_author_page(args)->requests.Response:
 				name = author.find('span',{'itemprop':'name'}).get_text().lower().replace(' ','')
 				url = author['href']
 				difference = jellyfish.levenshtein_distance(a,name)
-				if utils.similitarity_percent(a,difference) < 0.5:
+				if similitarity_percent(a,difference) < 0.5:
 					similarityDic.append((name,url,difference))
 				if difference == 0:
 					break
@@ -235,10 +253,11 @@ def get_author_page(args)->requests.Response:
 			# Choose the best match
 			if len(similarityDic)>0:
 				similarityDic = sorted(similarityDic,key=lambda x: x[2])
-				r = requests.get(similarityDic[0][1])
+				driver.get(similarityDic[0][1])
+				r = driver.page_source
 			else:
-				add_error(f'Could not find author name {args.author}')
-		utils.log(args,f"Search finished")
+				error(args,f'Could not find author name {args.author}')
+		log(args,f"Search finished")
 	return r
 
 
@@ -258,7 +277,7 @@ def get_author_works(args,works_url:str,max:int=None)->List[str]:
 	Max represents the maximum number of works to obtain (by default gathers all going from page to page)"""
 	works = []
 	if works_url:
-		utils.log(args,f"Scraping author's books")
+		log(args,f"Scraping author's books")
 		page_number = 1
 		count = 0
 		r = requests.get(f'https://www.goodreads.com/{works_url}?page=1&per_page=30')
@@ -287,7 +306,7 @@ def get_author_works(args,works_url:str,max:int=None)->List[str]:
 						else:
 							works += page_works
 							count += len(page_works)
-		utils.log(args,f"Scraping finished")
+		log(args,f"Scraping finished")
 	if works:
 		return works
 	else:
@@ -297,7 +316,7 @@ def get_author_works(args,works_url:str,max:int=None)->List[str]:
 def scrape_author_page(args,html_page:str)->Author:
 	"""Scrapes an author's page for info such as name, birthday, average score, number of reviews and others"""
 	# FIXME: if elses para tudo pq pode n ter nada - ex. Sir kazzio
-	utils.log(args,f"Scraping author's page for info")
+	log(args,f"Scraping author's page for info")
 	page = BeautifulSoup(html_page,features='lxml')
 
 	author_name = page.find('h1',{'class':'authorName'}).get_text().strip()
@@ -343,7 +362,7 @@ def scrape_author_page(args,html_page:str)->Author:
 
 	max = args.maxworks
 	author_works = get_author_works(args,works_url,max)
-	utils.log(args,f"Scraping finished")
+	log(args,f"Scraping finished")
 	return Author(author_name,author_birthdate,author_birthplace,
 	       author_deathdate,author_website,author_genres,
 		   author_influences,author_description,author_averageRating,
@@ -358,44 +377,44 @@ def loaded_reviews_page(html:str)->bool:
 def get_book_reviews_page(args,driver)->str:
 	"""Return the book reviews page (if book flags active)"""
 	r = None
-	#FIXME: opcao btitle
+
 	if search_book_option(args):
-		utils.log(args,f"Searching for book reviews's page")
-		valid = False
-		tries = 0
+		log(args,f"Searching for book reviews's page")
+		id = None
 		if args.id:
 			id = args.id
-		elif args.isbn:
-			search = requests.get(f"https://www.goodreads.com/search?q={args.isbn}")
-			if search.status_code == 200 and is_book_page(r):
-				id = get_book_id(search)
-			else:
-				return r
-		utils.log(args,f"Trying to get reviews page")
-		driver.get(f'https://www.goodreads.com/book/show/{id}/reviews')
-		# Wait for reviews to appear
-		driver_wait_element(driver,"//div[@class='ReviewsList']",100000)
-		# Check if something is still loading
-		driver_wait_element(driver,"//div[@class='LoadingCard']",100000,False)
-		if not loaded_reviews_page(driver.page_source):
-			add_error('Could not get proper reviews page')
-		else:
-			r = driver.page_source
 
-		utils.log(args,f"Search finished")
+		elif args.isbn or args.btitle:
+			get_book_page(args,driver)
+			url = driver.current_url
+			id = get_book_id(url)
+		
+		if id:		
+			log(args,f"Trying to get reviews page")
+			driver.get(f'https://www.goodreads.com/book/show/{id}/reviews')
+			# Wait for reviews to appear
+			driver_wait_element(driver,"//div[@class='ReviewsList']",100000)
+			# Check if something is still loading
+			driver_wait_element(driver,"//div[@class='LoadingCard']",100000,False)
+			if not loaded_reviews_page(driver.page_source):
+				error(args,'Could not get proper reviews page')
+			else:
+				r = driver.page_source
+
+		log(args,f"Search finished")
 	return r
 
 
 def scrape_reviews_page(args,html_page:str,lower_limit:int=None,higher_limit:int=None)->List[Review]:
 	"""Scrape reviews from page, if range is given only grab reviews in that range"""
 	reviews_list = []
-	utils.log(args,f"Scraping reviews's page for info")
+	log(args,f"Scraping reviews's page for info")
 
 	page = BeautifulSoup(html_page,features='lxml')
 	div_reviews_list = page.find('div',{'class':'ReviewsList'})
 	reviews = div_reviews_list.find_all('article',{'class':'ReviewCard'})
 	# Change range of reviews to gather
-	reviews = utils.list_range(reviews,lower_limit,higher_limit)
+	reviews = list_range(reviews,lower_limit,higher_limit)
 
 	# Get info from all the reviews
 	for review in reviews:
@@ -410,7 +429,7 @@ def scrape_reviews_page(args,html_page:str,lower_limit:int=None,higher_limit:int
 		review_description = review_description_card.find('span').get_text().strip()
 		rev = Review(reviewer_id,reviewer_name,review_score,review_description)
 		reviews_list.append(rev)
-	utils.log(args,f"Scraping finished")
+	log(args,f"Scraping finished")
 	return reviews_list
 
 
@@ -428,7 +447,7 @@ def get_review_page_stats(page:str)->List[int]:
 
 def review_page_show_more(args,driver):
 	"""Activates show more reviews javascript on review page"""
-	utils.log(args,f'Showing more reviews...')
+	log(args,f'Showing more reviews...')
 	elem = driver.find_element(By.XPATH,"//button[@class='Button Button--secondary Button--small']")
 	if elem:
 		driver.execute_script("arguments[0].scrollIntoView();", elem)
@@ -436,16 +455,16 @@ def review_page_show_more(args,driver):
 		time.sleep(0.5)
 		elem.click()
 		driver_wait_element(driver,"//button[@class='Button Button--secondary Button--small Button--disabled']",1000000,False)
-		utils.log(args,f'Got more reviews.')
+		log(args,f'Got more reviews.')
 	else:
-		utils.log(args,f'No more reviews.')
+		log(args,f'No more reviews.')
 
 
 def scrape_reviews(args,driver)->List[Review]:
 	"""Gets reviews from book page"""
 	reviews = []
 	if args.reviews or args.reviews_full:
-		utils.log(args,f'Scraping book reviews...')
+		log(args,f'Scraping book reviews...')
 		page = get_book_reviews_page(args,driver)
 		if page:
 			range = [None,None]
@@ -454,13 +473,13 @@ def scrape_reviews(args,driver)->List[Review]:
 
 			# Only get the minimum number of reviews
 			if args.reviews:
-				utils.log(args,f'Simple review scraping')
+				log(args,f'Simple review scraping')
 				reviews = scrape_reviews_page(args,page,range[0],range[1])
 
 			# Get more reviews (slower as it uses a driver to interact with buttons that make js requests)
 			# FIXME: Bug after 1000 reviews reviews (~30 button activations)
 			elif args.reviews_full:
-				utils.log(args,f'Full review scraping')
+				log(args,f'Full review scraping')
 
 				reviews += scrape_reviews_page(args,page,range[0],range[1])
 				review_page_show_more(args,driver)
@@ -471,7 +490,7 @@ def scrape_reviews(args,driver)->List[Review]:
 					max_reviews = range[1]-range[0]
 					range[0] = range[0] + len(reviews)
 					while(count < n_reviews and count < max_reviews):
-						utils.log(args,f'Current reviews : {count}')
+						log(args,f'Current reviews : {count}')
 						page = driver.page_source
 						thread = th.Thread(target=review_page_show_more,args=[args,driver])
 						thread.start()
@@ -484,7 +503,7 @@ def scrape_reviews(args,driver)->List[Review]:
 				else:
 					range[0] = len(reviews)		
 					while(count < n_reviews):
-						utils.log(args,f'Current reviews : {count}')
+						log(args,f'Current reviews : {count}')
 						page = driver.page_source
 						thread = th.Thread(target=review_page_show_more,args=[args,driver])
 						thread.start()
@@ -494,7 +513,7 @@ def scrape_reviews(args,driver)->List[Review]:
 						count = len(reviews)
 						thread.join()
 				
-		utils.log(args,f'Finished Scraping')
+		log(args,f'Finished Scraping')
 	return reviews
 
 
@@ -558,53 +577,47 @@ def work_in_progress(args):
 	# r = file.read()
 	# file.close()
 	# author = scrape_author_page(args,r)
-	# utils.write_output(args,author.__str__(True))
+	# write_output(args,author.__str__(True))
 
 def bookscraper():
 	"""Main function of the program"""
-	# FIXME: Decidir resultados do programa (html ou resultados de scrape, no ultimo caso flags para informacao extra tipo descricao)
-	args = utils.parser_arguments(__version__)
+	args = parse_arguments(__version__)
 	#work_in_progress(args)
 
-	driver = None
+	driver = create_driver(args)
+	if driver:
+		results = []
+		results_reviews = []
 
-	
+		books,authors = process_arguments(args)
 
-	results = []
-	results_reviews = []
+		for book in books:
+			# Get the page of a book
+			res = get_book_page(book,driver)
+			if res:
+				b = scrape_book_page(book,prettify_html(res))
+				results.append({'out':book.output,'result':b.__str__(True if args.verbose else False)})
+			
+			if(book.reviews or book.reviews_full):
+				reviews = scrape_reviews(book,driver)
+				if reviews:
+					df = create_dataset(reviews[0].header(),[r.dataset_line() for r in reviews])
+					results_reviews.append({'out' : book.review_output, 'result':df.to_json(indent=4)})
 
-	books,authors = utils.process_arguments(args)
-	if(want_reviews(books)):
-		driver = create_driver(args)
+			
 
-	for book in books:
-		# Get the page of a book
-		res = get_book_page(book)
-		if res:
-			b = scrape_book_page(book,utils.prettify_html(res))
-			results.append({'out':book.output,'result':b.__str__(True)})
+		for author in authors:
+			# Get the page of an author
+			res = get_author_page(author,driver)
+			if res:
+				a = scrape_author_page(author,prettify_html(res))
+				results.append({'out':author.output,'result':a.__str__(True if args.verbose else False)})
+
+		driver.quit()
+		for result in results:
+			write_output(result['out'],result['result'])
 		
-		if(book.reviews or book.reviews_full):
-			reviews = scrape_reviews(book,driver)
-			if reviews:
-				df = create_dataset(reviews[0].header(),[r.dataset_line() for r in reviews])
-				results_reviews.append({'out' : book.review_output, 'result':df.to_json()})
+		for result in results_reviews:
+			write_output(result['out'],result['result'])
 
-	if(driver != None): driver.quit()
-
-	for author in authors:
-		# Get the page of an author
-		res = get_author_page(author)
-		if res:
-			a = scrape_author_page(author,utils.prettify_html(res))
-			results.append({'out':author.output,'result':a.__str__(True)})
-
-
-	for result in results:
-		utils.write_output(result['out'],result['result'])
-	
-	for result in results_reviews:
-		utils.write_output(result['out'],result['result'])
-
-	utils.write_errors(args,errors)
 

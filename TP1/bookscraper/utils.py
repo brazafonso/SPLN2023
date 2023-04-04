@@ -8,8 +8,8 @@ import json
 
 default = True
 
-def prettify_html(r:requests.Response)->str:
-    soup = BeautifulSoup(r.content.decode(r.encoding),features='lxml')
+def prettify_html(page:str)->str:
+    soup = BeautifulSoup(page,features='lxml')
     return soup.prettify()
 
 
@@ -75,6 +75,14 @@ def log(args,msg):
     if args.logging:
         time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         print(f'LOG : {msg} [{time}]')
+
+
+def error(args,msg:str):
+    """Adds an error message to the error stack"""
+    if args.errors:
+        args.errors.write(f'Error: {msg}\n')
+    else:
+	    print(f'Error: {msg}')
 
 def want_reviews(books) -> bool:
     for book in books:
@@ -180,7 +188,7 @@ def process_arguments(args):
     return books,authors
 
 
-def parser_arguments(__version__)->argparse.Namespace:
+def parse_arguments(__version__)->argparse.Namespace:
     """Process arguments from stdin"""
     parser = argparse.ArgumentParser(
         prog='tok',
@@ -199,12 +207,12 @@ def parser_arguments(__version__)->argparse.Namespace:
     parser.add_argument('-r','--reviews'                                                                     ,action='store_true'    ,help='gathers reviews of a book (simple mode)')
     parser.add_argument('-rf','--reviews_full'                                                               ,action='store_true'    ,help='gathers reviews of a book (full mode, slower)')
     parser.add_argument('-rg','--reviews_range' ,type=int                        ,nargs=2    ,default=None                           ,help='defines the range of reviews to collect')
-    parser.add_argument('-ro', '--review_output',type=argparse.FileType('w')     ,nargs=1    ,default=None                           ,help='')
-    parser.add_argument('-o','--output'         ,type=argparse.FileType('w')     ,nargs=1    ,default=None                           ,help='defines an output file')
-    parser.add_argument('-l','--logging'                                                                    ,action='store_true'    ,help='logs the procedure of the program on the stdout')
-    parser.add_argument('-j','--json'           ,type=str                       ,nargs=1    ,default=None                           ,help="allows a json file with multiple searches to make to be given")
-    parser.add_argument('-e','--errors'         ,type=argparse.FileType('w')    ,nargs=1    ,default=None                           ,help='defines an output file for the errors')
-    parser.add_argument('-ve', '--verbose'                                                                  ,action='store_true'    ,help='')
+    parser.add_argument('-ro', '--review_output',type=argparse.FileType('w')     ,nargs='?'  ,default=None                           ,help='defines an output file for the reviews dataset')
+    parser.add_argument('-o','--output'         ,type=argparse.FileType('w')     ,nargs='?'  ,default=None                           ,help='defines an output file')
+    parser.add_argument('-l','--logging'                                                                     ,action='store_true'    ,help='logs the procedure of the program on the stdout')
+    parser.add_argument('-j','--json'           ,type=str                        ,nargs=1    ,default=None                           ,help="allows a json file with multiple searches to make to be given")
+    parser.add_argument('-e','--errors'         ,type=argparse.FileType('w')     ,nargs=1    ,default=None                           ,help='defines an output file for the errors')
+    parser.add_argument('-ve','--verbose'                                                                    ,action='store_true'    ,help='activates verbose outputs')
     parser.add_argument('--version','-V', action='version', version='%(prog)s '+__version__)
 
     return parser.parse_args()
