@@ -8,6 +8,7 @@ import os
 import time
 import re
 import json
+import traceback
 import jellyfish
 import lxml.html as lh
 import pandas as pd
@@ -41,23 +42,24 @@ def create_driver(args)->webdriver:
 	log(args,f'Creating driver')
 	try:
 		log(args,f'Chrome')
-		opf = webdriver.ChromeOptions()
-		opf.add_argument('--window-size=1920,1080')
-		opf.add_argument('--headless')
-		driver = webdriver.Chrome(options=opf)
+		opg = webdriver.ChromeOptions()
+		opg.add_argument('--window-size=1440,900')
+		opg.add_argument('--headless')
+		driver = webdriver.Chrome(options=opg)
 		
 	except:
 		error(args,f'Could not create Chrome driver')
 		try:
 			log(args,f'Firefox')
 			opf = webdriver.FirefoxOptions()
-			opf.add_argument('--window-size=1920,1080')
+			opf.add_argument('--window-size=1440,900')
 			opf.add_argument('--headless')
 			driver = webdriver.Firefox(options=opf)
 		except:
 			error(args,f'Could not create Firefox driver')
 			driver = None
 	if driver:
+		driver.implicitly_wait(2)
 		log(args,f'Driver created')
 	else:
 		log(args,f'Could not create driver. Please read documentation to install proper dependencies.')
@@ -124,8 +126,7 @@ def search_btitle(args,driver:webdriver,btitle:str,page:str)->str:
 	if len(similarityDic)>0:
 		log(args,f'Match found.')
 		similarityDic = sorted(similarityDic,key=lambda x: x[2])
-		id = get_book_id(f'https://www.goodreads.com{similarityDic[0][1]}')
-		driver.get(f'https://www.goodreads.com/book/show/{id}')
+		driver.get(f'https://www.goodreads.com{similarityDic[0][1]}')
 		r = driver.page_source
 	else:
 		error(args,f'Could not find book name {args.btitle}')
@@ -135,6 +136,37 @@ def is_book_page(url:requests.Response)->bool:
 	"""Checks if response is relative to a book page"""
 	return re.search('www.goodreads.com/book/show/',url)
 
+
+def load_book_page(args,driver)->bool:
+	"""Waits for book page to be loaded, refreshes some times if stuck"""
+	loaded = False 
+	tries = 5
+	while not loaded and tries > 0:
+		try:
+			log(args,f'Waiting for page to load...')
+			driver_wait_element(driver,"//div[@class='LoadingCard']",10,False)
+			driver_wait_element(driver,'//script[@type="application/json"]',10)
+			if re.search('ROOT_QUERY',driver.page_source):
+				loaded = True
+			else:
+				file = open(f'{path}/test/debug.html','w')
+				file.write(prettify_html(driver.page_source))
+				file.close()
+				log(args,f'Refreshing page...')
+				driver.get(driver.current_url)
+				time.sleep(1)
+			tries-= 1
+		except:
+			log(args,f'Refreshing page...')
+			driver.get(driver.current_url)
+			time.sleep(1)
+			file = open(f'{path}/test/debug.html','w')
+			file.write(prettify_html(driver.page_source))
+			file.close()
+			tries-= 1
+	return loaded
+
+
 def get_book_page(args,driver:webdriver)->str:
 	"""Performs a get request to goodreads for a book with a give isbn, work id or search name"""
 	r= None
@@ -143,19 +175,19 @@ def get_book_page(args,driver:webdriver)->str:
 		log(args,f"Searching for book with isbn - {args.isbn}...")
 		driver.get(f"https://www.goodreads.com/search?q={args.isbn}")
 		args.id = get_book_id(driver.current_url)
-		log(args,f'Waiting for page to load...')
-		driver_wait_element(driver,'//script[@type="application/ld+json"]',100)
-		log(args,f'Loaded')
-		r = driver.page_source
+		loaded = load_book_page(args,driver)
+		if loaded:
+			log(args,f'Loaded')
+			r = driver.page_source
 
 	# Search with book's work id'
 	elif args.id:
 		log(args,f"Searching for book with id - {args.id}...")
 		driver.get(f"https://www.goodreads.com/book/show/{args.id}")
-		log(args,f'Waiting for page to load...')
-		driver_wait_element(driver,'//script[@type="application/ld+json"]',100)
-		log(args,f'Loaded')
-		r = driver.page_source
+		loaded = load_book_page(args,driver)
+		if loaded:
+			log(args,f'Loaded')
+			r = driver.page_source
 
 	# Search with search name (less precise)
 	elif args.btitle:
@@ -166,12 +198,12 @@ def get_book_page(args,driver:webdriver)->str:
 		r = search_btitle(args,driver,btitle,page)
 		if r:
 			args.id = get_book_id(driver.current_url)
-			log(args,f'Waiting for page to load...')
-			driver_wait_element(driver,'//script[@type="application/ld+json"]',100)
-			log(args,f'Loaded')
-
-
-
+			loaded = load_book_page(args,driver)
+			if loaded:
+				log(args,f'Loaded')
+				r = driver.page_source
+			else:
+				r = None
 
 	log(args,f"Search finished")
 	if r  and is_book_page(driver.current_url):
@@ -195,24 +227,39 @@ def scrape_book_page(args,html_page:str)->Book:
 	log(args,f"Scraping book info...")
 	page = BeautifulSoup(html_page,features='lxml')
 
-	book_details = page.find('script',{'type':'application/ld+json'}).get_text()
-	book_details = json.loads(book_details)
-	book_name = book_details['name']
-	book_score = book_details['aggregateRating']['ratingValue']
-	book_nratings = book_details['aggregateRating']['ratingCount']
-	book_nreviews = book_details['aggregateRating']['reviewCount']
-	book_npages = book_details['numberOfPages']
-	book_author = book_details['author'][0]['name']
-	book_language = book_details['inLanguage']
-	book_isbn = book_details['isbn']
-	book_description = page.find('div',{'class':'DetailsLayoutRightParagraph__widthConstrained'}).find('span',{'class':'Formatted'}).get_text()
-	book_genres_divs = page.find_all('span',{'class':'BookPageMetadataSection__genreButton'})
+	# Read and prepare dic with information
+	page_info_dic = page.find('script',{'type':'application/json'}).get_text()
+	page_info_dic = json.loads(page_info_dic)
+	page_info_dic = page_info_dic['props']['pageProps']['apolloState']
+	book_query = page_info_dic['ROOT_QUERY']
+	key = 'getBookByLegacyId({"legacyId":"'+args.id+'"})'
+	book_legacy_id = book_query[key]['__ref']
+	book_info = page_info_dic[book_legacy_id]
+	book_contributor_id = book_info['primaryContributorEdge']['node']['__ref']
+	author_info = page_info_dic[book_contributor_id]
+	book_work_id = book_info['work']['__ref']
+	book_stats = page_info_dic[book_work_id]['stats']
+
+	# Scrape information from dic
+	book_details = book_info['details']
+	
+	book_name = book_info['title']
+	book_author = author_info['name']
+	book_description = book_info['description']
+
+	book_score = book_stats['averageRating']
+	book_nratings = book_stats['ratingsCount']
+	book_nreviews = book_stats['textReviewsCount']
+
+	book_npages = book_details['numPages']
+	book_language = book_details['language']['name']
+	book_isbn = book_details['isbn13']
+	book_publishing_date = datetime.fromtimestamp(book_details['publicationTime']/1000).date()
 
 	book_genres = []
-	for genre in book_genres_divs:
-		book_genres.append(genre.find('span',{'class':'Button__labelItem'}).get_text().strip())
+	for genre in book_info['bookGenres']:
+		book_genres.append(genre['genre']['name'])
 
-	book_publishing_date = re.sub(r'.*(\b\w+\b\s*\d+\s*,\s*\d+)',r'\1',page.find('p',{'data-testid':'publicationInfo'}).get_text()).strip()
 
 	log(args,f"Scrape finished")
 	return Book(book_name,book_isbn,book_author,
@@ -494,42 +541,49 @@ def scrape_reviews(args,driver)->List[Review]:
 			# Get more reviews
 			elif args.reviews_full:
 				log(args,f'Full review scraping')
-
 				reviews += scrape_reviews_page(args,page,range[0],range[1])
 				review_page_show_more(args,driver)
 				count = len(reviews)
+				# Writes to file so as not to use too much memory
+				if args.review_output:
+					header = (count > 0)
+					write_reviews(args,reviews,header=header)
+					if args.reviews_range:
+						range[0] = range[0] + len(reviews)
+					reviews = []
+
 				n_reviews,lower_review,higher_review = get_review_page_stats(page)
 				# Get reviews in range
 				if args.reviews_range:
 					max_reviews = range[1]-range[0]
 					range[0] = range[0] + len(reviews)
-					while(count < n_reviews and count < max_reviews):
-						log(args,f'Current reviews : {count} of {n_reviews}')
-						page = driver.page_source
-						thread = th.Thread(target=review_page_show_more,args=[args,driver])
-						thread.start()
-						n_reviews,lower_review,higher_review = get_review_page_stats(page)
-						reviews += scrape_reviews_page(args,page,range[0],range[1])
-						range[0] = range[0] + len(reviews)
-						count = len(reviews)
-						thread.join()
 				# Get all reviews
 				else:
-					range[0] = len(reviews)		
-					while(count < n_reviews):
-						log(args,f'Current reviews : {count} of {n_reviews}')
-						page = driver.page_source
-						thread = th.Thread(target=review_page_show_more,args=[args,driver])
-						thread.start()
-						soup = BeautifulSoup(page,features='lxml')
-						file = open(f'{path}/test/teste10.html','w')
-						file.write(soup.prettify())
-						file.close()
-						n_reviews,lower_review,higher_review = get_review_page_stats(page)
-						reviews += scrape_reviews_page(args,page,range[0],range[1])
-						range[0] = len(reviews)
-						count = len(reviews)
-						thread.join()
+					max_reviews = n_reviews
+					range[0] = len(reviews)
+
+				while(count < n_reviews and count < max_reviews):
+					log(args,f'Current reviews : {count} of {max_reviews} | total : {n_reviews}')
+					page = driver.page_source
+					thread = th.Thread(target=review_page_show_more,args=[args,driver])
+					thread.start()
+					n_reviews,lower_review,higher_review = get_review_page_stats(page)
+					reviews += scrape_reviews_page(args,page,range[0],range[1])
+					if len(reviews) > 0:
+						# Writes to file so as not to use too much memory
+						if args.review_output:
+							if not header:
+								header = True
+								write_reviews(args,reviews,header=header)
+							else:
+								write_reviews(args,reviews)
+							count += len(reviews)
+							range[0] += len(reviews)
+							reviews = []
+						else:
+							count = len(reviews)
+							range[0] += len(reviews)
+					thread.join()
 				
 		log(args,f'Finished Scraping')
 	return reviews
@@ -621,10 +675,9 @@ def bookscraper():
 					reviews = scrape_reviews(book,driver)
 					if reviews:
 						df = create_dataset(reviews[0].header(),[r.dataset_line() for r in reviews])
-						results_reviews.append({'out' : book.review_output, 'result':df.to_json(indent=4)})
+						results_reviews.append({'out' : open(book.review_output,'w'), 'result':df.to_json(indent=4)})
 
 				
-
 			for author in authors:
 				# Get the page of an author
 				res = get_author_page(author,driver)
@@ -639,7 +692,16 @@ def bookscraper():
 			for result in results_reviews:
 				write_output(result['out'],result['result'])
 		except Exception as e:
-			error(args,f'Fatal error -> {e}')
+			error(args,f'Fatal error -> {traceback.format_exc()}')
+			file = open(f'{path}/test/debug.html','w')
+			file.write(prettify_html(driver.page_source))
+			file.close()
+			driver.quit()
+		except KeyboardInterrupt as e:
+			error(args,f'Interrupted error -> {e}')
+			file = open(f'{path}/test/debug.html','w')
+			file.write(prettify_html(driver.page_source))
+			file.close()
 			driver.quit()
 
 

@@ -19,6 +19,9 @@ class Review:
         """Returns a pandas dataset line"""
         return [self.reviewerID,self.reviewerName,self.score,self.review]
 
+    def dataset_line_str(self,delim:str)->str:
+        """Returns a pandas dataset line"""
+        return f'{self.reviewerID}{delim}{self.reviewerName}{delim}{self.score}{delim}{self.review}'
 
     def reviewerID(self)->str:
         return self.reviewerID

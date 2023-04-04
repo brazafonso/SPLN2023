@@ -1,10 +1,12 @@
 import sys
 import argparse
 import requests
+import json
+from typing import List
 from bs4 import BeautifulSoup
 from datetime import datetime
 from types import SimpleNamespace
-import json
+from .review import Review
 
 default = True
 
@@ -59,6 +61,21 @@ def write_output(out,result):
             out = open(out,"w")
         out.write(result)
 
+
+def write_reviews(args,reviews:List[Review],header:bool=False):
+    """Writes list of reviews in the given output file"""
+    if args.review_output and isinstance(args.review_output,str) and len(reviews) > 0:
+        delim = '#;#'
+        if header:
+            out = open(args.review_output,'w')
+            out.write(delim.join(reviews[0].header()))
+            out.write('\n')
+            out.close()
+        out = open(args.review_output,'a')
+        for review in reviews:
+            out.write(review.dataset_line_str(delim))
+            out.write('\n')
+        out.close()
 
 def write_errors(args,errors):
     """Writes the errors on the location registered in args"""
@@ -207,7 +224,7 @@ def parse_arguments(__version__)->argparse.Namespace:
     parser.add_argument('-r','--reviews'                                                                     ,action='store_true'    ,help='gathers reviews of a book (simple mode)')
     parser.add_argument('-rf','--reviews_full'                                                               ,action='store_true'    ,help='gathers reviews of a book (full mode, slower)')
     parser.add_argument('-rg','--reviews_range' ,type=int                        ,nargs=2    ,default=None                           ,help='defines the range of reviews to collect')
-    parser.add_argument('-ro', '--review_output',type=argparse.FileType('w')     ,nargs='?'  ,default=None                           ,help='defines an output file for the reviews dataset')
+    parser.add_argument('-ro', '--review_output',type=str                        ,nargs='?'  ,default=None                           ,help='defines an output file for the reviews dataset')
     parser.add_argument('-o','--output'         ,type=argparse.FileType('w')     ,nargs='?'  ,default=None                           ,help='defines an output file')
     parser.add_argument('-l','--logging'                                                                     ,action='store_true'    ,help='logs the procedure of the program on the stdout')
     parser.add_argument('-j','--json'           ,type=str                        ,nargs=1    ,default=None                           ,help="allows a json file with multiple searches to make to be given")
