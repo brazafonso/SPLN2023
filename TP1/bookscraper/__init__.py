@@ -139,14 +139,15 @@ def get_book_page(args,driver:webdriver)->str:
 	if args.isbn:
 		log(args,f"Searching for book with isbn - {args.isbn}...")
 		driver.get(f"https://www.goodreads.com/search?q={args.isbn}")
-		driver_wait_element(driver,'//script[@type="application/ld+json"]')
+		args.id = get_book_id(driver.current_url)
+		driver_wait_element(driver,'//script[@type="application/ld+json"]',10000)
 		r = driver.page_source
 
 	# Search with book's work id'
 	elif args.id:
 		log(args,f"Searching for book with id - {args.id}...")
 		driver.get(f"https://www.goodreads.com/book/show/{args.id}")
-		driver_wait_element(driver,'//script[@type="application/ld+json"]')
+		driver_wait_element(driver,'//script[@type="application/ld+json"]',10000)
 		r = driver.page_source
 
 	# Search with search name (less precise)
@@ -154,9 +155,11 @@ def get_book_page(args,driver:webdriver)->str:
 		log(args,f"Searching for book with name - {args.btitle}...")
 		btitle = args.btitle.lower().replace(' ','')
 		driver.get(f"https://www.goodreads.com/search?q={args.btitle}")
-		driver_wait_element(driver,'//script[@type="application/ld+json"]')
 		page = driver.page_source
 		r = search_btitle(args,driver,btitle,page)
+		if r:
+			args.id = get_book_id(driver.current_url)
+			driver_wait_element(driver,'//script[@type="application/ld+json"]',10000)
 
 
 	log(args,f"Search finished")
@@ -422,6 +425,7 @@ def scrape_reviews_page(args,html_page:str,lower_limit:int=None,higher_limit:int
 		reviewer_main = reviewer_info.find('a')
 		reviewer_name = reviewer_main.get_text().strip()
 		reviewer_id = re.search(r'/user/show/(\d+)',reviewer_main['href']).group(1)
+		review_score = None
 		review_score_elem = review.find('div',{'class':'ShelfStatus'}).find('span')
 		if review_score_elem:
 			review_score = re.search(r'Rating (\d+) out of \d+',review_score_elem['aria-label']).group(1)
@@ -490,7 +494,7 @@ def scrape_reviews(args,driver)->List[Review]:
 					max_reviews = range[1]-range[0]
 					range[0] = range[0] + len(reviews)
 					while(count < n_reviews and count < max_reviews):
-						log(args,f'Current reviews : {count}')
+						log(args,f'Current reviews : {count} of {n_reviews}')
 						page = driver.page_source
 						thread = th.Thread(target=review_page_show_more,args=[args,driver])
 						thread.start()
@@ -503,7 +507,7 @@ def scrape_reviews(args,driver)->List[Review]:
 				else:
 					range[0] = len(reviews)		
 					while(count < n_reviews):
-						log(args,f'Current reviews : {count}')
+						log(args,f'Current reviews : {count} of {n_reviews}')
 						page = driver.page_source
 						thread = th.Thread(target=review_page_show_more,args=[args,driver])
 						thread.start()
