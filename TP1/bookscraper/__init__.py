@@ -88,6 +88,7 @@ def search_book_option(args):
 
 def search_btitle(args,driver:webdriver,btitle:str,page:str)->str:
 	"""Searches for a book page using its name and author if given"""
+	log(args,f'Finding best match...')
 	r = None
 	soup = BeautifulSoup(page,features='lxml')
 	books = soup.find_all('a',{'class':'bookTitle'})
@@ -121,8 +122,10 @@ def search_btitle(args,driver:webdriver,btitle:str,page:str)->str:
 				break
 	# Choose the best match
 	if len(similarityDic)>0:
+		log(args,f'Match found.')
 		similarityDic = sorted(similarityDic,key=lambda x: x[2])
-		driver.get(f'https://www.goodreads.com{similarityDic[0][1]}')
+		id = get_book_id(f'https://www.goodreads.com{similarityDic[0][1]}')
+		driver.get(f'https://www.goodreads.com/book/show/{id}')
 		r = driver.page_source
 	else:
 		error(args,f'Could not find book name {args.btitle}')
@@ -140,14 +143,18 @@ def get_book_page(args,driver:webdriver)->str:
 		log(args,f"Searching for book with isbn - {args.isbn}...")
 		driver.get(f"https://www.goodreads.com/search?q={args.isbn}")
 		args.id = get_book_id(driver.current_url)
-		driver_wait_element(driver,'//script[@type="application/ld+json"]',10000)
+		log(args,f'Waiting for page to load...')
+		driver_wait_element(driver,'//script[@type="application/ld+json"]',100)
+		log(args,f'Loaded')
 		r = driver.page_source
 
 	# Search with book's work id'
 	elif args.id:
 		log(args,f"Searching for book with id - {args.id}...")
 		driver.get(f"https://www.goodreads.com/book/show/{args.id}")
-		driver_wait_element(driver,'//script[@type="application/ld+json"]',10000)
+		log(args,f'Waiting for page to load...')
+		driver_wait_element(driver,'//script[@type="application/ld+json"]',100)
+		log(args,f'Loaded')
 		r = driver.page_source
 
 	# Search with search name (less precise)
@@ -159,7 +166,11 @@ def get_book_page(args,driver:webdriver)->str:
 		r = search_btitle(args,driver,btitle,page)
 		if r:
 			args.id = get_book_id(driver.current_url)
-			driver_wait_element(driver,'//script[@type="application/ld+json"]',10000)
+			log(args,f'Waiting for page to load...')
+			driver_wait_element(driver,'//script[@type="application/ld+json"]',100)
+			log(args,f'Loaded')
+
+
 
 
 	log(args,f"Search finished")
@@ -442,10 +453,10 @@ def get_review_page_stats(page:str)->List[int]:
 	"""Recovers simple stats about review page, such as number of reviews and range shown"""
 	soup = BeautifulSoup(page,features='lxml')
 	number_reviews_elem = soup.find('div',{'class':'ReviewsList__listContext'}).find('span')
-	number_reviews_info = re.search(r'(\d+)\s*-\s*(\d+)[^\d]*(\d+((,|\.)\d+)?)',number_reviews_elem.get_text().strip())
-	n_reviews = int(re.sub(r'(.*),|\.(.*)',r'\1\2',number_reviews_info.group(3)))
-	lower_review = int(number_reviews_info.group(1))
-	higher_review = int(number_reviews_info.group(2))
+	number_reviews_info = re.search(r'(\d+((,|\.)\d+)?)[^\d]*(\d+((,|\.)\d+)?)[^\d]*(\d+((,|\.)\d+)?)',number_reviews_elem.get_text().strip())
+	n_reviews = int(re.sub(r'(.*),|\.(.*)',r'\1\2',number_reviews_info.group(7)))
+	lower_review = int(re.sub(r'(.*),|\.(.*)',r'\1\2',number_reviews_info.group(1)))
+	higher_review = int(re.sub(r'(.*),|\.(.*)',r'\1\2',number_reviews_info.group(4)))
 	return [n_reviews,lower_review,higher_review]
 
 
@@ -480,8 +491,7 @@ def scrape_reviews(args,driver)->List[Review]:
 				log(args,f'Simple review scraping')
 				reviews = scrape_reviews_page(args,page,range[0],range[1])
 
-			# Get more reviews (slower as it uses a driver to interact with buttons that make js requests)
-			# FIXME: Bug after 1000 reviews reviews (~30 button activations)
+			# Get more reviews
 			elif args.reviews_full:
 				log(args,f'Full review scraping')
 
@@ -511,6 +521,10 @@ def scrape_reviews(args,driver)->List[Review]:
 						page = driver.page_source
 						thread = th.Thread(target=review_page_show_more,args=[args,driver])
 						thread.start()
+						soup = BeautifulSoup(page,features='lxml')
+						file = open(f'{path}/test/teste10.html','w')
+						file.write(soup.prettify())
+						file.close()
 						n_reviews,lower_review,higher_review = get_review_page_stats(page)
 						reviews += scrape_reviews_page(args,page,range[0],range[1])
 						range[0] = len(reviews)
@@ -590,38 +604,42 @@ def bookscraper():
 
 	driver = create_driver(args)
 	if driver:
-		results = []
-		results_reviews = []
+		try:
+			results = []
+			results_reviews = []
 
-		books,authors = process_arguments(args)
+			books,authors = process_arguments(args)
 
-		for book in books:
-			# Get the page of a book
-			res = get_book_page(book,driver)
-			if res:
-				b = scrape_book_page(book,prettify_html(res))
-				results.append({'out':book.output,'result':b.__str__(True if args.verbose else False)})
+			for book in books:
+				# Get the page of a book
+				res = get_book_page(book,driver)
+				if res:
+					b = scrape_book_page(book,prettify_html(res))
+					results.append({'out':book.output,'result':b.__str__(True if args.verbose else False)})
+				
+				if(book.reviews or book.reviews_full):
+					reviews = scrape_reviews(book,driver)
+					if reviews:
+						df = create_dataset(reviews[0].header(),[r.dataset_line() for r in reviews])
+						results_reviews.append({'out' : book.review_output, 'result':df.to_json(indent=4)})
+
+				
+
+			for author in authors:
+				# Get the page of an author
+				res = get_author_page(author,driver)
+				if res:
+					a = scrape_author_page(author,prettify_html(res))
+					results.append({'out':author.output,'result':a.__str__(True if args.verbose else False)})
+
+			driver.quit()
+			for result in results:
+				write_output(result['out'],result['result'])
 			
-			if(book.reviews or book.reviews_full):
-				reviews = scrape_reviews(book,driver)
-				if reviews:
-					df = create_dataset(reviews[0].header(),[r.dataset_line() for r in reviews])
-					results_reviews.append({'out' : book.review_output, 'result':df.to_json(indent=4)})
-
-			
-
-		for author in authors:
-			# Get the page of an author
-			res = get_author_page(author,driver)
-			if res:
-				a = scrape_author_page(author,prettify_html(res))
-				results.append({'out':author.output,'result':a.__str__(True if args.verbose else False)})
-
-		driver.quit()
-		for result in results:
-			write_output(result['out'],result['result'])
-		
-		for result in results_reviews:
-			write_output(result['out'],result['result'])
+			for result in results_reviews:
+				write_output(result['out'],result['result'])
+		except Exception as e:
+			error(args,f'Fatal error -> {e}')
+			driver.quit()
 
 
