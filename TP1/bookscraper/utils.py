@@ -57,28 +57,36 @@ def write_output(out,result):
     if not out:
         sys.stdout.write(result)
     else:
-        if(isinstance(out, str)):
-            out = open(out,"w")
+        if isinstance(out, tuple):
+            out = open(out[0],out[1])
         out.write(result)
 
 
-def write_reviews(args,reviews:List[Review],header:bool=False):
+def write_reviews(args,reviews:List[Review],header:bool=False,force:bool=False,delim:str='#;#'):
     """Writes list of reviews in the given output file"""
-    if args.review_output and isinstance(args.review_output,str) and len(reviews) > 0:
-        delim = '#;#'
+    if args.reviews_output and isinstance(args.reviews_output,str) and len(reviews) > 0:
         if header:
-            out = open(args.review_output,'w')
-            out.write(delim.join(reviews[0].header()))
-            out.write('\n')
-            out.close()
-        out = open(args.review_output,'a')
-        for review in reviews:
-            out.write(review.dataset_line_str(delim))
-            out.write('\n')
+            data = costum_csv([review.dataset_line_str(delim) for review in reviews],reviews[0].header_str(delim))
+            mode = 'w'
+        else:
+            data = costum_csv([review.dataset_line_str(delim) for review in reviews])
+            mode = 'a'
+        out = open(args.reviews_output,mode)
+        out.write(data)
         out.close()
+    elif force:
+        if header:
+            data = costum_csv([review.dataset_line_str(delim) for review in reviews],reviews[0].header_str(delim))
+        else:
+            data = costum_csv([review.dataset_line_str(delim) for review in reviews])
+        print(data)
 
-def costum_csv(header:str,list:List[str])->str:
-    csv = f'{header}\n'
+
+def costum_csv(list:List[str],header:str=None)->str:
+    """Create a costum csv string"""
+    csv =''
+    if header:
+        csv = f'{header}\n'
     for e in list:
         csv+=f'{e}\n'
     return csv
@@ -117,7 +125,7 @@ def want_reviews(books) -> bool:
 def process_arguments(args):
     books = []
     authors = []
-
+    invalid = False
     #Apenas um book
     if args.isbn or args.id or args.btitle:
         book = SimpleNamespace(isbn = args.isbn,
@@ -149,7 +157,6 @@ def process_arguments(args):
 
     #Json com varios books e varios authors
     elif args.json:
-        invalid = False
         #Tratar json
         print("FICHEIRO JSON -> ",args.json)
         file = open(args.json[0])
@@ -169,7 +176,7 @@ def process_arguments(args):
                                reviews_full = args.reviews_full,
                                reviews_range = args.reviews_range,
                                reviews_language = args.reviews_language,
-                               reviews_output = args.reviews_output)
+                               reviews_output = None)
 
                 if 'isbn' in book_json:
                     book.isbn = book_json['isbn']
@@ -181,10 +188,27 @@ def process_arguments(args):
                     book.author = book_json['author']
                 if 'output' in book_json:
                     book.output = book_json['output']
+                if 'reviews' in book_json:
+                    book.reviews = book_json['reviews']
+                if 'reviews_full' in book_json:
+                    book.reviews_full = book_json['reviews_full']
+                if 'reviews_range' in book_json:
+                    if isinstance(book_json['reviews_range'],list) and all([isinstance(item, int) for item in book_json['reviews_range']]) and len(book_json['reviews_range'])==2:
+                        book.reviews_range = book_json['reviews_range']
+                    else:
+                        invalid = True
+                if 'reviews_language' in book_json:
+                    book.reviews_language = book_json['reviews_language']
+                if 'reviews_output' in book_json:
+                    book.reviews_output = book_json['reviews_output']
 
                 if not (book.isbn or book.id or book.btitle):
                     invalid = True
-                else: books.append(book)
+                else: 
+                    books.append(book)
+                if invalid:
+                    error(args,f"Error in dic \n {book_json}")
+                    break
                 
 
         if 'authors' in data:
@@ -209,15 +233,21 @@ def process_arguments(args):
 
                 except:
                     invalid = True
-
-    return books,authors
+                if invalid:
+                    error(args,f"Error in dic \n {author_json}")
+                    break
+                    
+    if not invalid:
+        return books,authors
+    else:
+        return None
 
 
 def parse_arguments(__version__)->argparse.Namespace:
     """Process arguments from stdin"""
     parser = argparse.ArgumentParser(
         prog='tok',
-        formatter_class=argparse.RawDescriptionHelpFormatter,
+        formatter_class=argparse.RawTextHelpFormatter,
         description=f'''
     --------------------------------------------------------------------
                     **BookScraper version {__version__}**
@@ -229,7 +259,7 @@ def parse_arguments(__version__)->argparse.Namespace:
     parser.add_argument('-btitle'                 ,type=str                        ,nargs='?'  ,default=None                           ,help='name of the book to scrape (not precise)')
     parser.add_argument('-a','--author'           ,type=str                        ,nargs='?'  ,default=None                           ,help='author name or id to scrape')
     parser.add_argument('-mw','--maxworks'        ,type=int                        ,nargs='?'  ,default=None                           ,help='maximum number of works to find')
-    parser.add_argument('-r','--reviews'                                                                     ,action='store_true'      ,help='gathers reviews of a book (simple mode)')
+    parser.add_argument('-r','--reviews'                                                                     ,action='store_true'      ,help='gathers reviews of a book (simple mode).\nreviews are written to output as soon as possible to save memory')
     parser.add_argument('-rf','--reviews_full'                                                               ,action='store_true'      ,help='gathers reviews of a book (full mode, slower)')
     parser.add_argument('-rg','--reviews_range'   ,type=int                        ,nargs=2    ,default=None                           ,help='defines the range of reviews to collect')
     parser.add_argument('-rl','--reviews_language',type=str                        ,nargs='?'  ,default=None                           ,help='defines a language to filter the reviews page')
@@ -242,3 +272,5 @@ def parse_arguments(__version__)->argparse.Namespace:
     parser.add_argument('--version','-V', action='version', version='%(prog)s '+__version__)
 
     return parser.parse_args()
+
+

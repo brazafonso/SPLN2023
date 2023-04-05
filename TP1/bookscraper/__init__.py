@@ -248,7 +248,12 @@ def scrape_book_page(args,html_page:str)->Book:
 	book_npages = book_details['numPages']
 	book_language = book_details['language']['name']
 	book_isbn = book_details['isbn13']
-	book_publishing_date = datetime.fromtimestamp(book_details['publicationTime']/1000).date()
+	try:
+		# Original date
+		book_publishing_date = datetime.fromtimestamp(page_info_dic[book_work_id]['details']['publicationTime']/1000).date()
+	except:
+		# Edition date
+		book_publishing_date = datetime.fromtimestamp(book_details['publicationTime']/1000).date()
 
 	book_genres = []
 	for genre in book_info['bookGenres']:
@@ -624,54 +629,66 @@ def scrape_reviews(args,driver)->List[Review]:
 def bookscraper():
 	"""Main function of the program"""
 	args = parse_arguments(__version__)
-
-	driver = create_driver(args)
-	if driver:
-		try:
-			results = []
-			results_reviews = []
-
-			books,authors = process_arguments(args)
-
-			for book in books:
-				# Get the page of a book
-				res = get_book_page(book,driver)
-				if res:
-					b = scrape_book_page(book,prettify_html(res))
-					results.append({'out':book.output,'result':b.__str__(True if args.verbose else False)})
+	books,authors = process_arguments(args)
+	if len(books) > 0 or len(authors) > 0:
+		driver = create_driver(args)
+		if driver:
+			try:
+				results = []
+				results_reviews = []
+				first_write = True
 				
-				if(book.reviews or book.reviews_full):
-					reviews = scrape_reviews(book,driver)
-					if reviews:
-						delim = '#;#'
-						str = costum_csv(reviews[0].header_str(delim),[review.dataset_line_str(delim) for review in reviews])
-						results_reviews.append({'out' : open(book.reviews_output,'w'), 'result':str})
+				for book in books:
+					# Get the page of a book
+					res = get_book_page(book,driver)
+					if res:
+						b = scrape_book_page(book,prettify_html(res))
+						results.append({'out':book.output,'result':b.__str__(True if args.verbose else False)})
+					
+					if(book.reviews or book.reviews_full):
+						reviews = scrape_reviews(book,driver)
+						if reviews:
+							delim = '#;#'
+							# Allow for multiple review pages to be written in the main review output
+							if not book.reviews_output:
+								if first_write:
+									write_reviews(args,reviews,first_write,True,delim)
+									first_write = False
+								else:
+									write_reviews(args,reviews,first_write,True,delim)
+							else:
+								data = costum_csv([review.dataset_line_str(delim) for review in reviews],reviews[0].header_str(delim))
+								out = open(book.reviews_output,'w') if book.reviews_output else None
+								results_reviews.append({'out' : out, 'result':data})
 
+					
+				for author in authors:
+					# Get the page of an author
+					res = get_author_page(author,driver)
+					if res:
+						a = scrape_author_page(author,prettify_html(res))
+						results.append({'out':author.output,'result':a.__str__(True if args.verbose else False)})
+
+				driver.quit()
+				for result in results:
+					write_output(result['out'],result['result'])
 				
-			for author in authors:
-				# Get the page of an author
-				res = get_author_page(author,driver)
-				if res:
-					a = scrape_author_page(author,prettify_html(res))
-					results.append({'out':author.output,'result':a.__str__(True if args.verbose else False)})
+				for result in results_reviews:
+					write_output(result['out'],result['result'])
 
-			driver.quit()
-			for result in results:
-				write_output(result['out'],result['result'])
-			
-			for result in results_reviews:
-				write_output(result['out'],result['result'])
-		except Exception as e:
-			error(args,f'Fatal error -> {traceback.format_exc()}')
-			file = open(f'{path}/test/debug.html','w')
-			file.write(prettify_html(driver.page_source))
-			file.close()
-			driver.quit()
-		except KeyboardInterrupt as e:
-			error(args,f'Interrupted error -> {e}')
-			file = open(f'{path}/test/debug.html','w')
-			file.write(prettify_html(driver.page_source))
-			file.close()
-			driver.quit()
+			except Exception as e:
+				error(args,f'Fatal error -> {traceback.format_exc()}')
+				file = open(f'{path}/test/debug.html','w')
+				file.write(prettify_html(driver.page_source))
+				file.close()
+				driver.quit()
+			except KeyboardInterrupt as e:
+				error(args,f'Interrupted error -> {e}')
+				file = open(f'{path}/test/debug.html','w')
+				file.write(prettify_html(driver.page_source))
+				file.close()
+				driver.quit()
+	else:
+		error(args,'No options selected')
 
 
