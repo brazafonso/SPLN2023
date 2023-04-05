@@ -1,0 +1,320 @@
+1680703930851	geckodriver	INFO	Listening on 127.0.0.1:49001
+1680703931356	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--window-size=1440,900" "--headless" "--remote-debugging-port" "34171" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileE97RrZ"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1680703932133	Marionette	INFO	Marionette enabled
+1680703932140	Marionette	INFO	Listening on port 37297
+Read port: 37297
+console.error: "Warning: unrecognized command line flag -window-size\n"
+WebDriver BiDi listening on ws://127.0.0.1:34171
+1680703932375	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileE97RrZ/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:34171/devtools/browser/56f40c1a-b6dc-47f0-9a89-6fbc4225258a
+libEGL warning: failed to open /dev/dri/renderD128: Permission denied
+
+libEGL warning: failed to open /dev/dri/card0: Permission denied
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/lLwpSR5MnyGzOFtGAuW1fc1OQlo0k-g4ASkZp7pYH4M.js line 2 > eval line 3449 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize RENDERER device: D3D12
+ALSA lib seq_hw.c:466:(snd_seq_hw_open) open /dev/snd/seq failed: No such file or directory
+libEGL warning: failed to open /dev/dri/renderD128: Permission denied
+
+libEGL warning: failed to open /dev/dri/card0: Permission denied
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/lLwpSR5MnyGzOFtGAuW1fc1OQlo0k-g4ASkZp7pYH4M.js line 2 > eval line 2277 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize RENDERER device: D3D12
+libEGL warning: failed to open /dev/dri/renderD128: Permission denied
+
+libEGL warning: failed to open /dev/dri/card0: Permission denied
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/lLwpSR5MnyGzOFtGAuW1fc1OQlo0k-g4ASkZp7pYH4M.js line 2 > eval line 4900 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize RENDERER device: D3D12
+libEGL warning: failed to open /dev/dri/renderD128: Permission denied
+
+libEGL warning: failed to open /dev/dri/card0: Permission denied
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/lLwpSR5MnyGzOFtGAuW1fc1OQlo0k-g4ASkZp7pYH4M.js line 2 > eval line 5476 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize RENDERER device: D3D12
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1680704054089	geckodriver	INFO	Listening on 127.0.0.1:51189
+1680704054594	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--window-size=1440,900" "--remote-debugging-port" "33393" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileTHGQPY"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1680704055228	Marionette	INFO	Marionette enabled
+1680704055233	Marionette	INFO	Listening on port 37581
+console.error: "Warning: unrecognized command line flag -window-size\n"
+Read port: 37581
+WebDriver BiDi listening on ws://127.0.0.1:33393
+1680704055411	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileTHGQPY/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:33393/devtools/browser/41cd5150-5394-478d-bfb9-9cea0c0f51e1
+ATTENTION: default value of option mesa_glthread overridden by environment.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/lLwpSR5MnyGzOFtGAuW1fc1OQlo0k-g4ASkZp7pYH4M.js line 2 > eval line 4804 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize RENDERER device: D3D12
+ATTENTION: default value of option mesa_glthread overridden by environment.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/lLwpSR5MnyGzOFtGAuW1fc1OQlo0k-g4ASkZp7pYH4M.js line 2 > eval line 955 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize RENDERER device: D3D12
+ALSA lib seq_hw.c:466:(snd_seq_hw_open) open /dev/snd/seq failed: No such file or directory
+ATTENTION: default value of option mesa_glthread overridden by environment.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/lLwpSR5MnyGzOFtGAuW1fc1OQlo0k-g4ASkZp7pYH4M.js line 2 > eval line 934 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize RENDERER device: D3D12
+1680704091781	Marionette	INFO	Stopped listening on port 37581
+1680704343210	geckodriver	INFO	Listening on 127.0.0.1:60501
+1680704343714	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--window-size=1440,900" "--remote-debugging-port" "43479" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofile6PI7ca"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1680704344334	Marionette	INFO	Marionette enabled
+1680704344338	Marionette	INFO	Listening on port 35027
+console.error: "Warning: unrecognized command line flag -window-size\n"
+Read port: 35027
+WebDriver BiDi listening on ws://127.0.0.1:43479
+1680704344476	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofile6PI7ca/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:43479/devtools/browser/7a593564-fd8c-4df3-99e2-f6c8450367ca
+ATTENTION: default value of option mesa_glthread overridden by environment.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/lLwpSR5MnyGzOFtGAuW1fc1OQlo0k-g4ASkZp7pYH4M.js line 2 > eval line 4765 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize RENDERER device: D3D12
+ATTENTION: default value of option mesa_glthread overridden by environment.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/lLwpSR5MnyGzOFtGAuW1fc1OQlo0k-g4ASkZp7pYH4M.js line 2 > eval line 2519 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize RENDERER device: D3D12
+ALSA lib seq_hw.c:466:(snd_seq_hw_open) open /dev/snd/seq failed: No such file or directory
+ATTENTION: default value of option mesa_glthread overridden by environment.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/lLwpSR5MnyGzOFtGAuW1fc1OQlo0k-g4ASkZp7pYH4M.js line 2 > eval line 6438 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize RENDERER device: D3D12
+1680704380347	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://remote/content/marionette/sync.sys.mjs:219:24
+TimedPromise@chrome://remote/content/marionette/sync.sys.mjs:204:10
+interaction.flushEventLoop@chrome://remote/content/marionette/interaction.sys.mjs:425:10
+webdriverClickElement@chrome://remote/content/marionette/interaction.sys.mjs:173:31
+1680704389360	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://remote/content/marionette/sync.sys.mjs:219:24
+TimedPromise@chrome://remote/content/marionette/sync.sys.mjs:204:10
+interaction.flushEventLoop@chrome://remote/content/marionette/interaction.sys.mjs:425:10
+webdriverClickElement@chrome://remote/content/marionette/interaction.sys.mjs:173:31
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1680704631218	geckodriver	INFO	Listening on 127.0.0.1:47755
+1680704631722	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--window-size=1440,900" "--remote-debugging-port" "43851" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileTbUFp4"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1680704632240	Marionette	INFO	Marionette enabled
+1680704632245	Marionette	INFO	Listening on port 34075
+console.error: "Warning: unrecognized command line flag -window-size\n"
+Read port: 34075
+WebDriver BiDi listening on ws://127.0.0.1:43851
+1680704632397	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileTbUFp4/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:43851/devtools/browser/9610e597-f1f4-467f-a7ee-ffa8c958da48
+ATTENTION: default value of option mesa_glthread overridden by environment.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/lLwpSR5MnyGzOFtGAuW1fc1OQlo0k-g4ASkZp7pYH4M.js line 2 > eval line 6838 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize RENDERER device: D3D12
+ATTENTION: default value of option mesa_glthread overridden by environment.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/lLwpSR5MnyGzOFtGAuW1fc1OQlo0k-g4ASkZp7pYH4M.js line 2 > eval line 1709 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize RENDERER device: D3D12
+ALSA lib seq_hw.c:466:(snd_seq_hw_open) open /dev/snd/seq failed: No such file or directory
+ATTENTION: default value of option mesa_glthread overridden by environment.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/lLwpSR5MnyGzOFtGAuW1fc1OQlo0k-g4ASkZp7pYH4M.js line 2 > eval line 5312 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize RENDERER device: D3D12
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1680704786289	geckodriver	INFO	Listening on 127.0.0.1:39459
+1680704786793	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--window-size=1440,900" "--remote-debugging-port" "38371" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileoQhkGo"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1680704787355	Marionette	INFO	Marionette enabled
+1680704787359	Marionette	INFO	Listening on port 43399
+Read port: 43399
+console.error: "Warning: unrecognized command line flag -window-size\n"
+WebDriver BiDi listening on ws://127.0.0.1:38371
+1680704787494	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileoQhkGo/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:38371/devtools/browser/14684f42-4438-4199-a1ea-5aad47dc8069
+ATTENTION: default value of option mesa_glthread overridden by environment.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/lLwpSR5MnyGzOFtGAuW1fc1OQlo0k-g4ASkZp7pYH4M.js line 2 > eval line 223 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize RENDERER device: D3D12
+ATTENTION: default value of option mesa_glthread overridden by environment.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/lLwpSR5MnyGzOFtGAuW1fc1OQlo0k-g4ASkZp7pYH4M.js line 2 > eval line 500 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize RENDERER device: D3D12
+ATTENTION: default value of option mesa_glthread overridden by environment.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/lLwpSR5MnyGzOFtGAuW1fc1OQlo0k-g4ASkZp7pYH4M.js line 2 > eval line 4723 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize RENDERER device: D3D12
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1680704902206	geckodriver	INFO	Listening on 127.0.0.1:41679
+1680704902712	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--window-size=1440,900" "--remote-debugging-port" "51901" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilerTtafR"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1680704903377	Marionette	INFO	Marionette enabled
+1680704903381	Marionette	INFO	Listening on port 35311
+Read port: 35311
+console.error: "Warning: unrecognized command line flag -window-size\n"
+WebDriver BiDi listening on ws://127.0.0.1:51901
+1680704903514	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofilerTtafR/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:51901/devtools/browser/26b02c9f-7af7-44a6-99a6-0d7c0452afc5
+ATTENTION: default value of option mesa_glthread overridden by environment.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/lLwpSR5MnyGzOFtGAuW1fc1OQlo0k-g4ASkZp7pYH4M.js line 2 > eval line 4313 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize RENDERER device: D3D12
+ATTENTION: default value of option mesa_glthread overridden by environment.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/lLwpSR5MnyGzOFtGAuW1fc1OQlo0k-g4ASkZp7pYH4M.js line 2 > eval line 7041 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize RENDERER device: D3D12
+ALSA lib seq_hw.c:466:(snd_seq_hw_open) open /dev/snd/seq failed: No such file or directory
+ATTENTION: default value of option mesa_glthread overridden by environment.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/lLwpSR5MnyGzOFtGAuW1fc1OQlo0k-g4ASkZp7pYH4M.js line 2 > eval line 3462 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize RENDERER device: D3D12
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1680705007265	geckodriver	INFO	Listening on 127.0.0.1:53657
+1680705007768	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--window-size=1440,900" "--remote-debugging-port" "33633" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileT2gpWx"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1680705008267	Marionette	INFO	Marionette enabled
+1680705008271	Marionette	INFO	Listening on port 45257
+console.error: "Warning: unrecognized command line flag -window-size\n"
+WebDriver BiDi listening on ws://127.0.0.1:33633
+Read port: 45257
+1680705008510	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileT2gpWx/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:33633/devtools/browser/d2761e27-2860-4c01-b39d-37c0c40ca7aa
+1680705012787	Marionette	WARN	Ignoring event 'DOMContentLoaded' because document has an invalid readyState of 'complete'.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/lLwpSR5MnyGzOFtGAuW1fc1OQlo0k-g4ASkZp7pYH4M.js line 2 > eval line 5725 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize RENDERER device: D3D12
+ATTENTION: default value of option mesa_glthread overridden by environment.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/lLwpSR5MnyGzOFtGAuW1fc1OQlo0k-g4ASkZp7pYH4M.js line 2 > eval line 7675 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize RENDERER device: D3D12
+ALSA lib seq_hw.c:466:(snd_seq_hw_open) open /dev/snd/seq failed: No such file or directory
+ATTENTION: default value of option mesa_glthread overridden by environment.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/lLwpSR5MnyGzOFtGAuW1fc1OQlo0k-g4ASkZp7pYH4M.js line 2 > eval line 1529 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize RENDERER device: D3D12
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1680705058978	geckodriver	INFO	Listening on 127.0.0.1:40315
+1680705059483	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--window-size=1440,900" "--remote-debugging-port" "37413" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilecNPoob"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1680705059993	Marionette	INFO	Marionette enabled
+1680705059998	Marionette	INFO	Listening on port 35093
+console.error: "Warning: unrecognized command line flag -window-size\n"
+Read port: 35093
+WebDriver BiDi listening on ws://127.0.0.1:37413
+1680705060195	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofilecNPoob/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:37413/devtools/browser/1221b61a-28dc-4a3b-96f0-d56e1d53f04b
+ATTENTION: default value of option mesa_glthread overridden by environment.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/lLwpSR5MnyGzOFtGAuW1fc1OQlo0k-g4ASkZp7pYH4M.js line 2 > eval line 4104 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize RENDERER device: D3D12
+ATTENTION: default value of option mesa_glthread overridden by environment.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/lLwpSR5MnyGzOFtGAuW1fc1OQlo0k-g4ASkZp7pYH4M.js line 2 > eval line 109 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize RENDERER device: D3D12
+ALSA lib seq_hw.c:466:(snd_seq_hw_open) open /dev/snd/seq failed: No such file or directory
+ATTENTION: default value of option mesa_glthread overridden by environment.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/lLwpSR5MnyGzOFtGAuW1fc1OQlo0k-g4ASkZp7pYH4M.js line 2 > eval line 5063 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize RENDERER device: D3D12
+1680705112558	Marionette	INFO	Stopped listening on port 35093
+1680705124864	geckodriver	INFO	Listening on 127.0.0.1:46895
+1680705125368	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--window-size=1440,900" "--remote-debugging-port" "54057" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileBfh702"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1680705125895	Marionette	INFO	Marionette enabled
+1680705125900	Marionette	INFO	Listening on port 36423
+console.error: "Warning: unrecognized command line flag -window-size\n"
+Read port: 36423
+WebDriver BiDi listening on ws://127.0.0.1:54057
+1680705126034	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileBfh702/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:54057/devtools/browser/bba21dce-a79c-470c-8e3c-1768a3006839
+ATTENTION: default value of option mesa_glthread overridden by environment.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/lLwpSR5MnyGzOFtGAuW1fc1OQlo0k-g4ASkZp7pYH4M.js line 2 > eval line 182 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize RENDERER device: D3D12
+ALSA lib seq_hw.c:466:(snd_seq_hw_open) open /dev/snd/seq failed: No such file or directory
+ATTENTION: default value of option mesa_glthread overridden by environment.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/lLwpSR5MnyGzOFtGAuW1fc1OQlo0k-g4ASkZp7pYH4M.js line 2 > eval line 7199 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize RENDERER device: D3D12
+ATTENTION: default value of option mesa_glthread overridden by environment.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/lLwpSR5MnyGzOFtGAuW1fc1OQlo0k-g4ASkZp7pYH4M.js line 2 > eval line 5472 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize RENDERER device: D3D12
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+Exiting due to channel error.
+1680705203697	geckodriver	INFO	Listening on 127.0.0.1:57317
+1680705204202	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--window-size=1440,900" "--headless" "--remote-debugging-port" "44455" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileiS3nQe"
+*** You are running in headless mode.
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1680705204500	Marionette	INFO	Marionette enabled
+1680705204505	Marionette	INFO	Listening on port 43955
+console.error: "Warning: unrecognized command line flag -window-size\n"
+WebDriver BiDi listening on ws://127.0.0.1:44455
+Read port: 43955
+1680705204759	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+[GFX1-]: RenderCompositorSWGL failed mapping default framebuffer, no dt
+console.error: ({})
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileiS3nQe/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:44455/devtools/browser/cc31f524-2e21-4fc7-be56-8f76d6df92fb
+libEGL warning: failed to open /dev/dri/renderD128: Permission denied
+
+libEGL warning: failed to open /dev/dri/card0: Permission denied
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/lLwpSR5MnyGzOFtGAuW1fc1OQlo0k-g4ASkZp7pYH4M.js line 2 > eval line 6353 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize RENDERER device: D3D12
+libEGL warning: failed to open /dev/dri/renderD128: Permission denied
+
+libEGL warning: failed to open /dev/dri/card0: Permission denied
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/lLwpSR5MnyGzOFtGAuW1fc1OQlo0k-g4ASkZp7pYH4M.js line 2 > eval line 2201 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize RENDERER device: D3D12
+ALSA lib seq_hw.c:466:(snd_seq_hw_open) open /dev/snd/seq failed: No such file or directory
+libEGL warning: failed to open /dev/dri/renderD128: Permission denied
+
+libEGL warning: failed to open /dev/dri/card0: Permission denied
+
+JavaScript warning: https://pagead2.googlesyndication.com/bg/lLwpSR5MnyGzOFtGAuW1fc1OQlo0k-g4ASkZp7pYH4M.js line 2 > eval line 7434 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+[GFX1-]: Couldn't sanitize RENDERER device: D3D12
+1680705258065	Marionette	INFO	Stopped listening on port 43955

@@ -509,16 +509,17 @@ def get_review_page_stats(page:str)->List[int]:
 def review_page_show_more(args,driver):
 	"""Activates show more reviews javascript on review page"""
 	log(args,f'Showing more reviews...')
-	elem = driver.find_element(By.XPATH,"//button[@class='Button Button--secondary Button--small']")
-	if elem:
+	try:
+		elem = driver.find_element(By.XPATH,"//span[text()='Show more reviews']")
 		driver.execute_script("arguments[0].scrollIntoView();", elem)
-		driver_wait_element_to_be_clickable(driver,"//button[@class='Button Button--secondary Button--small']",1000000)
+		driver_wait_element_to_be_clickable(driver,"//span[text()='Show more reviews']",1000000)
 		time.sleep(0.5)
 		elem.click()
 		driver_wait_element(driver,"//button[@class='Button Button--secondary Button--small Button--disabled']",1000000,False)
 		log(args,f'Got more reviews.')
-	else:
+	except Exception as e:
 		log(args,f'No more reviews.')
+		print(traceback.format_exc())
 
 
 def reviews_page_filter_language(args,driver)->bool:
@@ -591,7 +592,7 @@ def scrape_reviews(args,driver)->List[Review]:
 				n_reviews,lower_review,higher_review = get_review_page_stats(page)
 				# Get reviews in range
 				if args.reviews_range:
-					max_reviews = range[1]
+					max_reviews = range[1]-range[0]
 					range[0] = range[0] + len(reviews)
 				# Get all reviews
 				else:
