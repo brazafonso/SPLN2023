@@ -53,7 +53,7 @@ def create_driver(args)->webdriver:
 			log(args,f'Firefox')
 			opf = webdriver.FirefoxOptions()
 			opf.add_argument('--window-size=1440,900')
-			#opf.add_argument('--headless')
+			opf.add_argument('--headless')
 			driver = webdriver.Firefox(options=opf)
 		except:
 			error(args,f'Could not create Firefox driver')
