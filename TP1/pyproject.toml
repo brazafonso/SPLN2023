@@ -3,13 +3,13 @@ requires = ["flit_core >=3.2,<4"]
 build-backend = "flit_core.buildapi"
 
 [project]
-name = "bookscraper"
+name = "goodreadsscraper"
 authors = [{name = "brazafonso", email = "a93178@uminho.pt"},{name = "Tiago Silva", email = "a93277@uminho.pt"}]
 license = {file = "LICENSE"}
 classifiers = ["License :: OSI Approved :: MIT License"]
 dynamic = ["version", "description"]
-dependencies = ["jellyfish","pandas","lxml.html","bs4","selenium","argparse"]
+dependencies = ["jellyfish","pandas","bs4","selenium","argparse"]
 
 [project.scripts]
-bs = "bookscraper:bookscraper"
+grs = "goodreadsscraper:goodreadsscraper"
 

@@ -1,4 +1,4 @@
-from typing import Set,List
+from typing import List
 
 class Review:
     """Class to represent and save data of a Review"""

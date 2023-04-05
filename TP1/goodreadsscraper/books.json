@@ -1,13 +1,14 @@
 {
     "books": [
         {
-            "name" : "SirKazzio e o Poder da Estrela",
-            "output" : "cazzio.txt"
-        },
-        {
             "name" : "Coraline",
             "author" : "Neil Gaiman", 
-            "output" : "coraline.txt"
+            "output" : "coraline.txt",
+            "reviews" : true,
+            "reviews_output" : "caroline_reviews.csv",
+            "reviews_range" : [40,60],
+            "reviews_language" : "pt"
+
         }
     ],
     "authors" : [

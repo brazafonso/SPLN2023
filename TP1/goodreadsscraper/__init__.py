@@ -10,13 +10,11 @@ import re
 import json
 import traceback
 import jellyfish
-import lxml.html as lh
 import pandas as pd
 import threading as th
-from typing import List, Union
+from typing import List
 from bs4 import BeautifulSoup
 from selenium import webdriver
-from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -554,7 +552,7 @@ def reviews_page_filter_language(args,driver)->bool:
 def scrape_reviews(args,driver)->List[Review]:
 	"""Gets reviews from book page"""
 	reviews = []
-	if args.reviews or args.reviews_full:
+	if args.reviews_simple or args.reviews:
 		log(args,f'Scraping book reviews...')
 		page = get_book_reviews_page(args,driver)
 		if page:
@@ -571,12 +569,12 @@ def scrape_reviews(args,driver)->List[Review]:
 				range = [args.reviews_range[0],args.reviews_range[1]]
 
 			# Only get the minimum number of reviews
-			if args.reviews:
+			if args.reviews_simple:
 				log(args,f'Simple review scraping')
 				reviews = scrape_reviews_page(args,page,range[0],range[1])
 
 			# Get more reviews
-			elif args.reviews_full:
+			elif args.reviews:
 				log(args,f'Full review scraping')
 				reviews += scrape_reviews_page(args,page,range[0],range[1])
 				review_page_show_more(args,driver)
@@ -627,7 +625,7 @@ def scrape_reviews(args,driver)->List[Review]:
 
 
 
-def bookscraper():
+def goodreadsscraper():
 	"""Main function of the program"""
 	args = parse_arguments(__version__)
 	books,authors = process_arguments(args)
@@ -646,7 +644,7 @@ def bookscraper():
 						b = scrape_book_page(book,prettify_html(res))
 						results.append({'out':book.output,'result':b.__str__(True if args.verbose else False)})
 					
-					if(book.reviews or book.reviews_full):
+					if(book.reviews_simple or book.reviews):
 						reviews = scrape_reviews(book,driver)
 						if reviews:
 							delim = '#;#'

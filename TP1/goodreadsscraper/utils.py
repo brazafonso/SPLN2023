@@ -1,6 +1,5 @@
 import sys
 import argparse
-import requests
 import json
 from typing import List
 from bs4 import BeautifulSoup
@@ -59,7 +58,10 @@ def write_output(out,result):
     else:
         if isinstance(out, tuple):
             out = open(out[0],out[1])
+        elif isinstance(out, str):
+            out = open(out,"w")
         out.write(result)
+        out.close()
 
 
 def write_reviews(args,reviews:List[Review],header:bool=False,force:bool=False,delim:str='#;#'):
@@ -117,7 +119,7 @@ def error(args,msg:str):
 
 def want_reviews(books) -> bool:
     for book in books:
-        if(book.reviews or book.reviews_full):
+        if(book.reviews_simple or book.reviews):
             return True
     return False  
 
@@ -135,8 +137,8 @@ def process_arguments(args):
                                output = args.output,
                                logging = args.logging,
                                errors = args.errors,
+                               reviews_simple = args.reviews_simple,
                                reviews = args.reviews,
-                               reviews_full = args.reviews_full,
                                reviews_range = args.reviews_range,
                                reviews_language = args.reviews_language,
                                reviews_output = args.reviews_output)
@@ -172,8 +174,8 @@ def process_arguments(args):
                                output = args.output,
                                logging = args.logging,
                                errors = args.errors,
+                               reviews_simple = args.reviews_simple,
                                reviews = args.reviews,
-                               reviews_full = args.reviews_full,
                                reviews_range = args.reviews_range,
                                reviews_language = args.reviews_language,
                                reviews_output = None)
@@ -188,10 +190,10 @@ def process_arguments(args):
                     book.author = book_json['author']
                 if 'output' in book_json:
                     book.output = book_json['output']
+                if 'reviews_simple' in book_json:
+                    book.reviews_simple = book_json['reviews_simple']
                 if 'reviews' in book_json:
                     book.reviews = book_json['reviews']
-                if 'reviews_full' in book_json:
-                    book.reviews_full = book_json['reviews_full']
                 if 'reviews_range' in book_json:
                     if isinstance(book_json['reviews_range'],list) and all([isinstance(item, int) for item in book_json['reviews_range']]) and len(book_json['reviews_range'])==2:
                         book.reviews_range = book_json['reviews_range']
@@ -259,8 +261,8 @@ def parse_arguments(__version__)->argparse.Namespace:
     parser.add_argument('-btitle'                 ,type=str                        ,nargs='?'  ,default=None                           ,help='name of the book to scrape (not precise)')
     parser.add_argument('-a','--author'           ,type=str                        ,nargs='?'  ,default=None                           ,help='author name or id to scrape')
     parser.add_argument('-mw','--maxworks'        ,type=int                        ,nargs='?'  ,default=None                           ,help='maximum number of works to find')
-    parser.add_argument('-r','--reviews'                                                                     ,action='store_true'      ,help='gathers reviews of a book (simple mode).\nreviews are written to output as soon as possible to save memory')
-    parser.add_argument('-rf','--reviews_full'                                                               ,action='store_true'      ,help='gathers reviews of a book (full mode, slower)')
+    parser.add_argument('-rs','--reviews_simple'                                                             ,action='store_true'      ,help='gathers reviews of a book (simple mode).\nreviews are written to output as soon as possible to save memory')
+    parser.add_argument('-r','--reviews'                                                                     ,action='store_true'      ,help='gathers reviews of a book (full mode, slower)')
     parser.add_argument('-rg','--reviews_range'   ,type=int                        ,nargs=2    ,default=None                           ,help='defines the range of reviews to collect')
     parser.add_argument('-rl','--reviews_language',type=str                        ,nargs='?'  ,default=None                           ,help='defines a language to filter the reviews page')
     parser.add_argument('-ro', '--reviews_output' ,type=str                        ,nargs='?'  ,default=None                           ,help='defines an output file for the reviews dataset')
