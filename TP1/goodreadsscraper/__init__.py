@@ -12,6 +12,7 @@ import traceback
 import jellyfish
 import pandas as pd
 import threading as th
+import requests
 from typing import List
 from bs4 import BeautifulSoup
 from selenium import webdriver
@@ -131,7 +132,7 @@ def search_btitle(args,driver:webdriver,btitle:str,page:str)->str:
 		error(args,f'Could not find book name {args.btitle}')
 	return r
 
-def is_book_page(url:requests.Response)->bool:
+def is_book_page(url:str)->bool:
 	"""Checks if response is relative to a book page"""
 	return re.search('www.goodreads.com/book/show/',url)
 
@@ -496,11 +497,21 @@ def scrape_reviews_page(args,html_page:str,lower_limit:int=None,higher_limit:int
 def get_review_page_stats(page:str)->List[int]:
 	"""Recovers simple stats about review page, such as number of reviews and range shown"""
 	soup = BeautifulSoup(page,features='lxml')
-	number_reviews_elem = soup.find('div',{'class':'ReviewsList__listContext'}).find('span')
-	number_reviews_info = re.search(r'(\d+((,|\.)\d+)?)[^\d]*(\d+((,|\.)\d+)?)[^\d]*(\d+((,|\.)\d+)?)',number_reviews_elem.get_text().strip())
-	n_reviews = int(re.sub(r'(.*),|\.(.*)',r'\1\2',number_reviews_info.group(7)))
-	lower_review = int(re.sub(r'(.*),|\.(.*)',r'\1\2',number_reviews_info.group(1)))
-	higher_review = int(re.sub(r'(.*),|\.(.*)',r'\1\2',number_reviews_info.group(4)))
+	try:
+		number_reviews_elem = soup.find('div',{'class':'ReviewsList__listContext'}).find('span')
+		number_reviews_info = re.search(r'(\d+((,|\.)\d+)?)[^\d]*(\d+((,|\.)\d+)?)[^\d]*(\d+((,|\.)\d+)?)',number_reviews_elem.get_text().strip())
+		if len(number_reviews_info.groups()) >= 7:
+			n_reviews = int(re.sub(r'(.*),|\.(.*)',r'\1\2',number_reviews_info.group(7)))
+			lower_review = int(re.sub(r'(.*),|\.(.*)',r'\1\2',number_reviews_info.group(1)))
+			higher_review = int(re.sub(r'(.*),|\.(.*)',r'\1\2',number_reviews_info.group(4)))
+		else :
+			n_reviews = int(re.sub(r'(.*),|\.(.*)',r'\1\2',number_reviews_info.group(4)))
+			lower_review = int(re.sub(r'(.*),|\.(.*)',r'\1\2',number_reviews_info.group(1)))
+			higher_review = int(re.sub(r'(.*),|\.(.*)',r'\1\2',number_reviews_info.group(4)))
+	except:
+		n_reviews = 0
+		lower_review = 0
+		higher_review = 0
 	return [n_reviews,lower_review,higher_review]
 
 
