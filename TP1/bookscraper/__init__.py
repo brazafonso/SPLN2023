@@ -48,7 +48,7 @@ def create_driver(args)->webdriver:
 		driver = webdriver.Chrome(options=opg)
 		
 	except:
-		error(args,f'Could not create Chrome driver')
+		log(args,f'Could not create Chrome driver')
 		try:
 			log(args,f'Firefox')
 			opf = webdriver.FirefoxOptions()
@@ -56,13 +56,14 @@ def create_driver(args)->webdriver:
 			opf.add_argument('--headless')
 			driver = webdriver.Firefox(options=opf)
 		except:
-			error(args,f'Could not create Firefox driver')
+			log(args,f'Could not create Firefox driver')
 			driver = None
 	if driver:
 		driver.implicitly_wait(2)
 		log(args,f'Driver created')
 	else:
 		log(args,f'Could not create driver. Please read documentation to install proper dependencies.')
+		error(args,f'Could not create driver. Please read documentation to install proper dependencies.')
 	return driver
 
 def driver_wait_element_to_be_clickable(driver:webdriver,xpath:str,timeout:int=1):
@@ -475,7 +476,6 @@ def scrape_reviews_page(args,html_page:str,lower_limit:int=None,higher_limit:int
 	reviews = div_reviews_list.find_all('article',{'class':'ReviewCard'})
 	# Change range of reviews to gather
 	reviews = list_range(reviews,lower_limit,higher_limit)
-
 	# Get info from all the reviews
 	for review in reviews:
 		reviewer_info = review.find('div',{'class':'ReviewerProfile__name'})
@@ -591,7 +591,7 @@ def scrape_reviews(args,driver)->List[Review]:
 				n_reviews,lower_review,higher_review = get_review_page_stats(page)
 				# Get reviews in range
 				if args.reviews_range:
-					max_reviews = range[1]-range[0]
+					max_reviews = range[1]
 					range[0] = range[0] + len(reviews)
 				# Get all reviews
 				else:
@@ -613,12 +613,12 @@ def scrape_reviews(args,driver)->List[Review]:
 								write_reviews(args,reviews,header=header)
 							else:
 								write_reviews(args,reviews)
-							count += len(reviews)
 							range[0] += len(reviews)
+							count += len(reviews)
 							reviews = []
 						else:
+							range[0] = len(reviews)
 							count = len(reviews)
-							range[0] += len(reviews)
 					thread.join()
 				
 		log(args,f'Finished Scraping')
