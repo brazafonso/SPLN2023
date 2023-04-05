@@ -11,16 +11,20 @@ class Review:
 
 
     def header(self)->List[str]:
-        """Returns a pandas dataset header"""
+        """Returns atributes names in list format"""
         return ['Id','Name','Score','Review']
+    
+    def header_str(self,delim:str)->List[str]:
+        """Returns atributes names in str format"""
+        return f'Id{delim}Name{delim}Score{delim}Review'
     
 
     def dataset_line(self)->List[str]:
-        """Returns a pandas dataset line"""
+        """Returns a atributes in list format"""
         return [self.reviewerID,self.reviewerName,self.score,self.review]
 
     def dataset_line_str(self,delim:str)->str:
-        """Returns a pandas dataset line"""
+        """Returns a the atributes in str format"""
         return f'{self.reviewerID}{delim}{self.reviewerName}{delim}{self.score}{delim}{self.review}'
 
     def reviewerID(self)->str:

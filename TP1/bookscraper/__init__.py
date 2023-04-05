@@ -2,7 +2,7 @@
 """Module to scrap book information from goodreads
 """
 
-__version__ = '0.0.5'
+__version__ = '0.1'
 
 import os
 import time
@@ -53,7 +53,7 @@ def create_driver(args)->webdriver:
 			log(args,f'Firefox')
 			opf = webdriver.FirefoxOptions()
 			opf.add_argument('--window-size=1440,900')
-			opf.add_argument('--headless')
+			#opf.add_argument('--headless')
 			driver = webdriver.Firefox(options=opf)
 		except:
 			error(args,f'Could not create Firefox driver')
@@ -149,9 +149,6 @@ def load_book_page(args,driver)->bool:
 			if re.search('ROOT_QUERY',driver.page_source):
 				loaded = True
 			else:
-				file = open(f'{path}/test/debug.html','w')
-				file.write(prettify_html(driver.page_source))
-				file.close()
 				log(args,f'Refreshing page...')
 				driver.get(driver.current_url)
 				time.sleep(1)
@@ -160,9 +157,6 @@ def load_book_page(args,driver)->bool:
 			log(args,f'Refreshing page...')
 			driver.get(driver.current_url)
 			time.sleep(1)
-			file = open(f'{path}/test/debug.html','w')
-			file.write(prettify_html(driver.page_source))
-			file.close()
 			tries-= 1
 	return loaded
 
@@ -522,6 +516,35 @@ def review_page_show_more(args,driver):
 		log(args,f'No more reviews.')
 
 
+def reviews_page_filter_language(args,driver)->bool:
+	"""Activates filter option on review page"""
+	log(args,f'Filtering reviews...')
+	filtered = False
+	try:
+		elem = driver.find_element(By.XPATH,"//span[text()='Filters']")
+		if elem:
+			elem.click()
+			driver_wait_element_to_be_clickable(driver,"//span[text()='Apply']",1000000)
+			filter = driver.find_element(By.XPATH ,f"//label[@class='RadioInput'][@for='{args.reviews_language}']")
+			if filter:
+				driver.execute_script("arguments[0].scrollIntoView();", filter)
+				WebDriverWait(driver, 10000).until(EC.presence_of_element_located((By.XPATH, f"//label[@class='RadioInput'][@for='{args.reviews_language}']")))
+				time.sleep(0.5)
+				filter.click()
+				driver_wait_element_to_be_clickable(driver,"//span[text()='Apply']",1000000)
+				apply = driver.find_element(By.XPATH,"//span[text()='Apply']")
+				apply.click()
+				filtered = True
+				driver_wait_element(driver,"//div[@class='LoadingCard']",10,False)
+	except Exception as e:
+		print(e)
+	if filtered:
+		log(args,f'Reviews filtered.')
+	else:
+		log(args,f'Could not filter reviews.')
+	return filtered
+
+
 def scrape_reviews(args,driver)->List[Review]:
 	"""Gets reviews from book page"""
 	reviews = []
@@ -529,6 +552,14 @@ def scrape_reviews(args,driver)->List[Review]:
 		log(args,f'Scraping book reviews...')
 		page = get_book_reviews_page(args,driver)
 		if page:
+			driver.refresh()
+			# Filters reviews in page according to chosen language
+			if args.reviews_language:
+				filtered = reviews_page_filter_language(args,driver)
+				page = driver.page_source
+				if not filtered:
+					return reviews
+				
 			range = [None,None]
 			if args.reviews_range:
 				range = [args.reviews_range[0],args.reviews_range[1]]
@@ -545,7 +576,7 @@ def scrape_reviews(args,driver)->List[Review]:
 				review_page_show_more(args,driver)
 				count = len(reviews)
 				# Writes to file so as not to use too much memory
-				if args.review_output:
+				if args.reviews_output:
 					header = (count > 0)
 					write_reviews(args,reviews,header=header)
 					if args.reviews_range:
@@ -571,7 +602,7 @@ def scrape_reviews(args,driver)->List[Review]:
 					reviews += scrape_reviews_page(args,page,range[0],range[1])
 					if len(reviews) > 0:
 						# Writes to file so as not to use too much memory
-						if args.review_output:
+						if args.reviews_output:
 							if not header:
 								header = True
 								write_reviews(args,reviews,header=header)
@@ -589,72 +620,10 @@ def scrape_reviews(args,driver)->List[Review]:
 	return reviews
 
 
-def work_in_progress(args):
-	"""Testing new implementations"""
-
-	# if not args.isbn:
-	# 	args.isbn = "9781846144769" #teste
-
-	# if not args.id:
-	# 	args.id = "46262177"
-
-	# soup = BeautifulSoup(r.content.decode(r.encoding),features='lxml')
-	# prettyHTML3 = soup.prettify()
-
-	# file = open(f'{path}/test/teste5.html','w')
-	# file.write(prettyHTML3)
-	# file.close()
-	driver = create_driver(args)
-	reviews = scrape_reviews(args,driver)
-	if reviews:
-		df = create_dataset(reviews[0].header(),[r.dataset_line() for r in reviews])
-		print(df.head(),df.info())
-		file = open(f'{path}/test/teste.txt','w')
-		file.write(df.to_string())
-	driver.quit()
-	# r = get_author_page(args)
-	# if r:
-	# 	soup = BeautifulSoup(r.content.decode(r.encoding),features='lxml')
-	# 	prettyHTML3 = soup.prettify()
-
-	# 	file = open(f'{path}/test/teste3.html','w')
-	# 	file.write(prettyHTML3)
-	# 	file.close()
-
-	# r = get_book_page(args)
-	# if r
-		# soup = BeautifulSoup(r.content.decode(r.encoding),features='lxml')
-		# prettyHTML1 = soup.prettify()
-
-		# file = open(f'{path}/test/teste.html','w')
-		# file.write(prettyHTML1)
-		# file.close()
-
-	# book_id = re.sub(r'[^0-9]+(\d+).*',r'\1',r.url)
-	# print(book_id)
-
-	# r = get_book_reviews(book_id)
-
-	# if r
-		# soup = BeautifulSoup(r.content.decode(r.encoding),features='lxml')
-		# prettyHTML2 = soup.prettify()
-
-		# file = open(f'{path}/test/teste2.html','w')
-		# file.write(prettyHTML2)
-		# file.close()
-
-	# book = scrape_book_page(args,prettyHTML1)
-
-	# file = open(f'{path}/test/teste3.html','r')
-	# r = file.read()
-	# file.close()
-	# author = scrape_author_page(args,r)
-	# write_output(args,author.__str__(True))
 
 def bookscraper():
 	"""Main function of the program"""
 	args = parse_arguments(__version__)
-	#work_in_progress(args)
 
 	driver = create_driver(args)
 	if driver:
@@ -674,8 +643,9 @@ def bookscraper():
 				if(book.reviews or book.reviews_full):
 					reviews = scrape_reviews(book,driver)
 					if reviews:
-						df = create_dataset(reviews[0].header(),[r.dataset_line() for r in reviews])
-						results_reviews.append({'out' : open(book.review_output,'w'), 'result':df.to_json(indent=4)})
+						delim = '#;#'
+						str = costum_csv(reviews[0].header_str(delim),[review.dataset_line_str(delim) for review in reviews])
+						results_reviews.append({'out' : open(book.reviews_output,'w'), 'result':str})
 
 				
 			for author in authors:
