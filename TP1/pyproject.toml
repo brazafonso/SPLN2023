@@ -12,4 +12,5 @@ dependencies = ["jellyfish","pandas","bs4","selenium","argparse"]
 
 [project.scripts]
 grs = "goodreadsscraper:goodreadsscraper"
+ra = "reviewanalyser:reviewanalyser"
 
