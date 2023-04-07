@@ -4,6 +4,8 @@
 
 __version__ = '0.1'
 
+__description__ = 'Module to scrap book information from goodreads'
+
 import os
 import time
 import re
@@ -26,11 +28,6 @@ from .review import Review
 
 path = os.path.dirname(os.path.realpath(__file__))
 
-
-"""
-TODO:
-	- Criar/permitir uso de modelo de aprendizagem profunda para analisar reviews
-"""
 
 
 
