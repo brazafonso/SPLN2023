@@ -12,7 +12,6 @@ import re
 import json
 import traceback
 import jellyfish
-import pandas as pd
 import threading as th
 import requests
 from typing import List
@@ -37,20 +36,19 @@ def create_driver(args)->webdriver:
 	driver = None
 	log(args,f'Creating driver')
 	try:
-		log(args,f'Chrome')
-		opg = webdriver.ChromeOptions()
-		opg.add_argument('--window-size=1440,900')
-		opg.add_argument('--headless')
-		driver = webdriver.Chrome(options=opg)
-		
+		log(args,f'Firefox')
+		opf = webdriver.FirefoxOptions()
+		opf.add_argument('--window-size=1440,900')
+		opf.add_argument('--headless')
+		driver = webdriver.Firefox(options=opf)
 	except:
 		log(args,f'Could not create Chrome driver')
 		try:
-			log(args,f'Firefox')
-			opf = webdriver.FirefoxOptions()
-			opf.add_argument('--window-size=1440,900')
-			opf.add_argument('--headless')
-			driver = webdriver.Firefox(options=opf)
+			log(args,f'Chrome')
+			opg = webdriver.ChromeOptions()
+			opg.add_argument('--window-size=1440,900')
+			opg.add_argument('--headless')
+			driver = webdriver.Chrome(options=opg)
 		except:
 			log(args,f'Could not create Firefox driver')
 			driver = None
@@ -61,6 +59,7 @@ def create_driver(args)->webdriver:
 		log(args,f'Could not create driver. Please read documentation to install proper dependencies.')
 		error(args,f'Could not create driver. Please read documentation to install proper dependencies.')
 	return driver
+
 
 def driver_wait_element_to_be_clickable(driver:webdriver,xpath:str,timeout:int=1):
 	'''Waits until timeout for element in XPATH to become clickable'''
@@ -75,9 +74,7 @@ def driver_wait_element(driver,xpath:str,timeout:int=1,exist:bool=True):
 
 
 
-def create_dataset(header,list)->pd.DataFrame:
-	"""Creates a dataset from a list of already processed into strings of dataset lines"""
-	return pd.DataFrame(list,columns=header)
+
 
 
 def search_book_option(args):
@@ -372,7 +369,6 @@ def get_author_works(args,works_url:str,max:int=None)->List[str]:
 
 def scrape_author_page(args,html_page:str)->Author:
 	"""Scrapes an author's page for info such as name, birthday, average score, number of reviews and others"""
-	# FIXME: if elses para tudo pq pode n ter nada - ex. Sir kazzio
 	log(args,f"Scraping author's page for info")
 	page = BeautifulSoup(html_page,features='lxml')
 
@@ -468,6 +464,7 @@ def scrape_reviews_page(args,html_page:str,lower_limit:int=None,higher_limit:int
 	log(args,f"Scraping reviews's page for info")
 
 	page = BeautifulSoup(html_page,features='lxml')
+	book_name = page.find('a',{'data-testid':'title'}).get_text()
 	div_reviews_list = page.find('div',{'class':'ReviewsList'})
 	reviews = div_reviews_list.find_all('article',{'class':'ReviewCard'})
 	# Change range of reviews to gather
@@ -484,7 +481,7 @@ def scrape_reviews_page(args,html_page:str,lower_limit:int=None,higher_limit:int
 			review_score = re.search(r'Rating (\d+) out of \d+',review_score_elem['aria-label']).group(1)
 		review_description_card = review.find('section',{'class','ReviewText__content'})
 		review_description = review_description_card.find('span').get_text().strip()
-		rev = Review(reviewer_id,reviewer_name,review_score,review_description)
+		rev = Review(book_name,reviewer_id,reviewer_name,review_score,review_description)
 		reviews_list.append(rev)
 	log(args,f"Scraping finished")
 	return reviews_list
@@ -655,7 +652,7 @@ def goodreadsscraper():
 					if(book.reviews_simple or book.reviews):
 						reviews = scrape_reviews(book,driver)
 						if reviews:
-							delim = '#;#'
+							delim = ';'
 							# Allow for multiple review pages to be written in the main review output
 							if not book.reviews_output:
 								if first_write:
@@ -664,7 +661,8 @@ def goodreadsscraper():
 								else:
 									write_reviews(args,reviews,first_write,True,delim)
 							else:
-								data = costum_csv([review.dataset_line_str(delim) for review in reviews],reviews[0].header_str(delim))
+								df = create_dataset(reviews[0].header(),[review.dataset_line() for review in reviews])
+								data = df.to_csv(None,sep=delim,columns=reviews[0].header(),quoting=1)
 								out = open(book.reviews_output,'w') if book.reviews_output else None
 								results_reviews.append({'out' : out, 'result':data})
 

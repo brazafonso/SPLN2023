@@ -1,6 +1,7 @@
 import sys
 import argparse
 import json
+import pandas as pd
 from typing import List
 from bs4 import BeautifulSoup
 from datetime import datetime
@@ -64,24 +65,27 @@ def write_output(out,result):
         out.close()
 
 
-def write_reviews(args,reviews:List[Review],header:bool=False,force:bool=False,delim:str='#;#'):
+
+def create_dataset(header,list)->pd.DataFrame:
+	"""Creates a dataset from a list of already processed into strings of dataset lines"""
+	return pd.DataFrame(list,columns=header)
+
+
+def write_reviews(args,reviews:List[Review],header:bool=False,force:bool=False,delim:str=';'):
     """Writes list of reviews in the given output file"""
-    if args.reviews_output and isinstance(args.reviews_output,str) and len(reviews) > 0:
-        if header:
-            data = costum_csv([review.dataset_line_str(delim) for review in reviews],reviews[0].header_str(delim))
-            mode = 'w'
-        else:
-            data = costum_csv([review.dataset_line_str(delim) for review in reviews])
-            mode = 'a'
-        out = open(args.reviews_output,mode)
-        out.write(data)
-        out.close()
-    elif force:
-        if header:
-            data = costum_csv([review.dataset_line_str(delim) for review in reviews],reviews[0].header_str(delim))
-        else:
-            data = costum_csv([review.dataset_line_str(delim) for review in reviews])
-        print(data)
+    if len(reviews) > 0:
+        if args.reviews_output and isinstance(args.reviews_output,str):
+            df = create_dataset(reviews[0].header(),[review.dataset_line() for review in reviews])
+            if header:
+                mode = 'w'
+            else:
+                mode = 'a'
+            df.to_csv(args.reviews_output,sep=delim,columns=reviews[0].header(),quoting=1,mode=mode,index=False,header= header)
+        elif force:
+            if header:
+                df.to_csv(sys.stdin,sep=delim,columns=reviews[0].header(),quoting=1,index=False,header = header)
+            else:
+                df.to_csv(sys.stdin.buffer,sep=delim,columns=reviews[0].header(),quoting=1,index=False,header=header)
 
 
 def costum_csv(list:List[str],header:str=None)->str:
