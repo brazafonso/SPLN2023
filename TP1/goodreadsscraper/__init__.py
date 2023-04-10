@@ -422,10 +422,30 @@ def scrape_author_page(args,html_page:str)->Author:
 		   author_nratings,author_nreviews,author_nUniqueWorks,author_works)
 
 
-def loaded_reviews_page(html:str)->bool:
-	"""Checks if the reviews page is loaded"""
-	#FIXME
-	return True
+def load_reviews_page(args,driver)->bool:
+	"""Waits for review page to be loaded, refreshes some times if stuck"""
+	loaded = False 
+	tries = 5
+	while not loaded and tries > 0:
+		try:
+			log(args,f'Waiting for page to load...')
+			# Wait for reviews to appear
+			driver_wait_element(driver,"//div[@class='ReviewsList']",20)
+			# Check if something is still loading
+			driver_wait_element(driver,"//div[@class='LoadingCard']",20,False)
+			if re.search('ROOT_QUERY',driver.page_source):
+				loaded = True
+			else:
+				log(args,f'Refreshing page...')
+				driver.get(driver.current_url)
+				time.sleep(1)
+			tries-= 1
+		except:
+			log(args,f'Refreshing page...')
+			driver.get(driver.current_url)
+			time.sleep(1)
+			tries-= 1
+	return loaded
 
 def get_book_reviews_page(args,driver)->str:
 	"""Return the book reviews page (if book flags active)"""
@@ -445,11 +465,7 @@ def get_book_reviews_page(args,driver)->str:
 		if id:		
 			log(args,f"Trying to get reviews page")
 			driver.get(f'https://www.goodreads.com/book/show/{id}/reviews')
-			# Wait for reviews to appear
-			driver_wait_element(driver,"//div[@class='ReviewsList']",100000)
-			# Check if something is still loading
-			driver_wait_element(driver,"//div[@class='LoadingCard']",100000,False)
-			if not loaded_reviews_page(driver.page_source):
+			if not load_reviews_page(args,driver):
 				error(args,'Could not get proper reviews page')
 			else:
 				r = driver.page_source
