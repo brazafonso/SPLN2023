@@ -82,10 +82,11 @@ def write_reviews(args,reviews:List[Review],header:bool=False,force:bool=False,d
                 mode = 'a'
             df.to_csv(args.reviews_output,sep=delim,columns=reviews[0].header(),quoting=1,mode=mode,index=False,header= header)
         elif force:
+            df = create_dataset(reviews[0].header(),[review.dataset_line() for review in reviews])
             if header:
-                df.to_csv(sys.stdin,sep=delim,columns=reviews[0].header(),quoting=1,index=False,header = header)
+                df.to_csv(sys.stdout,sep=delim,columns=reviews[0].header(),quoting=1,index=False,header = header)
             else:
-                df.to_csv(sys.stdin.buffer,sep=delim,columns=reviews[0].header(),quoting=1,index=False,header=header)
+                df.to_csv(sys.stdout,sep=delim,columns=reviews[0].header(),quoting=1,index=False,header=header)
 
 
 def costum_csv(list:List[str],header:str=None)->str:

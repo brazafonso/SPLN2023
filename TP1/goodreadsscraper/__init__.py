@@ -649,7 +649,7 @@ def goodreadsscraper():
 						b = scrape_book_page(book,prettify_html(res))
 						results.append({'out':book.output,'result':b.__str__(True if args.verbose else False)})
 					
-					if(book.reviews_simple or book.reviews):
+					if(book.reviews_simple or book.reviews and res):
 						reviews = scrape_reviews(book,driver)
 						if reviews:
 							delim = ';'
