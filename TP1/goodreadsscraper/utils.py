@@ -143,7 +143,8 @@ def process_arguments(args):
                                reviews = args.reviews,
                                reviews_range = args.reviews_range,
                                reviews_language = args.reviews_language,
-                               reviews_output = args.reviews_output)
+                               reviews_output = args.reviews_output,
+                               verbose = args.verbose)
 
         books.append(book)
 
@@ -180,7 +181,8 @@ def process_arguments(args):
                                reviews = args.reviews,
                                reviews_range = args.reviews_range,
                                reviews_language = args.reviews_language,
-                               reviews_output = None)
+                               reviews_output = None,
+                               verbose = args.verbose)
 
                 if 'isbn' in book_json:
                     book.isbn = book_json['isbn']
@@ -205,6 +207,8 @@ def process_arguments(args):
                     book.reviews_language = book_json['reviews_language']
                 if 'reviews_output' in book_json:
                     book.reviews_output = book_json['reviews_output']
+                if 'verbose' in book_json:
+                        book.verbose = book_json['verbose']
 
                 if not (book.isbn or book.id or book.btitle):
                     invalid = True

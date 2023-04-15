@@ -9,7 +9,7 @@ license = {file = "LICENSE"}
 classifiers = ["License :: OSI Approved :: MIT License"]
 dynamic = ["version", "description"]
 dependencies = ["jellyfish","pandas","bs4","selenium","argparse"]
-
+readme = "readme.md"
 
 
 [project.scripts]

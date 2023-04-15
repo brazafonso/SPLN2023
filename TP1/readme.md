@@ -195,14 +195,17 @@ Result:
                 "reviews" : true,
                 "reviews_output" : "caroline_reviews.csv",
                 "reviews_range" : [40,60],
-                "reviews_language" : "pt"
+                "reviews_language" : "pt",
+                "verbose" : true
 
             }
         ],
         "authors" : [
             {
-                "name" : "abel ferreira",
-                "output" : "abel.txt"
+                "name" : "Neil Gaiman",
+                "output" : "neil_gaiman.txt",
+                "maxworks" : 20,
+                "verbose" : true
             }
         ]
 }
