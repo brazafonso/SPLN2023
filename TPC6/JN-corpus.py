@@ -40,7 +40,7 @@ def main():
     logs.write(f'Geting articles [{now}]\n')
 
     jn = newspaper.build(url,memoized_articles=False)
-
+    
     n_articles = jn.size()
     print('number of articles :',n_articles)
 
