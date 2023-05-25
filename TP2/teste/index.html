@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Executar Comando</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+      }
+      input[type="text"],
+      textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+      }
+      button {
+        padding: 10px 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Executar Comando</h1>
+    <form id="comandoForm">
+      <input type="text" id="comandoInput" placeholder="Digite o comando">
+      <button type="submit">Executar</button>
+    </form>
+    <h2>Output:</h2>
+    <pre id="output"></pre>
+
+    <script>
+      document.getElementById('comandoForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        var comando = document.getElementById('comandoInput').value;
+        enviarComando(comando);
+      });
+
+      function enviarComando(comando) {
+        fetch('/executar-comando', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ comando: comando })
+        })
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(data) {
+          exibirOutput(data.resultado);
+        })
+        .catch(function(error) {
+          console.error('Erro:', error);
+        });
+      }
+
+      function exibirOutput(output) {
+        document.getElementById('output').textContent = output;
+      }
+    </script>
+  </body>
+</html>
