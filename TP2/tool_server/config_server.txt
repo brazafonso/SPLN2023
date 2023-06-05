@@ -1,0 +1,20 @@
+
+* Servidor
+- Nome: Servidor
+- Diretoria: "teste"
+- IP: 127.0.0.1
+- Porta: 15213
+* Ferramentas
+--
+- Familia: Grep
+- Titulo: "Grep"
+- Descricao: "grep  searches  for  PATTERNS in each FILE.  PATTERNS is one or more patterns separated by newline characters,
+and grep prints each line that matches a pattern.  Typically PATTERNS should be quoted when grep is used in  a
+shell command."
+-Comando: grep -d INPUT1 INPUT2 OUTPUT1
+-Inputs:
+    - INPUT1: STR
+    - INPUT2: FILE
+-Outputs:
+    - OUTPUT1 : STR
+

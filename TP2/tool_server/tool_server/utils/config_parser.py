@@ -1,3 +1,5 @@
+'''Ficheiro com parser do ficheiro de configuracao do servidor'''
+
 from lark.tree import pydot__tree_to_png
 from lark.visitors import Interpreter
 from lark import Lark,Discard ,Token,Tree
@@ -15,9 +17,9 @@ rota_servidor : "-" "Rota" ":" ROTA
 trabalhadores_servidor : "-" "Trabalhadores" ":" INT
 
 ferramentas : "*" "Ferramentas" ("--" ferramenta)+
-ferramenta : titulo familia descricao comando inputs? outputs?
-titulo  : "-" "Titulo" ":" TEXTO
+ferramenta : familia titulo descricao comando inputs? outputs?
 familia : "-" "Familia" ":" NOME
+titulo  : "-" "Titulo" ":" TEXTO
 descricao : "-" "Descricao" ":" TEXTO
 comando : "-" "Comando" ":" comando_formato
 comando_formato : NOME opcoes* 
@@ -48,6 +50,7 @@ TYPE: /(STR)|(NUM)|(FILE)|(FOLDER)/
 '''
 
 class Interpreter(Interpreter):
+    '''Interpreter para atravessar ficheiro de configuracao'''
 
     def __set_server_name(self,nome):
         '''Modifica o nome do servidor'''
@@ -73,35 +76,35 @@ class Interpreter(Interpreter):
         '''Modifica o numero de trabalhadores do servidor'''
         self.server_config['workers'] = trabalhadores
 
-    def __add_tool(self,titulo_ferramenta):
+    def __add_tool(self,titulo_ferramenta,familia):
         '''Adiciona uma nova ferramenta no dicionario de ferramentas'''
-        self.server_config['ferramentas'][titulo_ferramenta] = {
-            'familia' : '',
+        self.server_config['ferramentas'][familia][titulo_ferramenta] = {
             'descricao' : '',
             'comando' : '',
             'inputs' : [],
             'outputs' : []
         }
 
-    def __set_tool_family(self,tool,familia):
-        '''Modifica a familia de uma ferramenta'''
-        self.server_config['ferramentas'][tool]['familia'] = familia
+    def __add_tool_family(self,familia):
+        '''Adiciona uma familia de ferramentas'''
+        if familia not in self.server_config['ferramentas']:
+            self.server_config['ferramentas'][familia] = {}
 
-    def __set_tool_description(self,tool,descricao):
+    def __set_tool_description(self,familia,tool,descricao):
         '''Modifica a descricao de uma ferramenta'''
-        self.server_config['ferramentas'][tool]['descricao'] = descricao
+        self.server_config['ferramentas'][familia][tool]['descricao'] = descricao
 
-    def __set_tool_command(self,tool,comando):
+    def __set_tool_command(self,familia,tool,comando):
         '''Modifica o comando de uma ferramenta'''
-        self.server_config['ferramentas'][tool]['comando'] = comando
+        self.server_config['ferramentas'][familia][tool]['comando'] = comando
 
-    def __add_tool_input(self,tool,input_id, input_type):
+    def __add_tool_input(self,familia,tool,input_id, input_type):
         '''Adiciona um input a uma ferramenta'''
-        self.server_config['ferramentas'][tool]['inputs'].append((input_id, input_type))
+        self.server_config['ferramentas'][familia][tool]['inputs'].append((input_id, input_type))
 
-    def __add_tool_output(self,tool,output_id, output_type):
+    def __add_tool_output(self,familia,tool,output_id, output_type):
         '''Adiciona um output a uma ferramenta'''
-        self.server_config['ferramentas'][tool]['outputs'].append((output_id, output_type))
+        self.server_config['ferramentas'][familia][tool]['outputs'].append((output_id, output_type))
 
 
     
@@ -116,6 +119,7 @@ class Interpreter(Interpreter):
             'ferramentas' : {}
         }
         self.curTool = None
+        self.curFamily = None
 
     def start(self,start):
         '''start : servidor'''
@@ -183,37 +187,40 @@ class Interpreter(Interpreter):
             self.visit(elem)
 
     def ferramenta(self,ferramenta):
-        '''ferramenta : titulo familia descricao comando inputs? outputs?'''
+        '''ferramenta : familia titulo descricao comando inputs? outputs?'''
         elems = ferramenta.children
         # visitar todas as opcoes
         for elem in elems:
             self.visit(elem)
+
+    def familia(self,familia):
+        '''familia : "-" "Familia" ":" NOME'''
+        elems = familia.children
+        familia_ferramenta = elems[0].value
+        self.curFamily =familia_ferramenta
+        self.__add_tool_family(familia_ferramenta)
+
 
     def titulo(self,titulo):
         '''titulo  : "-" "Titulo" ":" TEXTO'''
         elems = titulo.children
         titulo_ferramenta = elems[0].value[1:-1]
         self.curTool = titulo_ferramenta
-        self.__add_tool(titulo_ferramenta)
+        self.__add_tool(self.curFamily,titulo_ferramenta)
 
-    def familia(self,familia):
-        '''familia : "-" "Familia" ":" NOME'''
-        elems = familia.children
-        familia_ferramenta = elems[0].value
-        self.__set_tool_family(self.curTool, familia_ferramenta)
 
     def descricao(self,descricao):
         '''descricao : "-" "Descricao" ":" TEXTO'''
         elems = descricao.children
         descricao_ferramenta = elems[0].value[1:-1]
-        self.__set_tool_description(self.curTool, descricao_ferramenta)
+        self.__set_tool_description(self.curFamily,self.curTool, descricao_ferramenta)
 
     def comando(self,comando):
         '''comando : "-" "Comando" ":" comando_formato'''
         elems = comando.children
         # visitar comando_forma
         comando_formato = self.visit(elems[0])
-        self.__set_tool_command(self.curTool, comando_formato)
+        self.__set_tool_command(self.curFamily,self.curTool, comando_formato)
 
     def comando_formato(self,comando_formato):
         '''comando_formato : NOME opcoes*'''
@@ -246,7 +253,7 @@ class Interpreter(Interpreter):
         elems = input.children
         input_id = elems[0].value
         input_type = elems[1].value
-        self.__add_tool_input(self.curTool,input_id, input_type)
+        self.__add_tool_input(self.curFamily,self.curTool,input_id, input_type)
 
     def outputs(self,outputs):
         '''outputs : "-" "Outputs" ":" output+'''
@@ -260,7 +267,7 @@ class Interpreter(Interpreter):
         elems = output.children
         output_id = elems[0].value
         output_type = elems[1].value
-        self.__add_tool_output(self.curTool,output_id, output_type)
+        self.__add_tool_output(self.curFamily,self.curTool,output_id, output_type)
 
 
     
@@ -269,6 +276,7 @@ class Interpreter(Interpreter):
 
 
 def parse_config(config_file):
+    '''Parse do ficheiro de configuracao utilizando a classe Interpreter'''
     config_text = config_file.read()
     config_file.close()
 
@@ -277,10 +285,9 @@ def parse_config(config_file):
     it = Interpreter()
     return it.visit(parse_tree)
 
-#TODO:
+
+
+#TODO: 
+# verificar porta, ip, inputs e outputs
 def config_valid(config):
     return True
-
-# file = open('config_server.txt','r')
-# data = parse_config(file)
-# print(data)
