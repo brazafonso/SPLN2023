@@ -76,7 +76,7 @@ class Interpreter(Interpreter):
         '''Modifica o numero de trabalhadores do servidor'''
         self.server_config['workers'] = trabalhadores
 
-    def __add_tool(self,titulo_ferramenta,familia):
+    def __add_tool(self,familia,titulo_ferramenta):
         '''Adiciona uma nova ferramenta no dicionario de ferramentas'''
         self.server_config['ferramentas'][familia][titulo_ferramenta] = {
             'descricao' : '',
