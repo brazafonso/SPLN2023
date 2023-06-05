@@ -1,0 +1,33 @@
+- ferramentas ja devem estar instaladas no sistema
+
+
+TODO: 
+
+
+- definir linguagem do ficheiro que aceita as ferramentas
+    :: Configuracao de servidor
+        * Nome
+        * Diretoria
+        * IP
+        * Porta
+        * Rota inicial (index) - opcional
+        * Workers - extra opcional
+
+    :: Ferramentas
+        * titulo
+        * familia
+        * descricao
+        * comando
+            ** opcoes
+        * input - numero e tipo?
+        * output : numero e tipo?
+
+
+- pastas flit
+    * script inicial recebe ficheiro com configuracao do servidor
+    * apos cria os ficheiros necessarios do servidor e faz npm install e npm start
+
+- autenticacao? : extra
+
+- servidor
+    * queue de pedidos

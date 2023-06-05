@@ -1,5 +1,6 @@
 const express = require('express');
 const multer = require('multer');
+const engines = require('consolidate');
 const { exec } = require('child_process');
 const path = require('path');
 const fs = require('fs');
@@ -11,10 +12,15 @@ const server = http.createServer(app);
 const io = socketio(server);
 const upload = multer({ dest: 'uploads/' });
 
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
+app.set('views', __dirname + '/views');
+app.engine('html', engines.mustache);
+app.set('view engine', 'html');
+
+
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
+  res.render('index.html');
 });
 
 app.post('/executar-comando', upload.single('arquivo'), (req, res) => {
