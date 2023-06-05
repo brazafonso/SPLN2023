@@ -4,6 +4,7 @@
 
 import os
 import shutil
+import subprocess
 import argparse
 import sys
 from .utils.utils import *
@@ -17,8 +18,13 @@ model_server = f'{project_dir}/model'
 
 def start_server(server_dir):
     '''Inicia o servidor'''
-    print(server_dir)
-    os.system(f'cd {server_dir} & npm i -s & npm start')
+    server_path = f'{os.getcwd()}/{server_dir}'
+    dependencies = ' '.join(['express','http-errors'])
+    print('Installing server dependencies')
+    p = subprocess.call(f'npm i {dependencies} -s', cwd=server_path,shell=True)
+    print('Dependencies installed')
+    print('Starting server')
+    p = subprocess.call(f'npm start', cwd=server_path,shell=True)
 
 def tool_server():
     args = parse_arguments(__version__)
