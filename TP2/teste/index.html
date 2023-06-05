@@ -1,61 +1,64 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Executar Comando</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        padding: 20px;
-      }
-      input[type="text"],
-      textarea {
-        width: 100%;
-        padding: 10px;
-        margin-bottom: 10px;
-      }
-      button {
-        padding: 10px 20px;
-      }
-    </style>
-  </head>
-  <body>
-    <h1>Executar Comando</h1>
-    <form id="comandoForm">
-      <input type="text" id="comandoInput" placeholder="Digite o comando">
-      <button type="submit">Executar</button>
-    </form>
-    <h2>Output:</h2>
-    <pre id="output"></pre>
+<head>
+  <meta charset="UTF-8">
+  <title>Executar Comando</title>
+</head>
+<body>
+  <h1>Executar Comando</h1>
+  <form id="formulario">
+    <label for="comando">Comando:</label>
+    <input type="text" id="comando" name="comando" required>
+    <br>
+    <label for="arquivo">Arquivo:</label>
+    <input type="file" id="arquivo" name="arquivo" required>
+    <br>
+    <label for="nomeArquivo">Nome do Arquivo:</label>
+    <input type="text" id="nomeArquivo" name="nomeArquivo" required>
+    <br>
+    <button type="submit">Executar</button>
+  </form>
+  <p id="status"></p>
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    const socket = io();
+  
+    socket.on('status', (mensagem) => {
+      console.log('Status:', mensagem);
+  
+      // Exiba a mensagem de status no HTML, por exemplo, em um elemento de parágrafo com id "status"
+      const statusElement = document.getElementById('status');
+      statusElement.textContent = mensagem;
+    });
+  </script>
+  <script>
+    document.getElementById('formulario').addEventListener('submit', function(event) {
+      event.preventDefault();
 
-    <script>
-      document.getElementById('comandoForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        var comando = document.getElementById('comandoInput').value;
-        enviarComando(comando);
+      const formulario = new FormData(this);
+
+      fetch('/executar-comando', {
+        method: 'POST',
+        body: formulario
+      })
+      .then(response => {
+        if (response.ok) {
+          response.blob().then(blob => {
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = formulario.get('nomeArquivo');
+            link.click();
+            URL.revokeObjectURL(url);
+          });
+        } else {
+          console.error('Erro:', response.statusText);
+        }
+      })
+      .catch(error => {
+        console.error('Erro:', error);
       });
-
-      function enviarComando(comando) {
-        fetch('/executar-comando', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ comando: comando })
-        })
-        .then(function(response) {
-          return response.json();
-        })
-        .then(function(data) {
-          exibirOutput(data.resultado);
-        })
-        .catch(function(error) {
-          console.error('Erro:', error);
-        });
-      }
-
-      function exibirOutput(output) {
-        document.getElementById('output').textContent = output;
-      }
-    </script>
-  </body>
+    });
+  </script>
+</body>
 </html>

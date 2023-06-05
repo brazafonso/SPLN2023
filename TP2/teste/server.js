@@ -1,25 +1,47 @@
 const express = require('express');
-const app = express();
-const bodyParser = require('body-parser');
-const path = require('path');
-
+const multer = require('multer');
 const { exec } = require('child_process');
+const path = require('path');
+const fs = require('fs');
+const http = require('http');
+const socketio = require('socket.io');
 
+const app = express();
+const server = http.createServer(app);
+const io = socketio(server);
+const upload = multer({ dest: 'uploads/' });
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(express.static('public'));
 
-// Rota para exibir a página
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-// Rota para receber o comando do cliente
-app.post('/executar-comando', (req, res) => {
+app.post('/executar-comando', upload.single('arquivo'), (req, res) => {
   const comando = req.body.comando;
+  const arquivo = req.file;
+  const nomeArquivoSaida = req.body.nomeArquivoSaida;
 
-  // Executa o comando no servidor
-  exec(comando, (error, stdout, stderr) => {
+  if (!comando) {
+    return res.status(400).json({ erro: 'Comando não especificado' });
+  }
+
+  if (!arquivo) {
+    return res.status(400).json({ erro: 'Arquivo não enviado' });
+  }
+
+  //const caminhoArquivo = path.join('uploads', arquivo.filename);
+  const caminhoArquivo = 'uploads\\' + arquivo.filename;
+  //const caminhoArquivoSaida = path.join('uploads', nomeArquivoSaida);
+  const caminhoArquivoSaida = 'uploads\\' + nomeArquivoSaida;
+
+  const comandoCompleto = `${comando} ${caminhoArquivo} > ${caminhoArquivoSaida}`;
+  console.log('Comando a ser executado:', comandoCompleto);
+
+  // Emitir evento para o cliente informando o status do processamento
+  io.emit('status', 'Processando comando...');
+
+  exec(comandoCompleto, (error, stdout, stderr) => {
     if (error) {
       console.error(`Erro ao executar o comando: ${error}`);
       res.json({ resultado: `Erro ao executar o comando: ${error}` });
@@ -28,12 +50,37 @@ app.post('/executar-comando', (req, res) => {
     console.log(`Resultado: ${stdout}`);
     console.error(`Erros: ${stderr}`);
 
-    // Retorna o resultado para o cliente
-    res.json({ resultado: stdout });
+    if (fs.existsSync(caminhoArquivoSaida)) {
+      console.log(`Arquivo existe! em ${caminhoArquivoSaida}`)
+      res.setHeader('Content-Disposition', `attachment; filename="${nomeArquivoSaida}"`);
+      res.setHeader('Content-Type', 'application/octet-stream');
+
+      const fileStream = fs.createReadStream(caminhoArquivoSaida);
+      fileStream.pipe(res);
+
+      fileStream.on('end', () => {
+        fs.unlinkSync(caminhoArquivoSaida);
+      });
+    } else {
+      console.error('Arquivo de saída não encontrado');
+      res.json({ resultado: 'Arquivo de saída não encontrado' });
+    }
   });
 });
 
-// Inicia o servidor na porta 3000
-app.listen(3000, () => {
-  console.log('Servidor iniciado na porta 3000');
+// Lidar com conexões dos clientes
+io.on('connection', (socket) => {
+  console.log('Novo cliente conectado');
+
+  // Enviar mensagem de boas-vindas ao cliente
+  socket.emit('status', 'Conexão estabelecida');
+
+  // Lidar com desconexões dos clientes
+  socket.on('disconnect', () => {
+    console.log('Cliente desconectado');
+  });
+});
+
+server.listen(3000, () => {
+  console.log('Servidor em execução na porta 3000');
 });
