@@ -9,7 +9,7 @@ import sys
 from .utils import parse_config, config_valid
 
 __version__ = '0.1'
-project_dir = os.getcwd()
+project_dir = os.path.dirname(os.path.realpath(__file__))
 model_server = f'{project_dir}/model'
 
 def parse_arguments(version)->argparse.Namespace:
