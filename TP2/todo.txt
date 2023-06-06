@@ -31,3 +31,7 @@ TODO:
 
 - servidor
     * queue de pedidos
+    * cada pedido deve verificar inputs e outputs
+    ** se necessario criar uma pasta para o pedido
+    ** nesta pasta serao guardados os ficheiros de input, se houver
+    ** sera tb guardado os outputs

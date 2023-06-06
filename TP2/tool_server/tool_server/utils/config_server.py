@@ -82,8 +82,8 @@ block content
     index_file.write(index)
     index_file.close()
 
-def __pug_input_field(type,nome):
-    return f'''input.w3-input.w3-round(type="{html_types[type]}" name="{nome}")'''
+def __pug_input_field(type,id):
+    return f'''input.w3-input.w3-round(type="{html_types[type]}" name="{id}")'''
 
 def __tool_pug_file(path, ferramentas):
     '''Criar a view de cada ferramenta'''
@@ -103,7 +103,7 @@ block content
                 pug += f'''
         p {line}'''
             pug +='''
-    form.w3-container.w3-indigo
+    form.w3-container.w3-indigo(method='post')
         fieldset
             legend Inputs'''
             for id,input_dict in inputs:
@@ -111,9 +111,10 @@ block content
                 input_type = input_dict['tipo']
                 pug += f'''
             label {nome}
-            {__pug_input_field(input_type,nome)}
+            {__pug_input_field(input_type,id)}
 '''
             pug += f'''
+            input(type="hidden" name="command" value="{config['comando']}")
         button.w3-btn.w3-purple.w3-mb-2(type="submit") Submit
 '''
             pug += f'''
@@ -145,7 +146,12 @@ router.get('/{family}/{tool}', function(req, res, next) {'{'}
     res.render('{family}_{tool}', {'{'} title: '{family}' {'}'});
 {'}'});
 ''' 
-           
+            index += f'''
+router.post('/{family}/{tool}', function(req, res) {'{'}
+    process_command(req);
+    res.render('{family}_{tool}', {'{'} title: '{family}' {'}'});
+{'}'});
+''' 
 
     # adicionar ultima linha (module.exports = router;)
     index += f'''
