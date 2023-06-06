@@ -3,6 +3,12 @@
 import re
 import os
 
+html_types = {
+    'STR' : 'text',
+    'NUM' : 'number',
+    'FILE' : 'file'
+}
+
 def config_server(server_dir,config_file):
     '''Modificar configuracoes do servidor'''
 
@@ -12,10 +18,17 @@ def config_server(server_dir,config_file):
     # layout.pug file (alterar titulo do layout)
     __layout_pug_file(f'{server_dir}/views/layout.pug',config_file['nome'])
 
+    #nome das ferramentas organizado por familias
     ferramentas = config_file['ferramentas']
     families = {family:list(tools.keys()) for family,tools in ferramentas.items()}
+    #TODO: se calhar deviamos ordenar este dicionario por familia e a lista de nome de tools
+    # ou deixamos pela ordem que ele meteu na config (que é a que está), podes escolher Braz
 
+    # index.pug file (criar a view inicial do servidor com botoes para as ferramentas)
     __index_pug_file(f'{server_dir}/views/index.pug',config_file['nome'],families)
+
+    # {family}_{tool}.pug file (criar uma view para cada ferramenta)
+    __tool_pug_file(f'{server_dir}/views', ferramentas)
 
 
 def __www_file(www_path,ip,porta):
@@ -43,8 +56,7 @@ def __index_pug_file(index_path, name, families):
     '''Criar o index do servidor. '''
     index_file = open(index_path,'w+')
 
-    index = f"""
-extends layout
+    index = f"""extends layout
 
 block content
     .w3-container.w3-indigo
@@ -66,3 +78,38 @@ block content
 
     index_file.write(index)
     index_file.close()
+
+def __pug_input_field(type,i):
+    return f'''input.w3-input.w3-round(type="{html_types[type]}" name="INPUT{i}")'''
+
+def __tool_pug_file(path, ferramentas):
+    '''Criar a view de cada ferramenta'''
+    for family,tools in ferramentas.items():
+        for tool,config in tools.items():
+            descricao = config['descricao'].strip()
+            inputs = config['inputs']
+            outputs = config['outputs']
+            # print(descricao) #TODO: está a ficar com '\n' no .pug na mesma e não pode
+            pug = f'''extends layout
+    block content
+        .w3-container.w3-indigo
+            h1 {tool}
+            p {descricao}
+        form.w3-container.w3-indigo
+            fieldset
+                legend Inputs'''
+            i = 0
+            for (input_id,input_type) in inputs:
+                i+=1
+                pug += f'''
+                label INPUT{i}
+                {__pug_input_field(input_type,i)}
+'''
+            pug += f'''
+            button.w3-btn.w3-purple.w3-mb-2(type="submit") Submit
+'''
+            
+            tool_file = open(f'{path}/{family}_{tool}.pug','w+')
+            tool_file.write(pug)
+            tool_file.close()
+
