@@ -6,15 +6,23 @@
 - Porta: 15213
 * Ferramentas
 --
-- Titulo: "Grep"
-- Familia:Grep
-- Descricao: "grep  searches  for  PATTERNS in each FILE.  PATTERNS is one or more patterns separated by newline characters,
+- Família:Grep
+- Título: "Grep"
+- Descrição: "grep  searches  for  PATTERNS in each FILE.  PATTERNS is one or more patterns separated by newline characters,
 and grep prints each line that matches a pattern.  Typically PATTERNS should be quoted when grep is used in  a
 shell command."
 -Comando: grep -d INPUT1 INPUT2 OUTPUT1
 -Inputs:
-    - INPUT1: STR
-    - INPUT2: FILE
+    - INPUT1: 
+        - Nome : pattern
+        - Descrição : "Padrao de procura"
+        - Tipo : STR
+    - INPUT2: 
+        - Nome : file
+        - Descrição : "Ficheiro onde se vai aplicar a procura"
+        - Tipo : FILE
 -Outputs:
-    - OUTPUT1 : STR
+    - OUTPUT1 : 
+        - Nome : file
+        - Tipo : STR
 

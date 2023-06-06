@@ -18,18 +18,26 @@ trabalhadores_servidor : "-" "Trabalhadores" ":" INT
 
 ferramentas : "*" "Ferramentas" ("--" ferramenta)+
 ferramenta : familia titulo descricao comando inputs? outputs?
-familia : "-" "Familia" ":" NOME
-titulo  : "-" "Titulo" ":" TEXTO
-descricao : "-" "Descricao" ":" TEXTO
+familia : "-" "Família" ":" NOME
+titulo  : "-" "Título" ":" TEXTO
+descricao : "-" "Descrição" ":" TEXTO
 comando : "-" "Comando" ":" comando_formato
 comando_formato : NOME opcoes* 
 opcoes : INPUT
         | OUTPUT
         | FLAG
 inputs : "-" "Inputs" ":" input+
-input : "-" INPUT ":" TYPE
+input : "-" INPUT ":" opcoes_input
+opcoes_input : input_nome? input_descricao? input_tipo
+input_nome : "-" "Nome" ":" NOME 
+input_descricao : "-" "Descrição" ":" TEXTO 
+input_tipo : "-" "Tipo" ":" TYPE 
 outputs : "-" "Outputs" ":" output+
-output : "-" OUTPUT ":" TYPE
+output : "-" OUTPUT ":" opcoes_output
+opcoes_output : output_nome? output_descricao? output_tipo
+output_nome : "-" "Nome" ":" NOME 
+output_descricao : "-" "Descrição" ":" TEXTO 
+output_tipo : "-" "Tipo" ":" TYPE 
 
 IP: /(\d{1,4}\.){3}\d{1,4}/
 PORTA: /\d+/
@@ -98,13 +106,13 @@ class Interpreter(Interpreter):
         '''Modifica o comando de uma ferramenta'''
         self.server_config['ferramentas'][familia][tool]['comando'] = comando
 
-    def __add_tool_input(self,familia,tool,input_id, input_type):
+    def __add_tool_input(self,familia,tool,input_id, input_opcoes):
         '''Adiciona um input a uma ferramenta'''
-        self.server_config['ferramentas'][familia][tool]['inputs'].append((input_id, input_type))
+        self.server_config['ferramentas'][familia][tool]['inputs'].append((input_id, dict(input_opcoes)))
 
-    def __add_tool_output(self,familia,tool,output_id, output_type):
+    def __add_tool_output(self,familia,tool,output_id, output_opcoes):
         '''Adiciona um output a uma ferramenta'''
-        self.server_config['ferramentas'][familia][tool]['outputs'].append((output_id, output_type))
+        self.server_config['ferramentas'][familia][tool]['outputs'].append((output_id, dict(output_opcoes)))
 
 
     
@@ -248,12 +256,41 @@ class Interpreter(Interpreter):
         for elem in elems:
             self.visit(elem)
 
+
     def input(self,input):
-        '''input : "-" INPUT ":" TYPE'''
+        '''input : "-" INPUT ":" opcoes_input'''
         elems = input.children
         input_id = elems[0].value
-        input_type = elems[1].value
-        self.__add_tool_input(self.curFamily,self.curTool,input_id, input_type)
+        # visitar opcoes
+        opcoes = self.visit(elems[1])
+        self.__add_tool_input(self.curFamily,self.curTool,input_id,opcoes)
+
+    def opcoes_input(self,opcoes_input):
+        '''opcoes_input : input_nome? input_descricao? input_tipo'''
+        elems = opcoes_input.children
+        opcoes = []
+        # visitar opcoes
+        for elem in elems:
+            opcoes.append(self.visit(elem))
+        return opcoes
+
+    def input_nome(self,input_nome):
+        '''input_nome : "-" "Nome" ":" NOME'''
+        elems = input_nome.children
+        input_nome = elems[0].value
+        return ('nome',input_nome)
+
+    def input_descricao(self,input_descricao):
+        '''input_descricao : "-" "Descrição" ":" TEXTO'''
+        elems = input_descricao.children
+        input_desc = elems[0].value
+        return ('descricao',input_desc)
+
+    def input_tipo(self,input_tipo):
+        '''input_tipo : "-" "Tipo" ":" TYPE '''
+        elems = input_tipo.children
+        input_tipo = elems[0].value
+        return ('tipo',input_tipo)
 
     def outputs(self,outputs):
         '''outputs : "-" "Outputs" ":" output+'''
@@ -263,11 +300,39 @@ class Interpreter(Interpreter):
             self.visit(elem)
 
     def output(self,output):
-        '''output : "-" OUTPUT ":" TYPE'''
+        '''output : "-" OUTPUT ":" opcoes_output'''
         elems = output.children
         output_id = elems[0].value
-        output_type = elems[1].value
-        self.__add_tool_output(self.curFamily,self.curTool,output_id, output_type)
+        # visitar opcoes
+        opcoes = self.visit(elems[1])
+        self.__add_tool_output(self.curFamily,self.curTool,output_id,opcoes)
+
+    def opcoes_output(self,opcoes_output):
+        '''opcoes_output : output_nome? output_descricao? output_tipo'''
+        elems = opcoes_output.children
+        opcoes = []
+        # visitar opcoes
+        for elem in elems:
+            opcoes.append(self.visit(elem))
+        return opcoes
+
+    def output_nome(self,output_nome):
+        '''output_nome : "-" "Nome" ":" NOME'''
+        elems = output_nome.children
+        output_nome = elems[0].value
+        return ('nome',output_nome)
+
+    def output_descricao(self,output_descricao):
+        '''input_descricao : "-" "Descrição" ":" TEXTO'''
+        elems = output_descricao.children
+        output_desc = elems[0].value
+        return ('descricao',output_desc)
+
+    def output_tipo(self,output_tipo):
+        '''input_tipo : "-" "Tipo" ":" TYPE '''
+        elems = output_tipo.children
+        output_tipo = elems[0].value
+        return ('tipo',output_tipo)
 
 
     
