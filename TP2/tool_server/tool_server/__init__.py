@@ -50,7 +50,8 @@ def tool_server():
         config_server(destino,config)
 
         #iniciar servidor
-        start_server(destino)
+        if args.start_server:
+            start_server(destino)
     else:
         print('Erro no ficheiro de configuração')
         exit(-1)
