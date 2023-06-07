@@ -29,7 +29,7 @@ function run_command(){
     console.log(full_command)
     // TODO: modificar dependendo do sistema operativo
     c = child.spawnSync("wsl", full_command, {
-    cwd: process.cwd() + `\\${request_path}`
+    cwd: process.cwd() + `\\${request_path}`,
     })
     console.log(c.stdout.toString());
     console.log(c.stderr.toString());
