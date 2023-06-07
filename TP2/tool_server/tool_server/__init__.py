@@ -19,10 +19,12 @@ model_server = f'{project_dir}/model'
 def start_server(server_dir,config):
     '''Inicia o servidor'''
     server_path = f'{os.getcwd()}/{server_dir}'
+    dependencies = ['express','http-errors','adm-zip']
+    # multer apenas se ferramentas levarem ficheiros como input
     if has_file_input(config['ferramentas']):
-        dependencies = ' '.join(['express','http-errors','multer','adm-zip'])
-    else:
-        dependencies = ' '.join(['express','http-errors','adm-zip'])
+        dependencies += ['multer']
+        
+    dependencies = ' '.join(dependencies)
     print('Installing server dependencies')
     p = subprocess.call(f'npm i {dependencies} -s', cwd=server_path,shell=True)
     print('Dependencies installed')

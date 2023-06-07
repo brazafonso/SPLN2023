@@ -1,8 +1,7 @@
 '''Ficheiro com parser do ficheiro de configuracao do servidor'''
 
-from lark.tree import pydot__tree_to_png
 from lark.visitors import Interpreter
-from lark import Lark,Discard ,Token,Tree
+from lark import Lark
 
 
 grammar = '''
