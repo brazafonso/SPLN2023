@@ -17,27 +17,27 @@ rota_servidor : "-" "Rota" ":" ROTA
 trabalhadores_servidor : "-" "Trabalhadores" ":" INT
 
 ferramentas : "*" "Ferramentas" ("--" ferramenta)+
-ferramenta : familia titulo descricao comando inputs? outputs?
+ferramenta : familia titulo descricao comando inputs?
 familia : "-" "Família" ":" NOME
 titulo  : "-" "Título" ":" TEXTO
 descricao : "-" "Descrição" ":" TEXTO
 comando : "-" "Comando" ":" comando_formato
-comando_formato : NOME opcoes* 
+comando_formato : (NOME (opcoes | arg)*) (comando_operador comando_formato)*
 opcoes : INPUT
-        | OUTPUT
         | FLAG
+comando_operador : PIPE
+                | REDIRECIONAMENTO
+                | AND
+arg : TEXTO
+    | PALAVRA
+
+
 inputs : "-" "Inputs" ":" input+
 input : "-" INPUT ":" opcoes_input
 opcoes_input : input_nome? input_descricao? input_tipo
 input_nome : "-" "Nome" ":" NOME 
 input_descricao : "-" "Descrição" ":" TEXTO 
 input_tipo : "-" "Tipo" ":" TYPE 
-outputs : "-" "Outputs" ":" output+
-output : "-" OUTPUT ":" opcoes_output
-opcoes_output : output_nome? output_descricao? output_tipo
-output_nome : "-" "Nome" ":" NOME 
-output_descricao : "-" "Descrição" ":" TEXTO 
-output_tipo : "-" "Tipo" ":" TYPE 
 
 IP: /(\d{1,4}\.){3}\d{1,4}/
 PORTA: /\d+/
@@ -45,10 +45,13 @@ ROTA: /[\w\-\/]+/
 STR: /"[^"]"/
 TEXTO: /"[^"]*"/
 NOME: /[\w\-]+/
+PALAVRA: /[\w\.\-_]+/
 INPUT: /INPUT\d+/
-OUTPUT: /OUTPUT\d+/
 FLAG: /-\w+/
 TYPE: /(STR)|(NUM)|(FILE)|(FOLDER)/
+PIPE: /\|/
+REDIRECIONAMENTO: /<|>/
+AND: /&/
 
 %import common.WS
 %import common.WORD
@@ -90,7 +93,7 @@ class Interpreter(Interpreter):
             'descricao' : '',
             'comando' : '',
             'inputs' : [],
-            'outputs' : []
+            'n_files' : 0
         }
 
     def __add_tool_family(self,familia):
@@ -110,9 +113,9 @@ class Interpreter(Interpreter):
         '''Adiciona um input a uma ferramenta'''
         self.server_config['ferramentas'][familia][tool]['inputs'].append((input_id, dict(input_opcoes)))
 
-    def __add_tool_output(self,familia,tool,output_id, output_opcoes):
-        '''Adiciona um output a uma ferramenta'''
-        self.server_config['ferramentas'][familia][tool]['outputs'].append((output_id, dict(output_opcoes)))
+    def __add_tool_nfiles(self,familia,tool):
+        '''Incrementa o numero de ficheiros que a tool aceita'''
+        self.server_config['ferramentas'][familia][tool]['n_files'] += 1
 
 
     
@@ -195,7 +198,7 @@ class Interpreter(Interpreter):
             self.visit(elem)
 
     def ferramenta(self,ferramenta):
-        '''ferramenta : familia titulo descricao comando inputs? outputs?'''
+        '''ferramenta : familia titulo descricao comando inputs?'''
         elems = ferramenta.children
         # visitar todas as opcoes
         for elem in elems:
@@ -231,7 +234,7 @@ class Interpreter(Interpreter):
         self.__set_tool_command(self.curFamily,self.curTool, comando_formato)
 
     def comando_formato(self,comando_formato):
-        '''comando_formato : NOME opcoes*'''
+        '''comando_formato : (NOME (opcoes | arg)*) (comando_operador comando_formato)*'''
         elems = comando_formato.children
         comando = ''
         nome = elems[0].value
@@ -242,11 +245,24 @@ class Interpreter(Interpreter):
             comando += f'{opcao} '
         return comando
     
+    
     def opcoes(self, opcoes):
         '''opcoes : INPUT
-                  | OUTPUT
                   | FLAG'''
         elems = opcoes.children
+        return elems[0].value
+    
+    def arg(self,arg):
+        '''arg: TEXTO
+              | PALAVRA'''
+        elems = arg.children
+        return elems[0].value
+
+    def comando_operador(self,comando_operador):
+        '''comando_operador : PIPE
+                            | REDIRECIONAMENTO
+                            | AND'''
+        elems = comando_operador.children
         return elems[0].value
 
     def inputs(self,inputs):
@@ -290,55 +306,21 @@ class Interpreter(Interpreter):
         '''input_tipo : "-" "Tipo" ":" TYPE '''
         elems = input_tipo.children
         input_tipo = elems[0].value
+        if input_tipo == 'FILE':
+            self.__add_tool_nfiles(self.curFamily,self.curTool)
         return ('tipo',input_tipo)
 
-    def outputs(self,outputs):
-        '''outputs : "-" "Outputs" ":" output+'''
-        elems = outputs.children
-        #visitar outputs
-        for elem in elems:
-            self.visit(elem)
-
-    def output(self,output):
-        '''output : "-" OUTPUT ":" opcoes_output'''
-        elems = output.children
-        output_id = elems[0].value
-        # visitar opcoes
-        opcoes = self.visit(elems[1])
-        self.__add_tool_output(self.curFamily,self.curTool,output_id,opcoes)
-
-    def opcoes_output(self,opcoes_output):
-        '''opcoes_output : output_nome? output_descricao? output_tipo'''
-        elems = opcoes_output.children
-        opcoes = []
-        # visitar opcoes
-        for elem in elems:
-            opcoes.append(self.visit(elem))
-        return opcoes
-
-    def output_nome(self,output_nome):
-        '''output_nome : "-" "Nome" ":" NOME'''
-        elems = output_nome.children
-        output_nome = elems[0].value
-        return ('nome',output_nome)
-
-    def output_descricao(self,output_descricao):
-        '''input_descricao : "-" "Descrição" ":" TEXTO'''
-        elems = output_descricao.children
-        output_desc = elems[0].value
-        return ('descricao',output_desc)
-
-    def output_tipo(self,output_tipo):
-        '''input_tipo : "-" "Tipo" ":" TYPE '''
-        elems = output_tipo.children
-        output_tipo = elems[0].value
-        return ('tipo',output_tipo)
 
 
     
 
-
-
+def has_file_input(ferramentas):
+    '''Verifica se alguma ferramenta tem ficheiro como input'''
+    for familia,tools in ferramentas.items():
+        for tool,config in tools.items():
+            if config['n_files'] > 0:
+                return True
+    return False
 
 def parse_config(config_file):
     '''Parse do ficheiro de configuracao utilizando a classe Interpreter'''
@@ -353,6 +335,6 @@ def parse_config(config_file):
 
 
 #TODO: 
-# verificar porta, ip, inputs e outputs
+# verificar porta, ip, inputs
 def config_valid(config):
     return True

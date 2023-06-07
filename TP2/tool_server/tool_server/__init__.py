@@ -16,10 +16,13 @@ project_dir = os.path.dirname(os.path.realpath(__file__))
 model_server = f'{project_dir}/model'
 
 
-def start_server(server_dir):
+def start_server(server_dir,config):
     '''Inicia o servidor'''
     server_path = f'{os.getcwd()}/{server_dir}'
-    dependencies = ' '.join(['express','http-errors'])
+    if has_file_input(config['ferramentas']):
+        dependencies = ' '.join(['express','http-errors','multer'])
+    else:
+        dependencies = ' '.join(['express','http-errors'])
     print('Installing server dependencies')
     p = subprocess.call(f'npm i {dependencies} -s', cwd=server_path,shell=True)
     print('Dependencies installed')
@@ -51,7 +54,7 @@ def tool_server():
 
         #iniciar servidor
         if args.start_server:
-            start_server(destino)
+            start_server(destino,config)
     else:
         print('Erro no ficheiro de configuração')
         exit(-1)

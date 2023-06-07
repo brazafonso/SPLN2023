@@ -2,6 +2,7 @@
 
 import re
 import os
+from .config_parser import *
 
 html_types = {
     'STR' : 'text',
@@ -91,7 +92,6 @@ def __tool_pug_file(path, ferramentas):
         for tool,config in tools.items():
             descricao = config['descricao']
             inputs = config['inputs']
-            outputs = config['outputs']
             # print(descricao) #TODO: está a ficar com '\n' no .pug na mesma e não pode
             pug = f'''
 extends layout
@@ -103,7 +103,10 @@ block content
                 pug += f'''
         p {line}'''
             pug +='''
-    form.w3-container.w3-indigo(method='post')
+    form.w3-container.w3-indigo(method="post"'''
+            if config['n_files'] > 0:
+                pug += ',enctype="multipart/form-data"'
+            pug+=''')
         fieldset
             legend Inputs'''
             for id,input_dict in inputs:
@@ -133,12 +136,17 @@ def __tool_create_routes(index_path,ferramentas):
     index = file.read()
     file.close()
 
-
     index = index.splitlines()
     # retirar ultima linha (module.exports = router;)
     export_router = index[-1]
     index = "\n".join(index[:-1])
-
+    if has_file_input(ferramentas):
+        index += '''
+const multer = require("multer")
+const storageEngine = multer.diskStorage({
+  destination: (req, file, cb) => { cb(null, './uploads') },
+  filename: (req, file, cb) => { cb(null, Date.now() + '_' + file.originalname) }, })
+        '''
     for family,tools in ferramentas.items():
         for tool,config in tools.items():
             index += f'''
@@ -146,7 +154,32 @@ router.get('/{family}/{tool}', function(req, res, next) {'{'}
     res.render('{family}_{tool}', {'{'} title: '{family}' {'}'});
 {'}'});
 ''' 
-            index += f'''
+            n_files = config['n_files']
+            if n_files:
+                index += f'''
+const upload_{family}_{tool} = multer({'{'} storage: storageEngine {'}'}).fields(['''
+                for input,opcoes in config['inputs']:
+                    if opcoes['tipo'] == 'FILE':
+                        index +=f'''
+    {'{'} name: '{input}', maxCount: 1 {'}'},
+                '''
+                index = index[:-1]
+                index += '''
+    ]);
+    '''
+                index += f'''
+router.post('/{family}/{tool}', function(req, res) {'{'}
+    upload_{family}_{tool}(req, res, (err) => {'{'}
+        if (err) {'{'}
+        console.error(err);
+        return res.status(500).json({'{'} error: 'Erro no upload dos arquivos' {'}'});
+        {'}'}
+    process_command(req);
+    res.render('{family}_{tool}', {'{'} title: '{family}' {'}'});
+{'}'});{'}'});
+''' 
+            else:
+                index += f'''
 router.post('/{family}/{tool}', function(req, res) {'{'}
     process_command(req);
     res.render('{family}_{tool}', {'{'} title: '{family}' {'}'});

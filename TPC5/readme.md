@@ -1,6 +1,6 @@
 # **TPC 5**
 
-Continuar a acrescentar funcionalidades ao tokenizer, para além de o tornar instalável utilizando o *flint*.  
+Continuar a acrescentar funcionalidades ao tokenizer, para além de o tornar instalável utilizando o *flit*.  
 Correções de bugs como deteção de capítulos se tiverem uma linha em branco a separar o texto e não separar palavras com hífens.  
 Adpatação do parser de argumentos para utilizar o *argparser*.  
 Funcionalidades (tok -h):  
