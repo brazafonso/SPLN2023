@@ -4,12 +4,12 @@ const path = require('path');
 const requests_folder = 'requests/'
 const { threads } = workerData
 const { Worker } = require('worker_threads');
-var queue = []
-request_n = 0
-available_workers = []
-workers = {}
-completed_requests = {}
-pending_requests = {}
+var queue = [] // queue de pedidos
+request_n = 0  // id do proximo pedido
+available_workers = [] // lista com threads disponiveis
+workers = {}  // dicionario dos workers ativos (serve para os poder terminar quando necessario)
+completed_requests = {} // dicionario de todas as requests completas
+pending_requests = {} // dicionario de todas as requests pending
 
 
 
@@ -36,6 +36,11 @@ parentPort.on('message', (data) => {
         return
     }
     else if (msg == 'status'){
+      // apagar pedidos completos apagados
+      for(id in completed_requests){
+        if(!fs.existsSync(completed_requests[id].path))
+          delete completed_requests[id]
+      }
       parentPort.postMessage({msg:'status',pending_requests,completed_requests})
       return 
     }
