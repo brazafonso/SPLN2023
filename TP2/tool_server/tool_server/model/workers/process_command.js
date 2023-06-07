@@ -1,6 +1,8 @@
 const { parentPort, workerData } = require('worker_threads')
 const  child  = require('child_process')
 const { id,request } = workerData
+const fs = require('fs')
+const path = require('path')
 
 
 parentPort.on('message', (msg) => {
@@ -32,4 +34,9 @@ function run_command(){
     console.log(c.stdout.toString());
     console.log(c.stderr.toString());
     console.log('Worker ' + id + 'done' )
+    // Escrever ficheiros com output de terminal na pasta da request
+    out_file = path.join(request_path,`request_${request.id}_${Date.parse(request.date)}_stdout.txt`)
+    err_file = path.join(request_path,`request_${request.id}_${Date.parse(request.date)}_stderr.txt`)
+    fs.writeFileSync(out_file,c.stdout.toString())
+    fs.writeFileSync(err_file,c.stderr.toString())
   }

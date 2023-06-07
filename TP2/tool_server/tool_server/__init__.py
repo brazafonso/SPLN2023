@@ -20,9 +20,9 @@ def start_server(server_dir,config):
     '''Inicia o servidor'''
     server_path = f'{os.getcwd()}/{server_dir}'
     if has_file_input(config['ferramentas']):
-        dependencies = ' '.join(['express','http-errors','multer'])
+        dependencies = ' '.join(['express','http-errors','multer','adm-zip'])
     else:
-        dependencies = ' '.join(['express','http-errors'])
+        dependencies = ' '.join(['express','http-errors','adm-zip'])
     print('Installing server dependencies')
     p = subprocess.call(f'npm i {dependencies} -s', cwd=server_path,shell=True)
     print('Dependencies installed')

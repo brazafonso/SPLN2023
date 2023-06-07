@@ -129,6 +129,7 @@ function process_command(data,files){
     number : request_n,
     command : command,
     date : data,
+    path: r_folder
   }
 }
 
