@@ -8,7 +8,7 @@ authors = [{name = "brazafonso", email = "a93178@uminho.pt"},{name = "Tiago Silv
 license = {file = "LICENSE"}
 classifiers = ["License :: OSI Approved :: MIT License"]
 dynamic = ["version", "description"]
-dependencies = ["lark","argparse"]
+dependencies = ["lark","argparse","pyngrok"]
 readme = "readme.md"
 
 

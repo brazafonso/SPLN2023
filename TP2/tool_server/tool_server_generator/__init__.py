@@ -5,19 +5,34 @@
 import os
 import shutil
 import subprocess
-import argparse
-import sys
+from pyngrok import ngrok
 from .utils.utils import *
 from .utils.config_parser import *
 from .utils.config_server import *
 
-__version__ = '0.3.2'
+__version__ = '0.3.3'
 project_dir = os.path.dirname(os.path.realpath(__file__))
 model_server = f'{project_dir}/model'
+tunnel = None
+
+def start_ngrok(config):
+    '''Tenta expor a porta do servidor utilizando o ngrok'''
+    global tunnel
+    try:
+        print(ngrok.get_tunnels())
+        print('Exposing port using ngrok')
+        tunnel = ngrok.connect(config['porta'],'http')
+        print('Port exposed',tunnel)
+        print('Public URL',tunnel.public_url)
+    except Exception as e:
+        print(e)
+        print('Error: Could not expose port using ngrok.')
+        tunnel = None
 
 
 def start_server(server_dir,config):
     '''Inicia o servidor'''
+    global tunnel
     server_path = f'{os.getcwd()}/{server_dir}'
     dependencies = ['express','http-errors','adm-zip']
 
@@ -31,6 +46,11 @@ def start_server(server_dir,config):
     print('Dependencies installed')
     print('Starting server')
     p = subprocess.call(f'npm start', cwd=server_path,shell=True)
+    print('Server closed')
+    # desconectar ngrok
+    if tunnel:
+        print('Closing ngrok')
+        ngrok.disconnect(tunnel.public_url)
 
 def tool_server():
     args = parse_arguments(__version__)
@@ -54,6 +74,10 @@ def tool_server():
             exit(-1)
         # alterar configuracoes do servidor
         config_server(destino,config)
+
+        # expor porta de ngrok
+        if args.ngrok:
+            start_ngrok(config)
 
         #iniciar servidor
         if args.start_server:

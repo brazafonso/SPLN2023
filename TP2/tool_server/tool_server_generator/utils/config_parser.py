@@ -124,8 +124,8 @@ class Interpreter(Interpreter):
             'diretoria' : '',
             'ip' : '',
             'porta' : '',
-            'rota' : '',
-            'workers' : '',
+            'rota' : '/',
+            'workers' : 1,
             'ferramentas' : {}
         }
         self.curTool = None
