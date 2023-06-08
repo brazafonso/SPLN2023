@@ -3,7 +3,7 @@ requires = ["npm"]
 build-backend = "flit_core.buildapi"
 
 [project]
-name = "tool_server"
+name = "tool_server_generator"
 authors = [{name = "brazafonso", email = "a93178@uminho.pt"},{name = "Tiago Silva", email = "a93277@uminho.pt"}]
 license = {file = "LICENSE"}
 classifiers = ["License :: OSI Approved :: MIT License"]
@@ -13,5 +13,5 @@ readme = "readme.md"
 
 
 [project.scripts]
-ts = "tool_server:tool_server"
+ts = "tool_server_generator:tool_server"
 
