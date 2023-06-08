@@ -12,7 +12,8 @@ completed_requests = {} // dicionario de todas as requests completas
 pending_requests = {} // dicionario de todas as requests pending
 
 
-
+if(!fs.existsSync(path.join(requests_folder)))
+    fs.mkdirSync(path.join(requests_folder))
 
 console.log('Creating worker list')
 for(i=0;i<threads;i++){

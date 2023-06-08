@@ -4,7 +4,7 @@ var path = require('path');
 var AdmZip = require('adm-zip');
 
 var router = express.Router();
-var threads = 1 //TODO: modificar
+var threads = $threads
 const { Worker } = require('worker_threads')
 const worker = new Worker('./workers/request_listener.js', { workerData: { threads } })
 // worker.on('error', (err) => { throw err })
@@ -68,7 +68,7 @@ router.get('/requests/:id', function(req, res, next) {
 router.post('/requests/delete/:id', function(req, res, next) {
   id = req.params.id
   delete completed_requests[id]
-  fs.rmSync(path.join(`requests\\${id}`), { recursive: true, force: true })
+  fs.rmSync(path.join(`requests/${id}`), { recursive: true, force: true })
   res.redirect('/requests')
 });
 

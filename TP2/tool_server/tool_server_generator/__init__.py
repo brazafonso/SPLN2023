@@ -11,7 +11,7 @@ from .utils.utils import *
 from .utils.config_parser import *
 from .utils.config_server import *
 
-__version__ = '0.1'
+__version__ = '0.3.2'
 project_dir = os.path.dirname(os.path.realpath(__file__))
 model_server = f'{project_dir}/model'
 
@@ -20,12 +20,13 @@ def start_server(server_dir,config):
     '''Inicia o servidor'''
     server_path = f'{os.getcwd()}/{server_dir}'
     dependencies = ['express','http-errors','adm-zip']
+
     # multer apenas se ferramentas levarem ficheiros como input
     if has_file_input(config['ferramentas']):
         dependencies += ['multer']
         
     dependencies = ' '.join(dependencies)
-    print('Installing server dependencies')
+    print(f'Installing server dependencies: [{dependencies}]')
     p = subprocess.call(f'npm i {dependencies} -s', cwd=server_path,shell=True)
     print('Dependencies installed')
     print('Starting server')

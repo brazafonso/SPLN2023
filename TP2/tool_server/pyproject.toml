@@ -1,5 +1,5 @@
 [build-system]
-requires = ["npm"]
+requires = ["flit_core >=3.2,<4","node>=12","npm"]
 build-backend = "flit_core.buildapi"
 
 [project]
@@ -8,7 +8,7 @@ authors = [{name = "brazafonso", email = "a93178@uminho.pt"},{name = "Tiago Silv
 license = {file = "LICENSE"}
 classifiers = ["License :: OSI Approved :: MIT License"]
 dynamic = ["version", "description"]
-dependencies = []
+dependencies = ["lark","argparse"]
 readme = "readme.md"
 
 
