@@ -38,13 +38,8 @@ function process_command(req){
   })
 }
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
-
 router.get('/requests', function(req, res, next) {
-  res.render('requests', { queue: pending_requests,completed:completed_requests });
+  res.render('requests', { title: 'Requests', queue: pending_requests,completed:completed_requests });
 });
 
 router.get('/requests/:id', function(req, res, next) {
