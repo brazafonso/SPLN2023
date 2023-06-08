@@ -22,8 +22,7 @@ def start_ngrok(config):
         print(ngrok.get_tunnels())
         print('Exposing port using ngrok')
         tunnel = ngrok.connect(config['porta'],'http')
-        print('Port exposed',tunnel)
-        print('Public URL',tunnel.public_url)
+        print('Public URL: ',tunnel.public_url)
     except Exception as e:
         print(e)
         print('Error: Could not expose port using ngrok.')
@@ -41,16 +40,18 @@ def start_server(server_dir,config):
         dependencies += ['multer']
         
     dependencies = ' '.join(dependencies)
-    print(f'Installing server dependencies: [{dependencies}]')
-    p = subprocess.call(f'npm i {dependencies} -s', cwd=server_path,shell=True)
-    print('Dependencies installed')
-    print('Starting server')
-    p = subprocess.call(f'npm start', cwd=server_path,shell=True)
-    print('Server closed')
-    # desconectar ngrok
-    if tunnel:
-        print('Closing ngrok')
-        ngrok.disconnect(tunnel.public_url)
+    try:
+        print(f'Installing server dependencies: [{dependencies}]')
+        p = subprocess.call(f'npm i {dependencies} -s', cwd=server_path,shell=True)
+        print('Dependencies installed')
+        print('Starting server')
+        p = subprocess.call(f'npm start', cwd=server_path,shell=True)
+    except Exception as e:
+        print('Server closed')
+        # desconectar ngrok
+        if tunnel:
+            print('Closing ngrok')
+            ngrok.disconnect(tunnel.public_url)
 
 def tool_server():
     args = parse_arguments(__version__)

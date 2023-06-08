@@ -12,12 +12,10 @@ TODO:
 
 - melhorar views
 
-- dar host no servidor
-
 - ler configuracoes de json
 
 - validacoes do ficheiro de configuracao
 
-- trocar valor das threads no js
+- argumentos de comando fixos (por exemplo strings ou ficheiros q se pedem para ser criados no servidor)
 
 - relatorio + readme
