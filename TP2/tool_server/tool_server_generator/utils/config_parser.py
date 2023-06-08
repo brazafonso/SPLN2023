@@ -7,10 +7,9 @@ from lark import Lark
 grammar = '''
 start : servidor
 servidor : "*" "Servidor" opcoes_servidor ferramentas
-opcoes_servidor : nome_servidor diretoria_servidor ip_servidor porta_servidor  rota_servidor? trabalhadores_servidor?
+opcoes_servidor : nome_servidor diretoria_servidor porta_servidor  rota_servidor? trabalhadores_servidor?
 nome_servidor : "-" "Nome" ":" NOME
 diretoria_servidor : "-" "Diretoria" ":" TEXTO
-ip_servidor : "-" "IP" ":" IP
 porta_servidor : "-" "Porta" ":" PORTA
 rota_servidor : "-" "Rota" ":" ROTA
 trabalhadores_servidor : "-" "Trabalhadores" ":" INT
@@ -110,7 +109,7 @@ class Interpreter(Interpreter):
 
     def __add_tool_input(self,familia,tool,input_id, input_opcoes):
         '''Adiciona um input a uma ferramenta'''
-        self.server_config['ferramentas'][familia][tool]['inputs'].append((input_id, dict(input_opcoes)))
+        self.server_config['ferramentas'][familia][tool]['inputs'].append({'id':input_id, 'opcoes':dict(input_opcoes)})
 
     def __add_tool_nfiles(self,familia,tool):
         '''Incrementa o numero de ficheiros que a tool aceita'''
@@ -122,7 +121,7 @@ class Interpreter(Interpreter):
         self.server_config = {
             'nome' : '',
             'diretoria' : '',
-            'ip' : '',
+            'ip' : '127.0.0.1',
             'porta' : '',
             'rota' : '/',
             'workers' : 1,
@@ -147,7 +146,7 @@ class Interpreter(Interpreter):
         self.visit(elems[1])
 
     def opcoes_servidor(self,opcoes_servidor):
-        '''opcoes_servidor : nome_servidor diretoria_servidor ip_servidor porta_servidor  rota_servidor? trabalhadores_servidor?'''
+        '''opcoes_servidor : nome_servidor diretoria_servidor porta_servidor  rota_servidor? trabalhadores_servidor?'''
         elems = opcoes_servidor.children
         # visitar todas as opcoes
         for elem in elems:
@@ -164,12 +163,6 @@ class Interpreter(Interpreter):
         elems = diretoria_servidor.children
         diretoria = elems[0].value[1:-1]
         self.__set_server_directory(diretoria)
-
-    def ip_servidor(self,ip_servidor):
-        '''ip_servidor : "-" "IP" ":" IP'''
-        elems = ip_servidor.children
-        ip = elems[0].value
-        self.__set_server_ip(ip)
 
     def porta_servidor(self,porta_servidor):
         '''porta_servidor : "-" "Porta" ":" PORTA'''
@@ -315,8 +308,8 @@ class Interpreter(Interpreter):
 
 def has_file_input(ferramentas):
     '''Verifica se alguma ferramenta tem ficheiro como input'''
-    for familia,tools in ferramentas.items():
-        for tool,config in tools.items():
+    for _,tools in ferramentas.items():
+        for _,config in tools.items():
             if config['n_files'] > 0:
                 return True
     return False
@@ -325,15 +318,109 @@ def parse_config(config_file):
     '''Parse do ficheiro de configuracao utilizando a classe Interpreter'''
     config_text = config_file.read()
     config_file.close()
-
-    p = Lark(grammar)
-    parse_tree = p.parse(config_text)
-    it = Interpreter()
+    try:
+        p = Lark(grammar)
+        parse_tree = p.parse(config_text)
+        it = Interpreter()
+    except Exception as e:
+        print(e)
+        print('Error : Configuration file not valid.')
     return it.visit(parse_tree)
 
 
+# 'descricao' : '',
+# 'comando' : '',
+# 'inputs' : [],
+# 'n_files' : 0
+# }
 
-#TODO: 
-# verificar porta, ip, inputs
+# {
+#             'nome' : '',
+#             'diretoria' : '',
+#             'ip' : '',
+#             'porta' : '',
+#             'rota' : '/',
+#             'workers' : 1,
+#             'ferramentas' : {}
+#         }
+
+# familia titulo descricao comando inputs?
+
+# input_nome? input_descricao? input_tipo
+
 def config_valid(config):
+    '''Validar um dicionario como configuracao do servidor'''
+    tool_fields = [('descricao',str),('comando',str)]
+    input_fields = [('id',str),('opcoes',dict)]
+    config_fields = [('nome',str),('diretoria',str),('porta',int),('ferramentas',dict)]
+
+    # verificar campos do servidor
+    for field,t in config_fields:
+        if field not in config or type(config[field]) != t:
+            print(f'Error: error on field {field} | expected type "{t}"')
+            return False
+    # adicionar workers default se nao houver
+    if 'workers' not in config or type(config['workers'] != int):
+        config['workers'] = 1
+    # adicionar rota default se nao houver
+    if 'rota' not in config or type(config['rota'] != str):
+        config['rota'] = '/'
+    # ip default
+    config['ip'] = '127.0.0.1'
+    
+    # verificar todas as familias
+    for family,ferramentas in config['ferramentas'].items():
+        # dicionario de ferramentas
+        if type(ferramentas) != dict:
+            print(f'Error: error on tool family {family}')
+            return False
+        # verificar ferramentas da familia
+        for _,ferramenta in ferramentas.items():
+            if type(ferramenta) != dict:
+                print(f'Error: error on tool {ferramenta}')
+                return False
+            # verificar campos da ferramenta
+            for field,t in tool_fields:
+                if field not in ferramenta or type(ferramenta[field]) != t:
+                    print(f'Error: error on tool {ferramenta} field "{field}" | expected type "{t}"')
+                    return False
+            # adicionar n_files default se nao houver
+            if 'n_files' not in ferramenta:
+                ferramenta['n_files'] = 0
+            # adicionar inputs default se nao houver
+            if 'inputs' not in ferramenta:
+                ferramenta['inputs'] = []
+                ferramenta['n_files'] = 0
+            # verificar inputs
+            else:
+                if type(ferramenta['inputs']) != list:
+                    print(f'Error: error on tool {ferramenta} input field')
+                    return False
+                # verificar cada input
+                for input in ferramenta['inputs']:
+                    if type(input) != dict:
+                        print(f'Error: error on tool {ferramenta} input {input}')
+                        return False
+                    # verificar campos do input
+                    for field,t in input_fields:
+                        if field not in input or type(input[field]) != t:
+                            print(f'Error: error on tool {ferramenta} input {input} field "{field}" | expected type "{t}"')
+                            return False
+                        
+                    input_opcoes = input['opcoes']
+                    # campo obrigatorio 'tipo'
+                    if 'tipo' not in input_opcoes or type(input_opcoes['tipo']) != str:
+                        print(f'Error: error on tool {ferramenta} input {input} field "tipo"')
+                        return False
+                    # se o tipo for ficheiro contar para o numero de input ficheiros
+                    if input_opcoes['tipo'] == 'FILE':
+                        ferramenta['n_files'] += 1
+                    # campo nao obrigatorio mas que deve ter o tipo certo
+                    if 'nome' in input_opcoes and type(input_opcoes['nome']) != str:
+                        print(f'Error: error on tool {ferramenta} input {input} field "nome"')
+                        return False
+                    # campo nao obrigatorio mas que deve ter o tipo certo
+                    if 'descricao' in input_opcoes and type(input_opcoes['descricao']) != str:
+                        print(f'Error: error on tool {ferramenta} input {input} field "descricao"')
+                        return False
     return True

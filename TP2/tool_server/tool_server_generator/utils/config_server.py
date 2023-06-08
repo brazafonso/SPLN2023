@@ -119,7 +119,9 @@ def __tool_pug_file_form(config):
         fieldset
             legend Inputs'''
     # botao para cada input
-    for id,input_dict in inputs:
+    for input in inputs:
+        id = input['id']
+        input_dict = input['opcoes']
         nome = input_dict['nome'] if input_dict['nome'] else id
         input_type = input_dict['tipo']
         pug += f'''
@@ -185,10 +187,12 @@ def __server_create_routes_tool_post_multer(family,tool,config,base_route):
     index += f'''
 const upload_{family}_{tool_re} = multer({'{'} storage: storageEngine {'}'}).fields(['''
     # adicioanr field para cada input ficheiro
-    for input,opcoes in config['inputs']:
+    for input in config['inputs']:
+        id = input['id']
+        opcoes = input['opcoes']
         if opcoes['tipo'] == 'FILE':
             index +=f'''
-    {'{'} name: '{input}', maxCount: 1 {'}'},
+    {'{'} name: '{id}', maxCount: 1 {'}'},
                 '''
     index = index[:-1] # retirar ultima ','
     index += '''

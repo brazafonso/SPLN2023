@@ -12,10 +12,7 @@ TODO:
 
 - melhorar views
 
-- ler configuracoes de json
 
-- validacoes do ficheiro de configuracao
-
-- argumentos de comando fixos (por exemplo strings ou ficheiros q se pedem para ser criados no servidor)
+- servidor ao iniciar verifica se ja tem pedidos atendidos
 
 - relatorio + readme

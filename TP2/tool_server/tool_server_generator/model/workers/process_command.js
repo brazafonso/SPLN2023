@@ -9,6 +9,7 @@ parentPort.on('message', (msg) => {
         run_command()
         message = 'Work Done'
         request_id = request.id
+        // avisar parent que terminou de processar a request
         parentPort.postMessage({ id, message,request_id })
         return
     }
@@ -21,8 +22,9 @@ parentPort.on('message', (msg) => {
 function run_command(){
   request_path = request.path
   command = request.command
-  console.log('Running command: ' + command)
+  console.log('Worker ' + id +' running command: ' + command)
   try{
+    // executar comando
     out = execSync(command,{
       cwd: request_path
     })

@@ -5,6 +5,7 @@
 import os
 import shutil
 import subprocess
+import json
 from pyngrok import ngrok
 from .utils.utils import *
 from .utils.config_parser import *
@@ -55,23 +56,32 @@ def start_server(server_dir,config):
 
 def tool_server():
     args = parse_arguments(__version__)
-    config_file = args.config_file
-    config = parse_config(config_file[0])
+    config_file = args.config_file[0]
+    file = open(config_file,'r',encoding='utf-8')
+    json_config = False
+    # ficheiro json
+    if config_file.endswith('.json'):
+        json_config = True
+        config = dict(json.load(file))
+        file.close()
+    # outro tipo
+    else:
+        config = parse_config(file)
 
-    if config_valid(config):
+    if not json_config or config_valid(config):
         #Copiar o modelo do servidor para a diretoria desejada
         destino = config['diretoria'] + '/' + config['nome']
         origem = model_server
         try:
             shutil.copytree(origem, destino)
         except FileNotFoundError:
-            print("Servidor modelo não encontrado!")
+            print("Model Server not found!")
             exit(-1)
         except FileExistsError:
-            print("A diretoria de destino já existe.")
+            print("Directory already exists.")
             exit(-1)
         except Exception as e:
-            print(f"Erro ao copiar o modelo do servidor: {e}")
+            print(f"Error copying the model server: {e}")
             exit(-1)
         # alterar configuracoes do servidor
         config_server(destino,config)
@@ -84,5 +94,5 @@ def tool_server():
         if args.start_server:
             start_server(destino,config)
     else:
-        print('Erro no ficheiro de configuração')
+        print('Error on the configuration file.')
         exit(-1)

@@ -2,7 +2,6 @@
 * Servidor
 - Nome: Servidor
 - Diretoria: "teste"
-- IP: 127.0.0.1
 - Porta: 15213
 * Ferramentas
 --
