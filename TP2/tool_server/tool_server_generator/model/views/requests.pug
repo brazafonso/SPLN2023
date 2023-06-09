@@ -4,8 +4,8 @@ block content
   .w3-cell-row
     .w3-container.w3-cell.w3-center(style="width:50%;")
       h2 Pending Requests
-      table.w3-table-all.w3-centered.w3-bordered
-        tr.w3-indigo
+      table.w3-table.w3-centered.border_color
+        tr.secundary_bg_color.secundary_text_color
             th Number
             th Command
             th Date
@@ -18,22 +18,22 @@ block content
               td=p.status
     .w3-container.w3-cell.w3-center(style="width:50%;")
       h2 Completed Requests
-      table.w3-table-all.w3-centered.w3-bordered
-        tr.w3-indigo
+      table.w3-table.w3-centered.border_color
+        tr.secundary_bg_color.secundary_text_color
             th Number
             th Command
             th Date
             th Download
             th Delete
         each p in completed
-            tr
+            tr.primary_bg_color.primary_text_color
               td=p.number
               td=p.command
               td=p.date
               td
                 form.w3-container(action='/requests/'+p.number method="get")
-                  button.w3-btn.w3-indigo(type="submit") Download
+                  button.w3-btn.secundary_bg_color.secundary_text_color(type="submit") Download
               td 
                 form.w3-container(action='/requests/delete/'+p.number method="post")
-                  button.w3-btn.w3-indigo(type="submit") Delete
+                  button.w3-btn.secundary_bg_color.secundary_text_color(type="submit") Delete
   br
