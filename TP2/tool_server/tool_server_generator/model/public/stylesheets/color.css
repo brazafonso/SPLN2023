@@ -1,5 +1,5 @@
 .primary_text_color{
-    color:#ff00b3!important;
+    color: $primary_text_color!important;
 }
 
 .secondary_text_color{
@@ -7,7 +7,7 @@
 }
 
 .primary_bg_color{
-    background-color: #ff7300!important;
+    background-color: $primary_bg_color!important;
 }
 
 .secondary_bg_color{
@@ -15,9 +15,9 @@
 }
 
 .label_color{
-    color: #b53f8e!important;
+    color: $label_color!important;
 }
 
 .border_color{
-    border: 1px solid #000 !important;
+    border: 1px solid $border_color!important;
 }

@@ -3,10 +3,12 @@
 from lark.visitors import Interpreter
 from lark import Lark
 
+import re
+
 
 grammar = '''
 start : servidor
-servidor : "*" "Servidor" opcoes_servidor ferramentas
+servidor : "*" "Servidor" opcoes_servidor ferramentas visuais?
 opcoes_servidor : nome_servidor diretoria_servidor porta_servidor  rota_servidor? trabalhadores_servidor?
 nome_servidor : "-" "Nome" ":" NOME
 diretoria_servidor : "-" "Diretoria" ":" TEXTO
@@ -29,6 +31,11 @@ comando_operador : PIPE
 arg : TEXTO
     | PALAVRA
 
+visuais : "*" "Visuais" favicon? colors?
+favicon : "-" "Favicon" ":" TEXTO
+colors : color+
+color : "-" COLOR ":" HEXCODE
+
 
 inputs : "-" "Inputs" ":" input+
 input : "-" INPUT ":" opcoes_input
@@ -50,6 +57,8 @@ TYPE: /(STR)|(NUM)|(FILE)|(FOLDER)/
 PIPE: /\|/
 REDIRECIONAMENTO: /<|>/
 AND: /&/
+COLOR: /(PrimaryBgColor)|(SecundaryBgColor)|(PrimaryTextColor)|(SecundaryTextColor)|(LabelColor)|(BorderColor)/
+HEXCODE: /#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})/
 
 %import common.WS
 %import common.WORD
@@ -84,6 +93,14 @@ class Interpreter(Interpreter):
     def __set_server_workers(self,trabalhadores):
         '''Modifica o numero de trabalhadores do servidor'''
         self.server_config['workers'] = trabalhadores
+
+    def __set_color(self,tag,color):
+        tag = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', tag)
+        tag = re.sub('([a-z0-9])([A-Z])', r'\1_\2', tag).lower()
+        self.server_config['visuais']['colors'][tag] = color
+
+    def __set_favicon(self,favicon):
+        self.server_config['visuais']['favicon'] = favicon
 
     def __add_tool(self,familia,titulo_ferramenta):
         '''Adiciona uma nova ferramenta no dicionario de ferramentas'''
@@ -125,7 +142,18 @@ class Interpreter(Interpreter):
             'porta' : '',
             'rota' : '/',
             'workers' : 1,
-            'ferramentas' : {}
+            'ferramentas' : {},
+            'visuais' : {
+                'favicon' : '',
+                'colors' : {
+                    'primary_text_color' : '#000',
+                    'secundary_text_color' : '#fff',
+                    'primary_bg_color' : '#fff',
+                    'secundary_bg_color' : '#3f51b5',
+                    'label_color' : '#3f51b5',
+                    'border_color' : '#f1f1f1',
+                    }
+            }
         }
         self.curTool = None
         self.curFamily = None
@@ -138,12 +166,15 @@ class Interpreter(Interpreter):
         return self.server_config
     
     def servidor(self,servidor):
-        '''servidor : "*" "Servidor" opcoes_servidor ferramentas'''
+        '''servidor : "*" "Servidor" opcoes_servidor ferramentas visuais?'''
         elems = servidor.children
         # visitar opcoes_servidor
         self.visit(elems[0])
         # visitar ferramentas
         self.visit(elems[1])
+        # visitar visuais?
+        if (len(elems) == 3):
+            self.visit(elems[2])
 
     def opcoes_servidor(self,opcoes_servidor):
         '''opcoes_servidor : nome_servidor diretoria_servidor porta_servidor  rota_servidor? trabalhadores_servidor?'''
@@ -301,10 +332,34 @@ class Interpreter(Interpreter):
         if input_tipo == 'FILE':
             self.__add_tool_nfiles(self.curFamily,self.curTool)
         return ('tipo',input_tipo)
-
-
-
     
+    def visuais(self,visuais):
+        '''visuais : "*" "Visuais" favicon? colors?'''
+        elems = visuais.children
+        for elem in elems:
+            self.visit(elem)
+
+    def favicon(self, favicon):
+        '''favicon : "-" "Favicon" ":" TEXTO'''
+        elems = favicon.children
+        texto = elems[0].value[1:-1]
+        self.__set_favicon(texto)
+    
+    def colors(self,colors):
+        '''colors : color+'''
+        elems = colors.children
+        for elem in elems:
+            self.visit(elem)
+
+    def color(self,color):
+        '''color : "-" COLOR ":" HEXCODE'''
+        elems = color.children
+        tag = elems[0].value
+        hexcode = elems[1].value
+        self.__set_color(tag,hexcode)
+    
+
+
 
 def has_file_input(ferramentas):
     '''Verifica se alguma ferramenta tem ficheiro como input'''
@@ -327,32 +382,20 @@ def parse_config(config_file):
         print('Error : Configuration file not valid.')
     return it.visit(parse_tree)
 
-
-# 'descricao' : '',
-# 'comando' : '',
-# 'inputs' : [],
-# 'n_files' : 0
-# }
-
-# {
-#             'nome' : '',
-#             'diretoria' : '',
-#             'ip' : '',
-#             'porta' : '',
-#             'rota' : '/',
-#             'workers' : 1,
-#             'ferramentas' : {}
-#         }
-
-# familia titulo descricao comando inputs?
-
-# input_nome? input_descricao? input_tipo
-
 def config_valid(config):
     '''Validar um dicionario como configuracao do servidor'''
     tool_fields = [('descricao',str),('comando',str)]
     input_fields = [('id',str),('opcoes',dict)]
     config_fields = [('nome',str),('diretoria',str),('porta',int),('ferramentas',dict)]
+
+    colors_default = {
+                    'primary_text_color' : '#000',
+                    'secundary_text_color' : '#fff',
+                    'primary_bg_color' : '#fff',
+                    'secundary_bg_color' : '#3f51b5',
+                    'label_color' : '#3f51b5',
+                    'border_color' : '#f1f1f1',
+                    }
 
     # verificar campos do servidor
     for field,t in config_fields:
@@ -423,4 +466,33 @@ def config_valid(config):
                     if 'descricao' in input_opcoes and type(input_opcoes['descricao']) != str:
                         print(f'Error: error on tool {ferramenta} input {input} field "descricao"')
                         return False
+    # verificar visuais
+    if 'visuais' in config:
+        if 'favicon' in config['visuais']:
+            if  type(config['visuais']['favicon']) != str :
+                return False
+        else:
+            config['visuais']['favicon'] = ''
+        if 'colors' in config['visuais']:
+            tags = [('primary_text_color','#000'),
+                    ('secundary_text_color','#fff'),
+                    ('primary_bg_color','#fff'),
+                    ('secundary_bg_color','#3f51b5'),
+                    ('label_color','#3f51b5'),
+                    ('border_color','#f1f1f1'),]
+            
+            for (tag,default) in tags:
+                if tag in config['visuais']['colors']:
+                    if type(config['visuais']['colors'][tag]) != str :
+                        return False
+                else:
+                    config['visuais']['colors'][tag] = default
+        else:
+            config['visuais']['colors'] = colors_default
+    else:
+        config['visuais'] = {
+                'favicon' : '',
+                'colors' : colors_default
+            }
+
     return True
