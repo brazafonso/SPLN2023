@@ -1,0 +1,30 @@
+
+* Servidor
+- Nome: Servidor
+- Diretoria: "teste"
+- Porta: 15213
+* Ferramentas
+--
+- Família:Grep
+- Título: "Grep"
+- Descrição: "grep  searches  for  PATTERNS in each FILE.  PATTERNS is one or more patterns separated by newline characters,
+and grep prints each line that matches a pattern.  Typically PATTERNS should be quoted when grep is used in  a
+shell command."
+-Comando: cat INPUT1 | grep INPUT2 & sleep 10
+-Inputs:
+    - INPUT2: 
+        - Nome : pattern
+        - Descrição : "Padrao de procura"
+        - Tipo : STR
+    - INPUT1: 
+        - Nome : file
+        - Descrição : "Ficheiro onde se vai aplicar a procura"
+        - Tipo : FILE
+* Visuais
+- Favicon: "favicon.ico"
+- PrimaryBgColor: #ff7300
+- SecundaryBgColor: #b53f8e
+- PrimaryTextColor: #ff00b3
+- SecundaryTextColor: #9e9e9e
+- LabelColor: #b53f8e
+- BorderColor: #000000

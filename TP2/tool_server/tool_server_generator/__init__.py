@@ -83,8 +83,27 @@ def tool_server():
         except Exception as e:
             print(f"Error copying the model server: {e}")
             exit(-1)
+        
         # alterar configuracoes do servidor
         config_server(destino,config)
+
+        if config['visuais']['favicon'] != '':
+            favicon = config['visuais']['favicon']
+            old_favicon = destino + '/public/images/favicon.ico'
+            destino_favicon = destino + '/public/images/favicon.ico'
+
+            #remover favicon default que vem do model
+            os.remove(old_favicon)
+            
+            #colocar o dado
+            try:
+                shutil.copy(favicon,destino_favicon)
+            except FileNotFoundError:
+                print("Favicon not found!")
+                exit(-1)
+            except Exception as e:
+                print(f"Error copying the favicon: {e}")
+                exit(-1)
 
         # expor porta de ngrok
         if args.ngrok:

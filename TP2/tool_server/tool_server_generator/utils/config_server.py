@@ -35,6 +35,9 @@ def config_server(server_dir,config_file):
     # criar rota para cada familia e ferramenta
     __server_create_routes(f'{server_dir}/routes/index.js',config_file)
 
+    # alterar cores do css
+    __css_color_file(f'{server_dir}/public/stylesheets/color.css',config_file['visuais']['colors'])
+
 
 def __www_file(www_path,ip,porta):
     '''Modificar configuracoes do servidor, porta e ip'''
@@ -305,3 +308,18 @@ def __server_create_routes(index_path,server_config):
     file.write(index)
     file.close()
 
+
+def __change_color(css, tag, color):
+    return css.replace(tag,color)
+
+def __css_color_file(css_path,colors):
+    file = open(css_path, 'r')
+    css = file.read()
+    file.close()
+
+    for tag in colors:
+        css = __change_color(css,f'${tag}',colors[tag])
+
+    file = open(css_path,'w')
+    file.write(css)
+    file.close()
