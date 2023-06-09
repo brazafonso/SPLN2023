@@ -154,6 +154,7 @@ function process_command(data,files){
     fs.mkdirSync(r_folder)
   inputs = {}
   input_re = /INPUT\d+/g
+  files_times = {}
   // pega inputs do form
   for(d in data){
     if(d.match(input_re)){
@@ -171,6 +172,9 @@ function process_command(data,files){
     newpath = `requests/${request_n}/${filename_original}`
     fs.renameSync(oldpath,newpath)
     inputs[file] = filename_original
+
+    stats = fs.statSync(newpath)
+    files_times[newpath] = stats.mtime
   }
   command = data.command
   // troca o valor dos inputs no comando
@@ -185,7 +189,8 @@ function process_command(data,files){
     inputs : inputs,
     date : data,
     path : r_folder,
-    status : "Pending"
+    status : "Pending",
+    files_times : files_times
   }
 
   queue.push(request_info)

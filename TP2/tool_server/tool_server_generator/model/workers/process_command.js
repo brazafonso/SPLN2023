@@ -16,6 +16,10 @@ parentPort.on('message', (msg) => {
     throw new Error(`Unknown message: ${msg}`)
   })
 
+function datesEqual(a, b) {
+  return a.getTime() === b.getTime();
+}
+
 /**
  * Funcao para correr um comando
  */
@@ -40,6 +44,19 @@ function run_command(){
     err_file = path.join(request_path,`request_${request.number}_${Date.parse(request.date)}_stderr.txt`)
     fs.writeFileSync(err_file,error)
   }
+
+  //verifico se os ficheiros de inputs foram alterados, caso não são eliminados
+  files_times = request.files_times
+  for(filepath in files_times){
+    old_mtime = files_times[filepath]
+    stats = fs.statSync(filepath)
+    new_mtime = stats.mtime
+
+    if(datesEqual(old_mtime,new_mtime)){
+      fs.unlinkSync(filepath) //elimino o input
+    }
+  }
+
   console.log('Worker ' + id + ' done' )
 }
   
