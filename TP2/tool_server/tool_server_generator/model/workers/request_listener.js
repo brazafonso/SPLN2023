@@ -2,8 +2,10 @@ const { parentPort, workerData } = require('worker_threads')
 const fs = require('fs')
 const path = require('path');
 const requests_folder = 'requests/'
+const requests_folder_path = path.join(requests_folder)
 const { threads } = workerData
 const { Worker } = require('worker_threads');
+
 var queue = [] // queue de pedidos
 request_n = 0  // id do proximo pedido
 available_workers = [] // lista com threads disponiveis
@@ -12,8 +14,46 @@ completed_requests = {} // dicionario de todas as requests completas
 pending_requests = {} // dicionario de todas as requests pending
 
 // criar pasta de requests se nao houver
-if(!fs.existsSync(path.join(requests_folder)))
-    fs.mkdirSync(path.join(requests_folder))
+if(!fs.existsSync(requests_folder_path))
+    fs.mkdirSync(requests_folder_path)
+// verificar pedidos ja completos na pasta
+else{
+  requests_folders= fs.readdirSync(requests_folder)
+  // pastas dentro de 'requests'
+  for(r_f in requests_folders){
+    r_f = requests_folders[r_f]
+    try{
+      id = parseInt(r_f)
+      // ficheiro com nome numerico
+      if(!isNaN(id)){
+        request_path = path.join(requests_folder,r_f)
+        request = request_path
+        // ficheiro é uma pasta
+        if(fs.lstatSync(request_path).isDirectory()){
+          request_files = fs.readdirSync(request_path)
+          // para cada pasta dentro da request
+          for(file in request_files){
+            file = request_files[file]
+            re = new RegExp(`request_${id}_(\\d+)_info\.json`,"g")
+            // procura por um ficheiro que tenha a nomenculatura do info de request
+            if(re.exec(file)){
+              info_json = fs.readFileSync(path.join(request_path,file))
+              completed_requests[id] = JSON.parse(info_json)
+              if(id >= request_n)
+                request_n = id + 1
+              break
+            }
+          }
+        }
+      }
+    }
+    catch(err){
+      console.log('Erro : ' + err)
+    }
+  }
+}
+
+
 
 // criar lista de workers
 for(i=0;i<threads;i++){
@@ -62,7 +102,8 @@ function send_request(){
     if(queue.length > 0){
       id = available_workers.pop()
       request = queue.pop()
-      console.log(`Request ${id} delivered to worker`)
+      pending_requests[request.number]['status'] = 'Processing'
+      console.log(`Request ${request.number} delivered to worker ${id}`)
       // criar worker
       worker = new Worker('./workers/process_command.js', { workerData: { id, request} })
       workers[id] = worker
@@ -86,6 +127,7 @@ function worker_callback(data) {
   message = data.message
   // trocar request de pending para completed
   completed_requests[request_id] = pending_requests[request_id]
+  completed_requests[request_id]['status'] = 'Completed'
   delete pending_requests[request_id]
   console.log('Worker message:' + message)
   // remover worker
@@ -137,19 +179,19 @@ function process_command(data,files){
   }
   // adicionar request na queue de requests e dicionario de pending requests
   data = new Date().toISOString().substring(0,19)
-  queue.push({
-    id : request_n,
+  request_info = {
+    number : request_n,
     command : command,
     inputs : inputs,
     date : data,
-    path : r_folder
-  })
-
-  pending_requests[request_n] = {
-    number : request_n,
-    command : command,
-    date : data,
-    path: r_folder
+    path : r_folder,
+    status : "Pending"
   }
+
+  queue.push(request_info)
+
+  pending_requests[request_n] = request_info
+
+  fs.writeFileSync(path.join(r_folder,`request_${request_n}_${Date.parse(data)}_info.json`),JSON.stringify(request_info))
 }
 

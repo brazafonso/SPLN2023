@@ -104,13 +104,13 @@ def tool_server():
             except Exception as e:
                 print(f"Error copying the favicon: {e}")
                 exit(-1)
-
-        # expor porta de ngrok
-        if args.ngrok:
-            start_ngrok(config)
-
+                
         #iniciar servidor
         if args.start_server:
+            # expor porta de ngrok
+            if args.ngrok:
+                start_ngrok(config)
+                
             start_server(destino,config)
     else:
         print('Error on the configuration file.')
