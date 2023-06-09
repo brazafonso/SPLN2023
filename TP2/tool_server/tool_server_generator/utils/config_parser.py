@@ -57,7 +57,7 @@ TYPE: /(STR)|(NUM)|(FILE)|(FOLDER)/
 PIPE: /\|/
 REDIRECIONAMENTO: /<|>/
 AND: /&/
-COLOR: /(PrimaryBgColor)|(SecundaryBgColor)|(PrimaryTextColor)|(SecundaryTextColor)|(LabelColor)|(BorderColor)/
+COLOR: /(PrimaryBgColor)|(SecondaryBgColor)|(PrimaryTextColor)|(SecondaryTextColor)|(LabelColor)|(BorderColor)/
 HEXCODE: /#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})/
 
 %import common.WS
@@ -147,11 +147,11 @@ class Interpreter(Interpreter):
                 'favicon' : '',
                 'colors' : {
                     'primary_text_color' : '#000',
-                    'secundary_text_color' : '#fff',
+                    'secondary_text_color' : '#fff',
                     'primary_bg_color' : '#fff',
-                    'secundary_bg_color' : '#3f51b5',
+                    'secondary_bg_color' : '#3f51b5',
                     'label_color' : '#3f51b5',
-                    'border_color' : '#f1f1f1',
+                    'border_color' : '#9e9e9e',
                     }
             }
         }
@@ -390,11 +390,11 @@ def config_valid(config):
 
     colors_default = {
                     'primary_text_color' : '#000',
-                    'secundary_text_color' : '#fff',
+                    'secondary_text_color' : '#fff',
                     'primary_bg_color' : '#fff',
-                    'secundary_bg_color' : '#3f51b5',
+                    'secondary_bg_color' : '#3f51b5',
                     'label_color' : '#3f51b5',
-                    'border_color' : '#f1f1f1',
+                    'border_color' : '#9e9e9e',
                     }
 
     # verificar campos do servidor
@@ -475,11 +475,11 @@ def config_valid(config):
             config['visuais']['favicon'] = ''
         if 'colors' in config['visuais']:
             tags = [('primary_text_color','#000'),
-                    ('secundary_text_color','#fff'),
+                    ('secondary_text_color','#fff'),
                     ('primary_bg_color','#fff'),
-                    ('secundary_bg_color','#3f51b5'),
+                    ('secondary_bg_color','#3f51b5'),
                     ('label_color','#3f51b5'),
-                    ('border_color','#f1f1f1'),]
+                    ('border_color','#9e9e9e'),]
             
             for (tag,default) in tags:
                 if tag in config['visuais']['colors']:

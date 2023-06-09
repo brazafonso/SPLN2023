@@ -69,12 +69,15 @@ router.get('/requests/:id', function(req, res, next) {
 router.get('/requests/out/:id', function(req, res, next) {
   id = req.params.id
   request = completed_requests[id]
+  text = ''
   // ler out
   stdout_file = path.join(request.path,`request_${id}_${Date.parse(request.date)}_stdout.txt`)
-  text = fs.readFileSync(stdout_file).toString()
+  stderr_file = path.join(request.path,`request_${id}_${Date.parse(request.date)}_stderr.txt`)
+  if(fs.existsSync(stdout_file)){
+    text = fs.readFileSync(stdout_file).toString()
+  }
   // se out vazio, ler err
-  if(text.length == 0){
-    stderr_file = path.join(request.path,`request_${id}_${Date.parse(request.date)}_stderr.txt`)
+  else if(fs.existsSync(stderr_file)){
     text = fs.readFileSync(stderr_file).toString()
   }
   res.json({id:id,mensagem:text})

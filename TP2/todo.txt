@@ -6,10 +6,6 @@ TODO:
 
 - autenticacao? : extra
 
-- ao devolver os resultados diferenciar ficheiros de input dos resultados na pasta da request : extra
-
-- devolver stdout de forma mais simples do que download
-
 - confirmar status na pagina de request
 
 - relatorio + readme

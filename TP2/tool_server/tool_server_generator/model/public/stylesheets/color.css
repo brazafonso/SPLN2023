@@ -3,7 +3,7 @@
 }
 
 .secondary_text_color{
-    color:#9e9e9e!important;
+    color:$secondary_text_color!important;
 }
 
 .primary_bg_color{
@@ -11,7 +11,7 @@
 }
 
 .secondary_bg_color{
-    background-color:#b53f8e!important;
+    background-color:$secondary_bg_color!important;
 }
 
 .label_color{

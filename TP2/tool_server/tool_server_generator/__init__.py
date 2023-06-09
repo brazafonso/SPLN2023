@@ -11,7 +11,7 @@ from .utils.utils import *
 from .utils.config_parser import *
 from .utils.config_server import *
 
-__version__ = '0.3.3'
+__version__ = '0.4'
 project_dir = os.path.dirname(os.path.realpath(__file__))
 model_server = f'{project_dir}/model'
 tunnel = None
@@ -110,7 +110,7 @@ def tool_server():
             # expor porta de ngrok
             if args.ngrok:
                 start_ngrok(config)
-                
+
             start_server(destino,config)
     else:
         print('Error on the configuration file.')
