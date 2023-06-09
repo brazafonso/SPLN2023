@@ -20,8 +20,6 @@ def config_server(server_dir,config_file):
     #nome das ferramentas organizado por familias
     ferramentas = config_file['ferramentas']
     families = {family:list(tools.keys()) for family,tools in ferramentas.items()}
-    #TODO: se calhar deviamos ordenar este dicionario por familia e a lista de nome de tools
-    # ou deixamos pela ordem que ele meteu na config (que é a que está), podes escolher Braz
 
     # layout.pug file (alterar titulo do layout)
     __layout_pug_file(f'{server_dir}/views/layout.pug',config_file['nome'],families)
@@ -54,12 +52,14 @@ def __www_file(www_path,ip,porta):
 def __sidebar_tools(families):
     sidebar = ""
     for family,tools in families.items():
-        sidebar += f"""button.w3-button.w3-block.w3-left-align(onclick="open_tools('{family}')") {family} 
+        sidebar += f"""
+      button.w3-button.w3-block.w3-left-align(onclick="open_tools('{family}')") {family} 
             i.fa.fa-caret-down
-      .w3-hide(id="Grep")"""
+      .w3-hide(id="{family}")"""
         for tool in tools:
+            tool_re = tool.replace(' ','_')
             sidebar += f"""
-        a.w3-bar-item.w3-button(href="/{family}/{tool}") {tool}"""
+        a.w3-bar-item.w3-button(href="/{family}/{tool_re}") {tool}"""
     return sidebar
 
 def __layout_pug_file(layout_path,nome,families):
