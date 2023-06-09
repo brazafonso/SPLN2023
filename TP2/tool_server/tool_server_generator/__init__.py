@@ -86,12 +86,12 @@ def tool_server():
         # alterar configuracoes do servidor
         config_server(destino,config)
 
-        # expor porta de ngrok
-        if args.ngrok:
-            start_ngrok(config)
-
         #iniciar servidor
         if args.start_server:
+            # expor porta de ngrok
+            if args.ngrok:
+                start_ngrok(config)
+                
             start_server(destino,config)
     else:
         print('Error on the configuration file.')
