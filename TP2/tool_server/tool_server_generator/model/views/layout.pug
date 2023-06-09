@@ -1,21 +1,22 @@
 doctype html
 html
   head
-    title $title
-    link(rel='stylesheet', href='/stylesheets/w3.css')
-    link(rel='stylesheet', href='/stylesheets/color.css')
-    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
-    link(rel='icon', href='/images/favicon.ico')
-    script(src='/javascripts/jquery.js')
+    block head
+      title $title
+      link(rel='stylesheet', href='/stylesheets/w3.css')
+      link(rel='stylesheet', href='/stylesheets/color.css')
+      link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css")
+      link(rel='icon', href='/images/favicon.ico')
+      script(src='/javascripts/jquery.js')
   body.primary_bg_color.primary_text_color
     .w3-sidebar.w3-bar-block.w3-card.w3-animate-left.primary_bg_color(style="display:none" id="sidebar")
       button.w3-bar-item.w3-button.w3-large(onclick="close_sidebar()") Close &times;
       a.w3-bar-item.w3-button(href="/requests") Requests
       $tools
     #main
-      .secundary_bg_color.secundary_text_color
-        button.w3-button.secundary_bg_color.secundary_text_color.w3-xlarge(id="nav",onclick="open_sidebar()") &#9776; #{title}
+      .secondary_bg_color.secondary_text_color
+        button.w3-button.secondary_bg_color.secondary_text_color.w3-xlarge(id="nav",onclick="open_sidebar()") &#9776; #{title}
       block content
 
-      footer.secundary_bg_color.secundary_text_color.w3-container
+      footer.secondary_bg_color.secondary_text_color.w3-container
           p Copyright (c) Tools Server Generator.

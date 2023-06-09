@@ -8,12 +8,9 @@ TODO:
 
 - ao devolver os resultados diferenciar ficheiros de input dos resultados na pasta da request : extra
 
-
-- melhorar views
-
-- servidor ao iniciar verifica se ja tem pedidos atendidos
-
 - devolver stdout de forma mais simples do que download
 
+- confirmar status na pagina de request
 
 - relatorio + readme
+

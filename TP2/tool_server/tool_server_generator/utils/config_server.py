@@ -120,7 +120,7 @@ def __tool_pug_file_form(config):
     pug += f'''
                 input(type="hidden" name="command" value="{config['comando']}")
                 br
-                button.w3-button.secundary_bg_color.secundary_text_color.w3-mb-2(type="submit") Submit
+                button.w3-button.secondary_bg_color.secondary_text_color.w3-mb-2(type="submit") Submit
                 br
                 br
 '''
@@ -146,7 +146,7 @@ block content
             pug += __tool_pug_file_desc(descricao)
 
             pug += """
-    .w3-container.secundary_bg_color.secundary_text_color
+    .w3-container.secondary_bg_color.secondary_text_color
         p
     .w3-container
         br

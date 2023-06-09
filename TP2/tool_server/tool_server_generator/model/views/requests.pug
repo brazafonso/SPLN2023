@@ -1,11 +1,19 @@
 extends layout
 
 block content
+  .w3-modal(id="w3-modal")
+    .w3-modal-content
+      .w3-container.secondary_bg_color.secondary_text_color
+        h1 Out
+      .w3-container.primary_bg_color.primary_text_color
+        span.w3-button.w3-display-topright(onclick="document.getElementById('w3-modal').style.display='none'") X
+        p(id="w3-modal-text")
+
   .w3-cell-row
     .w3-container.w3-cell.w3-center(style="width:50%;")
       h2 Pending Requests
-      table.w3-table.w3-centered.border_color
-        tr.secundary_bg_color.secundary_text_color
+      table.w3-table.w3-centered.border_color(id="pending_table")
+        tr.secondary_bg_color.secondary_text_color
             th Number
             th Command
             th Date
@@ -18,22 +26,27 @@ block content
               td=p.status
     .w3-container.w3-cell.w3-center(style="width:50%;")
       h2 Completed Requests
-      table.w3-table.w3-centered.border_color
-        tr.secundary_bg_color.secundary_text_color
+      table.w3-table.w3-centered.border_color(id="completed_table")
+        tr.secondary_bg_color.secondary_text_color
             th Number
             th Command
             th Date
+            td Out
             th Download
             th Delete
         each p in completed
-            tr.primary_bg_color.primary_text_color
+            tr.primary_bg_color.primary_text_color(id=p.number)
               td=p.number
               td=p.command
               td=p.date
               td
+                form.w3-container(id='get_out_'+p.number)
+                  button.w3-btn.secondary_bg_color.secondary_text_color(type="submit") Get
+              td
                 form.w3-container(action='/requests/'+p.number method="get")
-                  button.w3-btn.secundary_bg_color.secundary_text_color(type="submit") Download
+                  button.w3-btn.secondary_bg_color.secondary_text_color(type="submit") Download
               td 
                 form.w3-container(action='/requests/delete/'+p.number method="post")
-                  button.w3-btn.secundary_bg_color.secundary_text_color(type="submit") Delete
+                  button.w3-btn.secondary_bg_color.secondary_text_color(type="submit") Delete
   br
+  script(src='/javascripts/requests.js')

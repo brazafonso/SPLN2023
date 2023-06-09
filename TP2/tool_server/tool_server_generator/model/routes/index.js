@@ -42,10 +42,12 @@ router.get('/', function(req, res, next) {
   res.redirect('/requests');
 });
 
+// pagina das requests
 router.get('/requests', function(req, res, next) {
   res.render('requests', { title: 'Requests', queue: pending_requests,completed:completed_requests });
 });
 
+// rota para enviar o zip com os resultados de um pedido
 router.get('/requests/:id', function(req, res, next) {
   id = req.params.id
   request = completed_requests[id]
@@ -63,6 +65,20 @@ router.get('/requests/:id', function(req, res, next) {
   res.end(zipFileContents)
 });
 
+// Rota para enviar o out de um pedido
+router.get('/requests/out/:id', function(req, res, next) {
+  id = req.params.id
+  request = completed_requests[id]
+  // ler out
+  stdout_file = path.join(request.path,`request_${id}_${Date.parse(request.date)}_stdout.txt`)
+  text = fs.readFileSync(stdout_file).toString()
+  // se out vazio, ler err
+  if(text.length == 0){
+    stderr_file = path.join(request.path,`request_${id}_${Date.parse(request.date)}_stderr.txt`)
+    text = fs.readFileSync(stderr_file).toString()
+  }
+  res.json({id:id,mensagem:text})
+});
 
 router.post('/requests/delete/:id', function(req, res, next) {
   id = req.params.id

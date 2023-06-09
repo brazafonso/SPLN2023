@@ -14,10 +14,10 @@ function open_tools(id) {
   var x = document.getElementById(id);
   if (x.className.indexOf("w3-show") == -1) {
     x.className += " w3-show";
-    x.previousElementSibling.className += " secundary_bg_color secundary_text_color";
+    x.previousElementSibling.className += " secondary_bg_color secondary_text_color";
   } else { 
     x.className = x.className.replace(" w3-show", "");
     x.previousElementSibling.className = 
-    x.previousElementSibling.className.replace(" secundary_bg_color secundary_text_color", "");
+    x.previousElementSibling.className.replace(" secondary_bg_color secondary_text_color", "");
   }
 }
