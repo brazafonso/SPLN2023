@@ -38,6 +38,10 @@ function process_command(req){
   })
 }
 
+router.get('/', function(req, res, next) {
+  res.redirect('/requests');
+});
+
 router.get('/requests', function(req, res, next) {
   res.render('requests', { title: 'Requests', queue: pending_requests,completed:completed_requests });
 });

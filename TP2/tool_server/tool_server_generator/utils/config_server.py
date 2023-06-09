@@ -51,12 +51,12 @@ def __www_file(www_path,ip,porta):
 def __sidebar_tools(families):
     sidebar = ""
     for family,tools in families.items():
-        sidebar += f"""button.w3-button.w3-block.w3-left-align(onclick="open_tools('{family}')") {family}
+        sidebar += f"""button.w3-button.w3-block.w3-left-align(onclick="open_tools('{family}')") {family} 
             i.fa.fa-caret-down
-        .w3-hide.w3-white(id="Grep")"""
+      .w3-hide.w3-white(id="Grep")"""
         for tool in tools:
             sidebar += f"""
-            a.w3-bar-item.w3-button(href="/{family}/{tool}") {tool}"""
+        a.w3-bar-item.w3-button(href="/{family}/{tool}") {tool}"""
     return sidebar
 
 def __layout_pug_file(layout_path,nome,families):
@@ -142,8 +142,8 @@ def __tool_pug_file_form(config):
         input_type = input_dict['tipo']
         pug += '''
                 label.w3-left.w3-text-indigo'''
-        if ('descricao' in input):
-            descricao = input['descricao']
+        if ('descricao' in input_dict):
+            descricao = input_dict['descricao']
             pug += f'''
                     p.w3-tooltip
                         b {nome} 
@@ -155,8 +155,11 @@ def __tool_pug_file_form(config):
                 {__pug_input_field(input_type,id)}
                 br'''
     pug += f'''
-            input(type="hidden" name="command" value="{config['comando']}")
-        button.w3-btn.w3-purple.w3-mb-2(type="submit") Submit
+                input(type="hidden" name="command" value="{config['comando']}")
+                br
+                button.w3-button.w3-indigo.w3-mb-2(type="submit") Submit
+                br
+                br
 '''
     return pug
 
@@ -173,7 +176,7 @@ def __tool_pug_file(path, server_config):
             pug = f'''
 extends layout
 block content
-    .w3-container.w3-indigo
+    .w3-container.w3-white
         h3 Description
 '''         
             # descricao
