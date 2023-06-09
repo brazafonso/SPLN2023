@@ -1,0 +1,40 @@
+
+* Servidor
+- Nome: Servidor
+- Diretoria: "teste"
+- Porta: 20202
+* Ferramentas
+--
+- Família:Grep
+- Título: "Grep"
+- Descrição: "grep  searches  for  PATTERNS in each FILE.  PATTERNS is one or more patterns separated by newline characters,
+and grep prints each line that matches a pattern.  Typically PATTERNS should be quoted when grep is used in  a
+shell command."
+-Comando: cat INPUT1 | grep INPUT2 & sleep 10
+-Inputs:
+    - INPUT2: 
+        - Nome : pattern
+        - Descrição : "Padrao de procura"
+        - Tipo : STR
+    - INPUT1: 
+        - Nome : file
+        - Descrição : "Ficheiro onde se vai aplicar a procura"
+        - Tipo : FILE
+
+--
+- Família:python
+- Título: "python_run"
+- Descrição: "Run python command."
+-Comando: python3 INPUT1
+-Inputs:
+    - INPUT1: 
+        - Nome : script
+        - Descrição : "Script a rodar."
+        - Tipo : FILE
+
+
+--
+- Família:Teste
+- Título: "teste_simples"
+- Descrição: "Fazer pedido simples."
+-Comando: get-command

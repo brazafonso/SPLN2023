@@ -12,7 +12,6 @@ TODO:
 
 - melhorar views
 
-
 - servidor ao iniciar verifica se ja tem pedidos atendidos
 
 - relatorio + readme

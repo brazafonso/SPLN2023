@@ -1,0 +1,32 @@
+{
+    "nome" : "Servidor",
+    "diretoria" : "teste",
+    "porta" : 20202,
+    "ferramentas" : {
+        "Grep" : {
+            "Grep" : {
+                "descricao" : "Teste de descricao",
+                "comando" : "cat INPUT1 | grep INPUT2 & sleep 10",
+                "inputs" : [
+                    {
+                        "id": "INPUT1",
+                        "opcoes" : {
+                            "nome" : "file",
+                            "descricao" : "Ficheiro onde se vai aplicar a procura",
+                            "tipo" : "FILE"
+                        }
+                    },
+                    {
+                        "id": "INPUT2",
+                        "opcoes" : {
+                            "nome" : "pattern",
+                            "tipo" : "STR",
+                            "descricao" : "Padrao de procura"
+                        }
+                    }
+                ]
+            }
+        }
+    }
+
+}
