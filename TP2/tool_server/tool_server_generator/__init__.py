@@ -11,7 +11,7 @@ from .utils.utils import *
 from .utils.config_parser import *
 from .utils.config_server import *
 
-__version__ = '0.4.1'
+__version__ = '0.4.2'
 project_dir = os.path.dirname(os.path.realpath(__file__))
 model_server = f'{project_dir}/model'
 tunnel = None
