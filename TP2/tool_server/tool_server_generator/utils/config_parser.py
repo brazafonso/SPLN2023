@@ -52,7 +52,7 @@ TEXTO: /"[^"]*"/
 NOME: /[\w\-]+/
 PALAVRA: /[\w\.\-_]+/
 INPUT: /INPUT\d+/
-FLAG: /-\w+/
+FLAG: /-{1,2}\w+/
 TYPE: /(STR)|(NUM)|(FILE)|(FOLDER)/
 PIPE: /\|/
 REDIRECIONAMENTO: /<|>/
