@@ -11,7 +11,7 @@ from .utils.utils import *
 from .utils.config_parser import *
 from .utils.config_server import *
 
-__version__ = '0.4.2'
+__version__ = '0.4.3'
 project_dir = os.path.dirname(os.path.realpath(__file__))
 model_server = f'{project_dir}/model'
 tunnel = None
@@ -29,10 +29,8 @@ def start_ngrok(config):
         print('Error: Could not expose port using ngrok.')
         tunnel = None
 
-
-def start_server(server_dir,config):
-    '''Inicia o servidor'''
-    global tunnel
+def install_server_dependencies(server_dir,config):
+    '''Instala as dependencias do servidor'''
     server_path = f'{os.getcwd()}/{server_dir}'
     dependencies = ['express','http-errors','adm-zip']
 
@@ -41,10 +39,16 @@ def start_server(server_dir,config):
         dependencies += ['multer']
         
     dependencies = ' '.join(dependencies)
+    print(f'Installing server dependencies: [{dependencies}]')
+    p = subprocess.call(f'npm i {dependencies} -s', cwd=server_path,shell=True)
+    print('Dependencies installed')
+
+
+def start_server(server_dir):
+    '''Inicia o servidor'''
+    global tunnel
+    server_path = f'{os.getcwd()}/{server_dir}'
     try:
-        print(f'Installing server dependencies: [{dependencies}]')
-        p = subprocess.call(f'npm i {dependencies} -s', cwd=server_path,shell=True)
-        print('Dependencies installed')
         print('Starting server')
         p = subprocess.call(f'npm start', cwd=server_path,shell=True)
     except Exception as e:
@@ -104,14 +108,16 @@ def tool_server():
             except Exception as e:
                 print(f"Error copying the favicon: {e}")
                 exit(-1)
-                
+        # instalar dependencias do servidor
+        install_server_dependencies(destino,config)
+
         #iniciar servidor
         if args.start_server:
             # expor porta de ngrok
             if args.ngrok:
                 start_ngrok(config)
 
-            start_server(destino,config)
+            start_server(destino)
     else:
         print('Error on the configuration file.')
         exit(-1)

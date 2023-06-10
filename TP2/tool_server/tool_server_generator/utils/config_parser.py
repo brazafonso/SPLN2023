@@ -53,7 +53,7 @@ NOME: /[\w\-]+/
 PALAVRA: /[\w\.\-_]+/
 INPUT: /INPUT\d+/
 FLAG: /-{1,2}\w+/
-TYPE: /(STR)|(NUM)|(FILE)|(FOLDER)/
+TYPE: /(STR)|(NUM)|(FILE)/
 PIPE: /\|/
 REDIRECIONAMENTO: /<|>/
 AND: /&/
