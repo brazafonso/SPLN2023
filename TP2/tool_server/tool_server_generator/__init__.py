@@ -21,7 +21,7 @@ def start_ngrok(config):
     global tunnel
     try:
         print(ngrok.get_tunnels())
-        print('Exposing port using ngrok')
+        print('LOG: Exposing port using ngrok')
         tunnel = ngrok.connect(config['porta'],'http')
         print('Public URL: ',tunnel.public_url)
     except Exception as e:
@@ -39,9 +39,9 @@ def install_server_dependencies(server_dir,config):
         dependencies += ['multer']
         
     dependencies = ' '.join(dependencies)
-    print(f'Installing server dependencies: [{dependencies}]')
+    print(f'LOG: Installing server dependencies: [{dependencies}]')
     p = subprocess.call(f'npm i {dependencies} -s', cwd=server_path,shell=True)
-    print('Dependencies installed')
+    print('LOG: Dependencies installed')
 
 
 def start_server(server_dir):
@@ -49,13 +49,13 @@ def start_server(server_dir):
     global tunnel
     server_path = f'{os.getcwd()}/{server_dir}'
     try:
-        print('Starting server')
+        print('LOG: Starting server')
         p = subprocess.call(f'npm start', cwd=server_path,shell=True)
     except Exception as e:
-        print('Server closed')
+        print('LOG: Server closed')
         # desconectar ngrok
         if tunnel:
-            print('Closing ngrok')
+            print('LOG: Closing ngrok')
             ngrok.disconnect(tunnel.public_url)
 
 def tool_server():
@@ -79,13 +79,13 @@ def tool_server():
         try:
             shutil.copytree(origem, destino)
         except FileNotFoundError:
-            print("Model Server not found!")
+            print("Error: Model Server not found!")
             exit(-1)
         except FileExistsError:
-            print("Directory already exists.")
+            print("Error: Directory already exists.")
             exit(-1)
         except Exception as e:
-            print(f"Error copying the model server: {e}")
+            print(f"Error: Error copying the model server: {e}")
             exit(-1)
         
         # alterar configuracoes do servidor
@@ -103,10 +103,10 @@ def tool_server():
             try:
                 shutil.copy(favicon,destino_favicon)
             except FileNotFoundError:
-                print("Favicon not found!")
+                print("Error: Favicon not found!")
                 exit(-1)
             except Exception as e:
-                print(f"Error copying the favicon: {e}")
+                print(f"Error: Error copying the favicon: {e}")
                 exit(-1)
         # instalar dependencias do servidor
         install_server_dependencies(destino,config)
@@ -119,5 +119,5 @@ def tool_server():
 
             start_server(destino)
     else:
-        print('Error on the configuration file.')
+        print('Error: Error on the configuration file.')
         exit(-1)

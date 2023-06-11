@@ -26,13 +26,12 @@ function datesEqual(a, b) {
 function run_command(){
   request_path = request.path
   command = request.command
-  console.log('Worker ' + id +' with request '+request.number + 'running command: ' + command)
+  console.log('LOG: Worker ' + id +' with request '+request.number + 'running command: ' + command)
   try{
     // executar comando
     out = execSync(command,{
       cwd: request_path
     })
-    console.log(out.toString());
     // Escrever ficheiros com output de terminal na pasta da request
     out_file = path.join(request_path,`request_${request.number}_${Date.parse(request.date)}_stdout.txt`)
     fs.writeFileSync(out_file,out.toString())
@@ -57,6 +56,6 @@ function run_command(){
     }
   }
 
-  console.log('Worker ' + id + ' done' )
+  console.log('LOG: Worker ' + id + ' done' )
 }
   

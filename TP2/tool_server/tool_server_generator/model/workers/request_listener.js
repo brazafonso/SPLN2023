@@ -66,7 +66,7 @@ parentPort.on('message', (data) => {
         fields = data.data
         command = fields.command
         files = data.files
-        console.log(`
+        console.log(`LOG: 
         Request Number: ${request_n}
         Command: ${command}
         Files : ${files}
@@ -95,7 +95,7 @@ parentPort.on('message', (data) => {
  * Da uma request a um worker se possivel
  */
 function send_request(){
-  console.log('Sending request')
+  console.log('LOG: Sending request')
   // enquanto que houver workers tenta distribuir pedidos
   while(available_workers.length > 0){
     // se houver pedidos, distribui para um worker
@@ -103,7 +103,7 @@ function send_request(){
       id = available_workers.pop()
       request = queue.pop()
       pending_requests[request.number]['status'] = 'Processing'
-      console.log(`Request ${request.number} delivered to worker ${id}`)
+      console.log(`LOG: Request ${request.number} delivered to worker ${id}`)
       // criar worker
       worker = new Worker('./workers/process_command.js', { workerData: { id, request} })
       workers[id] = worker
@@ -129,7 +129,7 @@ function worker_callback(data) {
   completed_requests[request_id] = pending_requests[request_id]
   completed_requests[request_id]['status'] = 'Completed'
   delete pending_requests[request_id]
-  console.log('Worker message:' + message)
+  console.log('LOG: Worker message:' + message)
   // remover worker
   workers[id].removeListener('message',worker_callback)
   workers[id].unref()
