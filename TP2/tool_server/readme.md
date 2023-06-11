@@ -37,7 +37,6 @@ In the text format it needs to follow the syntax perceivable from the examples. 
 - Name: name of the server.
 - Directory: directory where the server will be created and run from.
 - Port: port of the server.
-- Route: base route of the website (optional - default '/').
 - Workers: number of workers available to process requests (optional - default 1).
 
 Example:
@@ -46,7 +45,6 @@ Example:
         - Nome: Server
         - Diretoria: "test"
         - Porta: 15213
-        - Rota: server\test
         - Trabalhadores: 2
 
 #### *JSON*
@@ -58,7 +56,6 @@ Example:
             "nome" : "Server",
             "diretoria" : "test",
             "porta" : "15213",
-            "rota" : "server\test",
             "workers" : 1,
         }
 

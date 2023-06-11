@@ -9,11 +9,10 @@ import re
 grammar = '''
 start : servidor
 servidor : "*" "Servidor" opcoes_servidor ferramentas visuais?
-opcoes_servidor : nome_servidor diretoria_servidor porta_servidor  rota_servidor? trabalhadores_servidor?
+opcoes_servidor : nome_servidor diretoria_servidor porta_servidor trabalhadores_servidor?
 nome_servidor : "-" "Nome" ":" NOME
 diretoria_servidor : "-" "Diretoria" ":" TEXTO
 porta_servidor : "-" "Porta" ":" PORTA
-rota_servidor : "-" "Rota" ":" ROTA
 trabalhadores_servidor : "-" "Trabalhadores" ":" INT
 
 ferramentas : "*" "Ferramentas" ("--" ferramenta)+
@@ -46,7 +45,6 @@ input_tipo : "-" "Tipo" ":" TYPE
 
 IP: /(\d{1,4}\.){3}\d{1,4}/
 PORTA: /\d+/
-ROTA: /[\w\-\/]+/
 STR: /"[^"]"/
 TEXTO: /"[^"]*"/
 NOME: /[\w\-]+/
