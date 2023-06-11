@@ -1,6 +1,0 @@
-self.visit() -> visitar
-filhos = elem.children -> devolve lista de filhos
-type(filhos[0]) == Tree -> verificar se é uma tree
-filhos[0].data -> nome da regra
-filhos[0].value -> devolve o valor se ele for token
-filhos[0].type -> devolve o token que é
